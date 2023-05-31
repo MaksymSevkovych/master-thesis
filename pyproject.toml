@@ -1,0 +1,26 @@
+[build-system]
+build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning", "wheel"]
+
+[project]
+dynamic = ["dependencies", "version"]
+name = "master_thesis"
+
+[tool.poetry]
+authors = [
+  "Maksym Sevkovych <m.sevkovych@web.de>",
+]
+description = "Master's thesis about variational autoencoders"
+name = "vae_thesis"
+version = "0.0.0"
+
+[tool.poetry.dependencies]
+python = ">=3.11.1,<3.12"
+
+[tool.pytest.ini_options]
+addopts = [
+  "--import-mode=importlib"
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
