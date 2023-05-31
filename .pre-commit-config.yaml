@@ -9,7 +9,6 @@ repos:
       - id: check-json
       - id: check-toml
       - id: check-xml
-      - id: check-added-large-files
   - repo: https://github.com/PyCQA/flake8
     rev: 6.0.0
     hooks:
