@@ -27,11 +27,6 @@ def combine_images(columns, space, images):
     return background
 
 
-def visualise_images(image: Image, file_name: str) -> None:
-    image.save(file_name)
-    image.show()
-
-
 def to_thumbnail(
     image: Image,
     label: str,
@@ -45,7 +40,7 @@ def to_thumbnail(
     draw = ImageDraw.Draw(thumbnail)
     draw.multiline_text(
         (10, 10),
-        f"label: {label}",
+        f"label:{label}",
         fill="white",
         font=font,
     )
@@ -68,9 +63,9 @@ def combine_prediction_visualisation(
 
 
 def generate_plots(images: list, labels: list, image_path: str) -> None:
-    basewidth = 600
+    basewidth = 400
 
-    font = ImageFont.truetype("Chalkduster.ttf", 30)
+    font = ImageFont.truetype("Courier New Bold.ttf", 30)
     thumbnails = combine_prediction_visualisation(images, labels, font, basewidth)
 
     collage_image = combine_images(4, 10, thumbnails)
