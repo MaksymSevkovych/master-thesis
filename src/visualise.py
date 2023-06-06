@@ -3,7 +3,7 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 
-def combine_images(columns, space, images):
+def combine_images(columns: int, space: int, images: list) -> Image:
     rows = len(images) // columns
     if len(images) % columns:
         rows += 1
@@ -21,7 +21,7 @@ def combine_images(columns, space, images):
         y_offset = int((height_max - img.height) / 2)
         background.paste(img, (x + x_offset, y + y_offset))
         x += width_max + space
-        if (i + 1) % columns == 0:
+        if not (i + 1) % columns:
             y += height_max + space
             x = 0
     return background
@@ -31,7 +31,7 @@ def to_thumbnail(
     image: Image,
     label: str,
     font: ImageFont,
-    basewidth: int = 600,
+    basewidth: int = 400,
 ):
     wpercent = basewidth / float(image.width)
     hsize = int(float(image.height) * float(wpercent))
