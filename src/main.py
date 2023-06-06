@@ -11,7 +11,7 @@ if __name__ == "__main__":
         root="./data", train=True, download=True, transform=None
     )
 
-    amount_of_images = 16
+    amount_of_images = 24
     images = [mnist_trainset[i][0] for i in range(amount_of_images)]
     labels = [mnist_trainset[i][1] for i in range(amount_of_images)]
 
