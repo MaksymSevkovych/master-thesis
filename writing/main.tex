@@ -1,0 +1,128 @@
+\documentclass[12pt, a4paper]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage[figure]{hypcap}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{fontenc}
+\usetikzlibrary{positioning,calc,spy}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+\usepackage{typearea}
+\usepackage[outer=2cm, inner=2cm, top=1.5cm, bottom=25mm,includehead]{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
+\setkomafont{caption}{\footnotesize}
+\setkomafont{captionlabel}{\usekomafont{caption}}
+
+\usepackage[clines, headsepline, plainfootsepline,automark]{scrlayer-scrpage}
+\usepackage{subfig}
+
+
+\clearscrheadfoot
+\ofoot[scrplain-außen]{scrheadings-außen}
+\ihead[]{\headmark}
+\chead[]{}
+\ohead[]{}
+\ifoot[]{}
+\cfoot[\pagemark]{\pagemark}
+\ofoot[]{}
+
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\X}{\mathbb{X}}
+\DeclareMathOperator{\f}{\varphi}
+\DeclareMathOperator{\t}{\theta}
+\renewcommand{\a}{\alpha}
+\newcommand*\wc{{}\cdot{}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{plain}
+\newcommand{\thistheoremname}{}
+\newtheorem{genericthm}[theorem]{\thistheoremname}
+\newenvironment{namedthm}[1]
+  {\renewcommand{\thistheoremname}{#1}%
+   \begin{genericthm}}
+  {\end{genericthm}}
+
+\newenvironment{mydescription}[1]
+  {\begin{list}{}%
+   {\renewcommand\makelabel[1]{##1:\hfill}%
+   \settowidth\labelwidth{\makelabel{#1}}%
+   \setlength\leftmargin{\labelwidth}
+   \addtolength\leftmargin{\labelsep}}}
+  {\end{list}}
+
+
+\title{On variational autoencoders: theory and applications}
+\date{\today}
+\author{Maksym Sevkovych}
+\subject{Report}
+\publishers{Inspector: Univ. Prof. Dr. Ingo Steinwart}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{1 cm}
+\begin{center}
+\LARGE{Master's thesis}
+
+\vspace{0.5 cm}
+
+\large{\today}
+
+\vspace{0.5 cm}
+
+\Huge{\textbf{On variational autoencoders: theory and applications}}
+
+\vspace{0.5 cm}
+
+\Large{Maksym Sevkovych}
+
+\Large{Registration number: 3330007}
+
+\Large{In collaboration with: Duckeneers GmbH}
+\vspace{1 cm}
+
+\Large{Inspector: Univ. Prof. Dr. Ingo Steinwart}
+\vspace{3cm}
+\end{center}
+Here should be a catchy abstract and maybe even a short introduction.
+\end{titlepage}
+\newpage
+\tableofcontents
+
+\include{preliminary}
+\iffalse
+\include{well-posedness}
+\include{convergence_rates}
+\include{implementation}
+\fi
+
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+\vspace{4 cm}
+
+$\overline{\text{Stuttgart, \today} \hspace{1 cm}}$
+
+
+\end{document}
