@@ -27,24 +27,35 @@ Now, having introduced activation functions we can introduce neurons.
 \begin{definition}
 Let $\f: \R \to \R$ be an activation function and $w\in \R^k$, $b \in \R$. Then a function $h: \R^k \to \R$ is called \textbf{$\f$-neuron} with weight $w$ and bias $b$, if
 \begin{align}\label{def_neuron}
-h(x) = \f \left(\langle w, x \rangle + b \right), \quad x \in \R^k.
+h(x) = \f \left(\langle w, x \rangle + b \right), \qquad x \in \R^k.
 \end{align}
 We call $\t \coloneqq (w, b)$ the parameters of the neuron $h$.
 \end{definition}
 
 In order to expand the architecture, we consider multiple neurons being arranged in a so called layer.
 
-\begin{definition}
+\begin{definition}\label{def_layer}
 Let $\f: \R \to \R$ be an activation function and $W \in \R^{m\times k}$, $b\in \R^m$. Then a function $H:\R^k \to \R^m$ is called \textbf{$\f$-layer} of width $m$ with weights $W$ and biases $b$ if for all $i=1,\ldots,m$ the component function $h_i$ of $H$ is a $\f$-neuron with weight $w_i = W^\top e_i$ and bias $b_i = \langle b, e_i \rangle$, where $e_i$ denotes the standard ONB of $\R^m$.\\
 If we consider $\hat{\f}: \R^k \to \R$ as the component-wise mapping of $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f(v_1), \ldots, \f(v_k))$, we can generalize the $\f$-layer $H:\R^k \to \R^m$ by
 \begin{align}
-H(x) = \hat{\f}(Wx + b), \quad x \in \R ^k.
+H(x) = \hat{\f}(Wx + b), \qquad x \in \R ^k.
 \end{align}
+\end{definition}
+
+Finally, we can introduce neural networks with the previous definitions formally.
+
+\begin{definition}
+Let $\f: \R \to \R$ be an activation function and $H_1, \ldots, H_L$ with $L \in \N$ be $\f$-layers with parameters $\t_i = (W_i, b_i)$ as in definition \ref{def_layer}. Then, with $\t = (\t_1, \ldots \t_L)$ the function $f_{\f, L, \t}: \R^{d_1} \to \R^{d_L}$ defined by
+\begin{align}
+f_{\f, L, \t} (x) \coloneqq H_L \circ \ldots \circ H_1 (x), \qquad x \in \R^{d_1},
+\end{align}
+is called a \textbf{$\f$-deep neural network} of depth $L$ with parameters $\t \in \T$, where $d_1$ describes the input dimension and $d_L$ the output dimension respectively and $\T$ is some arbitrary parameter space.\\
+Lastly, we will write $f\coloneqq f_{\f, L, \t}$, if the activation function $\f$, the depth $L$ and the parameters $\t$ are clear out of context.
 \end{definition}
 
 A visual representation of a neural network can be found in figure \ref{visual_nn}
 
-\begin{figure}[H]
+\begin{figure}[]
 \begin{center}
    \begin{minipage}[b]{\linewidth}
       \includegraphics[width=\linewidth]{neural_net}
