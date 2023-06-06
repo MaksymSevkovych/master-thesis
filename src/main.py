@@ -18,4 +18,5 @@ if __name__ == "__main__":
     if not os.path.exists(visualisation_path):
         os.makedirs(visualisation_path)
 
-    generate_plots(images, labels, visualisation_path)
+    file_name = "grid_plots.png"
+    generate_plots(images, labels, visualisation_path, file_name)

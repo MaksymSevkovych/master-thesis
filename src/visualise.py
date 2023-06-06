@@ -62,13 +62,12 @@ def combine_prediction_visualisation(
     return images
 
 
-def generate_plots(images: list, labels: list, image_path: str) -> None:
+def generate_plots(images: list, labels: list, image_path: str, file_name: str) -> None:
     basewidth = 400
 
     font = ImageFont.truetype("Courier New Bold.ttf", 30)
     thumbnails = combine_prediction_visualisation(images, labels, font, basewidth)
 
     collage_image = combine_images(4, 10, thumbnails)
-    file_name = "grid_plots.png"
     collage_image.save(os.path.join(image_path, file_name))
     collage_image.show()
