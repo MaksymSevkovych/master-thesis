@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  23 MAY 2023 16:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  6 JUN 2023 16:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -937,22 +937,8 @@ Package caption Info: hypcap package is loaded.
 Package scrlayer-scrpage Warning: replacing deprecated \clearscrheadfoot by
 (scrlayer-scrpage)                \clearpairofpagestyles on input line 29.
 
-
-! LaTeX Error: Command \t already defined.
-               Or name \end... illegal, see p.192 of the manual.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...
-
-l.43 \DeclareMathOperator{\t}{\theta}
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 \c@theorem=\count334
-(./main.aux (./preliminary.aux))
+(./main.aux (./preliminary.aux) (./autoencoders.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
@@ -1112,178 +1098,65 @@ Class scrreprt Warning: \float@addtolists detected!
 
 
 ]
+<neural_net.jpg, id=44, 923.45pt x 549.05125pt>
+File: neural_net.jpg Graphic file (type jpg)
+<use neural_net.jpg>
+Package pdftex.def Info: neural_net.jpg  used on input line 50.
+(pdftex.def)             Requested size: 483.69687pt x 287.586pt.
+) [4 <./neural_net.jpg>]
+\openout2 = `autoencoders.aux'.
 
-LaTeX Warning: Command \t invalid in math mode on input line 33.
+ (./autoencoders.tex
+! Undefined control sequence.
+l.1 \justifying
 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-LaTeX Warning: Command \t invalid in math mode on input line 33.
-
-! Missing $ inserted.
-<inserted text>
-                $
-l.33 We call $\t \coloneqq
-                           (w, b)$ the parameters of the neuron $h$.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Improper \spacefactor.
-<recently read> \spacefactor
-
-l.33 We call $\t \coloneqq
-                           (w, b)$ the parameters of the neuron $h$.
-You can refer to \spacefactor only in horizontal mode;
-you can refer to \prevdepth only in vertical mode; and
-neither of these is meaningful inside \write. So
-I'm forgetting what you said and using zero instead.
-
-! Extra }, or forgotten $.
-\add@accent ... \accent@spacefactor \spacefactor }
-                                                  \let \maybe@load@fontshape...
-l.33 We call $\t \coloneqq
-                           (w, b)$ the parameters of the neuron $h$.
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ... \let \ignorespaces \relax \accent
-                                                  #1 #2\egroup \ifmmode \els...
-l.33 We call $\t \coloneqq
-                           (w, b)$ the parameters of the neuron $h$.
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! Missing { inserted.
-<to be read again>
-                   \edef
-l.33 We call $\t \coloneqq
-                           (w, b)$ the parameters of the neuron $h$.
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Extra }, or forgotten $.
-\UseTextAccent  ...e@text@encoding \@curr@enc #3}}
-
-l.33 We call $\t \coloneqq
-                           (w, b)$ the parameters of the neuron $h$.
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...
-
-l.34 \end{definition}
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...
-
-l.34 \end{definition}
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing } inserted.
-<inserted text>
-                }
-l.34 \end{definition}
-
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text>
-                }
-l.34 \end{definition}
-
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text>
-                }
-l.34 \end{definition}
-
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text>
-                $
-l.34 \end{definition}
-
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-<neural_net.jpeg, id=39, 735.74875pt x 401.5pt>
-File: neural_net.jpeg Graphic file (type jpg)
-<use neural_net.jpeg>
-Package pdftex.def Info: neural_net.jpeg  used on input line 51.
-(pdftex.def)             Requested size: 483.69687pt x 263.96158pt.
-
-! LaTeX Error: \begin{document} ended by \end{definition}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...
-
-l.62 \end{definition}
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Extra \endgroup.
-<recently read> \endgroup
-
-l.62 \end{definition}
-
-Things are pretty mixed up, but I think the worst is over.
-
-) [4 <./neural_net.jpeg>]
-No file main.bbl.
+chapter 2.
+<autoencoder.jpg, id=63, 996.72375pt x 435.6275pt>
+File: autoencoder.jpg Graphic file (type jpg)
+<use autoencoder.jpg>
+Package pdftex.def Info: autoencoder.jpg  used on input line 16.
+(pdftex.def)             Requested size: 483.69687pt x 211.39873pt.
 [5
 
 
-] (./main.aux (./preliminary.aux))
+
+
+]
+<encoder.jpg, id=71, 740.7675pt x 534.99875pt>
+File: encoder.jpg Graphic file (type jpg)
+<use encoder.jpg>
+Package pdftex.def Info: encoder.jpg  used on input line 29.
+(pdftex.def)             Requested size: 483.69687pt x 349.33693pt.
+ [6 <./autoencoder.jpg>]
+<decoder.jpg, id=77, 734.745pt x 527.9725pt>
+File: decoder.jpg Graphic file (type jpg)
+<use decoder.jpg>
+Package pdftex.def Info: decoder.jpg  used on input line 39.
+(pdftex.def)             Requested size: 483.69687pt x 347.5848pt.
+) [7 <./encoder.jpg>] [8 <./decoder.jpg>]
+No file main.bbl.
+[9
+
+
+] (./main.aux (./preliminary.aux) (./autoencoders.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 Here is how much of TeX's memory you used:
- 30718 strings out of 476029
- 622579 string characters out of 5790166
+ 30788 strings out of 476029
+ 624081 string characters out of 5790166
  1864346 words of memory out of 5000000
- 50649 multiletter control sequences out of 15000+600000
- 522318 words of font info for 70 fonts, out of 8000000 for 9000
+ 50706 multiletter control sequences out of 15000+600000
+ 521981 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,106p,10626b,557s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -1301,9 +1174,9 @@ ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texl
 ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (5 pages, 215771 bytes).
+Output written on main.pdf (9 pages, 408565 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 101 compressed objects within 2 object streams
- 17 named destinations out of 1000 (max. 500000)
- 50 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 181 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
+ 26 named destinations out of 1000 (max. 500000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)

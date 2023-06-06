@@ -40,7 +40,7 @@
 \DeclareMathOperator{\R}{\mathbb{R}}
 \DeclareMathOperator{\X}{\mathbb{X}}
 \DeclareMathOperator{\f}{\varphi}
-\DeclareMathOperator{\t}{\theta}
+\renewcommand{\t}{\theta}
 \renewcommand{\a}{\alpha}
 \newcommand*\wc{{}\cdot{}}
 
@@ -111,8 +111,8 @@ Here should be a catchy abstract and maybe even a short introduction.
 \tableofcontents
 
 \include{preliminary}
+\include{autoencoders}
 \iffalse
-\include{well-posedness}
 \include{convergence_rates}
 \include{implementation}
 \fi

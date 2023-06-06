@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  23 MAY 2023 16:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  6 JUN 2023 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -7,8 +7,8 @@ entering extended mode
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-07>
 ! Undefined control sequence.
-l.2 \chapter
-            {Preliminary}
+l.1 \chapter
+            {Preliminary}\label{preliminary}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -22,8 +22,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.2 \chapter{P
-              reliminary}
+l.1 \chapter{P
+              reliminary}\label{preliminary}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -490,12 +490,12 @@ Missing character: There is no k in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 2--4
-[]
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--3
+[][]
  []
 
 ! Undefined control sequence.
-l.5 \section
+l.4 \section
             {Neural networks}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -510,7 +510,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.5 \section{N
+l.4 \section{N
               eural networks}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1221,7 +1221,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no g in font nullfont!
 ! Undefined control sequence.
-l.7 ...at move around information upon being \glqq
+l.6 ...at move around information upon being \glqq
                                                    triggered\grqq{}. Obvious...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1239,7 +1239,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 ! Undefined control sequence.
-l.7 ...information upon being \glqq triggered\grqq
+l.6 ...information upon being \glqq triggered\grqq
                                                   {}. Obviously, triggering ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1728,7 +1728,7 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 5--8
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4--7
 []
  []
 
@@ -1739,7 +1739,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.9 \begin{definition}
+l.8 \begin{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1752,8 +1752,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.10 A
-       non-constant function $\f: \R \to \R$ is called an \textbf{activation...
+l.9 A
+      non-constant function $\f: \R \to \R$ is called an \textbf{activation ...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1780,14 +1780,14 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 10.
+(Font)              <7> on input line 9.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 10.
+(Font)              <5> on input line 9.
 ! Undefined control sequence.
 <recently read> \f
 
-l.10 A non-constant function $\f
-                                : \R \to \R$ is called an \textbf{activation...
+l.9 A non-constant function $\f
+                               : \R \to \R$ is called an \textbf{activation ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1795,8 +1795,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.10 A non-constant function $\f: \R
-                                     \to \R$ is called an \textbf{activation...
+l.9 A non-constant function $\f: \R
+                                    \to \R$ is called an \textbf{activation ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1804,8 +1804,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.10 A non-constant function $\f: \R \to \R
-                                           $ is called an \textbf{activation...
+l.9 A non-constant function $\f: \R \to \R
+                                          $ is called an \textbf{activation ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1846,49 +1846,49 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.11 \end{definition}
+l.10 \end{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 10--12
+Overfull \hbox (20.0pt too wide) in paragraph at lines 9--11
 []
  []
 
 
-Overfull \hbox (12.7778pt too wide) in paragraph at lines 10--12
+Overfull \hbox (12.7778pt too wide) in paragraph at lines 9--11
 \OT1/cmr/m/n/10 :\OMS/cmsy/m/n/10 !$
  []
 
 
-Overfull \hbox (14.53462pt too wide) in paragraph at lines 10--12
+Overfull \hbox (14.53462pt too wide) in paragraph at lines 9--11
 \OT1/cmr/bx/n/10 ac-
  []
 
 
-Overfull \hbox (11.49994pt too wide) in paragraph at lines 10--12
+Overfull \hbox (11.49994pt too wide) in paragraph at lines 9--11
 \OT1/cmr/bx/n/10 ti-
  []
 
 
-Overfull \hbox (14.85406pt too wide) in paragraph at lines 10--12
+Overfull \hbox (14.85406pt too wide) in paragraph at lines 9--11
 \OT1/cmr/bx/n/10 va-
  []
 
 
-Overfull \hbox (19.80545pt too wide) in paragraph at lines 10--12
+Overfull \hbox (19.80545pt too wide) in paragraph at lines 9--11
 \OT1/cmr/bx/n/10 tion
  []
 
 
-Overfull \hbox (25.23598pt too wide) in paragraph at lines 10--12
+Overfull \hbox (25.23598pt too wide) in paragraph at lines 9--11
 \OT1/cmr/bx/n/10 func-
  []
 
 
-Overfull \hbox (19.80545pt too wide) in paragraph at lines 10--12
+Overfull \hbox (19.80545pt too wide) in paragraph at lines 9--11
 \OT1/cmr/bx/n/10 tion
  []
 
@@ -1899,7 +1899,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.13 E
+l.12 E
       ven though there is a zoo of different activation functions, we want t...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -1997,7 +1997,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 13--14
+Overfull \hbox (20.0pt too wide) in paragraph at lines 12--13
 []
  []
 
@@ -2008,7 +2008,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.15 \begin{example}
+l.14 \begin{example}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2021,7 +2021,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.16 T
+l.15 T
       he following functions are activation functions.
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2077,7 +2077,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.17 \begin{mydescription}
+l.16 \begin{mydescription}
                           {\widthof{\textbf{Leaky rectified linear unit (Lea...
 
 Your command was ignored.
@@ -2085,7 +2085,7 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.17 \begin{mydescription}{\widthof
+l.16 \begin{mydescription}{\widthof
                                    {\textbf{Leaky rectified linear unit (Lea...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2094,52 +2094,52 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 16--18
+Overfull \hbox (20.0pt too wide) in paragraph at lines 15--17
 []
  []
 
 
-Overfull \hbox (29.91649pt too wide) in paragraph at lines 16--18
+Overfull \hbox (29.91649pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 Leaky
  []
 
 
-Overfull \hbox (18.95131pt too wide) in paragraph at lines 16--18
+Overfull \hbox (18.95131pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 rec-
  []
 
 
-Overfull \hbox (11.49994pt too wide) in paragraph at lines 16--18
+Overfull \hbox (11.49994pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 ti-
  []
 
 
-Overfull \hbox (18.04852pt too wide) in paragraph at lines 16--18
+Overfull \hbox (18.04852pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 fied
  []
 
 
-Overfull \hbox (16.61102pt too wide) in paragraph at lines 16--18
+Overfull \hbox (16.61102pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 lin-
  []
 
 
-Overfull \hbox (15.59714pt too wide) in paragraph at lines 16--18
+Overfull \hbox (15.59714pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 ear
  []
 
 
-Overfull \hbox (20.44434pt too wide) in paragraph at lines 16--18
+Overfull \hbox (20.44434pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 unit
  []
 
 
-Overfull \hbox (34.38869pt too wide) in paragraph at lines 16--18
+Overfull \hbox (34.38869pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 (Leaky
  []
 
 
-Overfull \hbox (34.13176pt too wide) in paragraph at lines 16--18
+Overfull \hbox (34.13176pt too wide) in paragraph at lines 15--17
 \OT1/cmr/bx/n/10 ReLU)
  []
 
@@ -2150,7 +2150,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.18 \item[\textbf{Rectified linear unit (ReLU)}]
+l.17 \item[\textbf{Rectified linear unit (ReLU)}]
                                                   $\f(t) = \max\{0, t\}$,
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2158,7 +2158,7 @@ If that doesn't work, type  X <return>  to quit.
 ! Undefined control sequence.
 <recently read> \f
 
-l.18 ...\textbf{Rectified linear unit (ReLU)}] $\f
+l.17 ...\textbf{Rectified linear unit (ReLU)}] $\f
                                                   (t) = \max\{0, t\}$,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2168,12 +2168,12 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no , in font nullfont!
 
-Overfull \hbox (21.94443pt too wide) in paragraph at lines 18--19
+Overfull \hbox (21.94443pt too wide) in paragraph at lines 17--18
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (41.66675pt too wide) in paragraph at lines 18--19
+Overfull \hbox (41.66675pt too wide) in paragraph at lines 17--18
 []\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; t\OMS/cmsy/m/n/10 g$
  []
 
@@ -2184,14 +2184,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.19 ...Leaky rectified linear unit (Leaky ReLU)}]
+l.18 ...Leaky rectified linear unit (Leaky ReLU)}]
                                                    $\displaystyle \f(t) = \b...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 ! Undefined control sequence.
-l.19 ...near unit (Leaky ReLU)}] $\displaystyle \f
+l.18 ...near unit (Leaky ReLU)}] $\displaystyle \f
                                                   (t) = \begin{cases}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2206,7 +2206,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.20 \a
+l.19 \a
         t, 	& t \leq 0,\\
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2215,7 +2215,7 @@ or  <return>  to continue without it.
 ! Extra }, or forgotten $.
 \cases  ...\hfil $&\quad {##}\hfil \crcr #1\crcr }
                                                   }\right .
-l.20 \a
+l.19 \a
         t, 	& t \leq 0,\\
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2226,7 +2226,7 @@ deleted material, e.g., by typing `I$}'.
 ! Extra }, or forgotten $.
 \cases  ...hfil $&\quad {##}\hfil \crcr #1\crcr }}
                                                   \right .
-l.20 \a
+l.19 \a
         t, 	& t \leq 0,\\
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2237,7 +2237,7 @@ deleted material, e.g., by typing `I$}'.
 ! Extra \right.
 \cases  ...quad {##}\hfil \crcr #1\crcr }}\right .
 
-l.20 \a
+l.19 \a
         t, 	& t \leq 0,\\
 I'm ignoring a \right that had no matching \left.
 
@@ -2245,7 +2245,7 @@ Missing character: There is no t in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.20 \a t, 	& t \leq
+l.19 \a t, 	& t \leq
                      0,\\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2253,7 +2253,7 @@ you left one out. Proceed, with fingers crossed.
 ! Extra }, or forgotten $.
 <template> }
             \hfil \endtemplate
-l.21 t,		&
+l.20 t,		&
            t > 0.
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2264,7 +2264,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.21 t,		&
+l.20 t,		&
            t > 0.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2272,7 +2272,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.21 t,		&
+l.20 t,		&
            t > 0.
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2283,7 +2283,7 @@ my insertion and my current dilemma will both disappear.
 ! Extra alignment tab has been changed to \cr.
 <recently read> \endtemplate
 
-l.21 t,		&
+l.20 t,		&
            t > 0.
 You have given more \span or & marks than there were
 in the preamble to the \halign or \valign now in progress.
@@ -2292,7 +2292,7 @@ So I'll assume that you meant to type \cr instead.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.22 \end{cases}
+l.21 \end{cases}
                 $
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2303,7 +2303,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.22 \end{cases}
+l.21 \end{cases}
                 $
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2314,14 +2314,14 @@ my insertion and my current dilemma will both disappear.
 ! Missing \cr inserted.
 <inserted text>
                 \cr
-l.22 \end{cases}
+l.21 \end{cases}
                 $
 I'm guessing that you meant to end an alignment here.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.22 \end{cases}
+l.21 \end{cases}
                 $
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2329,7 +2329,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.22 \end{cases}
+l.21 \end{cases}
                 $
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2340,7 +2340,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing \right. inserted.
 <inserted text>
                 \right .
-l.22 \end{cases}
+l.21 \end{cases}
                 $
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2355,7 +2355,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.23 \end{mydescription}
+l.22 \end{mydescription}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2368,19 +2368,19 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.24 \end{example}
+l.23 \end{example}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (21.94443pt too wide) in paragraph at lines 19--25
+Overfull \hbox (21.94443pt too wide) in paragraph at lines 18--24
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (60.64429pt too wide) in paragraph at lines 19--25
+Overfull \hbox (60.64429pt too wide) in paragraph at lines 18--24
 []$
  []
 
@@ -2391,7 +2391,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.26 N
+l.25 N
       ow, having introduced activation functions we can introduce neurons.
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2458,7 +2458,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 26--27
+Overfull \hbox (20.0pt too wide) in paragraph at lines 25--26
 []
  []
 
@@ -2469,7 +2469,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.28 \begin{definition}
+l.27 \begin{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2482,7 +2482,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.29 L
+l.28 L
       et $\f: \R \to \R$ be an activation function and $w\in \R^k$, $b \in \...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -2494,7 +2494,7 @@ Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
 <recently read> \f
 
-l.29 Let $\f
+l.28 Let $\f
             : \R \to \R$ be an activation function and $w\in \R^k$, $b \in \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2503,7 +2503,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.29 Let $\f: \R
+l.28 Let $\f: \R
                  \to \R$ be an activation function and $w\in \R^k$, $b \in \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2512,7 +2512,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.29 Let $\f: \R \to \R
+l.28 Let $\f: \R \to \R
                        $ be an activation function and $w\in \R^k$, $b \in \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2546,7 +2546,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 ! Undefined control sequence.
-l.29 ...\R$ be an activation function and $w\in \R
+l.28 ...\R$ be an activation function and $w\in \R
                                                   ^k$, $b \in \R$. Then a fu...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2556,7 +2556,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no , in font nullfont!
 ! Undefined control sequence.
-l.29 ...vation function and $w\in \R^k$, $b \in \R
+l.28 ...vation function and $w\in \R^k$, $b \in \R
                                                   $. Then a function $h: \R^...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2579,7 +2579,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
-l.29 ... \R^k$, $b \in \R$. Then a function $h: \R
+l.28 ... \R^k$, $b \in \R$. Then a function $h: \R
                                                   ^k \to \R$ is called \text...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2588,7 +2588,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.29 ...b \in \R$. Then a function $h: \R^k \to \R
+l.28 ...b \in \R$. Then a function $h: \R^k \to \R
                                                   $ is called \textbf{$\f$-n...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2607,7 +2607,7 @@ Missing character: There is no d in font nullfont!
 ! Undefined control sequence.
 <recently read> \f
 
-l.29 ...R^k \to \R$ is called \textbf{$\f$-neuron}
+l.28 ...R^k \to \R$ is called \textbf{$\f$-neuron}
                                                    with weight $w$ and bias ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2642,7 +2642,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.30 \begin{align}
+l.29 \begin{align}
                   \label{def_neuron}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2654,7 +2654,7 @@ Missing character: There is no x in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no = in font nullfont!
 ! Undefined control sequence.
-l.31 h(x) = \f
+l.30 h(x) = \f
                \left(\langle w, x \rangle + b \right), \quad x \in \R^k.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2665,13 +2665,13 @@ and I'll forget about whatever was undefined.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.31 h(x) = \f \left
+l.30 h(x) = \f \left
                     (\langle w, x \rangle + b \right), \quad x \in \R^k.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.31 ...e w, x \rangle + b \right), \quad x \in \R
+l.30 ...e w, x \rangle + b \right), \quad x \in \R
                                                   ^k.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2686,7 +2686,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.32 \end{align}
+l.31 \end{align}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2695,7 +2695,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.32 \end{align}
+l.31 \end{align}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2710,21 +2710,21 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no l in font nullfont!
 
-LaTeX Warning: Command \t invalid in math mode on input line 33.
+LaTeX Warning: Command \t invalid in math mode on input line 32.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 33.
+LaTeX Warning: Command \t invalid in math mode on input line 32.
 
-LaTeX Font Info:    Trying to load font information for +cmr on input line 33.
-LaTeX Font Info:    No file cmr.fd. on input line 33.
+LaTeX Font Info:    Trying to load font information for +cmr on input line 32.
+LaTeX Font Info:    No file cmr.fd. on input line 32.
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `/cmr/m/n' instead on input line 33.
+(Font)              using `/cmr/m/n' instead on input line 32.
 
 ! Corrupted NFSS tables.
 wrong@fontshape ...message {Corrupted NFSS tables}
                                                   error@fontshape else let f...
-l.33 We call $\t \coloneqq
+l.32 We call $\t \coloneqq
                            (w, b)$ the parameters of the neuron $h$.
 This error message was generated by an \errmessage
 command, so I can't give any explicit help.
@@ -2733,12 +2733,12 @@ and deduce the truth by order and method.
 
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `OT1/cmr/m/n' instead on input line 33.
+(Font)              using `OT1/cmr/m/n' instead on input line 32.
 
 ! Undefined control sequence.
 <argument> ...@text@encoding \@curr@enc \coloneqq
 
-l.33 We call $\t \coloneqq
+l.32 We call $\t \coloneqq
                            (w, b)$ the parameters of the neuron $h$.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2749,7 +2749,7 @@ and I'll forget about whatever was undefined.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.33 We call $\t \coloneqq
+l.32 We call $\t \coloneqq
                            (w, b)$ the parameters of the neuron $h$.
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -2757,7 +2757,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.33 We call $\t \coloneqq
+l.32 We call $\t \coloneqq
                            (w, b)$ the parameters of the neuron $h$.
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2767,7 +2767,7 @@ so that I will find a matching right brace soon.
 ! Undefined control sequence.
 <argument> ...@text@encoding \@curr@enc \coloneqq
 
-l.33 We call $\t \coloneqq
+l.32 We call $\t \coloneqq
                            (w, b)$ the parameters of the neuron $h$.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2778,7 +2778,7 @@ and I'll forget about whatever was undefined.
 ! Missing } inserted.
 <inserted text>
                 }
-l.33 We call $\t \coloneqq (w, b)$
+l.32 We call $\t \coloneqq (w, b)$
                                    the parameters of the neuron $h$.
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2818,74 +2818,74 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.34 \end{definition}
+l.33 \end{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 29--35
+Overfull \hbox (20.0pt too wide) in paragraph at lines 28--34
 []
  []
 
 
-Overfull \hbox (12.7778pt too wide) in paragraph at lines 29--35
+Overfull \hbox (12.7778pt too wide) in paragraph at lines 28--34
 \/cmr/m/n/10 :\OMS/cmsy/m/n/10 !$
  []
 
 
-Overfull \hbox (21.79282pt too wide) in paragraph at lines 29--35
+Overfull \hbox (21.79282pt too wide) in paragraph at lines 28--34
 \OML/cmm/m/it/10 w \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (13.73605pt too wide) in paragraph at lines 29--35
+Overfull \hbox (13.73605pt too wide) in paragraph at lines 28--34
 \OML/cmm/m/it/10 b \OMS/cmsy/m/n/10 2$
  []
 
 
-Overfull \hbox (26.23726pt too wide) in paragraph at lines 29--35
+Overfull \hbox (26.23726pt too wide) in paragraph at lines 28--34
 \OML/cmm/m/it/10 h \/cmr/m/n/10 :[]\OMS/cmsy/m/n/10 !$
  []
 
 
-Overfull \hbox (3.83331pt too wide) in paragraph at lines 29--35
+Overfull \hbox (3.83331pt too wide) in paragraph at lines 28--34
 \OT1/cmr/bx/n/10 -
  []
 
 
-Overfull \hbox (34.92345pt too wide) in paragraph at lines 29--35
+Overfull \hbox (34.92345pt too wide) in paragraph at lines 28--34
 \OT1/cmr/bx/n/10 neuron
  []
 
 
-Overfull \hbox (7.42825pt too wide) in paragraph at lines 29--35
+Overfull \hbox (7.42825pt too wide) in paragraph at lines 28--34
 \OML/cmm/m/it/10 w$
  []
 
 
-Overfull \hbox (4.29166pt too wide) in paragraph at lines 29--35
+Overfull \hbox (4.29166pt too wide) in paragraph at lines 28--34
 \OML/cmm/m/it/10 b$
  []
 
 
-Overfull \hbox (75.8482pt too wide) in paragraph at lines 29--35
+Overfull \hbox (75.8482pt too wide) in paragraph at lines 28--34
 [] \OML/cmm/m/it/10 ;  x \OMS/cmsy/m/n/10 2[]
  []
 
 
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 29--35
+Overfull \hbox (2.77779pt too wide) in paragraph at lines 28--34
 \OML/cmm/m/it/10 :$
  []
 
 
-Overfull \hbox (23.94212pt too wide) in paragraph at lines 29--35
+Overfull \hbox (23.94212pt too wide) in paragraph at lines 28--34
 []$
  []
 
 
-Overfull \hbox (5.76158pt too wide) in paragraph at lines 29--35
+Overfull \hbox (5.76158pt too wide) in paragraph at lines 28--34
 \OML/cmm/m/it/10 h$
  []
 
@@ -2896,7 +2896,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.36 I
+l.35 I
       n order to expand the architecture, we consider multiple neurons being...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -2989,7 +2989,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 36--37
+Overfull \hbox (20.0pt too wide) in paragraph at lines 35--36
 []
  []
 
@@ -3000,7 +3000,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.38 \begin{definition}
+l.37 \begin{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3013,7 +3013,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.39 L
+l.38 L
       et $\f: \R \to \R$ be an activation function and $W \in \R^{m\times k}...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -3025,7 +3025,7 @@ Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
 <recently read> \f
 
-l.39 Let $\f
+l.38 Let $\f
             : \R \to \R$ be an activation function and $W \in \R^{m\times k}...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3034,7 +3034,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.39 Let $\f: \R
+l.38 Let $\f: \R
                  \to \R$ be an activation function and $W \in \R^{m\times k}...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3043,7 +3043,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.39 Let $\f: \R \to \R
+l.38 Let $\f: \R \to \R
                        $ be an activation function and $W \in \R^{m\times k}...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3077,7 +3077,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 ! Undefined control sequence.
-l.39 ...R$ be an activation function and $W \in \R
+l.38 ...R$ be an activation function and $W \in \R
                                                   ^{m\times k}$, $b\in \R^m$...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3087,7 +3087,7 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no , in font nullfont!
 ! Undefined control sequence.
-l.39 ...ction and $W \in \R^{m\times k}$, $b\in \R
+l.38 ...ction and $W \in \R^{m\times k}$, $b\in \R
                                                   ^m$. Then a function $H:\R...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3110,7 +3110,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
-l.39 ...es k}$, $b\in \R^m$. Then a function $H:\R
+l.38 ...es k}$, $b\in \R^m$. Then a function $H:\R
                                                   ^k \to \R^m$ is called \te...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3119,7 +3119,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.39 ...b\in \R^m$. Then a function $H:\R^k \to \R
+l.38 ...b\in \R^m$. Then a function $H:\R^k \to \R
                                                   ^m$ is called \textbf{$\f$...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3138,7 +3138,7 @@ Missing character: There is no d in font nullfont!
 ! Undefined control sequence.
 <recently read> \f
 
-l.39 ...^k \to \R^m$ is called \textbf{$\f$-layer}
+l.38 ...^k \to \R^m$ is called \textbf{$\f$-layer}
                                                    of width $m$ with weights...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3209,7 +3209,7 @@ Missing character: There is no a in font nullfont!
 ! Undefined control sequence.
 <recently read> \f
 
-l.39 ...e component function $h_i$ of $H$ is a $\f
+l.38 ...e component function $h_i$ of $H$ is a $\f
                                                   $-neuron with weight $w_i ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3273,7 +3273,7 @@ Missing character: There is no f in font nullfont!
 ! Undefined control sequence.
 <recently read> \R
 
-l.39 ...here $e_i$ denotes the standard ONB of $\R
+l.38 ...here $e_i$ denotes the standard ONB of $\R
                                                   ^m$.\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3295,8 +3295,8 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 ! Undefined control sequence.
-l.40 If we consider $\hat{\f
-                            }: \R^k \to \R$ as the componentwise mapping of ...
+l.39 If we consider $\hat{\f
+                            }: \R^k \to \R$ as the component-wise mapping of...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3304,8 +3304,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 If we consider $\hat{\f}: \R
-                                 ^k \to \R$ as the componentwise mapping of ...
+l.39 If we consider $\hat{\f}: \R
+                                 ^k \to \R$ as the component-wise mapping of...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3313,8 +3313,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 If we consider $\hat{\f}: \R^k \to \R
-                                          $ as the componentwise mapping of ...
+l.39 If we consider $\hat{\f}: \R^k \to \R
+                                          $ as the component-wise mapping of...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3335,6 +3335,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
+Missing character: There is no - in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -3351,7 +3352,7 @@ Missing character: There is no f in font nullfont!
 ! Undefined control sequence.
 <recently read> \f
 
-l.40 ...to \R$ as the componentwise mapping of $\f
+l.39 ...o \R$ as the component-wise mapping of $\f
                                                   :\R\to \R$, meaning $\hat{...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3360,7 +3361,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 ...\R$ as the componentwise mapping of $\f:\R
+l.39 ...R$ as the component-wise mapping of $\f:\R
                                                   \to \R$, meaning $\hat{\f}...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3369,7 +3370,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 ... the componentwise mapping of $\f:\R\to \R
+l.39 ...the component-wise mapping of $\f:\R\to \R
                                                   $, meaning $\hat{\f}(v) = ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3386,7 +3387,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no g in font nullfont!
 ! Undefined control sequence.
-l.40 ...mapping of $\f:\R\to \R$, meaning $\hat{\f
+l.39 ...mapping of $\f:\R\to \R$, meaning $\hat{\f
                                                   }(v) = (\f(v_1), \ldots, \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3395,7 +3396,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 ... $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f
+l.39 ... $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f
                                                   (v_1), \ldots, \f(v_k))$, ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3404,7 +3405,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 ...eaning $\hat{\f}(v) = (\f(v_1), \ldots, \f
+l.39 ...eaning $\hat{\f}(v) = (\f(v_1), \ldots, \f
                                                   (v_k))$, we can generalize...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3434,7 +3435,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <recently read> \f
 
-l.40 ...dots, \f(v_k))$, we can generalize the $\f
+l.39 ...dots, \f(v_k))$, we can generalize the $\f
                                                   $-layer $H:\R^k \to \R^m$ by
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3449,7 +3450,7 @@ Missing character: There is no y in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 ! Undefined control sequence.
-l.40 ...)$, we can generalize the $\f$-layer $H:\R
+l.39 ...)$, we can generalize the $\f$-layer $H:\R
                                                   ^k \to \R^m$ by
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3458,7 +3459,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.40 ...n generalize the $\f$-layer $H:\R^k \to \R
+l.39 ...n generalize the $\f$-layer $H:\R^k \to \R
                                                   ^m$ by
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3475,7 +3476,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.41 \begin{align}
+l.40 \begin{align}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3489,13 +3490,13 @@ Missing character: There is no = in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.42 H(x) = \hat
+l.41 H(x) = \hat
                 {\f}(Wx + b), \quad x \in \R ^k.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.42 H(x) = \hat{\f
+l.41 H(x) = \hat{\f
                    }(Wx + b), \quad x \in \R ^k.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3504,7 +3505,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.42 H(x) = \hat{\f}(Wx + b), \quad x \in \R
+l.41 H(x) = \hat{\f}(Wx + b), \quad x \in \R
                                              ^k.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3519,7 +3520,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.43 \end{align}
+l.42 \end{align}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3528,7 +3529,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.43 \end{align}
+l.42 \end{align}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -3543,150 +3544,150 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.44 \end{definition}
+l.43 \end{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 39--45
+Overfull \hbox (20.0pt too wide) in paragraph at lines 38--44
 []
  []
 
 
-Overfull \hbox (12.7778pt too wide) in paragraph at lines 39--45
+Overfull \hbox (12.7778pt too wide) in paragraph at lines 38--44
 \/cmr/m/n/10 :\OMS/cmsy/m/n/10 !$
  []
 
 
-Overfull \hbox (38.54404pt too wide) in paragraph at lines 39--45
+Overfull \hbox (38.54404pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 W \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (21.33217pt too wide) in paragraph at lines 39--45
+Overfull \hbox (21.33217pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 b \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (37.19676pt too wide) in paragraph at lines 39--45
+Overfull \hbox (37.19676pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 H \/cmr/m/n/10 :[]\OMS/cmsy/m/n/10 ![]$
  []
 
 
-Overfull \hbox (3.83331pt too wide) in paragraph at lines 39--45
+Overfull \hbox (3.83331pt too wide) in paragraph at lines 38--44
 \OT1/cmr/bx/n/10 -
  []
 
 
-Overfull \hbox (24.22209pt too wide) in paragraph at lines 39--45
+Overfull \hbox (24.22209pt too wide) in paragraph at lines 38--44
 \OT1/cmr/bx/n/10 layer
  []
 
 
-Overfull \hbox (8.78014pt too wide) in paragraph at lines 39--45
+Overfull \hbox (8.78014pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 m$
  []
 
 
-Overfull \hbox (10.83334pt too wide) in paragraph at lines 39--45
+Overfull \hbox (10.83334pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 W$
  []
 
 
-Overfull \hbox (4.29166pt too wide) in paragraph at lines 39--45
+Overfull \hbox (4.29166pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 b$
  []
 
 
-Overfull \hbox (14.00064pt too wide) in paragraph at lines 39--45
+Overfull \hbox (14.00064pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 i \/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (36.00221pt too wide) in paragraph at lines 39--45
+Overfull \hbox (36.00221pt too wide) in paragraph at lines 38--44
 \/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; m$
  []
 
 
-Overfull \hbox (9.09087pt too wide) in paragraph at lines 39--45
+Overfull \hbox (9.09087pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 h[]$
  []
 
 
-Overfull \hbox (9.12497pt too wide) in paragraph at lines 39--45
+Overfull \hbox (9.12497pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 H$
  []
 
 
-Overfull \hbox (21.04396pt too wide) in paragraph at lines 39--45
+Overfull \hbox (21.04396pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 w[] \/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (25.56891pt too wide) in paragraph at lines 39--45
+Overfull \hbox (25.56891pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 W[]e[]$
  []
 
 
-Overfull \hbox (18.17645pt too wide) in paragraph at lines 39--45
+Overfull \hbox (18.17645pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 b[] \/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (24.49942pt too wide) in paragraph at lines 39--45
+Overfull \hbox (24.49942pt too wide) in paragraph at lines 38--44
 \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10 b; e[]\OMS/cmsy/m/n/10 i$
  []
 
 
-Overfull \hbox (7.98555pt too wide) in paragraph at lines 39--45
+Overfull \hbox (7.98555pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 e[]$
  []
 
 
-Overfull \hbox (7.59612pt too wide) in paragraph at lines 39--45
+Overfull \hbox (7.59612pt too wide) in paragraph at lines 38--44
 []$
  []
 
 
-Overfull \hbox (20.47568pt too wide) in paragraph at lines 39--45
+Overfull \hbox (20.47568pt too wide) in paragraph at lines 38--44
 [] \/cmr/m/n/10 :[]\OMS/cmsy/m/n/10 !$
  []
 
 
-Overfull \hbox (12.7778pt too wide) in paragraph at lines 39--45
+Overfull \hbox (12.7778pt too wide) in paragraph at lines 38--44
 \/cmr/m/n/10 :\OMS/cmsy/m/n/10 !$
  []
 
 
-Overfull \hbox (23.53932pt too wide) in paragraph at lines 39--45
+Overfull \hbox (23.53932pt too wide) in paragraph at lines 38--44
 []\/cmr/m/n/10 (\OML/cmm/m/it/10 v\/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (64.65622pt too wide) in paragraph at lines 39--45
+Overfull \hbox (64.65622pt too wide) in paragraph at lines 38--44
 \/cmr/m/n/10 ((\OML/cmm/m/it/10 v[]\/cmr/m/n/10 )\OML/cmm/m/it/10 ; [] ; \/cmr/
 m/n/10 (\OML/cmm/m/it/10 v[]\/cmr/m/n/10 ))$
  []
 
 
-Overfull \hbox (37.19676pt too wide) in paragraph at lines 39--45
+Overfull \hbox (37.19676pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 H \/cmr/m/n/10 :[]\OMS/cmsy/m/n/10 ![]$
  []
 
 
-Overfull \hbox (28.21532pt too wide) in paragraph at lines 39--45
+Overfull \hbox (28.21532pt too wide) in paragraph at lines 38--44
 []\/cmr/m/n/10 (\OML/cmm/m/it/10 Wx \/cmr/m/n/10 +
  []
 
 
-Overfull \hbox (32.7048pt too wide) in paragraph at lines 39--45
+Overfull \hbox (32.7048pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 b\/cmr/m/n/10 )\OML/cmm/m/it/10 ;  x \OMS/cmsy/m/n/10 2[]
  []
 
 
-Overfull \hbox (2.77779pt too wide) in paragraph at lines 39--45
+Overfull \hbox (2.77779pt too wide) in paragraph at lines 38--44
 \OML/cmm/m/it/10 :$
  []
 
@@ -3697,8 +3698,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.46 A
-       visual representation of a neural network can be found in Figure \ref...
+l.45 A
+       visual representation of a neural network can be found in figure \ref...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3752,7 +3753,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no F in font nullfont!
+Missing character: There is no f in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no g in font nullfont!
 Missing character: There is no u in font nullfont!
@@ -3761,7 +3762,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...Reference `visual_nn' on page \thepage
                                                   \space undefined\on@line .
-l.46 ...ork can be found in Figure \ref{visual_nn}
+l.45 ...ork can be found in figure \ref{visual_nn}
 
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3770,15 +3771,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `visual_nn' on page  undefined on input line 46.
+LaTeX Warning: Reference `visual_nn' on page  undefined on input line 45.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 46--47
+Overfull \hbox (20.0pt too wide) in paragraph at lines 45--46
 []
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 46--47
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 45--46
 []
  []
 
@@ -3789,7 +3790,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.48 \begin{figure}
+l.47 \begin{figure}
                    [H]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3802,7 +3803,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.48 \begin{figure}[
+l.47 \begin{figure}[
                     H]
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3811,12 +3812,12 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no H in font nullfont!
 Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 48--49
+Overfull \hbox (20.0pt too wide) in paragraph at lines 47--48
 []
  []
 
 ! Undefined control sequence.
-l.51       \includegraphics
+l.50       \includegraphics
                            [width=\linewidth]{neural_net}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3834,7 +3835,7 @@ Missing character: There is no = in font nullfont!
 ! Missing number, treated as zero.
 <to be read again>
                    ]
-l.51       \includegraphics[width=\linewidth]
+l.50       \includegraphics[width=\linewidth]
                                              {neural_net}
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -3843,7 +3844,7 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again>
                    ]
-l.51       \includegraphics[width=\linewidth]
+l.50       \includegraphics[width=\linewidth]
                                              {neural_net}
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -3862,13 +3863,13 @@ Missing character: There is no l in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.51 ...\includegraphics[width=\linewidth]{neural_
+l.50 ...\includegraphics[width=\linewidth]{neural_
                                                   net}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.51 ...ludegraphics[width=\linewidth]{neural_net}
+l.50 ...ludegraphics[width=\linewidth]{neural_net}
 
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3883,8 +3884,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.52       \caption
-                   {A neural network with input $x\in \R^3$ and output $y\in...
+l.51       \caption
+                   {A neural network with input $x\in \R^4$ and output $y\in...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3892,8 +3893,8 @@ If that doesn't work, type  X <return>  to quit.
 ! Missing } inserted.
 <inserted text>
                 }
-l.52       \caption{A neural network with input $
-                                                 x\in \R^3$ and output $y\in...
+l.51       \caption{A neural network with input $
+                                                 x\in \R^4$ and output $y\in...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -3904,14 +3905,14 @@ Missing character: There is no x in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.52 ...\caption{A neural network with input $x\in
-                                                   \R^3$ and output $y\in\R$...
+l.51 ...\caption{A neural network with input $x\in
+                                                   \R^4$ and output $y\in\R^...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.52 ...ption{A neural network with input $x\in \R
-                                                  ^3$ and output $y\in\R$. T...
+l.51 ...ption{A neural network with input $x\in \R
+                                                  ^4$ and output $y\in\R^2$....
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3928,8 +3929,8 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.52 ... with input $x\in \R^3$ and output $y\in\R
-                                                  $. The two hidden layers h...
+l.51 ... with input $x\in \R^4$ and output $y\in\R
+                                                  ^2$. The five hidden layer...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3940,9 +3941,10 @@ Missing character: There is no . in font nullfont!
 Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -3969,6 +3971,9 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no s in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no , in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -4050,23 +4055,38 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no l in font nullfont!
 
-Overfull \hbox (142.91849pt too wide) in paragraph at lines 51--53
+Overfull \hbox (142.91849pt too wide) in paragraph at lines 50--52
 []$[]\OML/cmm/m/it/10 et[]$$\OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (14.706pt too wide) in paragraph at lines 51--53
-\OML/cmm/m/it/10 y \OMS/cmsy/m/n/10 2$
+Overfull \hbox (19.19212pt too wide) in paragraph at lines 50--52
+\OML/cmm/m/it/10 y \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 51--53
-\/cmr/m/n/10 7$
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 50--52
+\/cmr/m/n/10 3$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 51--53
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 50--52
 \/cmr/m/n/10 4$
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 50--52
+\/cmr/m/n/10 5$
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 50--52
+\/cmr/m/n/10 3$
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 50--52
+\/cmr/m/n/10 7$
  []
 
 
@@ -4076,14 +4096,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.55 \end{figure}
+l.54 \end{figure}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.57 \section
+l.56 \section
              {Training of neural networks}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4116,29 +4136,9 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no s in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 57--58
+Overfull \hbox (20.0pt too wide) in paragraph at lines 56--57
 []
  []
-
-
-! LaTeX Error: \begin{document} ended by \end{definition}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...
-
-l.62 \end{definition}
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Extra \endgroup.
-<recently read> \endgroup
-
-l.62 \end{definition}
-
-Things are pretty mixed up, but I think the worst is over.
 
 )
 ! Emergency stop.

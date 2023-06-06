@@ -1,0 +1,43 @@
+\justifying
+\chapter{Autoencoders}
+
+Now, having introduced the basics of neural networks in Chapter \ref{preliminary} we can consider a specific architecture of a neural network, a so called autoencoder neural network, or short: autoencoders. The conceptional idea of autoencoders is to take a given input, compress (usually called encore) the input to a given size and afterwards, expand (usually called decode) it as close as possible to the original representation again. Such an architecture is widely used in different areas. For example on social media platforms - where users send images to one another. Instead of sending the original image, which size might very well be a couple of megabytes, the image is being encoded first and sent in the compressed representation. Afterwards, the recipient decodes the image to its original representation. This way one has only to transmit the encoded representation, which usually is smaller by magnitudes.
+Another very important application of autoencoders is in the Machine Learning field. Most state of the art Machine Learning models are using autoencoders, since it is way more efficient to first encode the data and then fit the model on the encoded data. This is quite straight-forward, considering the same argument as in the previous use-case - the encoded data being smaller by magnitudes. This way firstly, processing the samples can happen much faster compared to the non-encoded data samples and secondly, it makes storing data (on the drive and in memory) much more efficient.\\
+The conceptional idea of autoencoders is now clear, but how exactly would one formulate such an architecture mathematically? This is the central question we want to answer in this chapter.
+
+\section{Mathematical formulation of autoencoders}
+
+As already mentioned, the input data is firstly being encoded, and afterwards it is being decoded. Hence, we can divide these two steps into separate architectures - the encoder and the decoder. We will formulate these two steps separately, but we will realise that the architecture is basically analogous. In figure \ref{autoencoder} we can take a look at a visual example of an autoencoder architecture.
+
+
+\begin{figure}[H]
+\begin{center}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[width=\linewidth]{autoencoder}
+      \caption{An autoencoder neural network with input and output $x, y\in \R^5$. The five hidden layers have dimensions $4$, $3$, $2$, $3$ and $4$ respectively. Hence, the bottleneck dimension is $2$ in this example. The graphic was generated with http://alexlenail.me/NN-SVG/index.html}\label{autoencoder}
+	\end{minipage}
+\end{center}
+\end{figure}
+
+
+If we divide the autoencoder as described above, we obtain the encoder and decoder as we can see in figures \ref{encoder} and \ref{decoder} respectively.
+
+
+\begin{figure}[H]
+\begin{center}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[width=\linewidth]{encoder}
+      \caption{An encoder neural network with input $x\in \R^5$ and output $y \in \R^2$. The two hidden layers have dimensions $4$ and $3$. Hence, the encoder reduces the data dimensionality from $5$ to $2$ dimension. The graphic was generated with http://alexlenail.me/NN-SVG/index.html}\label{encoder}
+	\end{minipage}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[width=\linewidth]{decoder}
+      \caption{A decoder neural network with input $x\in \R^2$ and output $y \in \R^5$. The two hidden layers have dimensions $3$ and $4$. Hence, the decoder expands the data dimensionality from $2$ to $5$ dimensions. The graphic was generated with http://alexlenail.me/NN-SVG/index.html}\label{decoder}
+	\end{minipage}
+\end{center}
+\end{figure}

@@ -1,5 +1,4 @@
-
-\chapter{Preliminary}
+\chapter{Preliminary}\label{preliminary}
 In order to understand the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of neural networks and their optimization - usually being called training. In this chapter, we will tackle the conceptional idea of how to formulate neural networks in a mathematical way and further, we will consider a couple of useful operations that neural networks are capable of doing. Lastly, we will take a look at some strategies of training neural networks.
 
 \section{Neural networks}
@@ -37,26 +36,21 @@ In order to expand the architecture, we consider multiple neurons being arranged
 
 \begin{definition}
 Let $\f: \R \to \R$ be an activation function and $W \in \R^{m\times k}$, $b\in \R^m$. Then a function $H:\R^k \to \R^m$ is called \textbf{$\f$-layer} of width $m$ with weights $W$ and biases $b$ if for all $i=1,\ldots,m$ the component function $h_i$ of $H$ is a $\f$-neuron with weight $w_i = W^\top e_i$ and bias $b_i = \langle b, e_i \rangle$, where $e_i$ denotes the standard ONB of $\R^m$.\\
-If we consider $\hat{\f}: \R^k \to \R$ as the componentwise mapping of $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f(v_1), \ldots, \f(v_k))$, we can generalize the $\f$-layer $H:\R^k \to \R^m$ by
+If we consider $\hat{\f}: \R^k \to \R$ as the component-wise mapping of $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f(v_1), \ldots, \f(v_k))$, we can generalize the $\f$-layer $H:\R^k \to \R^m$ by
 \begin{align}
 H(x) = \hat{\f}(Wx + b), \quad x \in \R ^k.
 \end{align}
 \end{definition}
 
-A visual representation of a neural network can be found in Figure \ref{visual_nn}
+A visual representation of a neural network can be found in figure \ref{visual_nn}
 
 \begin{figure}[H]
 \begin{center}
    \begin{minipage}[b]{\linewidth}
       \includegraphics[width=\linewidth]{neural_net}
-      \caption{A neural network with input $x\in \R^3$ and output $y\in\R$. The two hidden layers have dimensions $7$ and $4$ respectively. The graphic was generated with http://alexlenail.me/NN-SVG/index.html}\label{visual_nn}
+      \caption{A neural network with input $x\in \R^4$ and output $y\in\R^2$. The five hidden layers have dimensions $3$, $4$, $5$, $3$ and $7$ respectively. The graphic was generated with http://alexlenail.me/NN-SVG/index.html}\label{visual_nn}
 	\end{minipage}
 \end{center}
 \end{figure}
 
 \section{Training of neural networks}
-
-
-
-
-\end{definition}
