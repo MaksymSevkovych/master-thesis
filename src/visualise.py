@@ -32,7 +32,7 @@ def to_thumbnail(
     label: str,
     font: ImageFont,
     basewidth: int = 400,
-):
+) -> Image:
     wpercent = basewidth / float(image.width)
     hsize = int(float(image.height) * float(wpercent))
 
@@ -53,7 +53,7 @@ def combine_prediction_visualisation(
     list_of_labels: list,
     font: ImageFont,
     basewidth: int,
-) -> None:
+) -> list:
     images = [
         to_thumbnail(image, label, font, basewidth)
         for (image, label) in zip(list_of_images, list_of_labels)
