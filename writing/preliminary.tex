@@ -65,5 +65,65 @@ A visual representation of a neural network can be found in figure \ref{img_nn}
 \end{figure}
 
 
-
 \section{Training of neural networks}
+
+Since we now know what neural networks are, we want to discuss how to adapt them to a specific problem. This procedure is usually called training of a neural network. There are many approaches of how to train a neural network. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent. In the following we want to consider a couple of popular algorithms that are used to train neural networks.
+
+\begin{theorem}\label{theorem_gd}
+Let $(\g_t)$ be a converging sequence with $\g_t \to 0$, called step size. Let further be $f:\R^n \to \R$ a continuous, convex and differentiable function. Furthermore, let $x^{(t)}$ denote the $t$-th iterate of the \textbf{gradient descent algorithm} defined by
+\begin{align}
+x^{(t+1)} = x^{(t)} - \g_t \nabla_x f(x^{(t)}),
+\end{align}
+with a suitable initial guess $x^{(0)}\in \R^n$.\\
+Then the algorithm converges to the global minimum $f(x^{\ast})\in \R$, meaning
+\begin{align*}
+x^{\ast} \coloneqq \argmin_{x\in\R^n}f(x) = \lim_{t\to\infty} x^{(t)}.
+\end{align*}
+Lastly, if the function $f$ is strictly convex, then the global minimum $f(x^{\ast)}\in\R$ is unique.
+\end{theorem}
+
+\begin{proof}
+If the step size is sufficiently small such that the iterate is contained in the sphere around $x^{\ast}$ with radius $d\left(x^{\ast}, x^{(t)}\right)$,
+the iterate $x^{(t+1)}$ is bound by a sphere around $x^{\ast}$ with radius $d\left(x^{\ast}, x^{(t)} - \g_t \nabla_x f(x^{(t)})\right) < d\left(x^{\ast}, x^{(t)}\right)$, since
+\begin{align*}
+d\left(x^{\ast}, x^{(t)}\right) &\geq d\left(x^{\ast}, x^{(t+1)}\right)\\
+&= d\left(x^{\ast}, x^{(t)} - \g_t \nabla_x f(x^{(t)})\right).
+\end{align*}
+Hence, the distance $d(x^{\ast}, x^{(t)})$ becomes smaller in each iteration, due to the convexity of $f$, with
+\begin{align*}
+\lim_{t\to\infty} d\left(x^{\ast}, x^{(t)}\right) = 0,
+\end{align*}
+since we know that $\R^n$ is a Banach space and $\left(d\left(x^{\ast}, x^{(t)}\right)\right)_{t\in\N}$ is a converging sequence by construction.\\
+It is left to show, that if the function $f$ is strictly convex, then the global minimum $f(x^{\ast})\in\R$ is unique. This assertion holds, since if there were two global minima $f\left(x_1^{\ast}\right), f\left(x_2^{\ast}\right)$ with $x_1^{\ast} \neq x_2^{\ast}$.\\
+Now consider $x^{\prime} \coloneqq \frac{x_1^{\ast} + x_2^{\ast}}{2}$, a point between $x_1^{\ast}$ and $x_1^{\ast}$. Since $f$ is assumed to be strictly convex, this leads to
+\begin{align*}
+f\left(x^{\prime} \right) = f\left(\frac{1}{2}x_1^{\ast} + \frac{1}{2} x_2^{\ast}\right) < \frac{1}{2} f\left(x_1^{\ast} \right) + \frac{1}{2} f\left(x_2^{\ast}\right) = f\left(x_1^{\ast}\right) = f\left(x_2^{\ast}\right).
+\end{align*}
+This would contradict the assumption that $f\left(x_1^{\ast}\right), f\left(x_2^{\ast}\right)$ are minima, especially global minima. Hence, the assertion holds.
+\end{proof}
+
+Since we are considering neural networks in this thesis, we want to take a quick look on how we can apply theorem \ref{theorem_gd} to a neural network. But firstly, we need to define the so called loss function and risk function - functions to measure the error of a neural network, or any prediction function in general. This is fundamental in supervised learning.
+
+\begin{definition}\label{def_loss_risk}
+Let $X, Y$ be arbitrary Banach spaces with $X\subset \R^d$ and $Y \subset \R^n$ and $d, n \in \N$, that we will refer to as input and output space, $p:X \to \R^n$ be a continuous, convex function.\\
+Furthermore, let $L: X \times Y \times \R^n \to [0, \infty)$ be a \textbf{loss function}, a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = p(x)$.\\
+Lastly, let $\prob$ be a probability measure on $X \times Y$. Then the \textbf{$L$-risk function} $\risk: X \times Y \times \R^n \to [0, \infty)$ with regard to a loss function $L$ is defined as
+\begin{align*}
+\risk(p) = \int_{X\times Y} L\left(x, y, p(x) \right) d \prob(x, y).
+\end{align*}
+\end{definition}
+
+\begin{corollary}
+Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$ and arbitrary depth $L\in\N$ and arbitrary activation function $\f$.\\
+Then one can train the neural network $f_\t$ with the gradient descent algorithm proposed in theorem \ref{theorem_gd}. In this setting, the algorithm looks as follows
+\begin{align*}
+\t^{(t+1)} = \t^{(t)} - \g_t \nabla_\t \risk \left(f_{\t^{(t)}(x)}\right), \qquad	x\in \R^d
+\end{align*}
+\end{corollary}
+
+
+This is a valuable result, since this way one can iteratively optimize any convex function. Such iterative methods are powerful in numerical settings, where one could use a machine to compute the result. However, there is one problem: in many practical cases it is way to costly to compute the gradient, if the dimensionality becomes extremely large. This lead to a bunch of approaches on how to make this algorithm more efficient. This lead to the following algorithm.
+
+\begin{theorem}
+
+\end{theorem}

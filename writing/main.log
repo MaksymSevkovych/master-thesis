@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  21 JUN 2023 13:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  22 JUN 2023 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -941,35 +941,35 @@ Package scrlayer-scrpage Warning: replacing deprecated \clearscrheadfoot by
 (./main.aux (./preliminary.aux) (./autoencoders.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-Package scrbase Info: activating english \abstractname on input line 84.
-Package scrbase Info: activating english \partname on input line 84.
-Package scrbase Info: activating english \chaptername on input line 84.
-Package scrbase Info: activating english \appendixname on input line 84.
-Package scrbase Info: activating english \figurename on input line 84.
-Package scrbase Info: activating english \tablename on input line 84.
-Package scrbase Info: activating english \contentsname on input line 84.
-Package scrbase Info: activating english \listfigurename on input line 84.
-Package scrbase Info: activating english \listtablename on input line 84.
-Package scrbase Info: activating english \bibname on input line 84.
-Package scrbase Info: activating english \indexname on input line 84.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+Package scrbase Info: activating english \abstractname on input line 87.
+Package scrbase Info: activating english \partname on input line 87.
+Package scrbase Info: activating english \chaptername on input line 87.
+Package scrbase Info: activating english \appendixname on input line 87.
+Package scrbase Info: activating english \figurename on input line 87.
+Package scrbase Info: activating english \tablename on input line 87.
+Package scrbase Info: activating english \contentsname on input line 87.
+Package scrbase Info: activating english \listfigurename on input line 87.
+Package scrbase Info: activating english \listtablename on input line 87.
+Package scrbase Info: activating english \bibname on input line 87.
+Package scrbase Info: activating english \indexname on input line 87.
 
 (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -993,7 +993,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 84.
+Package hyperref Info: Link coloring OFF on input line 87.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
@@ -1006,7 +1006,7 @@ Class scrreprt Info: loading recommended package `bookmark'.
 (scrreprt)           `bookmarkpackage=false' before \begin{document} and
 (scrreprt)           you can avoid this message adding:
 (scrreprt)             \usepackage{bookmark}
-(scrreprt)           before \begin{document} on input line 84.
+(scrreprt)           before \begin{document} on input line 87.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
@@ -1103,35 +1103,35 @@ File: neural_net.jpg Graphic file (type jpg)
 <use neural_net.jpg>
 Package pdftex.def Info: neural_net.jpg  used on input line 61.
 (pdftex.def)             Requested size: 483.69687pt x 287.586pt.
-) [4] [5 <./neural_net.jpg>]
+ [4] [5 <./neural_net.jpg>]) [6]
 \openout2 = `autoencoders.aux'.
 
  (./autoencoders.tex
 chapter 2.
-<autoencoder.jpg, id=72, 996.72375pt x 435.6275pt>
+<autoencoder.jpg, id=86, 996.72375pt x 435.6275pt>
 File: autoencoder.jpg Graphic file (type jpg)
 <use autoencoder.jpg>
 Package pdftex.def Info: autoencoder.jpg  used on input line 15.
 (pdftex.def)             Requested size: 435.32422pt x 190.26085pt.
-<encoder.jpg, id=74, 740.7675pt x 534.99875pt>
+<encoder.jpg, id=88, 740.7675pt x 534.99875pt>
 File: encoder.jpg Graphic file (type jpg)
 <use encoder.jpg>
 Package pdftex.def Info: encoder.jpg  used on input line 33.
 (pdftex.def)             Requested size: 435.32422pt x 314.40569pt.
-[6
+[7
 
 
 
 
-] [7 <./autoencoder.jpg> <./encoder.jpg>]
-<decoder.jpg, id=92, 734.745pt x 527.9725pt>
+] [8 <./autoencoder.jpg> <./encoder.jpg>]
+<decoder.jpg, id=104, 734.745pt x 527.9725pt>
 File: decoder.jpg Graphic file (type jpg)
 <use decoder.jpg>
 Package pdftex.def Info: decoder.jpg  used on input line 52.
 (pdftex.def)             Requested size: 435.32422pt x 312.82228pt.
-) [8 <./decoder.jpg>]
+) [9 <./decoder.jpg>]
 No file main.bbl.
-[9
+[10
 
 
 ] (./main.aux (./preliminary.aux) (./autoencoders.aux))
@@ -1139,10 +1139,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 Here is how much of TeX's memory you used:
- 30800 strings out of 476029
- 624215 string characters out of 5790166
- 1867346 words of memory out of 5000000
- 50712 multiletter control sequences out of 15000+600000
+ 30813 strings out of 476029
+ 624335 string characters out of 5790166
+ 1872346 words of memory out of 5000000
+ 50719 multiletter control sequences out of 15000+600000
  522687 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,106p,10626b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1162,12 +1162,13 @@ ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2
 022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/
 2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/202
-2/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022
-/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (9 pages, 454595 bytes).
+022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (10 pages, 479991 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 224 PDF objects out of 1000 (max. 8388607)
+ 166 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
