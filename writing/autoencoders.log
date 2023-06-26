@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  13 JUN 2023 11:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  26 JUN 2023 12:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1857,7 +1857,7 @@ Type  H <return>  for immediate help.
  ...
 
 l.12 \begin{figure}
-
+                   [H]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -1869,13 +1869,16 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.13 \begin{center}
-
+l.12 \begin{figure}[
+                    H]
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 13--13
+Overfull \hbox (20.0pt too wide) in paragraph at lines 12--13
 []
  []
 
@@ -2882,13 +2885,16 @@ Type  H <return>  for immediate help.
  ...
 
 l.30 \begin{figure}
-
+                   [H]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 31--31
+Overfull \hbox (20.0pt too wide) in paragraph at lines 30--31
 []
  []
 
@@ -3919,13 +3925,16 @@ Type  H <return>  for immediate help.
  ...
 
 l.49 \begin{figure}
-
+                   [H]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 50--50
+Overfull \hbox (20.0pt too wide) in paragraph at lines 49--50
 []
  []
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  22 JUN 2023 15:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  26 JUN 2023 12:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1101,37 +1101,38 @@ Class scrreprt Warning: \float@addtolists detected!
 <neural_net.jpg, id=45, 923.45pt x 549.05125pt>
 File: neural_net.jpg Graphic file (type jpg)
 <use neural_net.jpg>
-Package pdftex.def Info: neural_net.jpg  used on input line 61.
-(pdftex.def)             Requested size: 483.69687pt x 287.586pt.
- [4] [5 <./neural_net.jpg>]) [6]
+Package pdftex.def Info: neural_net.jpg  used on input line 72.
+(pdftex.def)             Requested size: 435.32422pt x 258.82487pt.
+ [4] [5 <./neural_net.jpg>] [6] [7]) [8]
 \openout2 = `autoencoders.aux'.
 
  (./autoencoders.tex
 chapter 2.
-<autoencoder.jpg, id=86, 996.72375pt x 435.6275pt>
+<autoencoder.jpg, id=103, 996.72375pt x 435.6275pt>
 File: autoencoder.jpg Graphic file (type jpg)
 <use autoencoder.jpg>
 Package pdftex.def Info: autoencoder.jpg  used on input line 15.
 (pdftex.def)             Requested size: 435.32422pt x 190.26085pt.
-<encoder.jpg, id=88, 740.7675pt x 534.99875pt>
+[9
+
+
+
+
+]
+<encoder.jpg, id=110, 740.7675pt x 534.99875pt>
 File: encoder.jpg Graphic file (type jpg)
 <use encoder.jpg>
 Package pdftex.def Info: encoder.jpg  used on input line 33.
 (pdftex.def)             Requested size: 435.32422pt x 314.40569pt.
-[7
-
-
-
-
-] [8 <./autoencoder.jpg> <./encoder.jpg>]
-<decoder.jpg, id=104, 734.745pt x 527.9725pt>
+ [10 <./autoencoder.jpg>]
+<decoder.jpg, id=119, 734.745pt x 527.9725pt>
 File: decoder.jpg Graphic file (type jpg)
 <use decoder.jpg>
 Package pdftex.def Info: decoder.jpg  used on input line 52.
 (pdftex.def)             Requested size: 435.32422pt x 312.82228pt.
-) [9 <./decoder.jpg>]
+) [11 <./encoder.jpg>] [12 <./decoder.jpg>]
 No file main.bbl.
-[10
+[13
 
 
 ] (./main.aux (./preliminary.aux) (./autoencoders.aux))
@@ -1139,13 +1140,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 Here is how much of TeX's memory you used:
- 30813 strings out of 476029
- 624335 string characters out of 5790166
+ 30823 strings out of 476029
+ 624453 string characters out of 5790166
  1872346 words of memory out of 5000000
- 50719 multiletter control sequences out of 15000+600000
+ 50722 multiletter control sequences out of 15000+600000
  522687 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,20n,106p,10626b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,20n,106p,10626b,563s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pf
 b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
@@ -1166,9 +1167,9 @@ ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (10 pages, 479991 bytes).
+Output written on main.pdf (13 pages, 488018 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 166 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
+ 249 PDF objects out of 1000 (max. 8388607)
+ 188 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
