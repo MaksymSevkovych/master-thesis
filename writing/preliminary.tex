@@ -194,3 +194,30 @@ with $i \in \{1,\ldots, k\}$ and $\partial_{\t, i} \risk \left(f_{\t^{(t)}}\righ
 
 \textcolor{red}{TODO:} Name some properties (convergence, rate, etc.) and reference them \\
 \textcolor{red}{TODO:} Since ADAM optimizers perform best at the current state of the art, it would be nice to see how it works. However, it would need come pages to introduce.. Is it worth it?
+
+\section{Neural networks in computer vision}
+
+Lastly in this chapter, we want to apply the theory of neural networks to the setting we actually are interested in. This setting is usually called computer vision - basically, Machine Learning that is applied to images and videos. Since we want to apply neural networks to a problem that has to do with images, we need to know how to see an image in a mathematical way.
+
+\begin{definition}
+Let $M,N\in\N$ and $\O=\{1,\ldots,M\}\times \{1,\ldots,N\} \subset \N^2$ be called \textbf{pixel domain} of an image with the tuple $(M,N)$ being called \textbf{resolution}. Then we define a \textbf{digital image} by $(\p)_{i,j} \in \P_d \coloneqq \{1,\ldots,255\}^d$ for all $(i,j)$ in $\O$, where $d\in\N$ represents the number of \textbf{channels} in each pixel.\\
+We will denote $\p\in\P_{d,\O}\coloneqq \P_d^{M\times N}$ from now on.
+\end{definition}
+
+\begin{remark}
+We want to distinguish two kinds of pictures. If $d=1$, we speak of a \textbf{black and white picture}.\\
+If $d=3$, we speak of an \textbf{RGB picture}. Here, RGB stands for the  red, green and blue color channels.
+\end{remark}
+
+Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider how a neural layer operating on images looks like.
+
+\begin{corollary}
+Let $\f$ be an arbitrary activation function and $\O_0$ be an arbitrary pixel domain with resolution $(M_0,N_0)\in\N^2$. Let $\p$ be an image with number of channels $d\in\N$.\\
+Since we will not change the number of channels throughout the neural network, we reduce $\P_{d_\O}$ to $\P_{\O}$. Then a neural layer that operates on images looks as follows
+\begin{align*}
+H: \P_{\O_0} &\to \P_{\O_1}\\
+\p_0 &\mapsto \p_1,
+\end{align*}
+where $\p_1$ is an image on the pixel domain $\O_1$ with resolution $(M_1,N_1)\in\N^2$
+
+\end{corollary}
