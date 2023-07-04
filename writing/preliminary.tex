@@ -199,9 +199,9 @@ with $i \in \{1,\ldots, k\}$ and $\partial_{\t, i} \risk \left(f_{\t^{(t)}}\righ
 
 Lastly in this chapter, we want to apply the theory of neural networks to the setting we actually are interested in. This setting is usually called computer vision - basically, Machine Learning that is applied to images and videos. Since we want to apply neural networks to a problem that has to do with images, we need to know how to see an image in a mathematical way.
 
-\begin{definition}
-Let $M,N\in\N$ and $\O=\{1,\ldots,M\}\times \{1,\ldots,N\} \subset \N^2$ be called \textbf{pixel domain} of an image with the tuple $(M,N)$ being called \textbf{resolution}. Then we define a \textbf{digital image} by $(\p)_{i,j} \in \P_d \coloneqq \{1,\ldots,255\}^d$ for all $(i,j)$ in $\O$, where $d\in\N$ represents the number of \textbf{channels} in each pixel.\\
-We will denote $\p\in\P_{d,\O}\coloneqq \P_d^{M\times N}$ from now on.
+\begin{definition}\label{def_picture}
+Let $M,N\in\N$ and $\O=\{1,\ldots,M\}\times \{1,\ldots,N\} \subset \N^2$ be called \textbf{pixel domain} of an image with the tuple $(M,N)$ being called \textbf{resolution}. Then we define a \textbf{digital image} by $\p_{ij} \in \P_d \coloneqq \{1,\ldots,255\}^d$ for all $(i,j)$ in $\O$, where $d\in\N$ represents the number of \textbf{channels} in the picture.\\
+We will write $\p\in\P_{d,\O}\coloneqq \P_d^{M\times N}$ from now on.
 \end{definition}
 
 \begin{remark}
@@ -209,15 +209,55 @@ We want to distinguish two kinds of pictures. If $d=1$, we speak of a \textbf{bl
 If $d=3$, we speak of an \textbf{RGB picture}. Here, RGB stands for the  red, green and blue color channels.
 \end{remark}
 
-Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider how a neural layer operating on images looks like.
+Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider  a single neural layer, since neural networks consist of those. But first, we need one technical assertion.
+
+\begin{lemma}
+Let $\O$ be a pixel domain with resolution $(M,N)$. Then the picture $\p$  with $d\in\N$ channels defined on $\P_{d,\O}$ can be represented as an $MN$-dimensional array instead of an $M\times N$-matrix.
+\end{lemma}
+
+\begin{proof}
+Let $\p$ be a matrix with entries $\p_{ij}\in\P_d$, what follows from the definition of a picture \ref{def_picture}. Hence, $\p$ is a $M\times N$- matrix.\\
+Define the rows of $\p$ by $\hat{\p}_i\coloneqq (\p_{i1},\ldots,\p_{iN})$ for all $i\in \{1,\ldots,M\}$. Then the matrix representation of the picture $\p$ can be written as
+\begin{align*}
+\begin{pmatrix}
+&\p_{11} &\cdots &\p_{1N}\\
+&\vdots  &\ddots		 &\vdots\\
+&\p_{M1} &\cdots &\p_{MN}
+\end{pmatrix}=
+\begin{pmatrix}
+\hat{\p}_1\\
+\vdots\\
+\hat{\p}_M
+\end{pmatrix}.
+\end{align*}
+If we now transpose each $\p_i$ and keep the same representation, we transform the $M\times N$ matrix into an $MN$-dimensional array
+\begin{align*}
+ \begin{pmatrix}
+\hat{\p}^{\tran}_1\\
+\vdots\\
+\hat{\p}^{\tran}_M
+\end{pmatrix} \in \P^{MN}.
+\end{align*}
+\end{proof}
+
+\begin{definition}\label{def_pic_operator}
+Let $\O_0$ and $\O_1$ be pixel domains with resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Let further $\p_0$ be a picture with number of channels $d\in\N$.\\ Then we define the \textbf{picture operator} $T$ as the mapping
+\begin{align*}
+T: \P_{d,\O_0} &\to \P_{d,\O_1}\\
+\p_0 &\mapsto \p_1 \coloneqq T \p_0,
+\end{align*}
+where $T$ does not change the number of channels $d$. Thus, we shorten $\P_{d,\O_0}= \P_{\O_0}$.
+\end{definition}
+
+These technicalities helps us to introduce neural networks operating on pictures.
 
 \begin{corollary}
 Let $\f$ be an arbitrary activation function and $\O_0$ be an arbitrary pixel domain with resolution $(M_0,N_0)\in\N^2$. Let $\p$ be an image with number of channels $d\in\N$.\\
-Since we will not change the number of channels throughout the neural network, we reduce $\P_{d_\O}$ to $\P_{\O}$. Then a neural layer that operates on images looks as follows
+Since we do not want to alter the number of channels throughout the neural network, we reduce $\P_{d,\O}$ to $\P_{\O}$. Then a neural layer that operates on images looks as follows
 \begin{align*}
 H: \P_{\O_0} &\to \P_{\O_1}\\
-\p_0 &\mapsto \p_1,
+\p_0 &\mapsto \f\left(T\p_0 + b\right),
 \end{align*}
-where $\p_1$ is an image on the pixel domain $\O_1$ with resolution $(M_1,N_1)\in\N^2$
+where $T$ is an operator as in lemma \ref{def_pic_operator} and $\O_1$ a pixel domain with resolution $(M_1,N_1)$.
 
 \end{corollary}
