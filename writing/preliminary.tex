@@ -209,9 +209,9 @@ We want to distinguish two kinds of pictures. If $d=1$, we speak of a \textbf{bl
 If $d=3$, we speak of an \textbf{RGB picture}. Here, RGB stands for the  red, green and blue color channels.
 \end{remark}
 
-Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider  a single neural layer, since neural networks consist of those. But first, we need one technical assertion.
+Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider  a single neural layer, since neural networks consist of those. But first, we need some technical assertions.
 
-\begin{lemma}
+\begin{lemma}\label{mat_as_array}
 Let $\O$ be a pixel domain with resolution $(M,N)$. Then the picture $\p$  with $d\in\N$ channels defined on $\P_{d,\O}$ can be represented as an $MN$-dimensional array instead of an $M\times N$-matrix.
 \end{lemma}
 
@@ -240,24 +240,87 @@ If we now transpose each $\p_i$ and keep the same representation, we transform t
 \end{align*}
 \end{proof}
 
-\begin{definition}\label{def_pic_operator}
-Let $\O_0$ and $\O_1$ be pixel domains with resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Let further $\p_0$ be a picture with number of channels $d\in\N$.\\ Then we define the \textbf{picture operator} $T$ as the mapping
+With lemma \ref{mat_as_array} we know how we can feed images into a neural network by considering them as one large array. However, it still is unclear how the images are processed throughout the neural network. In order to formulate this, we need to define a function operating on images.
+
+\begin{definition}\label{def_img_operator}
+Let $\O_0$ and $\O_1$ be pixel domains with resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Let further $\p_0$ be a picture with number of channels $d\in\N$.\\ Then we define an \textbf{image operator} $T$ as the mapping
 \begin{align*}
 T: \P_{d,\O_0} &\to \P_{d,\O_1}\\
 \p_0 &\mapsto \p_1 \coloneqq T \p_0,
 \end{align*}
-where $T$ does not change the number of channels $d$. Thus, we shorten $\P_{d,\O_0}= \P_{\O_0}$.
+where $T$ does not change the number of channels $d$. Thus, we shorten $\P_{d,\O_0}$ to $\P_{\O_0}$ in the following.
 \end{definition}
 
-These technicalities helps us to introduce neural networks operating on pictures.
+The definition \ref{def_img_operator} is quite general, since we do not demand any specific properties from the image operator $T$ whatsoever. Indeed, there are some image operators that are commonly used in computer vision, we will take a look at those in the course of this chapter.\\
+These technicalities helps us introduce neural networks operating on pictures.
 
-\begin{corollary}
-Let $\f$ be an arbitrary activation function and $\O_0$ be an arbitrary pixel domain with resolution $(M_0,N_0)\in\N^2$. Let $\p$ be an image with number of channels $d\in\N$.\\
+\begin{corollary}\label{cv_layer}
+Let $\f$ be an arbitrary activation function and $\hat{\f}$ the component-wise mapping of $\f$ as in \ref{def_layer} and $\O_0$ be an arbitrary pixel domain with resolution $(M_0,N_0)\in\N^2$. Let $\p$ be an image with number of channels $d\in\N$.\\
 Since we do not want to alter the number of channels throughout the neural network, we reduce $\P_{d,\O}$ to $\P_{\O}$. Then a neural layer that operates on images looks as follows
 \begin{align*}
 H: \P_{\O_0} &\to \P_{\O_1}\\
-\p_0 &\mapsto \f\left(T\p_0 + b\right),
+\p_0 &\mapsto \hat{\f}\left(T\p_0 + b\right),
 \end{align*}
-where $T$ is an operator as in lemma \ref{def_pic_operator} and $\O_1$ a pixel domain with resolution $(M_1,N_1)$.
-
+where $T$ is an image operator as in definition \ref{def_img_operator}, $b$ is a bias and $\O_1$ a pixel domain with resolution $(M_1,N_1)$.
 \end{corollary}
+
+With the help of corollary \ref{cv_layer} we realise, that each layer $H_i$ of a neural network in a computer vision setting represents an own image space, denoted by $\P_{\O_i}$. Meaning, that all elements fed to the corresponding layer are images with resolution $(M_i,N_i)$.\\
+Now we want to consider some useful examples of image operators. Firstly, we will take a look at multidimensional convolutions, hence convolutions on images. For more details please look at \cite[chapter~9]{goodfellow2016deep}.
+
+\begin{proposition}\label{convolution}
+Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Then the \textbf{image convolution operator} $T_{\text{img}}: \P_{\O_0} \to \P_{\O_1}$ is defined by
+\begin{align*}
+T_{\text{img}}: \P_{\O_0} \to \P_{\O_1}\\
+\p_0 &\mapsto \p_1 \coloneqq T_{\text{img}}\p_0 .
+\end{align*}
+This operator is defined component-wise by
+\begin{align}
+\left( \p_1 \right)_{ij} \coloneqq  \left( \p_0 \ast k \right)_{ij} = \sum_{m,n=1}^s \left(\p_0\right)_{m+i,n+j}k_{mn},
+\end{align}
+where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-s+1\} \times \{1,\ldots, N_0-s+1\}$. Hence, $M_1 = M_0-s+1$ and $N_1 = N_0-s+1$.\\
+Furthermore, $k$ is called an $s$-\textbf{convolution kernel}, an image with resolution $(s,s)$ with $s\in\N$.
+\end{proposition}
+
+Another very useful example is the pooling operator. We will distinguish between average and min- and max-pooling.
+
+\begin{proposition}\label{avg_pooling}
+Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
+Then the \textbf{average-pooling operator} $T_{\text{avg-pool}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
+\begin{align*}
+T_{\text{avg-pool}}: \P_{\O_0} \to \P_{\O_1}\\
+\p_0 &\mapsto \p_1 \coloneqq T_{\text{avg-pool}}\p_0 .
+\end{align*}
+This operator is defined component-wise by
+\begin{align}
+\left(\p_1\right)_{ij} \coloneqq  \frac{1}{p_1p_2} \sum_{(m,n)\in I}\left(\p_0\right)_{m+i, n+j},
+\end{align}
+where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p_2+1\}$. Hence, $M_1 = M_0-p_1+1$ and $N_1 = N_0-p_2+1$.
+\end{proposition}
+
+\begin{proposition}\label{min_pooling}
+Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
+Then the \textbf{min-pooling operator} $T_{\text{min-pool}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
+\begin{align*}
+T_{\text{min-pool}}: \P_{\O_0} \to \P_{\O_1} \\
+\p_0 &\mapsto \p_1 \coloneqq T_{\text{min-pool}}\p_0 .
+\end{align*}
+This operator is defined component-wise by
+\begin{align}
+\left(\p_1\right)_{ij} \coloneqq  \min_{(k,l)\in I} \left(\p_0\right)_{kl},
+\end{align}
+where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p_2+1\}$. Hence, $M_1 = M_0-p_1+1$ and $N_1 = N_0-p_2+1$.
+\end{proposition}
+
+\begin{proposition}\label{max_pooling}
+Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
+Then the \textbf{min-pooling operator} $T_{\text{max-pool}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
+\begin{align*}
+T_{\text{max-pool}}: \P_{\O_0} \to \P_{\O_1} \\
+\p_0 &\mapsto \p_1 \coloneqq T_{\text{max-pool}}\p_0 .
+\end{align*}
+This operator is defined component-wise by
+\begin{align}
+\left(\p_1\right)_{ij} \coloneqq  \max_{(k,l)\in I} \left(\p_0\right)_{kl},
+\end{align}
+where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p_2+1\}$. Hence, $M_1 = M_0-p_1+1$ and $N_1 = N_0-p_2+1$.
+\end{proposition}
