@@ -1,10 +1,10 @@
 # Import dependenciies
-import torch
-from torch import load, nn
+from torch import nn, save
 from torch.optim import Adam
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
+from tqdm import tqdm
 
 # Global variables
 MACHINE = "cpu"  # change to "cuda" if operating on a GPU
@@ -33,7 +33,7 @@ class ImageClassifier(nn.Module):
         return self.model(x)
 
 
-# Instance of the nueral network, loss, optimizer
+# Instance of the neural network, loss, optimizer
 clf = ImageClassifier().to(MACHINE)
 opt = Adam(clf.parameters(), lr=1e-3)
 loss_fn = nn.CrossEntropyLoss()
@@ -41,30 +41,18 @@ loss_fn = nn.CrossEntropyLoss()
 
 # Train flow
 if __name__ == "__main__":
-    #     for epoch in tqdm(range(10)):  # train for 10 epochs
-    #         for batch in dataset:
-    #             X, y = batch
-    #             X, y = X.to(MACHINE), y.to(MACHINE)
-    #             y_hat = clf(X)
-    #             loss = loss_fn(y_hat, y)
+    for epoch in tqdm(range(10)):  # train for 10 epochs
+        for batch in dataset:
+            X, y = batch
+            X, y = X.to(MACHINE), y.to(MACHINE)
+            y_hat = clf(X)
+            loss = loss_fn(y_hat, y)
 
-    #             # Apply backprop
-    #             opt.zero_grad()
-    #             loss.backward()
-    #             opt.step()
-    #         print(f"Epoch {epoch} loss is {loss.item()}")
+            # Apply backprop
+            opt.zero_grad()
+            loss.backward()
+            opt.step()
+        print(f"Epoch {epoch} loss is {loss.item()}")
 
-    #     with open('model_state.pt', "wb") as f:
-    #         save(clf.state_dict(), f)
-
-    # Load trained model
-    with open("./src/model_state.pt", "rb") as f:
-        clf.load_state_dict(load(f))
-
-    # Make prediction
-    img = train[0][0]
-    # img = Image.open("image_1.jpg")
-    img_tensor = ToTensor()(img).unsqueeze(0).to(MACHINE)
-
-    print(torch.argmax(clf(img_tensor)))
-    img.show()
+    with open("model_state.pt", "wb") as f:
+        save(clf.state_dict(), f)
