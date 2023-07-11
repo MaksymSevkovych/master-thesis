@@ -1,10 +1,10 @@
 # Import dependenciies
 import torch
+from classifier_train import ImageClassifier
 from torch import load
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
-from train import ImageClassifier
 
 # Global variables
 MACHINE = "cpu"  # change to "cuda" if operating on a GPU
@@ -20,7 +20,7 @@ clf = ImageClassifier().to(MACHINE)
 # Train flow
 if __name__ == "__main__":
     # Load trained model
-    with open("./src/model_state.pt", "rb") as f:
+    with open("./src/classifier_model_state.pt", "rb") as f:
         clf.load_state_dict(load(f))
 
     # Make prediction

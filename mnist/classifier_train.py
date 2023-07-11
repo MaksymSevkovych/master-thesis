@@ -54,5 +54,5 @@ if __name__ == "__main__":
             opt.step()
         print(f"Epoch {epoch} loss is {loss.item()}")
 
-    with open("model_state.pt", "wb") as f:
+    with open("classifier_model_state.pt", "wb") as f:
         save(clf.state_dict(), f)
