@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  7 JUL 2023 17:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  17 JUL 2023 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -20301,7 +20301,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
-l.316 ...e \textbf{min-pooling operator} $T_{\text
+l.316 ...e \textbf{max-pooling operator} $T_{\text
                                                   {max-pool}}: \P_{\O_0} \to...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -20634,230 +20634,6 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-
-Overfull \hbox (20.0pt too wide) in paragraph at lines 315--327
-[]
- []
-
-
-Overfull \hbox (12.26393pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 ^^_[]$
- []
-
-
-Overfull \hbox (12.26393pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 ^^_[]$
- []
-
-
-Overfull \hbox (38.93059pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 (\OML/cmm/m/it/10 M[]; N[]\/cmr/m/n/10 )$
- []
-
-
-Overfull \hbox (38.93059pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 (\OML/cmm/m/it/10 M[]; N[]\/cmr/m/n/10 )$
- []
-
-
-Overfull \hbox (14.1319pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 s \OMS/cmsy/m/n/10 2$
- []
-
-
-Overfull \hbox (28.59846pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 stride
- []
-
-
-Overfull \hbox (59.69783pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 I\OMS/cmsy/m/n/10 f\/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; p[]\O
-MS/cmsy/m/n/10 g ^^B
- []
-
-
-Overfull \hbox (61.78113pt too wide) in paragraph at lines 315--327
-\OMS/cmsy/m/n/10 f\/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; p[]\OMS/cmsy/m/n/10 g ^
-^Z[]$
- []
-
-
-Overfull \hbox (32.92357pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 p[]; p[] \OMS/cmsy/m/n/10 2$
- []
-
-
-Overfull \hbox (25.55542pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 pool-
- []
-
-
-Overfull \hbox (15.33325pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 ing
- []
-
-
-Overfull \hbox (22.99988pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 min-
- []
-
-
-Overfull \hbox (37.05536pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 pooling
- []
-
-
-Overfull \hbox (15.97214pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 op-
- []
-
-
-Overfull \hbox (13.84023pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 er-
- []
-
-
-Overfull \hbox (9.42354pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 a-
- []
-
-
-Overfull \hbox (14.95827pt too wide) in paragraph at lines 315--327
-\OT1/cmr/bx/n/10 tor
- []
-
-
-Overfull \hbox (48.704pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 T[] \/cmr/m/n/10 :
- []
-
-
-Overfull \hbox (29.43059pt too wide) in paragraph at lines 315--327
-\OMS/cmsy/m/n/10 {[] !
- []
-
-
-Overfull \hbox (16.65286pt too wide) in paragraph at lines 315--327
-\OMS/cmsy/m/n/10 {[]$
- []
-
-
-Overfull \hbox (4.6875pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 s$
- []
-
-
-Overfull \hbox (5.18054pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 I$
- []
-
-
-Overfull \hbox (42.86024pt too wide) in paragraph at lines 315--327
-[] \/cmr/m/n/10 :
- []
-
-
-Overfull \hbox (29.43059pt too wide) in paragraph at lines 315--327
-\OMS/cmsy/m/n/10 {[] !
- []
-
-
-Overfull \hbox (16.65286pt too wide) in paragraph at lines 315--327
-\OMS/cmsy/m/n/10 {[][]
- []
-
-
-Overfull \hbox (21.74998pt too wide) in paragraph at lines 315--327
-[] \OMS/cmsy/m/n/10 7![]
- []
-
-
-Overfull \hbox (50.41241pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 T[][]:$
- []
-
-
-Overfull \hbox (91.04094pt too wide) in paragraph at lines 315--327
-[][] [][] [][] \OML/cmm/m/it/10 ;$
- []
-
-
-Overfull \hbox (29.80223pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 (\OML/cmm/m/it/10 i; j\/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2
- []
-
-
-Overfull \hbox (66.45135pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 ^^_[]\OMS/cmsy/m/n/10 f\/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; M[] \
-OMS/cmsy/m/n/10 ^^@
- []
-
-
-Overfull \hbox (17.29518pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 p[] \/cmr/m/n/10 +
- []
-
-
-Overfull \hbox (17.77783pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 1\OMS/cmsy/m/n/10 g ^^B
- []
-
-
-Overfull \hbox (52.52074pt too wide) in paragraph at lines 315--327
-\OMS/cmsy/m/n/10 f\/cmr/m/n/10 1\OML/cmm/m/it/10 ; [] ; N[] \OMS/cmsy/m/n/10 ^^
-@
- []
-
-
-Overfull \hbox (17.29518pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 p[] \/cmr/m/n/10 +
- []
-
-
-Overfull \hbox (10.00003pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 1\OMS/cmsy/m/n/10 g$
- []
-
-
-Overfull \hbox (24.74304pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 M[] \/cmr/m/n/10 =
- []
-
-
-Overfull \hbox (21.96533pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 M[] \OMS/cmsy/m/n/10 ^^@
- []
-
-
-Overfull \hbox (17.29518pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 p[] \/cmr/m/n/10 +
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 1$
- []
-
-
-Overfull \hbox (23.07635pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 N[] \/cmr/m/n/10 =
- []
-
-
-Overfull \hbox (20.29865pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 N[] \OMS/cmsy/m/n/10 ^^@
- []
-
-
-Overfull \hbox (17.29518pt too wide) in paragraph at lines 315--327
-\OML/cmm/m/it/10 p[] \/cmr/m/n/10 +
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 315--327
-\/cmr/m/n/10 1$
- []
-
 )
 ! Emergency stop.
 <*> preliminary.tex
@@ -20868,7 +20644,7 @@ Overfull \hbox (5.00002pt too wide) in paragraph at lines 315--327
 Here is how much of TeX's memory you used:
  71 strings out of 476029
  936 string characters out of 5790166
- 1869346 words of memory out of 5000000
+ 1868346 words of memory out of 5000000
  20610 multiletter control sequences out of 15000+600000
  513270 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
