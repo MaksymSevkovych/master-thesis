@@ -63,7 +63,7 @@ def train(autoencoder, optimizer, criterion, data_loader, num_epochs=10):
 
 
 # Plot the reconstructed images
-def plot(autoencoder, data_loader, num_batches=100):
+def plot_latent3D(autoencoder, data_loader, num_batches=100):
     fig = plt.figure(figsize=(12, 7))
     ax = fig.add_subplot(111, projection="3d")
 
@@ -117,4 +117,4 @@ if __name__ == "__main__":
         autoencoder, optimizer, criterion, data_loader, num_epochs
     )
 
-    plot(autoencoder, data_loader, 30)
+    plot_latent3D(autoencoder, data_loader, 50)
