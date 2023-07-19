@@ -30,7 +30,37 @@ def plot_latent_2D_linear(autoencoder, data_loader, num_batches=150):
     plt.show()
 
 
-def plot_reconstructed_2D(autoencoder, r0=(-5, 10), r1=(-10, 5), n=12):
+# Plot the latent 2D space
+def plot_latent_2D_convolutional(autoencoder, data_loader, num_batches=150):
+    # Define the figure
+    fig = plt.figure(figsize=(12, 7))
+    ax = fig.add_subplot(111)
+
+    for i, (img, label) in enumerate(data_loader):
+        # Feed the data into the model
+        z = autoencoder.encoder(img.to(DEVICE))
+        z = z.to("cpu").detach().numpy()
+
+        # Data for two-dimensional scattered points
+        xdata = z[:, 0]
+        ydata = z[:, 1]
+
+        # Plot the data
+        plot = ax.scatter(xdata, ydata, c=label, cmap="tab10", marker="o")
+
+        # Add a colorbar
+        if i > num_batches:
+            fig.colorbar(plot, ax=ax)
+            break
+    plt.show()
+
+
+def plot_reconstructed_2D(
+    autoencoder: torch.nn.Module,
+    r0: tuple[int, int] = (-5, 10),
+    r1: tuple[int, int] = (-10, 5),
+    n=12,
+):
     w = 28
     img = torch.zeros((n * w, n * w))
     for i, y in enumerate(torch.linspace(*r1, n)):
@@ -43,6 +73,16 @@ def plot_reconstructed_2D(autoencoder, r0=(-5, 10), r1=(-10, 5), n=12):
     plt.show()
 
 
+def plot_reconstructed_for_point(
+    autoencoder: torch.nn.Module,
+    point: torch.Tensor,
+):
+    x_hat = autoencoder.decoder(point)
+    x_hat = x_hat.reshape(28, 28).to(DEVICE).detach()
+    plt.imshow(x_hat)
+    plt.show()
+
+
 # Plot the latent 3D space
 def plot_latent3D(autoencoder, data_loader, num_batches=100):
     # Define the figure
@@ -52,6 +92,39 @@ def plot_latent3D(autoencoder, data_loader, num_batches=100):
     for i, (img, label) in enumerate(data_loader):
         # Feed the data into the model
         img = img.reshape(-1, 28 * 28)
+        z = autoencoder.encoder(img).to(DEVICE)
+        z = z.to("cpu").detach().numpy()
+
+        # Data for three-dimensional scattered points
+        xdata = z[:, 0]
+        ydata = z[:, 1]
+        zdata = z[:, 2]
+
+        # Plot the data
+        plot = ax.scatter(xdata, ydata, zdata, c=label, cmap="tab10", marker="o")
+
+        # Label the axes, config the plot
+        ax.grid(False)
+        ax.set_title("Encoder Output")
+        ax.set_xlabel("x-axis")
+        ax.set_ylabel("y-axis")
+        ax.set_zlabel("z-axis")
+
+        # Add a colorbar
+        if i > num_batches:
+            fig.colorbar(plot, ax=ax)
+            break
+    plt.show()
+
+
+# Plot the latent 3D space
+def plot_latent_3D_convolutional(autoencoder, data_loader, num_batches=100):
+    # Define the figure
+    fig = plt.figure(figsize=(12, 7))
+    ax = fig.add_subplot(111, projection="3d")
+
+    for i, (img, label) in enumerate(data_loader):
+        # Feed the data into the model
         z = autoencoder.encoder(img).to(DEVICE)
         z = z.to("cpu").detach().numpy()
 
