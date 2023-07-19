@@ -1,6 +1,6 @@
 import torch
 import torch.optim as optim
-from modules import LinearVariationalAutoencoder
+from modules import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
@@ -27,15 +27,15 @@ def train(model, optimizer, data_loader, num_epochs=10):
 
 if __name__ == "__main__":
     # config
-    latent_dims = 2
-    num_epochs = 100
+    latent_dims = 3
+    num_epochs = 40
 
     # data
     transform = transforms.ToTensor()
     data = datasets.MNIST(root="./data", download=True, train=True, transform=transform)
     data_loader = DataLoader(dataset=data, batch_size=64, shuffle=True)
 
-    vae = LinearVariationalAutoencoder(latent_dims)
+    vae = ConvolutionalVariationalAutoencoder(latent_dims)
     optimizer = optim.Adam(vae.parameters(), lr=1e-5)
 
     outputs, vae = train(
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     )
 
     with open(
-        f"./master-thesis/mnist/VAE/linear_vae_{num_epochs}_epochs_{latent_dims}_dims.pt",
+        f"./master-thesis/mnist/VAE/conv_vae_{num_epochs}_epochs_{latent_dims}_dims.pt",
         "wb",
     ) as f:
         torch.save(vae.state_dict(), f)
