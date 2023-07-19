@@ -153,11 +153,12 @@ class ConvolutionalVariationalEncoder(nn.Module):
         self.sigma = 1
 
     def forward(self, x: torch.Tensor) -> torch.float64:
-        x = torch.flatten(x, start_dim=1)
-        x = F.relu(self.encoder(x))
+        encoded = self.encoder(x)
 
-        self.mu = self.linear2(x)
-        self.sigma = torch.exp(self.linear3(x))  # exp() to ensure positivity
+        encoded = torch.flatten(encoded, start_dim=1)
+
+        self.mu = self.linear2(encoded)
+        self.sigma = torch.exp(self.linear3(encoded))  # exp() to ensure positivity
 
         z = self.mu + self.sigma * self.N.sample(
             self.mu.shape
@@ -171,7 +172,7 @@ class ConvolutionalVariationalDecoder(nn.Module):
     def __init__(self, latent_dims: int):
         super(ConvolutionalVariationalDecoder, self).__init__()
         self.linear = nn.Linear(latent_dims, 64).to(DEVICE)
-        self.cnn = nn.Sequential(
+        self.decoder = nn.Sequential(
             nn.ConvTranspose2d(64, 32, 7).to(DEVICE),  #  N, 64, 1, 1 -> N, 32, 7, 7
             nn.ReLU(),
             # nn.ConvTranspose2d(32, 16, 3), #  N, 32, 7, 7 -> N, 16, 13, 13 THE DIMENSIONS WOULD NOT ADD UP!! # noqa: E501
@@ -187,7 +188,7 @@ class ConvolutionalVariationalDecoder(nn.Module):
 
     def forward(self, x: torch.Tensor):
         x = self.linear(x)
-        x = torch.flatten(x, start_dim=1)
+        x = x.view(x.shape[0], x.shape[1], 1, 1)
         return F.relu(self.decoder(x))
 
 
