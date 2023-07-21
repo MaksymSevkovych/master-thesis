@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import torch
+from torch.nn import Module
+from torch.utils.data import DataLoader
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -118,14 +120,15 @@ def plot_latent3D(autoencoder, data_loader, num_batches=100):
 
 
 # Plot the latent 3D space
-def plot_latent_3D_convolutional(autoencoder, data_loader, num_batches=100):
+def plot_latent_3D_convolutional(model, data_loader, num_batches=100):
     # Define the figure
     fig = plt.figure(figsize=(12, 7))
     ax = fig.add_subplot(111, projection="3d")
 
     for i, (img, label) in enumerate(data_loader):
         # Feed the data into the model
-        z = autoencoder.encoder(img).to(DEVICE)
+        mu, sigma = model.encoder(img)
+        z = model.sampler(mu, sigma).to(DEVICE)
         z = z.to("cpu").detach().numpy()
 
         # Data for three-dimensional scattered points
@@ -192,4 +195,48 @@ def plot_latent3D_single_point(autoencoder, data_loader):
 
     # Add a colorbar
     fig.colorbar(plot, ax=ax)
+    plt.show()
+
+
+# Plot 10 generated digits
+def inference(model: Module, data_loader: DataLoader, amount: int) -> None:
+    generating_data = {}
+    for img, label in data_loader:
+        if len(generating_data) == 10:
+            break
+
+        if label in generating_data:
+            continue
+
+        mu, sigma = model.encoder(img)
+
+        generating_data.update(
+            {
+                label.item(): {
+                    "mu": mu.detach(),
+                    "sigma": sigma.detach(),
+                }
+            }
+        )
+
+    generating_data_sorted = {
+        label: generating_data[label] for label in list(range(10))
+    }
+
+    width = 28
+    img = torch.zeros((amount * width, amount * width))
+
+    for i, params in generating_data_sorted.items():
+        mu, sigma = params.values()
+        samples = [model.sampler(mu, sigma) for _ in range(10)]
+        recons = [model.decoder(sample) for sample in samples]
+        recons = [recon.reshape(28, 28).to(DEVICE).detach() for recon in recons]
+        for j, recon in enumerate(recons):
+            img[
+                (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
+                j * width : (j + 1) * width,
+            ] = recon
+    plt.xticks([])
+    plt.yticks([])
+    plt.imshow(img)
     plt.show()
