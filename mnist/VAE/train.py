@@ -6,12 +6,19 @@ from modules import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
+# config
+LATENT_DIMS = 3
+NUM_EPOCHS = 100
+BATCH_SIZE = 128
+LEARNING_RATE = 3e-4
+SEED = 0
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+ALPHA = 0.5
 
 
 def train(model, optimizer, data_loader, num_epochs=10):
     outputs = []
-    bce_fn = torch.nn.BCELoss(reduction="sum")
+    bce_fn = torch.nn.MSELoss(reduction="sum")
 
     for epoch in range(num_epochs):
         for img, _ in data_loader:
@@ -21,7 +28,7 @@ def train(model, optimizer, data_loader, num_epochs=10):
             kl = model.sampler.kl
 
             print(f"Epoch: {epoch+1}, BCE: {bce}, KL: {kl}")
-            loss = 0.7 * bce + kl
+            loss = ALPHA * bce + kl
 
             optimizer.zero_grad()
             loss.backward()
@@ -33,13 +40,6 @@ def train(model, optimizer, data_loader, num_epochs=10):
 
 
 if __name__ == "__main__":
-    # config
-    LATENT_DIMS = 3
-    NUM_EPOCHS = 200
-    BATCH_SIZE = 128
-    LEARNING_RATE = 3e-4
-    SEED = 0
-
     # seed
     seed(SEED)
     # data
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     )
 
     with open(
-        f"./master-thesis/mnist/VAE/conv_vae_{NUM_EPOCHS}_epochs_{LATENT_DIMS}_dims_{LEARNING_RATE}_lr.pt",
+        f"./master-thesis/mnist/VAE/conv_vae_{NUM_EPOCHS}_epochs_{LATENT_DIMS}_dims_{LEARNING_RATE}_lr_{ALPHA}_alpha.pt",
         "wb",
     ) as f:
         torch.save(vae.state_dict(), f)

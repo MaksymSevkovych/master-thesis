@@ -117,9 +117,11 @@ class GaussianSampler(nn.Module):
         # mu + sigma * z ~ N(mu, sigma), if z ~ N(0, 1)
         z = mu + sigma * self.N.sample(mu.shape)
 
-        self.kl = torch.sum(
-            mu.pow(2) + torch.log(sigma).pow(2) - torch.log(torch.log(sigma).pow(2)) - 1
-        )
+        self.kl = torch.sum(-torch.log(sigma) + 1 / 2 * (sigma.pow(2) + mu.pow(2) - 1))
+        # = torch.sum(
+        #     mu.pow(2) + torch.log(sigma).pow(2) - torch.log(sigma.pow(2)) - 1
+        # )
+
         return z
 
 
