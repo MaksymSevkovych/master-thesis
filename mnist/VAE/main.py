@@ -1,3 +1,4 @@
+import os
 from random import seed
 
 import torch
@@ -13,10 +14,13 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if __name__ == "__main__":
     # config
     LATENT_DIMS = 3
-    NUM_EPOCHS = 200
+    NUM_EPOCHS = 100
     LEARNING_RATE = 3e-4
     BATCH_SIZE = 64
     SEED = 0
+    ALPHA = 0.5
+    FILE_PATH = "./master-thesis/mnist/VAE"
+    FILE_NAME = f"conv_vae_{NUM_EPOCHS}_epochs_{LATENT_DIMS}_dims_{LEARNING_RATE}_lr_{ALPHA}_alpha.pt"  # noqa: E501
 
     seed(SEED)
     # data
@@ -26,7 +30,7 @@ if __name__ == "__main__":
 
     vae = ConvolutionalVariationalAutoencoder(LATENT_DIMS)
     with open(
-        f"./master-thesis/mnist/VAE/conv_vae_{NUM_EPOCHS}_epochs_{LATENT_DIMS}_dims_{LEARNING_RATE}_lr.pt",
+        os.path.join(FILE_PATH, FILE_NAME),
         "rb",
     ) as f:
         vae.load_state_dict(torch.load(f))
