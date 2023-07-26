@@ -2,7 +2,7 @@ import os
 from random import seed
 
 import torch
-from modules import ConvolutionalVariationalAutoencoder
+from modules_lit import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     LEARNING_RATE = 3e-4
     BATCH_SIZE = 64
     SEED = 0
-    ALPHA = 0.5
+    ALPHA = 1
     FILE_PATH = "./master-thesis/mnist/VAE"
     FILE_NAME = f"conv_vae_{NUM_EPOCHS}_epochs_{LATENT_DIMS}_dims_{LEARNING_RATE}_lr_{ALPHA}_alpha.pt"  # noqa: E501
 

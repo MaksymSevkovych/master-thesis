@@ -115,13 +115,21 @@ class GaussianSampler(nn.Module):
 
     def forward(self, mu: torch.Tensor, sigma: torch.Tensor):
         # mu + sigma * z ~ N(mu, sigma), if z ~ N(0, 1)
+
         z = mu + sigma * self.N.sample(mu.shape)
 
-        self.kl = torch.sum(-torch.log(sigma) + 1 / 2 * (sigma.pow(2) + mu.pow(2) - 1))
-        # = torch.sum(
-        #     mu.pow(2) + torch.log(sigma).pow(2) - torch.log(sigma.pow(2)) - 1
-        # )
+        # self.kl = torch.sum(-0.5 * (1 + sigma - mu.pow(2) - torch.exp(sigma)))
+        # NOTE: what if we distinguish between the hidden normal distributions??
+        # sigma_goal = torch.tensor([1] * sigma.shape[1])
+        # mu_goal = torch.tensor([0] * mu.shape[1])
+        # mu_goal = torch.tensor(list(range(mu.shape[1])))
 
+        self.kl = torch.sum(-torch.log(sigma) + 1 / 2 * (sigma.pow(2) + mu.pow(2) - 1))
+        # self.kl = torch.sum(
+        #     torch.log(sigma / sigma_goal)
+        #     + (sigma_goal.pow(2) + (mu_goal - mu).pow(2)) / (2 * sigma.pow(2))
+        #     - 1 / 2
+        # )
         return z
 
 

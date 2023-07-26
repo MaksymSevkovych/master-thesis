@@ -1,40 +1,45 @@
+import time
 from random import seed
 
 import torch
 import torch.optim as optim
-from modules import ConvolutionalVariationalAutoencoder
+from modules_lit import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 # config
 LATENT_DIMS = 3
 NUM_EPOCHS = 100
-BATCH_SIZE = 128
 LEARNING_RATE = 3e-4
+BATCH_SIZE = 128
 SEED = 0
+ALPHA = 1
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-ALPHA = 0.5
 
 
 def train(model, optimizer, data_loader, num_epochs=10):
     outputs = []
-    bce_fn = torch.nn.MSELoss(reduction="sum")
+    mse_fn = torch.nn.MSELoss(reduction="sum")
 
     for epoch in range(num_epochs):
+        start_time = time.perf_counter()
         for img, _ in data_loader:
             recon = model(img)
             # loss = ((img - recon) ** 2).sum() + model.encoder.kl
-            bce = bce_fn(recon, img)
+            mse = mse_fn(recon, img)
             kl = model.sampler.kl
 
-            print(f"Epoch: {epoch+1}, BCE: {bce}, KL: {kl}")
-            loss = ALPHA * bce + kl
+            print(f"Epoch: {epoch+1}, MSE: {mse}, KL: {kl}")
+            loss = ALPHA * mse + kl
 
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+        end_time = time.perf_counter()
 
-        print(f"Epoch: {epoch+1}, Loss: {loss.item():.4f}")
+        duration = end_time - start_time
+
+        print(f"Epoch: {epoch+1}, Loss: {loss.item():.4f}, Duration: {duration:.4f}")
         outputs.append((epoch, img, recon))
     return outputs, model
 
