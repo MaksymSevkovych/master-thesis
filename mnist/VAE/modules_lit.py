@@ -154,7 +154,7 @@ class ConvolutionalVariationalEncoder(pl.LightningModule):
             nn.ReLU(),
             nn.Conv2d(32, 64, 7).to(DEVICE),  # N, 32, 7, 7 -> N, 64, 1, 1
             nn.ReLU(),
-        )
+        ).to(DEVICE)
         self.linear2 = nn.Linear(64, latent_dims).to(DEVICE)
         self.linear3 = nn.Linear(64, latent_dims).to(DEVICE)
 
@@ -172,18 +172,18 @@ class ConvolutionalVariationalDecoder(pl.LightningModule):
         super(ConvolutionalVariationalDecoder, self).__init__()
         self.linear = nn.Linear(latent_dims, 64).to(DEVICE)
         self.decoder = nn.Sequential(
-            nn.ConvTranspose2d(64, 32, 7).to(DEVICE),  #  N, 64, 1, 1 -> N, 32, 7, 7
+            nn.ConvTranspose2d(64, 32, 7),  #  N, 64, 1, 1 -> N, 32, 7, 7
             nn.ReLU(),
             # nn.ConvTranspose2d(32, 16, 3), #  N, 32, 7, 7 -> N, 16, 13, 13 THE DIMENSIONS WOULD NOT ADD UP!! # noqa: E501
-            nn.ConvTranspose2d(32, 16, 3, stride=2, padding=1, output_padding=1).to(
-                DEVICE
+            nn.ConvTranspose2d(
+                32, 16, 3, stride=2, padding=1, output_padding=1
             ),  #  N, 32, 7, 7 -> N, 16, 14, 14
             nn.ReLU(),
-            nn.ConvTranspose2d(16, 1, 3, stride=2, padding=1, output_padding=1).to(
-                DEVICE
+            nn.ConvTranspose2d(
+                16, 1, 3, stride=2, padding=1, output_padding=1
             ),  #  N, 16, 14, 14 -> N, 1, 28, 28
             nn.Sigmoid(),  # IMPORTANT! Depending on data we might need different activation here! # noqa: E501
-        )
+        ).to(DEVICE)
 
     def forward(self, x: torch.Tensor):
         x = self.linear(x)
@@ -230,13 +230,13 @@ class LinearVariationalAutoencoder(pl.LightningModule):
 class ConvolutionalVariationalAutoencoder(pl.LightningModule):
     def __init__(self, latent_dims: int):
         super().__init__()
-        self.encoder = ConvolutionalVariationalEncoder(latent_dims)
-        self.sampler = GaussianSampler()
-        self.decoder = ConvolutionalVariationalDecoder(latent_dims)
+        self.encoder = ConvolutionalVariationalEncoder(latent_dims).to(DEVICE)
+        self.sampler = GaussianSampler().to(DEVICE)
+        self.decoder = ConvolutionalVariationalDecoder(latent_dims).to(DEVICE)
 
     def forward(self, x: torch.Tensor):
         mu, sigma = self.encoder(x)
-        z = self.sampler(mu, sigma)
+        z = self.sampler(mu, sigma).to(DEVICE)
         return self.decoder(z)
 
     def configure_optimizers(self):
@@ -248,7 +248,7 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         mu, sigma = self.encoder(x)
         z = self.sampler(mu, sigma)
         x_hat = self.decoder(z)
-        loss = F.mse_loss(x_hat, x)
+        loss = F.mse_loss(x_hat, x) + model.sampler.kl
         self.log("train_loss", loss)
         return loss
 
@@ -269,7 +269,7 @@ def plot_latent_3D_convolutional(model, data_loader, num_batches=100):
     for i, (img, label) in enumerate(data_loader):
         # Feed the data into the model
         mu, sigma = model.encoder(img)
-        z = model.sampler(mu, sigma).to(DEVICE)
+        z = model.sampler(mu, sigma)
         z = z.to("cpu").detach().numpy()
 
         # Data for three-dimensional scattered points
@@ -323,10 +323,13 @@ if __name__ == "__main__":
     )
     trainer.fit(model, train_loader, val_loader)
 
+    # save model
     with open("./master-thesis/mnist/VAE/lightning.pt", "wb") as f:
         torch.save(model.state_dict(), f)
 
+    # load model
     # with open("./master-thesis/mnist/VAE/lightning.pt", "rb") as f:
     #     model.load_state_dict(torch.load(f))
 
+    # # plot latentç
     # plot_latent_3D_convolutional(model, train_loader, 50)

@@ -2,7 +2,7 @@ import os
 from random import seed
 
 import torch
-from modules_lit import ConvolutionalVariationalAutoencoder
+from modules import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 

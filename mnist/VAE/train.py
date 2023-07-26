@@ -3,7 +3,7 @@ from random import seed
 
 import torch
 import torch.optim as optim
-from modules_lit import ConvolutionalVariationalAutoencoder
+from modules import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
@@ -14,6 +14,7 @@ LEARNING_RATE = 3e-4
 BATCH_SIZE = 128
 SEED = 0
 ALPHA = 1
+FILE_NAME = f"./master-thesis/mnist/VAE/conv_vae_{NUM_EPOCHS}_epochs_{LATENT_DIMS}_dims_{LEARNING_RATE}_lr_{ALPHA}_alpha.pt"  # noqa: E501
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
@@ -59,8 +60,5 @@ if __name__ == "__main__":
         vae, optimizer=optimizer, data_loader=data_loader, num_epochs=NUM_EPOCHS
     )
 
-    with open(
-        f"./master-thesis/mnist/VAE/conv_vae_{NUM_EPOCHS}_epochs_{LATENT_DIMS}_dims_{LEARNING_RATE}_lr_{ALPHA}_alpha.pt",
-        "wb",
-    ) as f:
+    with open(FILE_NAME, "wb") as f:
         torch.save(vae.state_dict(), f)
