@@ -1,1 +1,11 @@
 \chapter{Variational Autoencoders}\label{vae}
+
+Differently form autoencoders, that we already mentioned to be discriminative models variational autoencoders on the other hand are so called generative models. Instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. These models are usually referred to as generative models, see \cite[chapter~5]{cinelli2021variational} This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering application at least.
+
+In order to compute the gradient of a variational autoencoding neural network, we need to determine a way to quantify the distance between probability distributions. A popular measure for this case is the so called Kullback-Leibler divergence. It assesses the dissimilarity between two probability distributions over the same 	random variable $X$.
+\begin{definition}\label{kl_div}
+Let $X$ be a random variable and $p(x), q(x)$ two probability distributions over $X$. Then, the \textbf{Kullback-Leibler divergence} is defined as
+\begin{align}
+\KL{p}{q}
+\end{align}
+\end{definition}

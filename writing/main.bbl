@@ -8,4 +8,9 @@ I.~Goodfellow, Y.~Bengio, and A.~Courville, {\em Deep learning}.
 D.~Foster, {\em Generative deep learning}.
 \newblock " O'Reilly Media, Inc.", 2022.
 
+\bibitem{cinelli2021variational}
+L.~P. Cinelli, M.~A. Marins, E.~A.~B. Da~Silva, and S.~L. Netto, {\em
+  Variational methods for machine learning with applications to deep networks}.
+\newblock Springer, 2021.
+
 \end{thebibliography}

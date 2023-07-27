@@ -86,7 +86,7 @@ Since we now know what neural networks are, we want to discuss how to tune them 
 
 \begin{definition}\label{def_loss_risk}
 Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$ be arbitrary Banach spaces, that we will refer to as input and output space, $p:X \to \R^n$ be a continuous, convex function.\\
-Furthermore, let $L: X \times Y \times \R^n \to [0, \infty)$ be a \textbf{loss function}, a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = p(x)$.\\
+Furthermore, let $L: X \times Y \times \R^n \to [0, \infty)$ be a \textbf{supervised loss function}, a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = p(x)$.\\
 Lastly, let $\prob$ be a probability measure on $X \times Y$. Then the \textbf{$L$-risk function} $\risk: X \times Y \times \R^n \to [0, \infty)$ with regard to a loss function $L$ is defined as
 \begin{align*}
 \risk_{L, \prob}(p) = \int_{X\times Y} L\left(x, y, p(x) \right) d \prob(x, y).
