@@ -152,10 +152,10 @@ class ConvolutionalVariationalEncoder(nn.Module):
         self.linear3 = nn.Linear(64, latent_dims).to(DEVICE)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        encoded = self.encoder(x)
-        encoded = torch.flatten(encoded, start_dim=1)
+        x = self.encoder(x)
+        x = torch.flatten(x, start_dim=1)
 
-        mu, sigma = self.linear2(encoded), torch.exp(self.linear3(encoded))
+        mu, sigma = self.linear2(x), torch.exp(self.linear3(x))
 
         return mu, sigma
 
@@ -202,9 +202,9 @@ class ConvolutionalAutoencoder(nn.Module):
         self.decoder = ConvolutionalDecoder()
 
     def forward(self, x):
-        encoded = self.encoder(x)
-        decoded = self.decoder(encoded)
-        return decoded
+        x = self.encoder(x)
+        x = self.decoder(x)
+        return x
 
 
 class LinearVariationalAutoencoder(nn.Module):

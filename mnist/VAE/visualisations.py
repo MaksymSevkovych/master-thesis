@@ -58,7 +58,7 @@ def plot_latent_2D_convolutional(autoencoder, data_loader, num_batches=150):
 
 
 def plot_reconstructed_2D(
-    autoencoder: torch.nn.Module,
+    autoencoder: Module,
     r0: tuple[int, int] = (-5, 10),
     r1: tuple[int, int] = (-10, 5),
     n=12,
@@ -76,7 +76,7 @@ def plot_reconstructed_2D(
 
 
 def plot_reconstructed_for_point(
-    autoencoder: torch.nn.Module,
+    autoencoder: Module,
     point: torch.Tensor,
 ):
     x_hat = autoencoder.decoder(point)
@@ -94,7 +94,7 @@ def plot_latent3D(autoencoder, data_loader, num_batches=100):
     for i, (img, label) in enumerate(data_loader):
         # Feed the data into the model
         img = img.reshape(-1, 28 * 28)
-        z = autoencoder.encoder(img).to(DEVICE)
+        z = autoencoder.encoder(img)
         z = z.to("cpu").detach().numpy()
 
         # Data for three-dimensional scattered points
@@ -127,8 +127,8 @@ def plot_latent_3D_convolutional(model, data_loader, num_batches=100):
 
     for i, (img, label) in enumerate(data_loader):
         # Feed the data into the model
-        mu, sigma = model.encoder(img)
-        z = model.sampler(mu, sigma).to(DEVICE)
+        mu, log_var = model.encoder(img)
+        _, _, z = model.sample(mu, log_var)
         z = z.to("cpu").detach().numpy()
 
         # Data for three-dimensional scattered points
@@ -208,13 +208,13 @@ def inference(model: Module, data_loader: DataLoader, amount: int) -> None:
         if label in generating_data:
             continue
 
-        mu, sigma = model.encoder(img)
+        mu, log_var = model.encoder(img)
 
         generating_data.update(
             {
                 label.item(): {
                     "mu": mu.detach(),
-                    "sigma": sigma.detach(),
+                    "log_var": log_var.detach(),
                 }
             }
         )
@@ -227,8 +227,12 @@ def inference(model: Module, data_loader: DataLoader, amount: int) -> None:
     img = torch.zeros((amount * width, amount * width))
 
     for i, params in generating_data_sorted.items():
-        mu, sigma = params.values()
-        samples = [model.sampler(mu, sigma) for _ in range(10)]
+        mu, log_var = params.values()
+        samples = []
+        for _ in range(10):
+            _, _, sample = model.sample(mu, log_var)
+            samples.append(sample)
+        # samples = [model.sample(mu, log_var)[2] for _ in range(10)]
         recons = [model.decoder(sample) for sample in samples]
         recons = [recon.reshape(28, 28).to(DEVICE).detach() for recon in recons]
         for j, recon in enumerate(recons):

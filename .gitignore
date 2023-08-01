@@ -5,5 +5,3 @@ data/*
 **/*.pyc
 
 *ubyte*
-
-lightning_logs/*
