@@ -14,10 +14,10 @@ from torchvision import datasets, transforms
 # config
 torch.set_float32_matmul_precision("medium")
 LATENT_DIMS = 3
-NUM_EPOCHS = 100000
+NUM_EPOCHS = 1000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
-BATCH_SIZE = 256 * 4
+BATCH_SIZE = 256 * 8
 KL_COEFF = 0.005
 PERSISTENT_WORKERS = True
 # strategy = DDPStrategy()
@@ -144,14 +144,14 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
 
         return self.decoder(sample)
 
-    def _run_step(self, x: torch.Tensor):
+    def _run_step(self, x: torch.Tensor, y: torch.Tensor):
         mu, log_var = self.encoder(x)
-        p, q, sample = self.sample(mu, log_var)
+        p, q, sample = self.sample(y, mu, log_var)
         return sample, self.decoder(sample), p, q
 
     def step(self, batch, batch_idx):
-        x, _ = batch
-        sample, x_hat, p, q = self._run_step(x)
+        x, y = batch
+        sample, x_hat, p, q = self._run_step(x, y)
 
         log_qz = q.log_prob(sample)
         log_pz = p.log_prob(sample)
@@ -171,12 +171,44 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         self.log("val_loss", loss, sync_dist=True)
         return loss
 
-    def sample(self, mu: torch.Tensor, log_var: torch.Tensor):
+    def sample(self, y: torch.Tensor, mu: torch.Tensor, log_var: torch.Tensor):
         std = torch.exp(log_var / 2)
-        p = torch.distributions.Normal(torch.zeros_like(mu), torch.ones_like(std))
+
+        # mu_goal = torch.ones_like(mu) * (y * 5).unsqueeze(1)
+        mu_goal = self.position(y).to(DEVICE)
+        std_goal = torch.ones_like(std)
+
+        p = torch.distributions.Normal(mu_goal, std_goal)
         q = torch.distributions.Normal(mu, std)
         z = q.rsample()
         return p, q, z
+
+    def get_position(self, y: torch.Tensor) -> torch.Tensor:
+        positions = []
+
+        for label in y:
+            if label == 0:
+                positions.append([0.0, 0.0, 0.0])
+            elif label == 1:
+                positions.append([-7.0, -7.0, 0.0])
+            elif label == 2:
+                positions.append([7.0, 7.0, 0.0])
+            elif label == 3:
+                positions.append([7.0, -7.0, 0.0])
+            elif label == 4:
+                positions.append([-7.0, 7.0, 0.0])
+            elif label == 5:
+                positions.append([0.0, 7.0, -7.0])
+            elif label == 6:
+                positions.append([0.0, 7.0, 7.0])
+            elif label == 7:
+                positions.append([0.0, -7.0, -7.0])
+            elif label == 8:
+                positions.append([7.0, 0.0, -7.0])
+            elif label == 9:
+                positions.append([7.0, 0.0, 7.0])
+
+        return torch.tensor(positions)
 
     def configure_optimizers(self):
         optimizer = optim.Adam(self.parameters(), lr=self.lr)
@@ -201,7 +233,7 @@ if __name__ == "__main__":
         profiler="simple",
         accelerator="gpu",
         devices=-1,
-        precision="32",
+        precision="16",
         max_epochs=NUM_EPOCHS,
         enable_progress_bar=True,
         check_val_every_n_epoch=50,
