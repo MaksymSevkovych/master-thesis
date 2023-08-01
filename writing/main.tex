@@ -40,6 +40,7 @@
 \DeclareMathOperator{\R}{\mathbb{R}}
 \DeclareMathOperator{\X}{\mathbb{X}}
 \DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\E}{\mathbb{E}}
 \DeclareMathOperator{\f}{\varphi}
 \DeclareMathOperator{\T}{\Theta}
 \DeclareMathOperator{\g}{\gamma}
@@ -48,7 +49,10 @@
 \DeclareMathOperator{\p}{\psi}
 \DeclareMathOperator{\MSE}{L_\text{MSE}}
 \DeclareMathOperator{\BCE}{L_\text{BCE}}
-\DeclareMathOperator{\KL{}{}}{D_{KL}({}||{})}
+\DeclarePairedDelimiterX{\infdivx}[2]{D_{\text{KL}}(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\renewcommand{\H}{\mathcal{H}}
 \renewcommand{\P}{\Psi}
 \renewcommand{\O}{\Omega}
 \renewcommand{\t}{\theta}

@@ -3,9 +3,36 @@
 Differently form autoencoders, that we already mentioned to be discriminative models variational autoencoders on the other hand are so called generative models. Instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. These models are usually referred to as generative models, see \cite[chapter~5]{cinelli2021variational} This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering application at least.
 
 In order to compute the gradient of a variational autoencoding neural network, we need to determine a way to quantify the distance between probability distributions. A popular measure for this case is the so called Kullback-Leibler divergence. It assesses the dissimilarity between two probability distributions over the same 	random variable $X$.
-\begin{definition}\label{kl_div}
-Let $X$ be a random variable and $p(x), q(x)$ two probability distributions over $X$. Then, the \textbf{Kullback-Leibler divergence} is defined as
+\begin{definition}\label{def_kl_div}
+Let $X$ be a random variable and $p, q$ two probability density functions over $X$. Then, the \textbf{Kullback-Leibler divergence} is defined as
 \begin{align}
-\KL{p}{q}
+\infdivx{p}{q} = \int p(x) \log \left( \frac{p(x)}{q(x)}\right) dx.
 \end{align}
 \end{definition}
+
+
+\begin{definition}\label{def_entropy}
+Let $X$ be a random variable and $p$ a probability density function over $X$. Then, the nonnegative measure of the expected information content of $X$ under correct distribution $p$, defined as
+\begin{align}
+\H(X) = -\int p(x) \log p(x)dx = \E_p \left[ - \log p(x) \right],
+\end{align}
+is called \textbf{entropy} of $p$.
+\end{definition}
+
+
+\begin{definition}\label{def_cross_entropy}
+Let $X$ be a random variable and $p, q$ two probability density functions over $X$. Then, the nonnegative measure of the expected information content of $X$ under incorrect distribution $q$, defined as
+\begin{align}
+\H_q(X) = -\int p(x) \log q(x)dx = \E_p \left[ - \log q(x) \right],
+\end{align}
+is called \textbf{cross-entropy} between $p$ and $q$.
+\end{definition}
+
+
+\begin{remark}
+Let $X$ be a random variable and $p, q$ probability density functions over $X$. Then the Kullback-Leibler divergence between $p$ and $q$ can be written as follows
+\begin{align*}
+\infdivx{p}{q} = \H_q(p) - \H(p),
+\end{align*}
+where $\H_q$ and $\H$ denote the cross-entropy and entropy, respectively.
+\end{remark}
