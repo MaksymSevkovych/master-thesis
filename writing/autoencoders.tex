@@ -55,11 +55,11 @@ The Binary Cross-Entropy loss function is usually used for binary classification
 \end{figure}
 
 
-If we divide the autoencoder as described above, we firstly obtain the encoder as we can see in figure \ref{img_encoder}. Or formally defined as follows.
+If we divide the autoencoder as described above, we firstly obtain the encoder as we can see in figure \ref{img_encoder} or formally defined as follows.
 
 \begin{definition}\label{def_encoder}
 Let $\T$ be a parameter space and $\t \in \T$ a set of parameters, $L\in \N$ and $d_1,\ldots, d_L\in\N$. Let further $\f$ be an activation function and $f_{\f,L,\t}$ a neural network.\\
-If the neural network $f_{\f,L,\t}$ fulfils the condition $n_i= d_1 \geq \ldots \geq d_L = n_o$ with $n_i, n_o \in \N$ being the input and output dimensions respectively, then we speak of an \textbf{encoding neural network} (or short: \textbf{encoder}).
+If the neural network $f_{\f,L,\t}$ fulfils the condition $n_i= d_1 \geq \ldots \geq d_L = n_o$ with $n_i, n_o \in \N$ being the input and output dimensions respectively, then we speak of an \textbf{encoding neural network} (or short: \textbf{encoder}) and denote it as $f_e$.
 \end{definition}
 
 
@@ -73,7 +73,7 @@ If the neural network $f_{\f,L,\t}$ fulfils the condition $n_i= d_1 \geq \ldots 
 \end{figure}
 
 
-For the second part of the divided autoencoder structure, we obtain the decoder as we can see in figure \ref{img_decoder}. We can define this architecture analogously to the encoder in lemma \ref{def_encoder}.
+For the second part of the divided autoencoding structure, we obtain the decoder as we can see in figure \ref{img_decoder}. We can define this architecture analogously to the encoder in definition \ref{def_encoder}.
 
 
 \begin{definition}\label{def_decoder}
@@ -90,3 +90,51 @@ If the neural network $f_{\f,L,\t}$ fulfils the condition $n_i= d_1 \leq \ldots 
 	\end{minipage}
 \end{center}
 \end{figure}
+
+Before combining the encoding and the decoding structure to obtain the autoencoding neural network, we need to consider the following technicality first.
+
+\begin{lemma}
+Let $f_1, f_2$ be two neural networks of depths $L_1, L_2 \in \N$ with parameters $\t_1, \t_2 \in \T$, where $\T$ is an arbitrary parameter space. Furthermore, let the dimensions of each layer be $d_1, \ldots, d_{L_1} \in \N$ of $f_1$ and $\tilde{d}_1, \ldots, \tilde{d}_{L_2} \in \N$ of $f_2$. Additionally, let $d_{L_1} = \tilde{d}_1$.\\
+Then their composition $f_2\circ f_1$ is a neural network of depth $L_1 + L_2$ with parameters $(\t_1, \t_2)$.
+\end{lemma}
+
+\begin{proof}
+Since $f_1$ is a neural network of depth $L_1$ with parameters $\t_1$, its architecture looks like
+\begin{align}\label{nn_1}
+f_1 (x) = H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x),\qquad x \in \R^{d_1}.
+\end{align}
+Analogously, we can write $f_2$ as
+\begin{align}\label{nn_2}
+f_2 (y) = \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H}_{2} \circ \tilde{H}_1 (y), \qquad y \in \R^{\tilde{d}_1}.
+\end{align}
+Since we assumed that the output dimension $d_{L_1}$ of the neural network $f_1$ is equal to the input dimension $\tilde{d}_1$ of the neural network $f_2$, we can consider the result of \eqref{nn_1} as input for \eqref{nn_2}
+\begin{align*}
+y &\coloneqq H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), \qquad x \in \R^{d_1}.
+\end{align*}
+Hence, we obtain
+\begin{align}\label{nn_comp}
+f_2 (y) &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots H_{2} \circ \tilde{H}_1 (y),\nonumber\\
+f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots H_{2} \circ \tilde{H}_1 \left( H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x) \right),\nonumber\\
+f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots H_{2} \circ \tilde{H}_1 \circ H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), \qquad x \in \R^{d_1}.
+\end{align}
+Hence, the composition $f_2 \circ f_1$ is a neural network of depth $L_1 + L_2$, what follows from \eqref{nn_comp}.\\
+Lastly, we consider the parameters $\t$ of the neural network $f_2 \circ f_1$. Since the parameters of a neural network were defined as $\t = (\t_1,\ldots, \t_L)$, where each entry is defined as $\t_i = (W_i, b_i)$ and denotes the weight and bias of each layer $H_i$ or $\tilde{H}_i$, respectively, we can write the parameters of both neural networks as
+\begin{align*}
+\t_1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_{L_1}, b_{L_1}) \right),\\
+\t_2 &\coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tilde{W}_1, \tilde{b}_1),\ldots, (\tilde{W}_{L_2}, \tilde{b}_{L_2}) \right).
+\end{align*}
+Hence, the composition $f_2\circ f_1$ has the parameters
+\begin{align*}
+\t  &= \left((W_1, b_1),\ldots, (W_{L_1}, b_{L_1}), (\tilde{W}_1, \tilde{b}_1),\ldots, (\tilde{W}_{L_2}, \tilde{b}_{L_2})  \right)\\
+&= \left(\t_1,\ldots \t_{L_1}, \tilde{\t}_1, \ldots, \tilde{\t}_{L_2} \right) \eqqcolon \left(\t_1,\t_2 \right).
+\end{align*}
+\end{proof}
+
+\begin{definition}\label{def_autoencoder}
+Let $f_e$ and $f_d$ be an encoding and a decoding neural network with input dimension $n_i$ in $\N$ and output of the encoding neural network $n_b$ in $\N$, that we will refer to as \textbf{bottleneck} of the autoencoding neural network.
+Then we define an \textbf{autoencoding neural network} $f_a$ as the composition
+\begin{align*}
+f_a: \R^{n_i} &\to \R^{n_i},\\
+x &\mapsto \left(f_d \circ f_e \right)(x).
+\end{align*}
+\end{definition}
