@@ -5,22 +5,21 @@ import lightning.pytorch as pl
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+from lightning.pytorch.strategies.ddp import DDPStrategy
 from torch import nn
 from torch.utils.data import DataLoader, random_split
 from torchvision import datasets, transforms
 
-# from lightning.pytorch.strategies.ddp import DDPStrategy
-
 # config
 torch.set_float32_matmul_precision("medium")
 LATENT_DIMS = 3
-NUM_EPOCHS = 1000
+NUM_EPOCHS = 10000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
-BATCH_SIZE = 256 * 8
-KL_COEFF = 0.005
+BATCH_SIZE = 25000
+KL_COEFF = 0.001
 PERSISTENT_WORKERS = True
-# strategy = DDPStrategy()
+strategy = DDPStrategy()
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -183,30 +182,30 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         z = q.rsample()
         return p, q, z
 
-    def get_position(self, y: torch.Tensor) -> torch.Tensor:
+    def position(self, y: torch.Tensor) -> torch.Tensor:
         positions = []
 
         for label in y:
             if label == 0:
-                positions.append([0.0, 0.0, 0.0])
+                positions.append([-2.0, 0.0, 0.0])
             elif label == 1:
-                positions.append([-7.0, -7.0, 0.0])
+                positions.append([-2.0, -2.0, -2.0])
             elif label == 2:
-                positions.append([7.0, 7.0, 0.0])
+                positions.append([2.0, 2.0, 2.0])
             elif label == 3:
-                positions.append([7.0, -7.0, 0.0])
+                positions.append([-2.0, -2.0, 2.0])
             elif label == 4:
-                positions.append([-7.0, 7.0, 0.0])
+                positions.append([-2.0, 2.0, -2.0])
             elif label == 5:
-                positions.append([0.0, 7.0, -7.0])
+                positions.append([2.0, -2.0, -2.0])
             elif label == 6:
-                positions.append([0.0, 7.0, 7.0])
+                positions.append([-2.0, 2.0, 2.0])
             elif label == 7:
-                positions.append([0.0, -7.0, -7.0])
+                positions.append([2.0, -2.0, 2.0])
             elif label == 8:
-                positions.append([7.0, 0.0, -7.0])
+                positions.append([2.0, 2.0, -2.0])
             elif label == 9:
-                positions.append([7.0, 0.0, 7.0])
+                positions.append([2.0, 0.0, 0.0])
 
         return torch.tensor(positions)
 
@@ -229,13 +228,13 @@ if __name__ == "__main__":
 
     # training
     trainer = pl.Trainer(
-        strategy="ddp",  # if model too large: from pl.strategies import deepspeed
+        strategy=strategy,  # if model too large -> deepspeed
         profiler="simple",
         accelerator="gpu",
         devices=-1,
-        precision="16",
+        precision="32",
         max_epochs=NUM_EPOCHS,
-        enable_progress_bar=True,
+        # enable_progress_bar=True,
         check_val_every_n_epoch=50,
         accumulate_grad_batches=10,
         log_every_n_steps=5,

@@ -27,8 +27,8 @@ if __name__ == "__main__":
 
     file_path = os.path.join(
         FILE_PATH,
-        "1000_steps_test_done/version_0/checkpoints",
-        "epoch=999-step=2000.ckpt",
+        "8500_steps/version_0/checkpoints",
+        "epoch=8499-step=8500.ckpt",
     )
 
     vae = ConvolutionalVariationalAutoencoder.load_from_checkpoint(
