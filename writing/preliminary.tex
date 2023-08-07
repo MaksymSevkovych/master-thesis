@@ -45,8 +45,8 @@ If we arrange multiple neurons next to each other, we can define a layer consist
 \begin{definition}\label{def_layer}
 Let $\f: \R \to \R$ be an activation function and $W \in \R^{m\times k}$, $b\in \R^m$. Then a function $H:\R^k \to \R^m$ is called \textbf{$\f$-layer} of width $m$ with weights $W$ and biases $b$ if for all $i=1,\ldots,m$ the component function $h_i$ of $H$ is a $\f$-neuron with weight $w_i = W^\top e_i$ and bias $b_i = \langle b, e_i \rangle$, where $e_i$ denotes the standard ONB of $\R^m$.\\
 If we consider $\hat{\f}: \R^k \to \R$ as the component-wise mapping of $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f(v_1), \ldots, \f(v_k))$, we can generalize the $\f$-layer $H:\R^k \to \R^m$ by
-\begin{align}
-H(x) = \hat{\f}(Wx + b), \qquad x \in \R ^k.
+\begin{align}\label{eq_linear_layer}
+H(x) = \hat{\f}(Wx + b), \qquad x \in \R^k.
 \end{align}
 \end{definition}
 

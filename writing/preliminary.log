@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  27 JUL 2023 14:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  7 AUG 2023 14:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3760,7 +3760,7 @@ Type  H <return>  for immediate help.
  ...
 
 l.48 \begin{align}
-
+                  \label{eq_linear_layer}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -3774,13 +3774,13 @@ Missing character: There is no = in font nullfont!
 <inserted text>
                 $
 l.49 H(x) = \hat
-                {\f}(Wx + b), \qquad x \in \R ^k.
+                {\f}(Wx + b), \qquad x \in \R^k.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
 l.49 H(x) = \hat{\f
-                   }(Wx + b), \qquad x \in \R ^k.
+                   }(Wx + b), \qquad x \in \R^k.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3789,7 +3789,7 @@ and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
 l.49 H(x) = \hat{\f}(Wx + b), \qquad x \in \R
-                                              ^k.
+                                             ^k.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -7619,6 +7619,18 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 \newlabel{def_layer}{{}{}}
+! Undefined control sequence.
+<write> \newlabel{eq_linear_layer}{{}{\thepage
+                                               }}
+l.107
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\newlabel{eq_linear_layer}{{}{}}
 ! Undefined control sequence.
 <write> \newlabel{img_nn}{{}{\thepage
                                       }}

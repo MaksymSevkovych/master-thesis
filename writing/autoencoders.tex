@@ -7,42 +7,6 @@ In this chapter we want to consider how to formulate autoencoding neural network
 \section{Conceptional ideas}
 
 As already mentioned, an autoencoding neural network first compresses/encodes the input data to a smaller representation. The size of this smaller representation is usually referred to as bottleneck of the autoencoder. afterwards, the autoencoding neural network expands/decodes the data to its original size. Hence, we can divide these two steps into separate architectures - the encoding and the decoding part of the neural network, which we will formulate separately. In figure \ref{autoencoder} we can take a look at a visual example of an autoencoding architecture.\\
-One should mention, that since the goal of an autoencoding neural network ultimately is to alter and reconstruct images, we approach this in an unsupervised learning setting. Hence, we compare the output of the neural network to the input. This forces us to consider slightly different loss functions.
-
-
-\begin{definition}
-Let $X, Y$ be Banach spaces representing the input and output space, respectively.\\
-Then a continuous function defined as
-\begin{align*}
-L:X\times Y &\to \R,\\
-\left(x, p(x)\right) &\mapsto L(x, p(x)),
-\end{align*}
-is called \textbf{unsupervised loss function}.
-\end{definition}
-
-
-There are multiple important loss functions in the computer vision setting. We will consider a couple of those in the following example. For further reading please take a look at \cite{foster2022generative}
-
-
-\begin{example}
-Let $\O$ be a pixel domain with resolution $(M,N)$ and $d$ the number of channels. Furthermore, let $f$ be a neural network with arbitrary but fixed architecture.\\
-Then the following functions are loss functions operating on images.
-\begin{mydescription}{\widthof{\textbf{Binary Cross-Entropy (BCE)}}}
-\item[\textbf{Mean Squared Error (MSE)}] \begin{align*}
-\MSE(\p, f(\p)) = \sum_{i=1}^{M}\sum_{j=1}^{N}\left\|\p_{ij} - f(\p)_{ij}\right\|^2,
-\end{align*}
-\item[\textbf{Binary Cross-Entropy (BCE)}]
-\begin{align*}
-\BCE(\p, f(\p)) = - \frac{1}{MN}\sum_{i=1}^{M}\sum_{j=1}^{N} \biggl(&\p_{ij} \log\left(f\left(\p\right)_{ij}\right)\\ + \bigl(1-&\p_{ij}\bigr)\log\left(1 - f\left(\p\right)_{ij}\right)\biggr),
-\end{align*}
-\end{mydescription}
-where $\p$ denotes an image defined on $\P_{\O}$.
-\end{example}
-
-
-\begin{remark}
-The Binary Cross-Entropy loss function is usually used for binary classification problems. However, it still works in computer vision.
-\end{remark}
 
 
 \begin{figure}[H]
@@ -55,7 +19,7 @@ The Binary Cross-Entropy loss function is usually used for binary classification
 \end{figure}
 
 
-If we divide the autoencoder as described above, we firstly obtain the encoder as we can see in figure \ref{img_encoder} or formally defined as follows.
+If we divide the autoencoding structure as described above, we firstly obtain the encoder as we can see in figure \ref{img_encoder} or formally defined as follows.
 
 \begin{definition}\label{def_encoder}
 Let $\T$ be a parameter space and $\t \in \T$ a set of parameters, $L\in \N$ and $d_1,\ldots, d_L\in\N$. Let further $\f$ be an activation function and $f_{\f,L,\t}$ a neural network.\\
@@ -93,7 +57,7 @@ If the neural network $f_{\f,L,\t}$ fulfils the condition $n_i= d_1 \leq \ldots 
 
 Before combining the encoding and the decoding structure to obtain the autoencoding neural network, we need to consider the following technicality first.
 
-\begin{lemma}
+\begin{lemma}\label{composition_of_nns}
 Let $f_1, f_2$ be two neural networks of depths $L_1, L_2 \in \N$ with parameters $\t_1, \t_2 \in \T$, where $\T$ is an arbitrary parameter space. Furthermore, let the dimensions of each layer be $d_1, \ldots, d_{L_1} \in \N$ of $f_1$ and $\tilde{d}_1, \ldots, \tilde{d}_{L_2} \in \N$ of $f_2$. Additionally, let $d_{L_1} = \tilde{d}_1$.\\
 Then their composition $f_2\circ f_1$ is a neural network of depth $L_1 + L_2$ with parameters $(\t_1, \t_2)$.
 \end{lemma}
@@ -113,11 +77,11 @@ y &\coloneqq H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), \qquad x 
 \end{align*}
 Hence, we obtain
 \begin{align}\label{nn_comp}
-f_2 (y) &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots H_{2} \circ \tilde{H}_1 (y),\nonumber\\
-f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots H_{2} \circ \tilde{H}_1 \left( H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x) \right),\nonumber\\
-f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots H_{2} \circ \tilde{H}_1 \circ H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), \qquad x \in \R^{d_1}.
+f_2 (y) &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H}_{2} \circ \tilde{H}_1 (y),\nonumber\\
+f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H}_{2} \circ \tilde{H}_1 \left( H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x) \right),\nonumber\\
+f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H}_{2} \circ \tilde{H}_1 \circ H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), \qquad x \in \R^{d_1}.
 \end{align}
-Hence, the composition $f_2 \circ f_1$ is a neural network of depth $L_1 + L_2$, what follows from \eqref{nn_comp}.\\
+Therefore, from \eqref{nn_comp} follows that the composition $f_2 \circ f_1$ is a neural network of depth $L_1 + L_2$.\\
 Lastly, we consider the parameters $\t$ of the neural network $f_2 \circ f_1$. Since the parameters of a neural network were defined as $\t = (\t_1,\ldots, \t_L)$, where each entry is defined as $\t_i = (W_i, b_i)$ and denotes the weight and bias of each layer $H_i$ or $\tilde{H}_i$, respectively, we can write the parameters of both neural networks as
 \begin{align*}
 \t_1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_{L_1}, b_{L_1}) \right),\\
@@ -138,3 +102,102 @@ f_a: \R^{n_i} &\to \R^{n_i},\\
 x &\mapsto \left(f_d \circ f_e \right)(x).
 \end{align*}
 \end{definition}
+
+\begin{remark}
+Let $f_e$ and $f_d$ be an encoding and a decoding neural network as in definition \ref{def_autoencoder}. Then the composition $f_d \circ f_e$ is indeed a neural network, following from lemma \ref{composition_of_nns}.
+\end{remark}
+
+
+\section{Training of autoencoders}
+
+When tackling the question of how to train an autoencoding neural network, we realize that in contrast to regular neural networks, where we compare the output of the neural network to a label, in the current setting we can compare the input data to the computed output, since the goal of an autoencoding neural network ultimately is to alter and reconstruct images. In other words, we approach this optimization problem in an unsupervised learning setting. This forces us to consider slightly different loss functions than in the supervised learning setting.
+
+
+\begin{definition}
+Let $X, Y$ be Banach spaces representing the input and output space, respectively.\\
+Then a continuous function defined as
+\begin{align*}
+L:X\times Y &\to \R,\\
+\left(x, p(x)\right) &\mapsto L\left(x, p(x)\right),
+\end{align*}
+is called \textbf{unsupervised loss function}.
+\end{definition}
+
+
+There are multiple important loss functions in computer vision. We will consider a couple of those in the following example. For further reading please take a look at \cite{foster2022generative}
+
+
+\begin{example}
+Let $\O$ be a pixel domain with resolution $(M,N)$ and $d$ the number of channels. Furthermore, let $f$ be a neural network with arbitrary but fixed architecture.\\
+Then the following functions are loss functions operating on images.
+\begin{mydescription}{\widthof{\textbf{Binary Cross-Entropy (BCE)}}}
+\item[\textbf{Mean Squared Error (MSE)}] \begin{align*}
+\MSE(\p, f(\p)) = \sum_{i=1}^{M}\sum_{j=1}^{N}\left\|\p_{ij} - f(\p)_{ij}\right\|^2,
+\end{align*}
+\item[\textbf{Binary Cross-Entropy (BCE)}]
+\begin{align*}
+\BCE(\p, f(\p)) = - \frac{1}{MN}\sum_{i=1}^{M}\sum_{j=1}^{N} \biggl(&\p_{ij} \log\left(f\left(\p\right)_{ij}\right)\\ + \bigl(1-&\p_{ij}\bigr)\log\left(1 - f\left(\p\right)_{ij}\right)\biggr),
+\end{align*}
+\end{mydescription}
+where $\p$ denotes an image defined on $\P_{\O}$.
+\end{example}
+
+
+\begin{remark}
+The Binary Cross-Entropy loss function is usually used for binary classification problems. However, it still works in computer vision.
+\end{remark}
+
+
+\section{Applications}
+
+In this section we want to train a couple of own autoencoding neural networks on the MNIST dataset - a dataset consisting of handwritten digits. We will consider some different architectures of neural networks and visualise the results in a comprehensible manner.\\
+Firstly, we want to consider the most simple architecture, a fully connected linear neural network.
+
+\begin{definition}\label{def_linear_encoder}
+Let $\T$ be an arbitrary parameter space, $L\in \N$ and $d_1,\ldots,d_L \in \N$. Furthermore, let $\f$ be an arbitrary activation function.\\
+Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
+\begin{align*}
+H_i(x) = \hat{\f}(W_ix + b_i), \qquad x \in \R^{d_i},
+\end{align*}
+where $\t_i(W_i, b_i)\in\T$ are the parameters of the $i$-th layer, see \eqref{eq_linear_layer}. Such a decoding neural network is called a \textbf{linear encoder}.
+\end{definition}
+
+Analogously, we define a linear decoding neural network.
+
+\begin{definition}\label{def_linear_decoder}
+Let $\T$ be an arbitrary parameter space, $L\in \N$ and $d_1,\ldots,d_L \in \N$. Furthermore, let $\f$ be an arbitrary activation function.\\
+Then a decoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
+\begin{align*}
+H_i(x) = \hat{\f}(W_ix + b_i), \qquad x \in \R^{d_i}, i \in \{1,\ldots, L-1\},
+\end{align*}
+where $\t_i=(W_i, b_i)\in\T$ are the parameters of the $i$-th layer $H_i$, see \eqref{eq_linear_layer}. Such a decoding neural network is called a \textbf{linear decoder}.
+\end{definition}
+
+
+With the definitions of the linear encoder and linear decoder, we now can define a linear autoencoder.
+
+
+\begin{theorem}
+Let $f_e$ and $f_d$ be a linear encoder and a linear decoder. Then a \textbf{linear autoencoder} $f_{\text{lin}}$ is defined as the composition
+\begin{align*}
+f_{\text{lin}} \coloneqq f_d \circ f_e.
+\end{align*}
+
+\end{theorem}
+\iffalse
+\begin{algorithm}
+This algorithm performs
+\caption{Linear autoencoder}\label{alg:cap}
+\begin{algorithmic}[1]
+\State $epochs \gets 10$
+\For{$i\leq epochs$}
+    \State $i \gets i-1$
+\Else
+    \If{$i\leq 3$}
+        \State $i \gets i+2$
+    \EndIf
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+\fi
