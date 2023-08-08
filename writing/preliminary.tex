@@ -16,7 +16,7 @@ Even though there is a zoo of different activation functions, we want to conside
 
 \begin{example}
 The following functions are activation functions.
-\begin{mydescription}{\widthof{\textbf{Leaky rectified linear unit (Leaky ReLU)}}}
+\begin{mydescription}{\widthof{\textbf{Leaky Rectified Linear Unit (Leaky ReLU)}}}
 \item[\textbf{Rectified Linear Unit (ReLU)}] $\f(t) = \max\{0, t\}$,
 \item[\textbf{Leaky Rectified Linear Unit (Leaky ReLU)}] $\displaystyle \f(t) = \begin{cases}
 \a t, 	& t \leq 0,\\
@@ -287,7 +287,7 @@ Now we want to consider some useful examples of image operators. Firstly, we wil
 \begin{proposition}\label{convolution}
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Then the \textbf{image convolution operator} $T_{\text{conv}}: \P_{\O_0} \to \P_{\O_1}$ is defined by
 \begin{align*}
-T_{\text{conv}}: \P_{\O_0} \to \P_{\O_1}\\
+T_{\text{conv}}: \P_{\O_0} &\to \P_{\O_1}\\
 \p_0 &\mapsto \p_1 \coloneqq T_{\text{conv}}\p_0 .
 \end{align*}
 This operator is defined component-wise by
@@ -304,7 +304,7 @@ Another very useful example is the pooling operator. We will distinguish between
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
 Then the \textbf{average-pooling operator} $T_{\text{avg}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
 \begin{align*}
-T_{\text{avg}}: \P_{\O_0} \to \P_{\O_1}\\
+T_{\text{avg}}: \P_{\O_0} &\to \P_{\O_1}\\
 \p_0 &\mapsto \p_1 \coloneqq T_{\text{avg}}\p_0 .
 \end{align*}
 This operator is defined component-wise by
@@ -316,10 +316,10 @@ where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p
 
 \begin{proposition}\label{min_pooling}
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
-Then the \textbf{min-pooling operator} $T_{\text{min-pool}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
+Then the \textbf{min-pooling operator} $T_{\text{min}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
 \begin{align*}
-T_{\text{min-pool}}: \P_{\O_0} \to \P_{\O_1} \\
-\p_0 &\mapsto \p_1 \coloneqq T_{\text{min-pool}}\p_0 .
+T_{\text{min}}: \P_{\O_0} &\to \P_{\O_1} \\
+\p_0 &\mapsto \p_1 \coloneqq T_{\text{min}}\p_0 .
 \end{align*}
 This operator is defined component-wise by
 \begin{align}
@@ -332,7 +332,7 @@ where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
 Then the \textbf{max-pooling operator} $T_{\text{max}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
 \begin{align*}
-T_{\text{max}}: \P_{\O_0} \to \P_{\O_1} \\
+T_{\text{max}}: \P_{\O_0} &\to \P_{\O_1} \\
 \p_0 &\mapsto \p_1 \coloneqq T_{\text{max}}\p_0 .
 \end{align*}
 This operator is defined component-wise by

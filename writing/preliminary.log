@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  7 AUG 2023 14:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  8 AUG 2023 14:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2279,7 +2279,7 @@ Type  H <return>  for immediate help.
  ...
 
 l.19 \begin{mydescription}
-                          {\widthof{\textbf{Leaky rectified linear unit (Lea...
+                          {\widthof{\textbf{Leaky Rectified Linear Unit (Lea...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2287,7 +2287,7 @@ or  <return>  to continue without it.
 
 ! Undefined control sequence.
 l.19 \begin{mydescription}{\widthof
-                                   {\textbf{Leaky rectified linear unit (Lea...
+                                   {\textbf{Leaky Rectified Linear Unit (Lea...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2305,8 +2305,8 @@ Overfull \hbox (29.91649pt too wide) in paragraph at lines 18--20
  []
 
 
-Overfull \hbox (18.95131pt too wide) in paragraph at lines 18--20
-\OT1/cmr/bx/n/10 rec-
+Overfull \hbox (22.84016pt too wide) in paragraph at lines 18--20
+\OT1/cmr/bx/n/10 Rec-
  []
 
 
@@ -2320,8 +2320,8 @@ Overfull \hbox (18.04852pt too wide) in paragraph at lines 18--20
  []
 
 
-Overfull \hbox (16.61102pt too wide) in paragraph at lines 18--20
-\OT1/cmr/bx/n/10 lin-
+Overfull \hbox (20.33322pt too wide) in paragraph at lines 18--20
+\OT1/cmr/bx/n/10 Lin-
  []
 
 
@@ -2330,8 +2330,8 @@ Overfull \hbox (15.59714pt too wide) in paragraph at lines 18--20
  []
 
 
-Overfull \hbox (20.44434pt too wide) in paragraph at lines 18--20
-\OT1/cmr/bx/n/10 unit
+Overfull \hbox (22.90265pt too wide) in paragraph at lines 18--20
+\OT1/cmr/bx/n/10 Unit
  []
 
 
@@ -19342,13 +19342,13 @@ Missing character: There is no T in font nullfont!
 <inserted text>
                 $
 l.290 T_
-        {\text{conv}}: \P_{\O_0} \to \P_{\O_1}\\
+        {\text{conv}}: \P_{\O_0} &\to \P_{\O_1}\\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
 l.290 T_{\text
-              {conv}}: \P_{\O_0} \to \P_{\O_1}\\
+              {conv}}: \P_{\O_0} &\to \P_{\O_1}\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -19360,6 +19360,16 @@ LaTeX Warning: Command \O invalid in math mode on input line 290.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 290.
+
+! Misplaced alignment tab character &.
+l.290 T_{\text{conv}}: \P_{\O_0} &
+                                  \to \P_{\O_1}\\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 290.
@@ -20267,13 +20277,13 @@ Missing character: There is no T in font nullfont!
 <inserted text>
                 $
 l.307 T_
-        {\text{avg}}: \P_{\O_0} \to \P_{\O_1}\\
+        {\text{avg}}: \P_{\O_0} &\to \P_{\O_1}\\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
 l.307 T_{\text
-              {avg}}: \P_{\O_0} \to \P_{\O_1}\\
+              {avg}}: \P_{\O_0} &\to \P_{\O_1}\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -20285,6 +20295,16 @@ LaTeX Warning: Command \O invalid in math mode on input line 307.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 307.
+
+! Misplaced alignment tab character &.
+l.307 T_{\text{avg}}: \P_{\O_0} &
+                                 \to \P_{\O_1}\\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 307.
@@ -20945,7 +20965,7 @@ Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 l.319 ...e \textbf{min-pooling operator} $T_{\text
-                                                  {min-pool}}: \P_{\O_0} \to...
+                                                  {min}}: \P_{\O_0} \to \P_{...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -21013,13 +21033,13 @@ Missing character: There is no T in font nullfont!
 <inserted text>
                 $
 l.321 T_
-        {\text{min-pool}}: \P_{\O_0} \to \P_{\O_1} \\
+        {\text{min}}: \P_{\O_0} &\to \P_{\O_1} \\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
 l.321 T_{\text
-              {min-pool}}: \P_{\O_0} \to \P_{\O_1} \\
+              {min}}: \P_{\O_0} &\to \P_{\O_1} \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -21031,6 +21051,16 @@ LaTeX Warning: Command \O invalid in math mode on input line 321.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 321.
+
+! Misplaced alignment tab character &.
+l.321 T_{\text{min}}: \P_{\O_0} &
+                                 \to \P_{\O_1} \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 321.
@@ -21042,7 +21072,7 @@ LaTeX Warning: Command \O invalid in math mode on input line 321.
 <recently read> \p
 
 l.322 \p
-        _0 &\mapsto \p_1 \coloneqq T_{\text{min-pool}}\p_0 .
+        _0 &\mapsto \p_1 \coloneqq T_{\text{min}}\p_0 .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -21051,7 +21081,7 @@ and I'll forget about whatever was undefined.
 
 ! Misplaced alignment tab character &.
 l.322 \p_0 &
-            \mapsto \p_1 \coloneqq T_{\text{min-pool}}\p_0 .
+            \mapsto \p_1 \coloneqq T_{\text{min}}\p_0 .
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -21061,7 +21091,7 @@ might try typing `S' now just to see what is salvageable.
 
 ! Undefined control sequence.
 l.322 \p_0 &\mapsto \p
-                      _1 \coloneqq T_{\text{min-pool}}\p_0 .
+                      _1 \coloneqq T_{\text{min}}\p_0 .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -21070,7 +21100,7 @@ and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
 l.322 \p_0 &\mapsto \p_1 \coloneqq
-                                   T_{\text{min-pool}}\p_0 .
+                                   T_{\text{min}}\p_0 .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -21079,7 +21109,7 @@ and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
 l.322 \p_0 &\mapsto \p_1 \coloneqq T_{\text
-                                           {min-pool}}\p_0 .
+                                           {min}}\p_0 .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -21087,7 +21117,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.322 ...psto \p_1 \coloneqq T_{\text{min-pool}}\p
+l.322 ... &\mapsto \p_1 \coloneqq T_{\text{min}}\p
                                                   _0 .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -21096,7 +21126,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Double subscript.
-l.322 ...sto \p_1 \coloneqq T_{\text{min-pool}}\p_
+l.322 ...&\mapsto \p_1 \coloneqq T_{\text{min}}\p_
                                                   0 .
 I treat `x_1_2' essentially like `x_1{}_2'.
 
@@ -21370,7 +21400,7 @@ Overfull \hbox (14.95827pt too wide) in paragraph at lines 318--330
  []
 
 
-Overfull \hbox (47.60423pt too wide) in paragraph at lines 318--330
+Overfull \hbox (26.76797pt too wide) in paragraph at lines 318--330
 \OML/cmm/m/it/10 T[] \/cmr/m/n/10 :
  []
 
@@ -21395,7 +21425,7 @@ Overfull \hbox (5.18054pt too wide) in paragraph at lines 318--330
  []
 
 
-Overfull \hbox (41.76048pt too wide) in paragraph at lines 318--330
+Overfull \hbox (20.92422pt too wide) in paragraph at lines 318--330
 [] \/cmr/m/n/10 :
  []
 
@@ -21415,7 +21445,7 @@ Overfull \hbox (21.74998pt too wide) in paragraph at lines 318--330
  []
 
 
-Overfull \hbox (49.31265pt too wide) in paragraph at lines 318--330
+Overfull \hbox (28.4764pt too wide) in paragraph at lines 318--330
 \OML/cmm/m/it/10 T[][]:$
  []
 
@@ -21759,13 +21789,13 @@ Missing character: There is no T in font nullfont!
 <inserted text>
                 $
 l.335 T_
-        {\text{max}}: \P_{\O_0} \to \P_{\O_1} \\
+        {\text{max}}: \P_{\O_0} &\to \P_{\O_1} \\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
 l.335 T_{\text
-              {max}}: \P_{\O_0} \to \P_{\O_1} \\
+              {max}}: \P_{\O_0} &\to \P_{\O_1} \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -21777,6 +21807,16 @@ LaTeX Warning: Command \O invalid in math mode on input line 335.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 335.
+
+! Misplaced alignment tab character &.
+l.335 T_{\text{max}}: \P_{\O_0} &
+                                 \to \P_{\O_1} \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
 
 LaTeX Warning: Command \O invalid in math mode on input line 335.
