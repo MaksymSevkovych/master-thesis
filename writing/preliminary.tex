@@ -11,7 +11,7 @@ A non-constant function $\f: \R \to \R$ is called an \textbf{activation function
 \end{definition}
 
 
-Even though there is a zoo of different activation functions, we want to consider mainly the following ones, see \cite[chapter~6]{goodfellow2016deep}.
+Even though there are lots of different activation functions, we want to consider mainly the following ones, see \cite[chapter~6]{goodfellow2016deep}.
 
 
 \begin{example}
@@ -43,29 +43,30 @@ If we arrange multiple neurons next to each other, we can define a layer consist
 
 
 \begin{definition}\label{def_layer}
-Let $\f: \R \to \R$ be an activation function and $W \in \R^{m\times k}$, $b\in \R^m$. Then a function $H:\R^k \to \R^m$ is called \textbf{$\f$-layer} of width $m$ with weights $W$ and biases $b$ if for all $i=1,\ldots,m$ the component function $h_i$ of $H$ is a $\f$-neuron with weight $w_i = W^\top e_i$ and bias $b_i = \langle b, e_i \rangle$, where $e_i$ denotes the standard ONB of $\R^m$.\\
-If we consider $\hat{\f}: \R^k \to \R$ as the component-wise mapping of $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f(v_1), \ldots, \f(v_k))$, we can generalize the $\f$-layer $H:\R^k \to \R^m$ by
+Let $\f: \R \to \R$ be an activation function and $W \in \R^{m\times k}$, $b\in \R^m$. Then a function $H:\R^k \to \R^m$ is called \textbf{$\f$-layer} of width $m$ with \textbf{weights} $W$ and \textbf{biases} $b$ if for all $i=1,\ldots,m$ the component function $h_i$ of $H$ is a $\f$-neuron with weight $w_i = W^\top e_i$ and bias $b_i = \langle b, e_i \rangle$, where $e_i$ denotes the standard ONB of $\R^m$.\\
+If we consider $\hat{\f}: \R^k \to \R$ as the component-wise mapping of $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f(v_1), \ldots, \f(v_k))$, we can write the $\f$-layer $H:\R^k \to \R^m$ as
 \begin{align}\label{eq_linear_layer}
 H(x) = \hat{\f}(Wx + b), \qquad x \in \R^k.
 \end{align}
+In the following, we will denote the weights $W$ and biases $b$ as \textbf{parameters of the neural network} $\t \coloneqq (W, b)$.
 \end{definition}
 
-\begin{remark}
-Let the same assumptions as in definition \ref{def_layer} hold.\\ From now on we want to summarize the weights $W$ and biases $b$ as \textbf{parameters of the neural network} $\t \coloneqq (W, b)$.
-\end{remark}
+
 Finally, we can introduce neural networks as an arrangement of multiple neural layers.
 
 
 \begin{definition}
-Let $\f: \R \to \R$ be an activation function and $H_1, \ldots, H_L$ with $L \in \N$ be $\f$-layers with parameters $\t_i = (W_i, b_i)$. Then, with $\t = (\t_1, \ldots \t_L)$ the function $f_{\f, L, \t}: \R^{d_1} \to \R^{d_L}$ defined by
+Let $L\in\N$, $\f_1,\ldots,\f_L$ be activation functions and $H_1, \ldots, H_L$ be $\f_i$-layers with parameters $\t_i = (W_i, b_i)$ for all $i \in \{1,\ldots,L\}$. Furthermore, let  $\t = (\t_1, \ldots \t_L)$, $\f = (\f_1, \ldots, \f_L)$ and $d_1,\ldots,d_{L+1}\in\N$.\\
+Then we define a \textbf{$\f$-deep neural network} of depth $L$ with parameters $\t \in \T$ as
 \begin{align}
-f_{\f, L, \t} (x) \coloneqq H_L \circ \ldots \circ H_1 (x), \qquad x \in \R^{d_1},
+f_{\f, L, \t}: \R^{d_1} &\to \R^{d_{L+1}}\nonumber\\
+x &\to H_L \circ \ldots \circ H_1 (x), \qquad x \in \R^{d_1},
 \end{align}
-is called a \textbf{$\f$-deep neural network} of depth $L$ with parameters $\t \in \T$, where $d_1$ describes the input dimension and $d_L$ the output dimension respectively and $\T$ is some arbitrary parameter space.\\
+where each $H_i: \R^{d_i} \to \R^{d_{i+1}}$ is a $\f_i$-layer. Ultimately, $d_1$ describes the input dimension and $d_{L+1}$ the output dimension of the neural network.\\
 Lastly, we will write $f\coloneqq f_{\f, L, \t}$, if the activation function $\f$, the depth $L$ and the parameters $\t$ are clear out of context.
 \end{definition}
 
-
+One may realize, that the neural network is defined in a way that the activation function may vary in each layer. However, in most applications the input layer and the hidden layers ($i \in \{1, \ldots, L-1\}$) share the same activation function. The last layer, often referred to as output layer, usually has a different activation function. This activation function may as well be the identity function.\\
 A visual representation of a neural network can be found in figure \ref{img_nn}
 
 
@@ -84,37 +85,45 @@ A visual representation of a neural network can be found in figure \ref{img_nn}
 Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network. However, all of them require the definitions of quantities called loss function and risk function. The loss function is a function that measures the point-wise error of a neural network, or any other prediction function in general. This is fundamental in supervised learning. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
 
 
-\begin{definition}\label{def_loss_risk}
-Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$ be arbitrary Banach spaces, that we will refer to as input and output space, $p:X \to \R^n$ be a continuous, convex function.\\
-Furthermore, let $L: X \times Y \times \R^n \to [0, \infty)$ be a \textbf{supervised loss function}, a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = p(x)$.\\
-Lastly, let $\prob$ be a probability measure on $X \times Y$. Then the \textbf{$L$-risk function} $\risk: X \times Y \times \R^n \to [0, \infty)$ with regard to a loss function $L$ is defined as
-\begin{align*}
-\risk_{L, \prob}(p) = \int_{X\times Y} L\left(x, y, p(x) \right) d \prob(x, y).
-\end{align*}
+\begin{definition}\label{def_loss}
+Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$, that we will refer to as input and output space and $t\in\R^n$ be a prediction for $y\in Y$.\\
+Then we define a \textbf{supervised loss function} $L: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.\\
 \end{definition}
 
-One may have already noticed, that the definition of a loss function is very general. This flexibility is quite important, since in different use cases the characteristics of the problem could differ immensely: are large errors just as bad as small ones or considerably worse?\\
+The recently introduced loss function allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
 We want to consider a couple of important examples for loss functions, for further reading please take a look at \cite[chapter~4.3]{goodfellow2016deep}.
 
 
 \begin{example}
-The following functions are loss functions.
+Let $y\in Y\coloneqq \R$ and $t\in \R$, then the following functions are loss functions.
 \begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
-\item[\textbf{Squared Error Loss}] $L(x, y, p(x)) = \left\|y - p(x)\right\|^2$,
-\item[\textbf{Linear Error Loss}]  $L(x, y, p(x)) = \left\|y - p(x)\right\|$,
+\item[\textbf{Squared Error Loss}] $L(x, y, t) = \left|y - t\right|^2$,
+\item[\textbf{Linear Error Loss}]  $L(x, y, t) = \left|y - t\right|$,
 \end{mydescription}
 \end{example}
 
 
-There still are other important loss functions that we will consider in chapter \ref{vae}.\\
+However, loss functions only measure the error between one prediction and one data point. In order to compare the predictions over a wide range of data points, we need to introduce another quantity, the risk function.
+
+
+\begin{definition}\label{def_risk}
+Let $X,Y$ be input and output spaces, $L$ be a loss function and $\prob$ be a probability measure on $X \times Y$.\\
+Then we define the \textbf{risk of the function $f$} with regard to a loss function $L$ as
+\begin{align*}
+\risk_{L, \prob}(f) = \int_{X\times Y} L\left(x, y, f(x) \right) d \prob(x, y).
+\end{align*}
+In the following, we will denote this as the \textbf{$L$-risk of $f$}.
+\end{definition}
+
+
 Considering applications, one usually wants to compute the risk with regard to some observed data instead of some unknown probability measure. In this case the general risk function becomes more tangible, as we see in the following definition.
 
 
 \begin{definition}\label{def_empirical_risk}
-Let $X\subseteq \R^d$ and $Y \subseteq \R^n$ be arbitrary Banach spaces and $d, n \in \N$, $D = \left((x_1,y_1), \ldots, (x_k,y_k)\right)$ be a dataset consisting of $k\in\N$ data points. Furthermore, let $L$ be a loss function and $p$ be an arbitrary prediction function as in definition \ref{def_loss_risk}.\\
+Let $X, Y$ be arbitrary input and output spaces, $D = \left((x_1,y_1), \ldots, (x_k,y_k)\right)$ be a dataset consisting of $k\in\N$ data points. Furthermore, let $L$ be a loss function and $f$ be an arbitrary prediction function.\\
 Then we define the \textbf{empirical risk function} as
 \begin{align}
-\risk_{L, D} (p) = \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, p(x_i)\right).
+\risk_{L, D} (f) = \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f(x_i)\right).
 \end{align}
 Since we will mostly consider the practical setting where we have a dataset given, we will write $\risk \coloneqq \risk_{L, D}$ unless unclear in the given context.
 \end{definition}
@@ -124,7 +133,7 @@ With the previous definitions, we can return to considering the training of neur
 
 
 \begin{theorem}\label{theorem_gd}
-Let $(\g_t)_{t \in \N}$ be a converging sequence of step sizes with $\g_t \to 0$. Let further be $f:\R^n \to \R$ a continuous, convex and differentiable function. Furthermore, let $x^{(t)}$ denote the $t$-th iterate of the \textbf{gradient descent algorithm} defined by
+Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$. Furthermore, let $f:\R^n \to \R$ be a continuous, convex and differentiable function. Furthermore, let $x^{(t)}$ denote the $t$-th iterate of the \textbf{gradient descent algorithm} defined by
 \begin{align}
 x^{(t+1)} = x^{(t)} - \g_t \partial_x f(x^{(t)}),
 \end{align}
@@ -162,8 +171,8 @@ Since we are considering neural networks in this thesis, we want to take a quick
 
 
 \begin{lemma}\label{nn_gradient}
-Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Furthermore, let $D$ be a dataset of length $k\in \N$ and $L$ be an arbitrary loss function as in definition \ref{def_loss_risk}.\\
-The gradient of the risk function $\risk(\cdot)$ with regard to the neural network $f_\t$ and thus the parameters $\t$ looks as follows
+Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L_n\in\N$ and arbitrary activation function $\f$. Furthermore, let $D$ be a dataset of length $k\in \N$ and $L$ be an arbitrary loss function.\\
+The gradient of the risk function $\risk(\cdot)$ with regard to the neural network $f_\t$ and thus the parameters $\t$ look as follows
 \begin{align*}
 \partial_\t \risk \left(f_{\t}\right) = \frac{1}{k} \sum_{i=1}^{k} \partial_\t L\left(x_i, y_i, f_\t(x_i)\right).
 \end{align*}
@@ -184,7 +193,7 @@ With the previous definitions and results we now can formulate the gradient desc
 
 
 \begin{corollary}
-Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be a sequence of step sizes with $\g_t \to 0$ and $D$ be a dataset of length $k\in \N$.\\
+Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$ and $D$ be a dataset of length $k\in \N$.\\
 Then one can train the neural network $f_\t$ with the gradient descent algorithm proposed in theorem \ref{theorem_gd}. In this setting, the algorithm looks as follows
 \begin{align*}
 \t^{(t)} = \t^{(t - 1)} - \g_{t-1} \partial_\t \risk \left(f_{\t^{(t -1)}}\right),
@@ -199,7 +208,7 @@ where the gradient can be computed as in lemma \ref{nn_gradient}
 This is a valuable result, since this way one can iteratively optimize any convex function. Such iterative methods are powerful in numerical settings, where one could use a machine to compute the result. However, there is one problem: in many practical cases it is way to expensive to compute the gradient with regard to the whole dataset, if the dataset becomes significantly large. This lead to a bunch of approaches on how to make this algorithm more efficient, one of those being the stochastic gradient descent algorithm.
 
 \begin{theorem}
-Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be as previous and $D$ be a dataset of length $k\in \N$.\\
+Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$ and $D$ be a dataset of length $k\in \N$.\\
 Then we define the $t$-th iterate of the \textbf{stochastic gradient descent algorithm} by
 \begin{align}
 \t^{(t)} = \t^{(t - 1)} - \g_{t-1} \partial_{\t, i} \risk \left(f_{\t^{(t - 1)}}\right),
@@ -213,26 +222,100 @@ with $i \in \{1,\ldots, k\}$ and $\partial_{\t, i} \risk \left(f_{\t^{(t)}}\righ
 
 \section{Neural networks in computer vision}
 
-Lastly in this chapter, we want to apply the theory of neural networks to the setting we actually are interested in. This setting is usually called computer vision - basically, Machine Learning that is applied to images and videos. Since we want to apply neural networks to a problem that deals with images, we need to know how to view images from a mathematical perspective.
+Lastly in this chapter, we want to apply the theory of neural networks to the setting we actually are interested in. This setting is usually called computer vision - basically, machine learning that is applied to images and videos. Since we want to apply neural networks to a problem that deals with images, we need to know how to view images from a mathematical perspective.\\
+In order to do so, we need to introduce some quantities first. The first important quantity is a pixel. Basically, this is a single point in the image.
 
-\begin{definition}\label{def_picture}
-Let $M,N\in\N$ and $\O=\{1,\ldots,M\}\times \{1,\ldots,N\} \subset \N^2$ be called \textbf{pixel domain} of an image with the tuple $(M,N)$ being called \textbf{resolution}. Then we define a \textbf{digital image} by $\p_{ij} \in \P_d \coloneqq \{1,\ldots,255\}^d$ for all $(i,j)$ in $\O$, where $d\in\N$ represents the number of \textbf{channels} in the picture.\\
-We will write $\p\in\P_{d,\O}\coloneqq \P_d^{M\times N}$ from now on.
+
+\begin{definition}\label{def:pixel}
+Let $d\in\N$ and $\P=\{0,\ldots,255\}$. Then we define a \textbf{pixel with $d$ channels} as
+\begin{align*}
+\p = \left(\p_1, \p_2,\ldots, \p_d\right),
+\end{align*}
+where for all $i=1,\ldots,d$ holds $\p_i\in\P$. Hence, for each pixel holds $\p\in\P^d$
 \end{definition}
 
+
 \begin{remark}
-We want to distinguish two kinds of pictures. If $d=1$, we speak of a \textbf{black and white picture}.\\
-If $d=3$, we speak of an \textbf{RGB picture}. Here, RGB stands for the  red, green and blue color channels.
+We want to distinguish mainly two kinds of pixels. If $d=1$, we speak of a \textbf{black and white pixel}.\\
+If $d=3$, we speak of an \textbf{RGB pixel}. Here, RGB stands for the  red, green and blue color channels.
 \end{remark}
 
-Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider  a single neural layer, since neural networks consist of those. But first, we need some technical assertions.
 
-\begin{lemma}\label{mat_as_array}
-Let $\O$ be a pixel domain with resolution $(M,N)$. Then the picture $\p$  with $d\in\N$ channels defined on $\P_{d,\O}$ can be represented as an $MN$-dimensional array instead of an $M\times N$-matrix.
+As one may already know, images consist of multiple pixels that are aligned in a grid. We will refer to this grid as a pixel domain.
+
+
+\begin{definition}\label{def:pixel_domain}
+Let $M\in\N$ be the \textbf{horizontal amount of pixels} and $N\in\N$ be the \textbf{vertical amount of pixels}. Then we call the grid $\O$ defined by
+\begin{align*}
+\O \coloneqq \left\{1, \ldots, M\right\} \times \left\{1,\ldots, N\right\} \subset \N^2,
+\end{align*}
+the \textbf{pixel domain} with the tuple $(M,N)$ being called the \textbf{resolution}.
+\end{definition}
+
+
+If we now combine the definitions of a pixel and a pixel domain, we can define a mathematical representation of an image - a so called digital image.
+
+
+\begin{definition}\label{def:image}
+Let $d\in\N$ be the number of channels and $\O$ a pixel domain with the resolution $(M,N)$. Then we define a \textbf{digital image} by
+\begin{align*}
+\p=\left(\p_{ij}\right)_{i,j} = \left(\p_{ij,1},\ldots,\p_{ij,d} \right),\qquad (i,j)\in\O,
+\end{align*}
+where each $\p_{ij}$ is a pixel with $d$ channels.\\
+Since for each pixel $\p_{ij}$ holds $\p_{ij}\in\P^d$, we define the \textbf{image domain} as $\P^{d\times M\times N}$. We will write $\p\in\P_{d,\O}\coloneqq \P^{d \times M\times N}$ from now on. If the context is clear, we will reduce the notation up to $\P$.
+\end{definition}
+
+
+However, since we usually consider floats and not integers in numerical mathematics, we need to consider a way to represent pixels as floats. In order to do that, we introduce the normed image domain.
+
+
+\begin{definition}
+Let $\O$ be a pixel domain and  $d\in\N$ a number of channels. Then we call the $\P^\prime$, defined as
+\begin{align*}
+\P^\prime \coloneqq \frac{1}{255} \P = \left\{\frac{0}{255}, \frac{1}{255}, \ldots, \frac{255}{255} \right\},
+\end{align*}
+the \textbf{normed image domain}. Obviously, it holds $\P^\prime \subset [0,1]$.
+\end{definition}
+
+We realize that we can easily transform images from an ordinary image domain to a normed image domain by dividing each pixel value by $255$. Equally, we can transform images the other way around by multiplying each pixel value by $255$.\\
+Since neural networks rarely produce a value that is a fraction with denominator $255$, we need to find a way to process such values. This we will do in the following lemma.
+
+
+\begin{lemma}
+Let $d\in\N$ be a number of channels and let $p\in [0,1]^d$. Then we can consider $p$ as a pixel by transforming it through
+\begin{align*}
+\p_i \approx 255 \cdot p_i, \qquad i=1,\ldots,d,
+\end{align*}
+where we round each entry $p_i$ to an integer.
 \end{lemma}
 
 \begin{proof}
-Let $\p$ be a matrix with entries $\p_{ij}\in\P_d$, what follows from the definition of a picture \ref{def_picture}. Hence, $\p$ is a $M\times N$- matrix.\\
+Since $p\in[0,1]^d$, we can denote $p$ as
+\begin{align*}
+p = \left(p_1, \ldots, p_d\right),
+\end{align*}
+where for all $i=1,\ldots,d$ holds $p_i\in[0,1]$.\\
+Hence, if we multiply each $p_i$ by $255$, it follows that
+\begin{align*}
+255\cdot p_i \in [0, 255].
+\end{align*}
+Therefore, it holds that
+\begin{align*}
+255\cdot p \in [0, 255]^d.
+\end{align*}
+If we now round each entry $p_i$ to an integer, we yield exactly the representation defined in definition \ref{def:pixel}.
+\end{proof}
+
+Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider a single neural layer, since neural networks consist of multiple layers. But first, we need some technical assertions to understand how we can actually feed images into neural networks, since images are somewhat matrices and neural networks often operate on arrays.
+
+
+\begin{lemma}\label{mat_as_array}
+Let $\O$ be a pixel domain with resolution $(M,N)$. Then the image $\p$ with $d\in\N$ channels defined on $\P_{d,\O}$ can be represented as an $MN$-dimensional array instead of an $M\times N$-matrix.
+\end{lemma}
+
+
+\begin{proof}
+Let $\p$ be a matrix with entries $\p_{ij}\in\P_d$, what follows from the definition of an image \ref{def:image}. Hence, $\p$ is an $M\times N$- matrix.\\
 Define the rows of $\p$ by $\hat{\p}_i\coloneqq (\p_{i1},\ldots,\p_{iN})$ for all $i\in \{1,\ldots,M\}$. Then the matrix representation of the picture $\p$ can be written as
 \begin{align*}
 \begin{pmatrix}

@@ -227,7 +227,7 @@ Now, let us take a look at a specific example of a linear autoencoder on the MNI
 
 \begin{algorithm}
 Let the input and output dimensions be $n_i, n_o = 784$. Furthermore, let the encoder and the decoder have three hidden layers with dimensions $n_1 = 128, n_2=64$ and $n_3 = 12$ with bottleneck $n_b = 3$.\\
-Let the chosen optimizer be ADAM with a learning rate of $\g=3e-4$ and the MSE loss function. We will perform the training on $1000$ epochs with a batch size of $256$.
+Let the chosen optimizer be ADAM with a learning rate of $\g=3e-4$ and the MSE loss function. We will perform the training on $10.000$ epochs with a batch size of $512$.
 \caption{Linear autoencoder}\label{alg:linAE}
 \begin{algorithmic}[1]
 \State epochs $\gets 1000$

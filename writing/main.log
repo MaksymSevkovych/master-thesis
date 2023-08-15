@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  8 AUG 2023 16:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  15 AUG 2023 13:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1095,12 +1095,17 @@ Class scrreprt Warning: \float@addtolists detected!
 
 
 ]
-<neural_net.jpg, id=57, 923.45pt x 549.05125pt>
+<neural_net.jpg, id=56, 923.45pt x 549.05125pt>
 File: neural_net.jpg Graphic file (type jpg)
 <use neural_net.jpg>
-Package pdftex.def Info: neural_net.jpg  used on input line 75.
+Package pdftex.def Info: neural_net.jpg  used on input line 76.
 (pdftex.def)             Requested size: 435.32422pt x 258.82487pt.
- [4] [5 <./neural_net.jpg>] [6] [7] [8] [9] [10]) [11]
+ [4]
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
+
+ []
+
+[5 <./neural_net.jpg>] [6] [7] [8] [9] [10] [11]) [12]
 \openout2 = `autoencoders.aux'.
 
  (./autoencoders.tex
@@ -1110,29 +1115,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--12
 
  []
 
-<autoencoder.jpg, id=154, 996.72375pt x 435.6275pt>
+<autoencoder.jpg, id=159, 996.72375pt x 435.6275pt>
 File: autoencoder.jpg Graphic file (type jpg)
 <use autoencoder.jpg>
 Package pdftex.def Info: autoencoder.jpg  used on input line 17.
 (pdftex.def)             Requested size: 435.32422pt x 190.26085pt.
-<encoder.jpg, id=156, 740.7675pt x 534.99875pt>
+<encoder.jpg, id=161, 740.7675pt x 534.99875pt>
 File: encoder.jpg Graphic file (type jpg)
 <use encoder.jpg>
 Package pdftex.def Info: encoder.jpg  used on input line 35.
 (pdftex.def)             Requested size: 435.32422pt x 314.40569pt.
-[12
+[13
 
 
 
 
-] [13 <./autoencoder.jpg> <./encoder.jpg>]
-<decoder.jpg, id=173, 734.745pt x 527.9725pt>
+] [14 <./autoencoder.jpg> <./encoder.jpg>]
+<decoder.jpg, id=178, 734.745pt x 527.9725pt>
 File: decoder.jpg Graphic file (type jpg)
 <use decoder.jpg>
 Package pdftex.def Info: decoder.jpg  used on input line 54.
 (pdftex.def)             Requested size: 435.32422pt x 312.82228pt.
- [14 <./decoder.jpg>] [15]
-[16]
+ [15 <./decoder.jpg>] [16]
+[17]
 Overfull \hbox (0.41795pt too wide) in paragraph at lines 225--226
 []\OT1/cmr/m/n/12 Now, let us take a look at a spe-cific ex-am-ple of a lin-ear
  au-toen-coder on the MNIST dataset.
@@ -1140,17 +1145,17 @@ Overfull \hbox (0.41795pt too wide) in paragraph at lines 225--226
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 231.
-) [17] [18]
+) [18] [19]
 \openout2 = `vae.aux'.
 
  (./vae.tex
 chapter 3.
-[19
+[20
 
 
 
 
-]) [20] (./main.bbl) [21
+]) [21] (./main.bbl) [22
 
 
 
@@ -1160,10 +1165,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 Here is how much of TeX's memory you used:
- 30991 strings out of 476029
- 626926 string characters out of 5790166
+ 30999 strings out of 476029
+ 627021 string characters out of 5790166
  1876346 words of memory out of 5000000
- 50823 multiletter control sequences out of 15000+600000
+ 50826 multiletter control sequences out of 15000+600000
  524893 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,106p,10626b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1190,9 +1195,9 @@ e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2022/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (21 pages, 564150 bytes).
+Output written on main.pdf (22 pages, 569145 bytes).
 PDF statistics:
- 398 PDF objects out of 1000 (max. 8388607)
- 321 compressed objects within 4 object streams
- 97 named destinations out of 1000 (max. 500000)
+ 403 PDF objects out of 1000 (max. 8388607)
+ 325 compressed objects within 4 object streams
+ 102 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
