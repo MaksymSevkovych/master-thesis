@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  15 AUG 2023 13:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  21 AUG 2023 13:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -450,6 +450,9 @@ Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 Couldn't patch \@startsection
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/nth/nth.sty
+Package: nth 2002/02/27
 )
 (/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
@@ -938,35 +941,35 @@ Package caption Info: hypcap package is loaded.
 (./main.aux (./preliminary.aux) (./autoencoders.aux) (./vae.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-Package scrbase Info: activating english \abstractname on input line 100.
-Package scrbase Info: activating english \partname on input line 100.
-Package scrbase Info: activating english \chaptername on input line 100.
-Package scrbase Info: activating english \appendixname on input line 100.
-Package scrbase Info: activating english \figurename on input line 100.
-Package scrbase Info: activating english \tablename on input line 100.
-Package scrbase Info: activating english \contentsname on input line 100.
-Package scrbase Info: activating english \listfigurename on input line 100.
-Package scrbase Info: activating english \listtablename on input line 100.
-Package scrbase Info: activating english \bibname on input line 100.
-Package scrbase Info: activating english \indexname on input line 100.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+Package scrbase Info: activating english \abstractname on input line 103.
+Package scrbase Info: activating english \partname on input line 103.
+Package scrbase Info: activating english \chaptername on input line 103.
+Package scrbase Info: activating english \appendixname on input line 103.
+Package scrbase Info: activating english \figurename on input line 103.
+Package scrbase Info: activating english \tablename on input line 103.
+Package scrbase Info: activating english \contentsname on input line 103.
+Package scrbase Info: activating english \listfigurename on input line 103.
+Package scrbase Info: activating english \listtablename on input line 103.
+Package scrbase Info: activating english \bibname on input line 103.
+Package scrbase Info: activating english \indexname on input line 103.
 
 (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -990,7 +993,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 100.
+Package hyperref Info: Link coloring OFF on input line 103.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
@@ -1003,7 +1006,7 @@ Class scrreprt Info: loading recommended package `bookmark'.
 (scrreprt)           `bookmarkpackage=false' before \begin{document} and
 (scrreprt)           you can avoid this message adding:
 (scrreprt)             \usepackage{bookmark}
-(scrreprt)           before \begin{document} on input line 100.
+(scrreprt)           before \begin{document} on input line 103.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
@@ -1105,7 +1108,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--91
 
  []
 
-[5 <./neural_net.jpg>] [6] [7] [8] [9] [10] [11]) [12]
+[5 <./neural_net.jpg>] [6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
+
+ []
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 233.
+[8] [9] [10] [11] [12]) [13]
 \openout2 = `autoencoders.aux'.
 
  (./autoencoders.tex
@@ -1115,60 +1125,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--12
 
  []
 
-<autoencoder.jpg, id=159, 996.72375pt x 435.6275pt>
+<autoencoder.jpg, id=168, 996.72375pt x 435.6275pt>
 File: autoencoder.jpg Graphic file (type jpg)
 <use autoencoder.jpg>
 Package pdftex.def Info: autoencoder.jpg  used on input line 17.
 (pdftex.def)             Requested size: 435.32422pt x 190.26085pt.
-<encoder.jpg, id=161, 740.7675pt x 534.99875pt>
+<encoder.jpg, id=170, 740.7675pt x 534.99875pt>
 File: encoder.jpg Graphic file (type jpg)
 <use encoder.jpg>
 Package pdftex.def Info: encoder.jpg  used on input line 35.
 (pdftex.def)             Requested size: 435.32422pt x 314.40569pt.
-[13
+[14
 
 
 
 
-] [14 <./autoencoder.jpg> <./encoder.jpg>]
-<decoder.jpg, id=178, 734.745pt x 527.9725pt>
+] [15 <./autoencoder.jpg> <./encoder.jpg>]
+<decoder.jpg, id=186, 734.745pt x 527.9725pt>
 File: decoder.jpg Graphic file (type jpg)
 <use decoder.jpg>
 Package pdftex.def Info: decoder.jpg  used on input line 54.
 (pdftex.def)             Requested size: 435.32422pt x 312.82228pt.
- [15 <./decoder.jpg>] [16]
-[17]
+ [16 <./decoder.jpg>] [17]
+[18]
 Overfull \hbox (0.41795pt too wide) in paragraph at lines 225--226
 []\OT1/cmr/m/n/12 Now, let us take a look at a spe-cific ex-am-ple of a lin-ear
  au-toen-coder on the MNIST dataset.
  []
 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 231.
-) [18] [19]
+) [19] [20]
 \openout2 = `vae.aux'.
 
  (./vae.tex
 chapter 3.
-[20
+[21
 
 
 
 
-]) [21] (./main.bbl) [22
+]) [22] (./main.bbl) [23
 
 
 
 ] (./main.aux (./preliminary.aux)
 (./autoencoders.aux) (./vae.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 Here is how much of TeX's memory you used:
- 30999 strings out of 476029
- 627021 string characters out of 5790166
+ 31040 strings out of 476029
+ 627819 string characters out of 5790166
  1876346 words of memory out of 5000000
- 50826 multiletter control sequences out of 15000+600000
+ 50860 multiletter control sequences out of 15000+600000
  524893 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,106p,10626b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1195,9 +1206,9 @@ e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2022/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (22 pages, 569145 bytes).
+Output written on main.pdf (23 pages, 575959 bytes).
 PDF statistics:
- 403 PDF objects out of 1000 (max. 8388607)
- 325 compressed objects within 4 object streams
- 102 named destinations out of 1000 (max. 500000)
+ 412 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
+ 105 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)

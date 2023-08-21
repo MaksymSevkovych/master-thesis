@@ -1,5 +1,5 @@
 \chapter{Preliminary}\label{preliminary}
-In order to understand the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of neural networks and their optimization - usually being called training. In this chapter, we will tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a couple of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images - usually referred to as computer vision.
+In order to fathom the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of neural networks and their optimization - usually being called training. In this chapter, we will tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a couple of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images. This discipline of machine learning is usually referred to as computer vision.
 
 \section{Neural networks}
 The idea of artificial neural networks originated from analysing mammal's brains. An accumulation of nodes - so called neurons, connected in a very special way that fire an electric impulse to adjacent neurons upon being triggered and transmit information that way. Scientists tried to mimic this natural architecture and replicate this mammal intelligence artificially. This research has been going for almost 80 years and became immensely popular recently through artificial intelligences like OpenAI's ChatGPT or Google's Bard for the broad public. But what actually is a neural network? What happens in a neural network? Those are very interesting and important questions that we will find answers for.\\
@@ -22,7 +22,7 @@ The following functions are activation functions.
 \a t, 	& t \leq 0,\\
 t,		& t > 0.
 \end{cases}$
-\item[\textbf{Sigmoid}] $\displaystyle \f(t) = \frac{1}{1 + e^{-x}}.$
+\item[\textbf{Sigmoid}] $\displaystyle \f(t) = \frac{1}{1 + e^{-t}}.$
 \end{mydescription}
 \end{example}
 
@@ -98,12 +98,18 @@ We want to consider a couple of important examples for loss functions, for furth
 Let $y\in Y\coloneqq \R$ and $t\in \R$, then the following functions are loss functions.
 \begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
 \item[\textbf{Squared Error Loss}] $L(x, y, t) = \left|y - t\right|^2$,
-\item[\textbf{Linear Error Loss}]  $L(x, y, t) = \left|y - t\right|$,
+\item[\textbf{Linear Error Loss}]  $L(x, y, t) = \left|y - t\right|$.
 \end{mydescription}
+Now, let $y\in Y \coloneqq \R^n$ and $t\in\R^n$ with $n>1$. Then, we consider the squared error loss and the linear error loss pointwise:
+\begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
+\item[\textbf{Squared Error Loss}] $L(x, y, t) = \sum_{i=1}^n\left|y_i - t_i\right|^2$,
+\item[\textbf{Linear Error Loss}]  $L(x, y, t) = \sum_{i=1}^n\left|y_i - t_i\right|$,
+\end{mydescription}
+where $y = (y_1,\ldots, y_n)$ and $t = (t_1,\ldots, t_n)$.
 \end{example}
 
 
-However, loss functions only measure the error between one prediction and one data point. In order to compare the predictions over a wide range of data points, we need to introduce another quantity, the risk function.
+However, loss functions only quantify the disparity between one predicted outcome and one actual value. In order to compare the predictions over a wider range of data points, we need to introduce another quantity, the risk function.
 
 
 \begin{definition}\label{def_risk}
@@ -116,7 +122,7 @@ In the following, we will denote this as the \textbf{$L$-risk of $f$}.
 \end{definition}
 
 
-Considering applications, one usually wants to compute the risk with regard to some observed data instead of some unknown probability measure. In this case the general risk function becomes more tangible, as we see in the following definition.
+Considering applications, one usually wants to compute the risk with regard to observed data instead of a probability measure, since it usually is unknown. In this case, the general risk function becomes more tangible, as we see in the following definition.
 
 
 \begin{definition}\label{def_empirical_risk}
@@ -125,7 +131,7 @@ Then we define the \textbf{empirical risk function} as
 \begin{align}
 \risk_{L, D} (f) = \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f(x_i)\right).
 \end{align}
-Since we will mostly consider the practical setting where we have a dataset given, we will write $\risk \coloneqq \risk_{L, D}$ unless unclear in the given context.
+We will write $\risk \coloneqq \risk_{L, D}$ unless unclear in the given context.
 \end{definition}
 
 
@@ -167,7 +173,7 @@ This would contradict the assumption that $f\left(x_1^{\ast}\right), f\left(x_2^
 \end{proof}
 
 
-Since we are considering neural networks in this thesis, we want to take a quick look on how we can apply theorem \ref{theorem_gd} to a neural network. But in order to do so, we have to consider how to actually compute the gradient of the empirical risk function, where we consider a neural network as prediction function.
+In order to apply theorem \ref{theorem_gd} to neural networks, we have to consider how to actually compute the gradient of the empirical risk function, where we consider a neural network as prediction function.
 
 
 \begin{lemma}\label{nn_gradient}
@@ -189,7 +195,7 @@ To prove the assertion we simply use the definition \ref{def_empirical_risk} of 
 \end{proof}
 
 
-With the previous definitions and results we now can formulate the gradient descent algorithm for a neural network.
+With the previous definitions and results we can formulate the gradient descent algorithm for a neural network.
 
 
 \begin{corollary}
@@ -218,6 +224,36 @@ with $i \in \{1,\ldots, k\}$ and $\partial_{\t, i} \risk \left(f_{\t^{(t)}}\righ
 
 
 \textcolor{red}{TODO:} Name some properties (convergence, rate, etc.) and reference them \\
+
+Lastly, we want to consider another powerful optimization algorithm that adapts learning rates based on past gradient magnitudes and momenta - it is called \glqq Adaptive Moment Estimation (ADAM)\grqq{}, see \cite{kingma2014adam}. See algorithm \ref{alg:adam} for pseudo-code of the proposed algorithm.
+
+
+\begin{algorithm}[H]
+Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the and  $g_t^2 \coloneqq g_t \odot g_t$ denote the elemen-wise multiplication.
+\caption{ADAM optimizer}\label{alg:adam}
+\begin{algorithmic}[1]
+\Require $\a$: Stepsize
+\Require $\b_1,\b_2\in [0,1)$: Exponential decay rates for the moment estimates
+\Require $f(\t)$: Stochastic objective function with parameters $\t$
+\Require $\t_0$: Initial parameter vector
+\State $m_0 \gets 0$ (Initialize $\nth{1}$ moment vector)
+\State $v_0 \gets 0$ (Initialize $\nth{2}$ moment vector)
+\State $t \gets 0$ (Initialize timestep)
+\While{$\t_t$ not converged}
+\State $t\gets t+1$
+\State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$}
+\State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Update biased first moment estimate}
+\State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Update biased second moment estimate}
+\State $\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment{Compute bias-corrected first moment estimate}
+\State $\hat{v}_t \gets v_t/(1-\b_2^t)$ \Comment{Compute bias-corrected second moment estimate}
+\State $\t_t \gets \t_{t-1} - \a\cdot \hat{m}_t / (\sqrt{\hat{v}_t} + \e)$
+\EndWhile
+\State \Return $\t_t$ \Comment{Return Resulting parameters}
+\end{algorithmic}
+\end{algorithm}
+
+
+
 \textcolor{red}{TODO:} Since ADAM optimizers perform best at the current state of the art, it would be nice to see how it works. However, it would need some pages to introduce.. Is it worth it? Probably it is.
 
 \section{Neural networks in computer vision}

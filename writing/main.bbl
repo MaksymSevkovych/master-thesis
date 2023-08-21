@@ -4,6 +4,10 @@
 I.~Goodfellow, Y.~Bengio, and A.~Courville, {\em Deep learning}.
 \newblock MIT press, 2016.
 
+\bibitem{kingma2014adam}
+D.~P. Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em
+  arXiv preprint arXiv:1412.6980}, 2014.
+
 \bibitem{foster2022generative}
 D.~Foster, {\em Generative deep learning}.
 \newblock " O'Reilly Media, Inc.", 2022.
