@@ -87,7 +87,7 @@ Since we now know what neural networks are, we want to discuss how to tune them 
 
 \begin{definition}\label{def_loss}
 Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$, that we will refer to as input and output space and $t\in\R^n$ be a prediction for $y\in Y$.\\
-Then we define a \textbf{supervised loss function} $L: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.\\
+Then we define a \textbf{supervised loss function} $L: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.
 \end{definition}
 
 The recently introduced loss function allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
@@ -213,7 +213,7 @@ where the gradient can be computed as in lemma \ref{nn_gradient}
 
 This is a valuable result, since this way one can iteratively optimize any convex function. Such iterative methods are powerful in numerical settings, where one could use a machine to compute the result. However, there is one problem: in many practical cases it is way to expensive to compute the gradient with regard to the whole dataset, if the dataset becomes significantly large. This lead to a bunch of approaches on how to make this algorithm more efficient, one of those being the stochastic gradient descent algorithm.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:sgd}
 Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$ and $D$ be a dataset of length $k\in \N$.\\
 Then we define the $t$-th iterate of the \textbf{stochastic gradient descent algorithm} by
 \begin{align}
@@ -223,38 +223,188 @@ with $i \in \{1,\ldots, k\}$ and $\partial_{\t, i} \risk \left(f_{\t^{(t)}}\righ
 \end{theorem}
 
 
-\textcolor{red}{TODO:} Name some properties (convergence, rate, etc.) and reference them \\
+\textcolor{red}{TODO:} Name some properties (convergence, rate, etc.) and reference them
 
-Lastly, we want to consider another powerful optimization algorithm that adapts learning rates based on past gradient magnitudes and momenta - it is called \glqq Adaptive Moment Estimation (ADAM)\grqq{}, see \cite{kingma2014adam}. See algorithm \ref{alg:adam} for pseudo-code of the proposed algorithm.
+Lastly, we want to consider another powerful optimization algorithm that adapts learning rates based on past gradient magnitudes and momenta - it is called \glqq Adaptive Moment Estimation (ADAM)\grqq{}.\\
+However, in order to formulate the algorithm formally we need to introduce stochastic moments first. We do so analogously to \cite[chapter~5]{edition2002probability}
 
+\begin{definition}\label{def:moment}
+Let $(\O,\A,\prob)$ be a probability space, $X$ be a random variable over $\O$ and $k\in\N$. Then we define the $k$\textbf{-th moment} of $X$ as
+\begin{align*}
+m_k \coloneqq \E \left[X^k \right] = \int_{-\infty}^{+\infty} x^k f(x) dx.
+\end{align*}
+Furthermore, we define the $k$\textbf{-th central moment} of $X$ as
+\begin{align*}
+\m_k \coloneqq \E \left[\left(X - \m \right)^k \right] = \int_{-\infty}^{+\infty} \left(x - \m\right)^k f(x) dx,
+\end{align*}
+where we denote $\m=\E[X]$.
+\end{definition}
+
+
+\begin{remark}
+Let the same assumptions as in definition \ref{def:moment} hold. Usually, the first moment is referred to as \textbf{mean} and the second central moment as \textbf{variance} of the random variable $X$.
+\end{remark}
+
+Now, we can formulate the proposed algorithm itself. For further reading please take a look at \cite{kingma2014adam} or \cite[chapter~8]{goodfellow2016deep}.
 
 \begin{algorithm}[H]
-Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the and  $g_t^2 \coloneqq g_t \odot g_t$ denote the elemen-wise multiplication.
+Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the gradient, i.e. the vector of partial derivatives of $f_t$ w.r.t. $\t$ evaluated at timestep $t$. Furthermore,  let $g_t^2 \coloneqq g_t \odot g_t$ denote the element-wise square of $g_t$.
 \caption{ADAM optimizer}\label{alg:adam}
 \begin{algorithmic}[1]
 \Require $\a$: Stepsize
 \Require $\b_1,\b_2\in [0,1)$: Exponential decay rates for the moment estimates
 \Require $f(\t)$: Stochastic objective function with parameters $\t$
 \Require $\t_0$: Initial parameter vector
-\State $m_0 \gets 0$ (Initialize $\nth{1}$ moment vector)
-\State $v_0 \gets 0$ (Initialize $\nth{2}$ moment vector)
+\State $m_0,v_0 \gets 0$ (Initialize $\nth{1}$ and $\nth{2}$ moment vector)
 \State $t \gets 0$ (Initialize timestep)
 \While{$\t_t$ not converged}
 \State $t\gets t+1$
-\State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$}
-\State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Update biased first moment estimate}
-\State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Update biased second moment estimate}
-\State $\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment{Compute bias-corrected first moment estimate}
-\State $\hat{v}_t \gets v_t/(1-\b_2^t)$ \Comment{Compute bias-corrected second moment estimate}
-\State $\t_t \gets \t_{t-1} - \a\cdot \hat{m}_t / (\sqrt{\hat{v}_t} + \e)$
+\State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$,}
+\State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Update biased first moment estimate,}
+\State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Update biased second moment estimate,}
+\State $\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment{Compute bias-corrected first moment estimate,}
+\State $\hat{v}_t \gets v_t/(1-\b_2^t)$ \Comment{Compute bias-corrected second moment estimate,}
+\State $\t_t \gets \t_{t-1} - \a\cdot \hat{m}_t / (\sqrt{\hat{v}_t} + \e)$ \Comment{Update parameters with bias- corrected moments,}
 \EndWhile
-\State \Return $\t_t$ \Comment{Return Resulting parameters}
+\State \Return $\t_t$ \Comment{Return Resulting parameters.}
 \end{algorithmic}
 \end{algorithm}
 
+However, algorithm \ref{alg:adam} was later proven to be not converging in certain settings, see \cite{reddi2019convergence}. The authors proposed another approach to the optimization problem, where they first introduced a general formulation of the algorithm, see \ref{alg:general}. Afterwards, they proposed an alternative approach called the AMSGrad algorithm. In contrast to ADAM, AMSGrad uses the maximum of past squared gradients rather than the exponential average to update the parameters. This way the authors were able to fix the issues of the original algorithm ADAM.\\
+But in order to introduce AMSGrad formally, we need to define some quantities first.
 
+\begin{definition}\label{def:projection}
+Let $y\in\R^d$, $\F\subset\R^d$ be a set of points and $X:\R^d\to\R^d$ an arbitrary operator. Then we define the \textbf{projection of $y$ onto $\F$} as
+\begin{align*}
+\Pi_{\F,X} (y) = \min_{x\in\F} \left\|X^{1/2}(x - y) \right\|.
+\end{align*}
+If the operator $X$ is the identity, we reduce the notation to $\Pi_{\F,\mathbb{1}} = \Pi_{\F}$.
+\end{definition}
 
-\textcolor{red}{TODO:} Since ADAM optimizers perform best at the current state of the art, it would be nice to see how it works. However, it would need some pages to introduce.. Is it worth it? Probably it is.
+Now, we introduce a short technical assumption concerning the recently introduced projection.
+
+\begin{lemma}
+Let $\F\subset\R^d$ be a set of points and $\Pi_{\F, X}$ be a projection.\\
+Then the following assertion holds for all $x^{\ast}\in \F$.
+\begin{align*}
+\Pi_{\F, X} \left(x^{\ast}\right) = x^{\ast}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Let's first consider the definition of the projection $\Pi_{\F}$.
+\begin{align*}
+\Pi_{\F, X} \left(x^{\ast}\right) = \min_{x\in\F} \left\|X^{1/2}(x - x^{\ast}) \right\|.
+\end{align*}
+Hence, for the point that minimizes the right hand side $x^{\ast}$ holds
+\begin{align*}
+x^{\ast}& = \argmin_{x\in\F}\left\|X^{1/2}(x - x^{\ast}) \right\|,
+\end{align*}
+what can be considered equally as
+\begin{align*}
+\Longleftrightarrow = \argmin_{x\in\F}(x - x^{\ast}).
+\end{align*}
+But since we assumed that $x^{\ast}\in\F$, the assertion holds.
+\end{proof}
+
+Another quantity we need to introduce is the so called regret of an algorithm. It essentially quantifies how much an algorithm would have performed better if it had known the best action in advance. In other words, regret quantifies the cost of not making the optimal decisions at each step.
+
+\begin{definition}\label{def:regret}
+Let $T\in \N$, $\F\subset\R^d$ be a set of points and $f_t(\t_t)$ a stochastic objection function with parameters $\t$ at timestep $t$. Then we define the \textbf{regret} as the function
+\begin{align*}
+R_T = \sum_{t=1}^Tf_t(\t_t) - \min_{x\in\F} \sum_{t=1}^Tf_t(x).
+\end{align*}
+\end{definition}
+
+\begin{algorithm}[H]
+Let $g_t$ as in algorithm \ref{alg:adam} and let $T\in\N$. Furthermore, let $\T$ be a parameter space.
+\caption{Generic Adaptive Method Setup}\label{alg:general}
+\begin{algorithmic}[1]
+\Require $\{\a_t\}_{t=0}^T$: Stepsizes
+\Require $\{\phi_t, \p_t\}_{t=0}^T$: Sequence of functions
+\Require $f(\t)$: Stochastic objective function with parameters $\t$
+\Require $\t_0\in\T$: Initial parameter vector
+\For{$t=0,\ldots,T$}
+	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$,}
+	\State $m_t \gets \phi\left(g_1,\ldots,g_t \right)$ \Comment{Update biased first moment estimate,}
+	\State $V_t \gets \p\left(g_1,\ldots,g_n\right)$ \Comment{Update biased second moment estimate,}
+	\State $\hat{\t}_{t+1} \gets \t_t - \a_t m_t/\sqrt{V_t}$ \Comment{Compute biased updated parameters,}
+	\State $\t_{t+1} \gets \Pi_{\T,\sqrt{V_t}}\left(\hat{\t}_{t+1} \right)$ \Comment{Unbias updated parameters,}
+\EndFor
+\State \Return $\t_{t+1}$ \Comment{Return Resulting parameters.}
+\end{algorithmic}
+\end{algorithm}
+
+We realize that upon defining $\phi$ and $\p$ in algorithm \ref{alg:general} in a suitable way, we can obtain various familiar algorithms. We want to consider them in the following example.
+
+\begin{example}
+Let the same assumptions as in algorithm \ref{alg:general} hold.
+\begin{enumerate}
+\item Let $\phi$ and $\p$ be defined as
+\begin{align*}
+\phi(g_1,\ldots, g_t) &= g_t,\\
+\p(g_1,\ldots, g_t) &= \mathbb{1}.
+\end{align*}
+Then the resulting update rule looks like
+\begin{align*}
+\t_{t+1} \gets \t_t - \a_t g_t,
+\end{align*}
+which is exactly the SGD algorithm as proposed in theorem \ref{theorem:sgd}.
+\item Let $\phi$ and $\p$ be defined as
+\begin{align*}
+\phi(g_1,\ldots, g_t) &= (1-\b_1)\sum_{i=1}^t\b_1^{t-i}g_i,\\
+\p(g_1,\ldots, g_t) &= (1-\b_2)\diag\left(\sum_{i=1}^t\b_2^{t-i}g_t^2\right).
+\end{align*}
+Then the resulting update rule looks like
+\begin{align*}
+m_t &\gets (1-\b_1)\sum_{i=1}^t\b_1^{t-i}g_i,\\
+v_t &\gets (1-\b_2)\diag\left(\sum_{i=1}^t\b_2^{t-i}g_t^2\right),
+\end{align*}
+which is the same as in algorithm \ref{alg:adam} (without the bias-correction, but the argument still holds, see \cite{reddi2019convergence}).
+\end{enumerate}
+\end{example}
+
+With the help of the general algorithm we proposed in algorithm \ref{alg:general}, we can introduce an algorithm, which can be proven to converge in a non-convex setting. Since neural networks ultimately are non-convex functions, this is exactly what we are interested in.
+
+\begin{algorithm}[H]
+Let the same assumptions as in algorithm \ref{alg:general} hold.
+\caption{AMSGrad Optimizer}\label{alg:amsgrad}
+\begin{algorithmic}[1]
+\Require $\{\a_t\}_{t=0}^T$: Stepsizes
+\Require $\{\b_{1t}\}_{t=1}^T, \b_2$, with $\b_{ti},\b_2\in [0,1)$: Decay rates for the moment estimates
+\Require $f(\t)$: Stochastic objective function with parameters $\t$
+\Require $\t_0\in\T$: Initial parameter vector
+\State $m_0,v_0 \gets 0$ (Initialise $\nth{1}$ and $\nth{2}$ moment vector)
+\For{$t=0,\ldots,T$}
+	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$,}
+	\State $m_t \gets \b_{1t}m_{t-1} + (1-\b_{1t})g_t$ \Comment{Update biased first moment estimate,}
+	\State $v_t \gets \b_{2}v_{t-1} + (1-\b_{2})g_t^2$ \Comment{Update biased second moment estimate,}
+	\State $\hat{v}_{t} \gets \max\{\hat{v}_{t-1}, v_t\}$ \Comment{Compute bias-corrected first moment estimate,}
+	\State $\hat{V}_{t} \gets \diag\left(\hat{v}_{t}\right)$ \Comment{Compute bias-corrected second moment estimate,}
+	\State $\t_{t+1} \gets \Pi_{\T,\sqrt{\hat{V}_t}}\left(\t_{t} - \a_tm_t/\sqrt{v_t}\right)$ \Comment{Update parameters,}
+\EndFor
+\State \Return $\t_{t+1}$ \Comment{Return Resulting parameters.}
+\end{algorithmic}
+\end{algorithm}
+
+The AMSGrad optimizer, defined in algorithm \ref{alg:amsgrad} does indeed converge, as proven in \cite[Theorem~4]{reddi2019convergence}. We take a quick look at the theorem and its proof. However, for a deeper understanding of the alternative algorithms, please refer to  \cite{reddi2019convergence}, since this would go beyond the scope of this thesis' topic.
+
+\begin{theorem}\label{theorem:amsgrad}
+Let $(x_t)_{t\in\N}$ and $(v_t)_{t\in\N}$ be sequences as in algorithm \ref{alg:amsgrad}, $\a_t = \a/\sqrt{t}$ with $\a>0$ and $\b_1 = \b_{11}$, $\b_{1t}\leq \b_1$ for all $t \in \{1,\ldots, T\}$ and $\g = \b_1/\sqrt{\b_{2}} < 1$. \textcolor{red}{Assume that $\mathcal{F}$ has bounded diameter $D_{\infty}$ and $\|\nabla f_t(x)\|_{\infty}\leq G_{\infty}$ for all $x\in\mathcal{F}$ and $t \in \{1,\ldots, T\}$}.\\
+Then for $\t_t$ generated using the AMSGrad algorithm (algorithm \ref{alg:amsgrad}) the following bound for the regret holds
+\begin{align*}
+\risk_T \leq \frac{D_{\infty}^2\sqrt{T}}{\a(1-\b_1)} \sum_{i=1}^d \hat{v}_{T,i}^{1/2} + \frac{D_{\infty}^2}{(1-\b_1)^2} \sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}+ \frac{\a\sqrt{1 + \log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}}\sum_{i=1}^d \|g_{1:T,1}\|_2,
+\end{align*}
+where we denote for readability reasons $g_{1:t}\coloneqq(g_1,\ldots, g_t)$ and with $g_{j,i}$ and with $v_{j,i}$ we denote the $i$-th component of $g_j$ and $v_j$, respectively.
+\end{theorem}
+
+\begin{proof}
+Firstly, we observe with the definition of the projection
+\begin{align*}
+\t_{t+1} = \Pi_{\T, \sqrt{\hat{V_t}}} \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) = \min_{\t \in \T} \left\|\hat{V}_t^{1/4} \left( \t -  \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) \right) \right\|
+\end{align*}
+\textcolor{red}{to be continued...}
+\end{proof}
 
 \section{Neural networks in computer vision}
 

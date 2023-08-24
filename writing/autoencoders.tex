@@ -8,10 +8,10 @@ In this chapter we want to consider how to formulate autoencoding neural network
 
 As already mentioned, an autoencoding neural network first compresses/encodes the input data to a smaller representation. The size of this smaller representation is usually referred to as bottleneck of the autoencoder.
 Afterwards, the autoencoding neural network expands/decodes the data to its original size. Hence, we can divide these two steps into separate architectures - the encoding and the decoding part of the neural network, which we will formulate separately.\\
-In figure \ref{autoencoder} we can take a look at a visual example of an autoencoding architecture.\\
+In figure \ref{autoencoder} we can take a look at a visual example of an autoencoding architecture.
 
 
-\begin{figure}%[H]
+\begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.9\linewidth}
       \includegraphics[width=\linewidth]{autoencoder}
@@ -29,7 +29,7 @@ If the neural network $f_{\f,L,\t}$ fulfils the condition $n_i= d_1 \geq \ldots 
 \end{definition}
 
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.9\linewidth}
       \includegraphics[width=\linewidth]{encoder}
@@ -48,7 +48,7 @@ If the neural network $f_{\f,L,\t}$ fulfils the condition $n_i= d_1 \leq \ldots 
 \end{definition}
 
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.9\linewidth}
       \includegraphics[width=\linewidth]{decoder}
@@ -213,17 +213,13 @@ f_{\text{lin}} \coloneqq f_d \circ f_e.
 \end{align*}
 \end{definition}
 
-
 Before considering specific examples on the MNIST dataset, we need to consider some properties of the said dataset first.
 
-
 \begin{proposition}\label{def:mnist}
-The MNIST dataset $\D$ consists of greyscale images with a resolution of $(28,28)$. Hence, the pixel domain $\O$ of $\D$ is $\O=\{1,\ldots,28\}\times\{1,\ldots,28\}$.
+The MNIST dataset $\D$ consists of greyscale images with a resolution of $(28,28)$. Hence, the images are defined on the pixel domain $\O$ of $\D$ with $\O=\{1,\ldots,28\}\times\{1,\ldots,28\}$ with only one channel.
 \end{proposition}
 
-
-Now, let us take a look at a specific example of a linear autoencoder on the MNIST dataset.
-
+Now, let us take a look at a specific example of a linear autoencoder defined on the MNIST dataset.
 
 \begin{algorithm}
 Let the input and output dimensions be $n_i, n_o = 784$. Furthermore, let the encoder and the decoder have three hidden layers with dimensions $n_1 = 128, n_2=64$ and $n_3 = 12$ with bottleneck $n_b = 3$.\\

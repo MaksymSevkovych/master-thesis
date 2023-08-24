@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  21 AUG 2023 12:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  22 AUG 2023 11:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2069,7 +2069,7 @@ Type  H <return>  for immediate help.
  ...
 
 l.14 \begin{figure}
-                   %[H]
+
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -3123,16 +3123,13 @@ Type  H <return>  for immediate help.
  ...
 
 l.32 \begin{figure}
-                   [H]
+
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Missing character: There is no [ in font nullfont!
-Missing character: There is no H in font nullfont!
-Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 32--33
+Overfull \hbox (20.0pt too wide) in paragraph at lines 33--33
 []
  []
 
@@ -4170,16 +4167,13 @@ Type  H <return>  for immediate help.
  ...
 
 l.51 \begin{figure}
-                   [H]
+
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Missing character: There is no [ in font nullfont!
-Missing character: There is no H in font nullfont!
-Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 51--52
+Overfull \hbox (20.0pt too wide) in paragraph at lines 52--52
 []
  []
 
@@ -6370,7 +6364,7 @@ l.90 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
 Here is how much of TeX's memory you used:
  42 strings out of 476029
  646 string characters out of 5790166
- 1857346 words of memory out of 5000000
+ 1856346 words of memory out of 5000000
  20584 multiletter control sequences out of 15000+600000
  512930 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191

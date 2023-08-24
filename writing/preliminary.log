@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  21 AUG 2023 12:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  24 AUG 2023 16:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -14398,7 +14398,7 @@ Type  H <return>  for immediate help.
  ...
 
 l.216 \begin{theorem}
-
+                     \label{theorem:sgd}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -15568,24 +15568,899 @@ Missing character: There is no M in font nullfont!
 Missing character: There is no ) in font nullfont!
 ! Undefined control sequence.
 l.228 ...qq Adaptive Moment Estimation (ADAM)\grqq
-                                                  {}, see \cite{kingma2014ad...
+                                                  {}.\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+Missing character: There is no . in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
 Missing character: There is no , in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no W in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no [ in font nullfont!
+\citation{edition2002probability}
+! Undefined control sequence.
+<write> ...: Citation `\@citeb ' on page \thepage
+                                                  \space undefined\on@line .
+l.229 ... \cite[chapter~5]{edition2002probability}
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `edition2002probability' on page  undefined on input li
+ne 229.
+
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no ] in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 228--230
+[]
+ []
+
+
+Overfull \hbox (5.43053pt too wide) in paragraph at lines 228--230
+[]
+ []
+
+
+! LaTeX Error: Environment definition undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.231 \begin{definition}
+                        \label{def:moment}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+
+LaTeX Warning: Command \O invalid in math mode on input line 232.
+
+
+LaTeX Warning: Command \O invalid in math mode on input line 232.
+
+! Undefined control sequence.
+l.232 Let $(\O,\A
+                 ,\prob)$ be a probability space, $X$ be a random variable o...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.232 Let $(\O,\A,\prob
+                       )$ be a probability space, $X$ be a random variable o...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+
+LaTeX Warning: Command \O invalid in math mode on input line 232.
+
+
+LaTeX Warning: Command \O invalid in math mode on input line 232.
+
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+! Undefined control sequence.
+l.232 ...e a random variable over $\O$ and $k\in\N
+                                                  $. Then we define the $k$\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no . in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+
+! LaTeX Error: Environment align* undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.233 \begin{align*}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no m in font nullfont!
+! Missing $ inserted.
+<inserted text>
+                $
+l.234 m_
+        k \coloneqq \E \left[X^k \right] = \int_{-\infty}^{+\infty} x^k f(x)...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Undefined control sequence.
+l.234 m_k \coloneqq
+                    \E \left[X^k \right] = \int_{-\infty}^{+\infty} x^k f(x)...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.234 m_k \coloneqq \E
+                       \left[X^k \right] = \int_{-\infty}^{+\infty} x^k f(x)...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{align*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.235 \end{align*}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text>
+                $
+l.235 \end{align*}
+
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no F in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+
+! LaTeX Error: Environment align* undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.237 \begin{align*}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.238 \m
+        _k \coloneqq \E \left[\left(X - \m \right)^k \right] = \int_{-\infty...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing $ inserted.
+<inserted text>
+                $
+l.238 \m_
+         k \coloneqq \E \left[\left(X - \m \right)^k \right] = \int_{-\infty...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Undefined control sequence.
+l.238 \m_k \coloneqq
+                     \E \left[\left(X - \m \right)^k \right] = \int_{-\infty...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.238 \m_k \coloneqq \E
+                        \left[\left(X - \m \right)^k \right] = \int_{-\infty...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.238 \m_k \coloneqq \E \left[\left(X - \m
+                                           \right)^k \right] = \int_{-\infty...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.238 ...] = \int_{-\infty}^{+\infty} \left(x - \m
+                                                  \right)^k f(x) dx,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{align*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.239 \end{align*}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text>
+                $
+l.239 \end{align*}
+
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+! Undefined control sequence.
+<recently read> \m
+
+l.240 where we denote $\m
+                         =\E[X]$.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.240 where we denote $\m=\E
+                            [X]$.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no . in font nullfont!
+
+! LaTeX Error: \begin{document} ended by \end{definition}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.241 \end{definition}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 232--242
+[]
+ []
+
+
+Overfull \hbox (24.44443pt too wide) in paragraph at lines 232--242
+\/cmr/m/n/10 (^^_\OML/cmm/m/it/10 ; ; \/cmr/m/n/10 )$
+ []
+
+
+Overfull \hbox (9.06943pt too wide) in paragraph at lines 232--242
+\OML/cmm/m/it/10 X$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 232--242
+\/cmr/m/n/10 ^^_$
+ []
+
+
+Overfull \hbox (14.96524pt too wide) in paragraph at lines 232--242
+\OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 2$
+ []
+
+
+Overfull \hbox (9.35416pt too wide) in paragraph at lines 232--242
+\OML/cmm/m/it/10 k$\OT1/cmr/bx/n/10 -
+ []
+
+
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 th
+ []
+
+
+Overfull \hbox (19.16656pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 mo-
+ []
+
+
+Overfull \hbox (25.3957pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 ment
+ []
+
+
+Overfull \hbox (9.06943pt too wide) in paragraph at lines 232--242
+\OML/cmm/m/it/10 X$
+ []
+
+
+Overfull \hbox (39.46527pt too wide) in paragraph at lines 232--242
+[] [] \/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (66.74315pt too wide) in paragraph at lines 232--242
+[][] \OML/cmm/m/it/10 x[]f\/cmr/m/n/10 (\OML/cmm/m/it/10 x\/cmr/m/n/10 )\OML/cm
+m/m/it/10 dx:$
+ []
+
+
+Overfull \hbox (9.35416pt too wide) in paragraph at lines 232--242
+\OML/cmm/m/it/10 k$\OT1/cmr/bx/n/10 -
+ []
+
+
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 th
+ []
+
+
+Overfull \hbox (20.60406pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 cen-
+ []
+
+
+Overfull \hbox (17.99295pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 tral
+ []
+
+
+Overfull \hbox (19.16656pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 mo-
+ []
+
+
+Overfull \hbox (25.3957pt too wide) in paragraph at lines 232--242
+\OT1/cmr/bx/n/10 ment
+ []
+
+
+Overfull \hbox (9.06943pt too wide) in paragraph at lines 232--242
+\OML/cmm/m/it/10 X$
+ []
+
+
+Overfull \hbox (56.13196pt too wide) in paragraph at lines 232--242
+[] [] \/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (83.96538pt too wide) in paragraph at lines 232--242
+[][] [][] \OML/cmm/m/it/10 f\/cmr/m/n/10 (\OML/cmm/m/it/10 x\/cmr/m/n/10 )\OML/
+cmm/m/it/10 dx;$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 232--242
+\/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (14.625pt too wide) in paragraph at lines 232--242
+\/cmr/m/n/10 [\OML/cmm/m/it/10 X\/cmr/m/n/10 ]$
+ []
+
+
+! LaTeX Error: Environment remark undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.244 \begin{remark}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+! Undefined control sequence.
+<write> ...eference `def:moment' on page \thepage
+                                                  \space undefined\on@line .
+l.245 ...mptions as in definition \ref{def:moment}
+                                                   hold. Usually, the first ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `def:moment' on page  undefined on input line 245.
+
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no U in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no . in font nullfont!
+
+! LaTeX Error: \begin{document} ended by \end{remark}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.246 \end{remark}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 245--247
+[]
+ []
+
+
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 245--247
+[]
+ []
+
+
+Overfull \hbox (26.83318pt too wide) in paragraph at lines 245--247
+\OT1/cmr/bx/n/10 mean
+ []
+
+
+Overfull \hbox (22.78459pt too wide) in paragraph at lines 245--247
+\OT1/cmr/bx/n/10 vari-
+ []
+
+
+Overfull \hbox (22.36098pt too wide) in paragraph at lines 245--247
+\OT1/cmr/bx/n/10 ance
+ []
+
+
+Overfull \hbox (9.06943pt too wide) in paragraph at lines 245--247
+\OML/cmm/m/it/10 X$
+ []
+
+Missing character: There is no N in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no [ in font nullfont!
 \citation{kingma2014adam}
 ! Undefined control sequence.
 <write> ...: Citation `\@citeb ' on page \thepage
                                                   \space undefined\on@line .
-l.228 ... (ADAM)\grqq{}, see \cite{kingma2014adam}
-                                                  . See algorithm \ref{alg:a...
+l.248 ...ease take a look at \cite{kingma2014adam}
+                                                   or \cite[chapter~8]{goodf...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -15593,27 +16468,18 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `kingma2014adam' on page  undefined on input line 228.
+LaTeX Warning: Citation `kingma2014adam' on page  undefined on input line 248.
 
 Missing character: There is no ] in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no S in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no g in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no m in font nullfont!
+Missing character: There is no [ in font nullfont!
+\citation{goodfellow2016deep}
 ! Undefined control sequence.
-<write> ... Reference `alg:adam' on page \thepage
+<write> ...: Citation `\@citeb ' on page \thepage
                                                   \space undefined\on@line .
-l.228 ...ma2014adam}. See algorithm \ref{alg:adam}
-                                                   for pseudo-code of the pr...
+l.248 ...} or \cite[chapter~8]{goodfellow2016deep}
+                                                  .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -15621,57 +16487,32 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `alg:adam' on page  undefined on input line 228.
+LaTeX Warning: Citation `goodfellow2016deep' on page  undefined on input line 2
+48.
 
-Missing character: There is no f in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no - in font nullfont!
+Missing character: There is no , in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
+Missing character: There is no p in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no ] in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 228--229
+Overfull \hbox (20.0pt too wide) in paragraph at lines 248--249
 []
  []
 
 
-Overfull \hbox (5.43053pt too wide) in paragraph at lines 228--229
+Overfull \hbox (5.43053pt too wide) in paragraph at lines 248--249
 []
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 228--229
+Overfull \hbox (5.43053pt too wide) in paragraph at lines 248--249
 []
  []
 
@@ -15682,7 +16523,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.231 \begin{algorithm}
+l.250 \begin{algorithm}
                        [H]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -15695,8 +16536,8 @@ Missing character: There is no L in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.232 Let $g_t\coloneqq
-                        \nabla_{\t}f_t(\t)$ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq
+                        \nabla_{\t}f_t(\t)$ denote the gradient, i.e. the ve...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -15704,13 +16545,13 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 232.
+LaTeX Warning: Command \t invalid in math mode on input line 251.
 
 ! Argument of \UseTextAccent  has an extra }.
 <inserted text>
                 \par
-l.232 Let $g_t\coloneqq \nabla_{\t}
-                                   f_t(\t)$ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}
+                                   f_t(\t)$ denote the gradient, i.e. the ve...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
 this error. If you simply proceed now, the `\par' that
@@ -15722,8 +16563,8 @@ Runaway argument?
 ! Paragraph ended before \UseTextAccent  was complete.
 <to be read again>
                    \par
-l.232 Let $g_t\coloneqq \nabla_{\t}
-                                   f_t(\t)$ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}
+                                   f_t(\t)$ denote the gradient, i.e. the ve...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
@@ -15731,16 +16572,16 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.232 Let $g_t\coloneqq \nabla_{\t}
-                                   f_t(\t)$ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}
+                                   f_t(\t)$ denote the gradient, i.e. the ve...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Missing } inserted.
 <inserted text>
                 }
-l.232 Let $g_t\coloneqq \nabla_{\t}
-                                   f_t(\t)$ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}
+                                   f_t(\t)$ denote the gradient, i.e. the ve...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -15748,20 +16589,20 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 231--232
+Overfull \hbox (20.0pt too wide) in paragraph at lines 250--251
 []
  []
 
 
-Overfull \hbox (17.12389pt too wide) in paragraph at lines 231--232
+Overfull \hbox (17.12389pt too wide) in paragraph at lines 250--251
 \OML/cmm/m/it/10 g[]\OMS/cmsy/m/n/10 r[]$
  []
 
 ! Extra }, or forgotten \endgroup.
 <recently read> }
 
-l.232 Let $g_t\coloneqq \nabla_{\t}
-                                   f_t(\t)$ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}
+                                   f_t(\t)$ denote the gradient, i.e. the ve...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
 you forgot something else, as in `\hbox{$x}'. In such cases
@@ -15772,30 +16613,30 @@ Missing character: There is no f in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.232 Let $g_t\coloneqq \nabla_{\t}f_
-                                     t(\t)$ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}f_
+                                     t(\t)$ denote the gradient, i.e. the ve...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 232.
+LaTeX Warning: Command \t invalid in math mode on input line 251.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 232.
+LaTeX Warning: Command \t invalid in math mode on input line 251.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.232 Let $g_t\coloneqq \nabla_{\t}f_t(\t)
-                                          $ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}f_t(\t)
+                                          $ denote the gradient, i.e. the ve...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.232 Let $g_t\coloneqq \nabla_{\t}f_t(\t)
-                                          $ denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}f_t(\t)
+                                          $ denote the gradient, i.e. the ve...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
@@ -15804,8 +16645,8 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.232 Let $g_t\coloneqq \nabla_{\t}f_t(\t)$
-                                            denote the and  $g_t^2 \coloneqq...
+l.251 Let $g_t\coloneqq \nabla_{\t}f_t(\t)$
+                                            denote the gradient, i.e. the ve...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -15821,11 +16662,135 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no . in font nullfont!
+
+LaTeX Warning: Command \t invalid in math mode on input line 251.
+
+
+LaTeX Warning: Command \t invalid in math mode on input line 251.
+
+! Improper \spacefactor.
+<recently read> \spacefactor
+
+l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
+                                                   evaluated at timestep $t$...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
+                                                   evaluated at timestep $t$...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent
+                                                  #1 #2\egroup \ifmmode \els...
+l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
+                                                   evaluated at timestep $t$...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again>
+                   \edef
+l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
+                                                   evaluated at timestep $t$...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing } inserted.
+<inserted text>
+                }
+l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
+                                                   evaluated at timestep $t$...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text>
+                }
+l.251 ...$f_t$ w.r.t. $\t$ evaluated at timestep $
+                                                  t$. Furthermore,  let $g_t...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no t in font nullfont!
+Missing character: There is no g in font nullfont!
+! Missing $ inserted.
+<inserted text>
+                $
+l.251 ...ed at timestep $t$. Furthermore,  let $g_
+                                                  t^2 \coloneqq g_t \odot g_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
 ! Undefined control sequence.
-l.232 ...f_t(\t)$ denote the and  $g_t^2 \coloneqq
+l.251 ...p $t$. Furthermore,  let $g_t^2 \coloneqq
                                                    g_t \odot g_t$ denote the...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -15848,25 +16813,20 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no - in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no q in font nullfont!
 Missing character: There is no u in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no f in font nullfont!
 Missing character: There is no . in font nullfont!
 
 ! LaTeX Error: \caption outside float.
@@ -15875,7 +16835,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.233 \caption
+l.252 \caption
               {ADAM optimizer}\label{alg:adam}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -15900,7 +16860,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.234 \begin{algorithmic}
+l.253 \begin{algorithmic}
                          [1]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -15910,7 +16870,7 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no ] in font nullfont!
 ! Undefined control sequence.
-l.235 \Require
+l.254 \Require
                $\a$: Stepsize
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -15919,7 +16879,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \$ invalid in math mode on input line 235.
+LaTeX Warning: Command \$ invalid in math mode on input line 254.
 
 
 ! LaTeX Error: Command \$ unavailable in encoding .
@@ -15928,14 +16888,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.235 \Require $\a$
+l.254 \Require $\a$
                    : Stepsize
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.236 \Require
+l.255 \Require
                $\b_1,\b_2\in [0,1)$: Exponential decay rates for the moment ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -15946,7 +16906,7 @@ and I'll forget about whatever was undefined.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.236 \Require $\b_
+l.255 \Require $\b_
                    1,\b_2\in [0,1)$: Exponential decay rates for the moment ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -15954,7 +16914,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \endtemplate
-l.236 \Require $\b_
+l.255 \Require $\b_
                    1,\b_2\in [0,1)$: Exponential decay rates for the moment ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -15964,7 +16924,7 @@ so that I will find a matching right brace soon.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.236 \Require $\b_
+l.255 \Require $\b_
                    1,\b_2\in [0,1)$: Exponential decay rates for the moment ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -15972,7 +16932,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.236 \Require $\b_
+l.255 \Require $\b_
                    1,\b_2\in [0,1)$: Exponential decay rates for the moment ...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -15985,7 +16945,7 @@ Missing character: There is no , in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.236 \Require $\b_1,\b_
+l.255 \Require $\b_1,\b_
                         2\in [0,1)$: Exponential decay rates for the moment ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -15993,7 +16953,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \endtemplate
-l.236 \Require $\b_1,\b_
+l.255 \Require $\b_1,\b_
                         2\in [0,1)$: Exponential decay rates for the moment ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16003,7 +16963,7 @@ so that I will find a matching right brace soon.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.236 \Require $\b_1,\b_
+l.255 \Require $\b_1,\b_
                         2\in [0,1)$: Exponential decay rates for the moment ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16011,7 +16971,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.236 \Require $\b_1,\b_
+l.255 \Require $\b_1,\b_
                         2\in [0,1)$: Exponential decay rates for the moment ...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16023,7 +16983,7 @@ Missing character: There is no 2 in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.236 \Require $\b_1,\b_2\in
+l.255 \Require $\b_1,\b_2\in
                              [0,1)$: Exponential decay rates for the moment ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16072,7 +17032,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 ! Undefined control sequence.
-l.237 \Require
+l.256 \Require
                $f(\t)$: Stochastic objective function with parameters $\t$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16081,15 +17041,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 237.
+LaTeX Warning: Command \t invalid in math mode on input line 256.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 237.
+LaTeX Warning: Command \t invalid in math mode on input line 256.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.237 \Require $f(\t)
+l.256 \Require $f(\t)
                      $: Stochastic objective function with parameters $\t$
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -16097,7 +17057,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.237 \Require $f(\t)
+l.256 \Require $f(\t)
                      $: Stochastic objective function with parameters $\t$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16107,7 +17067,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.237 \Require $f(\t)$
+l.256 \Require $f(\t)$
                       : Stochastic objective function with parameters $\t$
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16158,15 +17118,15 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 
-LaTeX Warning: Command \t invalid in math mode on input line 237.
+LaTeX Warning: Command \t invalid in math mode on input line 256.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 237.
+LaTeX Warning: Command \t invalid in math mode on input line 256.
 
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.237 ...c objective function with parameters $\t$
+l.256 ...c objective function with parameters $\t$
 
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -16176,7 +17136,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \let \maybe@load@fontshape...
-l.237 ...c objective function with parameters $\t$
+l.256 ...c objective function with parameters $\t$
 
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -16187,7 +17147,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.237 ...c objective function with parameters $\t$
+l.256 ...c objective function with parameters $\t$
 
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -16195,7 +17155,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.237 ...c objective function with parameters $\t$
+l.256 ...c objective function with parameters $\t$
 
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16205,7 +17165,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.237 ...c objective function with parameters $\t$
+l.256 ...c objective function with parameters $\t$
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16214,7 +17174,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.238 \Require
+l.257 \Require
                $\t_0$: Initial parameter vector
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16225,7 +17185,7 @@ and I'll forget about whatever was undefined.
 ! Missing } inserted.
 <inserted text>
                 }
-l.238 \Require $
+l.257 \Require $
                 \t_0$: Initial parameter vector
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16236,7 +17196,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.238 \Require $\t_
+l.257 \Require $\t_
                    0$: Initial parameter vector
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16244,7 +17204,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.238 \Require $\t_
+l.257 \Require $\t_
                    0$: Initial parameter vector
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16254,7 +17214,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.238 \Require $\t_
+l.257 \Require $\t_
                    0$: Initial parameter vector
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -16264,7 +17224,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.238 \Require $\t_
+l.257 \Require $\t_
                    0$: Initial parameter vector
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -16272,7 +17232,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.238 \Require $\t_
+l.257 \Require $\t_
                    0$: Initial parameter vector
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16282,7 +17242,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.238 \Require $\t_
+l.257 \Require $\t_
                    0$: Initial parameter vector
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16290,8 +17250,8 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 ! Undefined control sequence.
-l.239 \State
-             $m_0 \gets 0$ (Initialize $\nth{1}$ moment vector)
+l.258 \State
+             $m_0,v_0 \gets 0$ (Initialize $\nth{1}$ and $\nth{2}$ moment ve...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -16301,17 +17261,8 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \nth
 
-l.239 \State $m_0 \gets 0$ (Initialize $\nth
-                                            {1}$ moment vector)
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.240 \State
-             $v_0 \gets 0$ (Initialize $\nth{2}$ moment vector)
+l.258 \State $m_0,v_0 \gets 0$ (Initialize $\nth
+                                                {1}$ and $\nth{2}$ moment ve...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -16321,8 +17272,8 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \nth
 
-l.240 \State $v_0 \gets 0$ (Initialize $\nth
-                                            {2}$ moment vector)
+l.258 ... \gets 0$ (Initialize $\nth{1}$ and $\nth
+                                                  {2}$ moment vector)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -16330,7 +17281,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.241 \State
+l.259 \State
              $t \gets 0$ (Initialize timestep)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16339,7 +17290,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.242 \While
+l.260 \While
             {$\t_t$ not converged}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16348,15 +17299,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 242.
+LaTeX Warning: Command \t invalid in math mode on input line 260.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 242.
+LaTeX Warning: Command \t invalid in math mode on input line 260.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.242 \While{$\t_
+l.260 \While{$\t_
                  t$ not converged}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16364,7 +17315,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.242 \While{$\t_
+l.260 \While{$\t_
                  t$ not converged}
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16374,7 +17325,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.242 \While{$\t_
+l.260 \While{$\t_
                  t$ not converged}
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -16384,7 +17335,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.242 \While{$\t_
+l.260 \While{$\t_
                  t$ not converged}
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -16392,7 +17343,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.242 \While{$\t_
+l.260 \While{$\t_
                  t$ not converged}
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16402,7 +17353,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.242 \While{$\t_
+l.260 \While{$\t_
                  t$ not converged}
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16412,7 +17363,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.242 \While{$\t_t$
+l.260 \While{$\t_t$
                     not converged}
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16421,7 +17372,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.243 \State
+l.261 \State
              $t\gets t+1$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16432,7 +17383,7 @@ and I'll forget about whatever was undefined.
 ! Missing } inserted.
 <inserted text>
                 }
-l.243 \State $
+l.261 \State $
               t\gets t+1$
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16443,13 +17394,13 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.243 \State $t\gets
+l.261 \State $t\gets
                      t+1$
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.244 \State
+l.262 \State
              $g_t \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment{Get gradients w.r...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16458,12 +17409,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 244.
+LaTeX Warning: Command \t invalid in math mode on input line 262.
 
 ! Argument of \UseTextAccent  has an extra }.
 <inserted text>
                 \par
-l.244 \State $g_t \gets \nabla_{\t}
+l.262 \State $g_t \gets \nabla_{\t}
                                    f_t(\t_{t-1})$ \Comment{Get gradients w.r...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -16476,7 +17427,7 @@ Runaway argument?
 ! Paragraph ended before \UseTextAccent  was complete.
 <to be read again>
                    \par
-l.244 \State $g_t \gets \nabla_{\t}
+l.262 \State $g_t \gets \nabla_{\t}
                                    f_t(\t_{t-1})$ \Comment{Get gradients w.r...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -16485,7 +17436,7 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.244 \State $g_t \gets \nabla_{\t}
+l.262 \State $g_t \gets \nabla_{\t}
                                    f_t(\t_{t-1})$ \Comment{Get gradients w.r...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16493,7 +17444,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.244 \State $g_t \gets \nabla_{\t}
+l.262 \State $g_t \gets \nabla_{\t}
                                    f_t(\t_{t-1})$ \Comment{Get gradients w.r...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16504,21 +17455,21 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.244 \State $g_t \gets \nabla_{\t}f_
+l.262 \State $g_t \gets \nabla_{\t}f_
                                      t(\t_{t-1})$ \Comment{Get gradients w.r...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 244.
+LaTeX Warning: Command \t invalid in math mode on input line 262.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 244.
+LaTeX Warning: Command \t invalid in math mode on input line 262.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.244 \State $g_t \gets \nabla_{\t}f_t(\t_
+l.262 \State $g_t \gets \nabla_{\t}f_t(\t_
                                           {t-1})$ \Comment{Get gradients w.r...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16526,7 +17477,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.244 \State $g_t \gets \nabla_{\t}f_t(\t_
+l.262 \State $g_t \gets \nabla_{\t}f_t(\t_
                                           {t-1})$ \Comment{Get gradients w.r...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16536,7 +17487,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.244 \State $g_t \gets \nabla_{\t}f_t(\t_
+l.262 \State $g_t \gets \nabla_{\t}f_t(\t_
                                           {t-1})$ \Comment{Get gradients w.r...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -16546,7 +17497,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.244 \State $g_t \gets \nabla_{\t}f_t(\t_
+l.262 \State $g_t \gets \nabla_{\t}f_t(\t_
                                           {t-1})$ \Comment{Get gradients w.r...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -16554,7 +17505,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.244 \State $g_t \gets \nabla_{\t}f_t(\t_
+l.262 \State $g_t \gets \nabla_{\t}f_t(\t_
                                           {t-1})$ \Comment{Get gradients w.r...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16564,7 +17515,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.244 \State $g_t \gets \nabla_{\t}f_t(\t_
+l.262 \State $g_t \gets \nabla_{\t}f_t(\t_
                                           {t-1})$ \Comment{Get gradients w.r...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16574,7 +17525,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.244 \State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$
+l.262 \State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$
                                                   \Comment{Get gradients w.r...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16583,7 +17534,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.244 ... \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment
+l.262 ... \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment
                                                   {Get gradients w.r.t. stoc...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16592,7 +17543,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.245 \State
+l.263 \State
              $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Upda...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16601,15 +17552,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 245.
+LaTeX Warning: Command \b invalid in math mode on input line 263.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 245.
+LaTeX Warning: Command \b invalid in math mode on input line 263.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.245 \State $m_t \gets\b_
+l.263 \State $m_t \gets\b_
                           1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Upda...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16617,7 +17568,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \endtemplate
-l.245 \State $m_t \gets\b_
+l.263 \State $m_t \gets\b_
                           1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Upda...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16627,7 +17578,7 @@ so that I will find a matching right brace soon.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.245 \State $m_t \gets\b_
+l.263 \State $m_t \gets\b_
                           1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Upda...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16635,7 +17586,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.245 \State $m_t \gets\b_
+l.263 \State $m_t \gets\b_
                           1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Upda...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16644,12 +17595,12 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 245.
+LaTeX Warning: Command \b invalid in math mode on input line 263.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.245 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
+l.263 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
                                                   1)\cdot g_t$ \Comment{Upda...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16657,7 +17608,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \endtemplate
-l.245 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
+l.263 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
                                                   1)\cdot g_t$ \Comment{Upda...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16667,7 +17618,7 @@ so that I will find a matching right brace soon.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.245 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
+l.263 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
                                                   1)\cdot g_t$ \Comment{Upda...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16675,7 +17626,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.245 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
+l.263 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_
                                                   1)\cdot g_t$ \Comment{Upda...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16684,7 +17635,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.245 ...dot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment
+l.263 ...dot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment
                                                   {Update biased first momen...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16693,7 +17644,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.246 \State
+l.264 \State
              $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Up...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16702,15 +17653,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 246.
+LaTeX Warning: Command \b invalid in math mode on input line 264.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 246.
+LaTeX Warning: Command \b invalid in math mode on input line 264.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.246 \State $v_t \gets\b_
+l.264 \State $v_t \gets\b_
                           2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Up...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16718,7 +17669,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \endtemplate
-l.246 \State $v_t \gets\b_
+l.264 \State $v_t \gets\b_
                           2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Up...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16728,7 +17679,7 @@ so that I will find a matching right brace soon.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.246 \State $v_t \gets\b_
+l.264 \State $v_t \gets\b_
                           2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Up...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16736,7 +17687,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.246 \State $v_t \gets\b_
+l.264 \State $v_t \gets\b_
                           2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Up...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16745,12 +17696,12 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 246.
+LaTeX Warning: Command \b invalid in math mode on input line 264.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.246 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
+l.264 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
                                                   2)\cdot g_t^2$ \Comment{Up...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16758,7 +17709,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \endtemplate
-l.246 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
+l.264 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
                                                   2)\cdot g_t^2$ \Comment{Up...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16768,7 +17719,7 @@ so that I will find a matching right brace soon.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.246 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
+l.264 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
                                                   2)\cdot g_t^2$ \Comment{Up...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16776,7 +17727,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.246 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
+l.264 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_
                                                   2)\cdot g_t^2$ \Comment{Up...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16785,7 +17736,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.246 ...t v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment
+l.264 ...t v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment
                                                   {Update biased second mome...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16794,7 +17745,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.247 \State
+l.265 \State
              $\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment{Compute bias-correcte...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16803,15 +17754,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 247.
+LaTeX Warning: Command \b invalid in math mode on input line 265.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 247.
+LaTeX Warning: Command \b invalid in math mode on input line 265.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.247 \State $\hat{m}_t \gets m_t/(1-\b_
+l.265 \State $\hat{m}_t \gets m_t/(1-\b_
                                         1^t)$ \Comment{Compute bias-correcte...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16819,7 +17770,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \endtemplate
-l.247 \State $\hat{m}_t \gets m_t/(1-\b_
+l.265 \State $\hat{m}_t \gets m_t/(1-\b_
                                         1^t)$ \Comment{Compute bias-correcte...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -16829,7 +17780,7 @@ so that I will find a matching right brace soon.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.247 \State $\hat{m}_t \gets m_t/(1-\b_
+l.265 \State $\hat{m}_t \gets m_t/(1-\b_
                                         1^t)$ \Comment{Compute bias-correcte...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -16837,7 +17788,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.247 \State $\hat{m}_t \gets m_t/(1-\b_
+l.265 \State $\hat{m}_t \gets m_t/(1-\b_
                                         1^t)$ \Comment{Compute bias-correcte...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16846,7 +17797,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.247 ...$\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment
+l.265 ...$\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment
                                                   {Compute bias-corrected fi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16855,7 +17806,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.248 \State
+l.266 \State
              $\hat{v}_t \gets v_t/(1-\b_2^t)$ \Comment{Compute bias-correcte...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -16864,83 +17815,22 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 248.
+LaTeX Warning: Command \b invalid in math mode on input line 266.
 
 
-LaTeX Warning: Command \b invalid in math mode on input line 248.
-
-! Missing $ inserted.
-<inserted text>
-                $
-l.248 \State $\hat{v}_t \gets v_t/(1-\b_
-                                        2^t)$ \Comment{Compute bias-correcte...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing { inserted.
-<to be read again>
-                   \endtemplate
-l.248 \State $\hat{v}_t \gets v_t/(1-\b_
-                                        2^t)$ \Comment{Compute bias-correcte...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
+LaTeX Warning: Command \b invalid in math mode on input line 266.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.248 \State $\hat{v}_t \gets v_t/(1-\b_
+l.266 \State $\hat{v}_t \gets v_t/(1-\b_
                                         2^t)$ \Comment{Compute bias-correcte...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text>
-                }
-l.248 \State $\hat{v}_t \gets v_t/(1-\b_
-                                        2^t)$ \Comment{Compute bias-correcte...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Undefined control sequence.
-l.248 ...$\hat{v}_t \gets v_t/(1-\b_2^t)$ \Comment
-                                                  {Compute bias-corrected se...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.249 \State
-             $\t_t \gets \t_{t-1} - \a\cdot \hat{m}_t / (\sqrt{\hat{v}_t} + ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-LaTeX Warning: Command \t invalid in math mode on input line 249.
-
-
-LaTeX Warning: Command \t invalid in math mode on input line 249.
-
-! Missing $ inserted.
-<inserted text>
-                $
-l.249 \State $\t_
-                 t \gets \t_{t-1} - \a\cdot \hat{m}_t / (\sqrt{\hat{v}_t} + ...
 (That makes 100 errors; please try again.)
 Here is how much of TeX's memory you used:
- 65 strings out of 476029
- 826 string characters out of 5790166
+ 67 strings out of 476029
+ 839 string characters out of 5790166
  1862346 words of memory out of 5000000
- 20604 multiletter control sequences out of 15000+600000
+ 20606 multiletter control sequences out of 15000+600000
  513270 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  25i,24n,32p,729b,232s stack positions out of 10000i,1000n,20000p,200000b,200000s
