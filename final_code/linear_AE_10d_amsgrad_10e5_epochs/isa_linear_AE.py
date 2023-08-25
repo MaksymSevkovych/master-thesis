@@ -11,8 +11,8 @@ from torchvision import datasets, transforms
 
 # config
 torch.set_float32_matmul_precision("medium")
-LATENT_DIMS = 3
-NUM_EPOCHS = 10000
+LATENT_DIMS = 10
+NUM_EPOCHS = 100000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
 BATCH_SIZE = 512
