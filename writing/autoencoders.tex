@@ -222,52 +222,119 @@ The MNIST dataset $\D$ consists of greyscale images with a resolution of $(28,28
 Now, let us take a look at a specific example of a linear autoencoder defined on the MNIST dataset.
 
 \begin{algorithm}
-Let the input and output dimensions be $n_i, n_o = 784$. Furthermore, let the encoder and the decoder have three hidden layers with dimensions $n_1 = 128, n_2=64$ and $n_3 = 12$ with bottleneck $n_b = 2$.\\
-Let the chosen optimizer first be ADAM, and afterwards be AMSGrad with a learning rate of $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs with a batch size of $512$.
-\caption{Linear Autoencoder}\label{alg:linAE_2d}
+Let the input and output dimensions be $n_i, n_o \in\N$. Furthermore, let the encoder and the decoder have $k$ hidden layers with dimensions $n_1, n_2,\ldots, n_k\in\N$ with bottleneck $n_b\N$.\\
+Let the chosen optimizer be ADAM first and afterwards be AMSGrad with a learning rate $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs with a batch size of $512$.
+\caption{Linear Autoencoder}\label{alg:linear_AE_2d}
 \begin{algorithmic}[1]
-\For{epoch $\in \{1,\ldots, 1.000\}$}
+\Require $\g \gets \num{3e-4}$
+\For{epoch in $\{1,\ldots, 10.000\}$}
 	\For{image in batch}
 		\State image = image.reshape(784) \Comment{Convert the image from matrix to array.}
-	    \State reconstructed = autoencoder(image) \Comment{Feed the image into the autoencoder.}
+	    \State encoded = encoder(image) \Comment{Encode the image onto latent space.}
+		\State reconstructed = decoder(encoded) \Comment{Decode the encoded image.}
     	\State loss = MSE(reconstructed, image) \Comment{Compare the output to the input.}
-	    \State backpropagation(loss) \Comment{Perform an optimization step.}
+	    \State optimization(loss, $\g$) \Comment{Perform an optimization step.}
     \EndFor
 \EndFor
 \end{algorithmic}
 \end{algorithm}
 
-Now, let's take a look at the generated model. In figure \ref{fig:linAE_3d_latent} we can see the latent space of the autoencoder from two different perspectives. Furthermore, in figure \ref{fig:linAE_3d_adam_inference} we can see ten reconstructions for each of the ten digits. The training progress is depicted in figure ref{fig:linAE_3d_train}
+
+Let's take a look at the trained autoencoders using the ADAM and the AMSGrad optimizer. In figure \ref{fig:linear_AE_2d_latent} we can see the latent space of the models. Furthermore, in figure \ref{fig:linear_AE_2d_inference} we can see ten reconstructions for each of the ten digits. The training progresses are illustrated in figure \ref{fig:linear_AE_2d_training_progress}.
+
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.5\linewidth}
-      \includegraphics[width=\linewidth]{lin_AE_3d_adam_latent_1}
-      \caption{The figure illustrates the training progress of the linear autoencoder with ADAM optimizer }\label{fig:lin_AE_3d_adam_train}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_2d_adam_latent}
 	\end{minipage}
-	\begin{minipage}[b]{0.5\linewidth}
-      \includegraphics[width=\linewidth]{lin_AE_3d_adam_latent_2}
-      \caption{The figure illustrates the training progress of the linear autoencoder with ADAM optimizer }\label{fig:lin_AE_3d_adam_train}
+	\begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_latent}
 	\end{minipage}
 \end{center}
+\caption{The figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right). Each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded.}\label{fig:linear_AE_2d_latent}
 \end{figure}
 
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.9\linewidth}
-      \includegraphics[width=\linewidth]{lin_AE_3d_adam_inference}
-      \caption{The figure illustrates the inference of the linear autoencoder with ADAM optimizer. The inference are ten reconstructed images for each of the ten digits.}\label{fig:lin_AE_3d_adam_inference}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_2d_adam_inference}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_inference}
 	\end{minipage}
 \end{center}
+\caption{The figure illustrates the inference of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right). The inference are ten reconstructed images for each of the ten digits.}\label{fig:linear_AE_2d_inference}
 \end{figure}
 
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.9\linewidth}
-      \includegraphics[width=\linewidth]{lin_AE_3d_adam_train}
-      \caption{The figure illustrates the training progress of the linear autoencoder with ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.}\label{fig:lin_AE_3d_adam_train}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_2d_adam_training_progress}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_training_progress}
 	\end{minipage}
 \end{center}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_2d_training_progress}
 \end{figure}
+
+\iffalse
+
+
+
+Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the ADAM optimizer and in figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in figure \ref{fig:linear_AE_3d_inference} we can see ten reconstructions for each of the ten digits. The training progress is illustrated in figure ref{fig:linear_AE_3d_training_progress}.
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_adam_latent_1}
+	\end{minipage}
+	\begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_adam_latent_2}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer from two different perspectives. Each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded.}\label{fig:linear_AE_3d_adam_latent}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_latent_1}
+	\end{minipage}
+	\begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_latent_2}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer from two different perspectives. Each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded.}\label{fig:linear_AE_3d_amsgrad_latent}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_adam_inference}
+	\end{minipage}
+   \begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_inference}
+	\end{minipage}
+\end{center}
+The figure illustrates the inference of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right). The inference are ten reconstructed images for each of the ten digits.\label{fig:linear_AE_3d_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_adam_training_progress}
+	\end{minipage}
+	\begin{minipage}[b]{0.45\linewidth}
+      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_training_progress}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_2d_training_progress}
+\end{figure}
+
+\fi

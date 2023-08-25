@@ -470,7 +470,7 @@ Since neural networks rarely produce a value that is a fraction with denominator
 \begin{lemma}
 Let $d\in\N$ be a number of channels and let $p\in [0,1]^d$. Then we can consider $p$ as a pixel by transforming it through
 \begin{align*}
-\p_i \approx 255 \cdot p_i, \qquad i=1,\ldots,d,
+\p_i = \left\lceil 255 \cdot p_i - 0.5 \right\rceil, \qquad i=1,\ldots,d,
 \end{align*}
 where we round each entry $p_i$ to an integer.
 \end{lemma}
@@ -495,7 +495,7 @@ If we now round each entry $p_i$ to an integer, we yield exactly the representat
 Now having formally defined what an image is, we can consider how a neural network operating on images looks like. In order to do this, it is sufficient to consider a single neural layer, since neural networks consist of multiple layers. But first, we need some technical assertions to understand how we can actually feed images into neural networks, since images are somewhat matrices and neural networks often operate on arrays.
 
 
-\begin{lemma}\label{mat_as_array}
+\begin{lemma}\label{lemma:mat_as_array}
 Let $\O$ be a pixel domain with resolution $(M,N)$. Then the image $\p$ with $d\in\N$ channels defined on $\P_{d,\O}$ can be represented as an $MN$-dimensional array instead of an $M\times N$-matrix.
 \end{lemma}
 
@@ -525,9 +525,9 @@ If we now transpose each $\hat{\p}_i$ and keep the same representation, we trans
 \end{align*}
 \end{proof}
 
-Lemma \ref{mat_as_array} allows us to feed images into a neural network by considering them as one large array. However, it still is unclear how the images are processed throughout the neural network. In order to formulate this, we need to define a function operating on images.
+Lemma \ref{lemma:mat_as_array} allows us to feed images into a neural network by considering them as one large array. However, it still is unclear how the images are processed throughout the neural network. In order to formulate this, we need to define a function operating on images.
 
-\begin{definition}\label{def_img_operator}
+\begin{definition}\label{def:img_operator}
 Let $\O_0$ and $\O_1$ be pixel domains with resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, let $d\in\N$ be an arbitrary number of channels.\\
 Then we define an \textbf{image operator} $T$ as the continuous mapping
 \begin{align*}
@@ -537,23 +537,23 @@ T: \P_{d,\O_0} &\to \P_{d,\O_1}\\
 where $T$ does not change the number of channels $d$. Thus, we shorten $\P_{d,\O_0}$ to $\P_{\O_0}$ in the following.
 \end{definition}
 
-The definition \ref{def_img_operator} is quite general, since we do not demand any specific properties from the image operator $T$ whatsoever. Indeed, there are some image operators that are commonly used in computer vision. We will take a look at those in the course of this section.\\
+The definition \ref{def:img_operator} is quite general, since we do not demand any specific properties from the image operator $T$ whatsoever. Indeed, there are some image operators that are commonly used in computer vision. We will take a look at those in the course of this section.\\
 These technicalities helps us introduce neural networks operating on pictures.
 
-\begin{corollary}\label{cv_layer}
+\begin{definition}\label{def:cv_layer}
 Let $\f$ be an arbitrary activation function and $\hat{\f}$ the component-wise mapping of $\f$ as in \ref{def_layer} and $\O_0$ be an arbitrary pixel domain with resolution $(M_0,N_0)\in\N^2$. Let $\p$ be an image with number of channels $d\in\N$.\\
 Then a neural layer that operates on images looks as follows
 \begin{align*}
 H: \P_{\O_0} &\to \P_{\O_1}\\
 \p_0 &\mapsto \hat{\f}\left(T\p_0 + b\right),
 \end{align*}
-where $T$ is an image operator as in definition \ref{def_img_operator}, $b$ is a bias and $\O_1$ a pixel domain with resolution $(M_1,N_1)$.
-\end{corollary}
+where $T$ is an image operator as in definition \ref{def:img_operator}, $b$ is a bias and $\O_1$ a pixel domain with resolution $(M_1,N_1)$.
+\end{definition}
 
-With the help of corollary \ref{cv_layer} we realise, that each layer $H_i$ of a neural network in a computer vision setting represents an own image space, denoted by $\P_{\O_i}$. Meaning, that all elements fed to the corresponding layer are images with resolution $(M_i,N_i)$.\\
+With the help of definition \ref{def:cv_layer} we realise, that each layer $H_i$ of a neural network in a computer vision setting represents an own image space, denoted by $\P_{\O_i}$. Meaning, that all elements fed to the corresponding layer are images with resolution $(M_i,N_i)$.\\
 Now we want to consider some useful examples of image operators. Firstly, we will take a look at multidimensional convolutions, hence convolutions on images. For more details please look at \cite[chapter~9]{goodfellow2016deep}.
 
-\begin{proposition}\label{convolution}
+\begin{definition}\label{def:convolution_op}
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Then the \textbf{image convolution operator} $T_{\text{conv}}: \P_{\O_0} \to \P_{\O_1}$ is defined by
 \begin{align*}
 T_{\text{conv}}: \P_{\O_0} &\to \P_{\O_1}\\
@@ -565,11 +565,11 @@ This operator is defined component-wise by
 \end{align}
 where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-s+1\} \times \{1,\ldots, N_0-s+1\}$. Hence, $M_1 = M_0-s+1$ and $N_1 = N_0-s+1$.\\
 Furthermore, $k$ is called an $s$-\textbf{convolution kernel}, an image with resolution $(s,s)$ with $s\in\N$.
-\end{proposition}
+\end{definition}
 
 Another very useful example is the pooling operator. We will distinguish between average and min- and max-pooling.
 
-\begin{proposition}\label{avg_pooling}
+\begin{definition}\label{def:avg_pooling_op}
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
 Then the \textbf{average-pooling operator} $T_{\text{avg}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
 \begin{align*}
@@ -581,9 +581,9 @@ This operator is defined component-wise by
 \left(\p_1\right)_{ij} \coloneqq  \frac{1}{p_1p_2} \sum_{(m,n)\in I}\left(\p_0\right)_{m+i, n+j},
 \end{align}
 where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p_2+1\}$. Hence, $M_1 = M_0-p_1+1$ and $N_1 = N_0-p_2+1$.
-\end{proposition}
+\end{definition}
 
-\begin{proposition}\label{min_pooling}
+\begin{definition}\label{def:min_pooling_op}
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
 Then the \textbf{min-pooling operator} $T_{\text{min}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
 \begin{align*}
@@ -595,9 +595,9 @@ This operator is defined component-wise by
 \left(\p_1\right)_{ij} \coloneqq  \min_{(k,l)\in I} \left(\p_0\right)_{kl},
 \end{align}
 where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p_2+1\}$. Hence, $M_1 = M_0-p_1+1$ and $N_1 = N_0-p_2+1$.
-\end{proposition}
+\end{definition}
 
-\begin{proposition}\label{max_pooling}
+\begin{definition}\label{def:max_pooling_op}
 Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Furthermore, $s\in\N$ is called \textbf{stride} and $I\coloneqq \{1,\ldots,p_1\}\times \{1,\ldots,p_2\} \subset\N^2$ with $p_1,p_2\in\N$ is called \textbf{pooling}.\\
 Then the \textbf{max-pooling operator} $T_{\text{max}}: \P_{\O_0} \to \P_{\O_1}$ with stride $s$ and pooling $I$ is defined by
 \begin{align*}
@@ -609,4 +609,4 @@ This operator is defined component-wise by
 \left(\p_1\right)_{ij} \coloneqq  \max_{(k,l)\in I} \left(\p_0\right)_{kl},
 \end{align}
 where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p_2+1\}$. Hence, $M_1 = M_0-p_1+1$ and $N_1 = N_0-p_2+1$.
-\end{proposition}
+\end{definition}
