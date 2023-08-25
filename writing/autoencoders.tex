@@ -222,20 +222,52 @@ The MNIST dataset $\D$ consists of greyscale images with a resolution of $(28,28
 Now, let us take a look at a specific example of a linear autoencoder defined on the MNIST dataset.
 
 \begin{algorithm}
-Let the input and output dimensions be $n_i, n_o = 784$. Furthermore, let the encoder and the decoder have three hidden layers with dimensions $n_1 = 128, n_2=64$ and $n_3 = 12$ with bottleneck $n_b = 3$.\\
-Let the chosen optimizer be ADAM with a learning rate of $\g=3e-4$ and the MSE loss function. We will perform the training on $10.000$ epochs with a batch size of $512$.
-\caption{Linear autoencoder}\label{alg:linAE}
+Let the input and output dimensions be $n_i, n_o = 784$. Furthermore, let the encoder and the decoder have three hidden layers with dimensions $n_1 = 128, n_2=64$ and $n_3 = 12$ with bottleneck $n_b = 2$.\\
+Let the chosen optimizer first be ADAM, and afterwards be AMSGrad with a learning rate of $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs with a batch size of $512$.
+\caption{Linear Autoencoder}\label{alg:linAE_2d}
 \begin{algorithmic}[1]
-\State epochs $\gets 1000$
-\State epoch $\gets 0$
-\For{epoch $\leq$ epochs}
+\For{epoch $\in \{1,\ldots, 1.000\}$}
 	\For{image in batch}
 		\State image = image.reshape(784) \Comment{Convert the image from matrix to array.}
 	    \State reconstructed = autoencoder(image) \Comment{Feed the image into the autoencoder.}
     	\State loss = MSE(reconstructed, image) \Comment{Compare the output to the input.}
-	    \State backpropagation(loss) \Comment{Perform an optimizer step.}
+	    \State backpropagation(loss) \Comment{Perform an optimization step.}
     \EndFor
-    \State epoch $=$ epoch $+1$
 \EndFor
 \end{algorithmic}
 \end{algorithm}
+
+Now, let's take a look at the generated model. In figure \ref{fig:linAE_3d_latent} we can see the latent space of the autoencoder from two different perspectives. Furthermore, in figure \ref{fig:linAE_3d_adam_inference} we can see ten reconstructions for each of the ten digits. The training progress is depicted in figure ref{fig:linAE_3d_train}
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.5\linewidth}
+      \includegraphics[width=\linewidth]{lin_AE_3d_adam_latent_1}
+      \caption{The figure illustrates the training progress of the linear autoencoder with ADAM optimizer }\label{fig:lin_AE_3d_adam_train}
+	\end{minipage}
+	\begin{minipage}[b]{0.5\linewidth}
+      \includegraphics[width=\linewidth]{lin_AE_3d_adam_latent_2}
+      \caption{The figure illustrates the training progress of the linear autoencoder with ADAM optimizer }\label{fig:lin_AE_3d_adam_train}
+	\end{minipage}
+\end{center}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.9\linewidth}
+      \includegraphics[width=\linewidth]{lin_AE_3d_adam_inference}
+      \caption{The figure illustrates the inference of the linear autoencoder with ADAM optimizer. The inference are ten reconstructed images for each of the ten digits.}\label{fig:lin_AE_3d_adam_inference}
+	\end{minipage}
+\end{center}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.9\linewidth}
+      \includegraphics[width=\linewidth]{lin_AE_3d_adam_train}
+      \caption{The figure illustrates the training progress of the linear autoencoder with ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.}\label{fig:lin_AE_3d_adam_train}
+	\end{minipage}
+\end{center}
+\end{figure}
