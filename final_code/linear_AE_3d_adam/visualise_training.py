@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import plotly.express as px
 
-BASE_PATH = "final_code/linear_AE_3d_amsgrad"
+BASE_PATH = "final_code/linear_AE_3d_adam/"
 CSV_PATH = "version_0/metrics.csv"
 IMG_NAME = f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_training_progress.png"  # noqa: E501
 
