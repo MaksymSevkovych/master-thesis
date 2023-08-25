@@ -10,7 +10,7 @@ from visualise import inference_linear, plot_latent_3D_linear
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
 
-FILE_PATH = "./final_code/linear_AE_amsgrad/10000_steps_linear_AE"
+BASE_PATH = "./final_code/linear_AE_3d_amsgrad"
 BATCH_SIZE = 64
 LATENT_DIMS = 3
 NUM_BATCHES = 50
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     data_loader = DataLoader(dataset=data, batch_size=BATCH_SIZE, shuffle=True)
 
     file_path = os.path.join(
-        FILE_PATH,
+        BASE_PATH,
         "version_0/checkpoints/epoch=9999-step=30000.ckpt",
     )
 

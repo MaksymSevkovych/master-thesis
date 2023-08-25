@@ -5,14 +5,14 @@ from isa_linear_AE import LinearAutoEncoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from visualise import inference_linear, plot_latent_3D_linear
+from visualise import inference_linear, plot_latent_2D_linear
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
 
-FILE_PATH = "./final_code/10000_steps_linear_AE"
+FILE_PATH = "./final_code/linear_AE_2d_adam"
 BATCH_SIZE = 64
-LATENT_DIMS = 3
+LATENT_DIMS = 2
 NUM_BATCHES = 50
 LR = 3e-4
 
@@ -33,5 +33,5 @@ if __name__ == "__main__":
     )
 
     # plot
-    plot_latent_3D_linear(model, data_loader, num_batches=NUM_BATCHES)
+    plot_latent_2D_linear(model, data_loader, num_batches=NUM_BATCHES)
     inference_linear(model, data_loader, 10)

@@ -1,3 +1,5 @@
+import os
+
 import matplotlib.pyplot as plt
 import torch
 from torch.nn import Module
@@ -304,4 +306,9 @@ def inference_linear(
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = (
+        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_inference.png"
+    )
+    plt.savefig(os.path.join(dir_path, file_name))
     plt.show()
