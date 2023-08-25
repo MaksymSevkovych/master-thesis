@@ -16,7 +16,6 @@ NUM_EPOCHS = 10000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
 BATCH_SIZE = 512
-KL_COEFF = 0.001
 PERSISTENT_WORKERS = True
 AMSGRAD = False
 strategy = DDPStrategy()
