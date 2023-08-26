@@ -35,6 +35,12 @@ def plot_latent_2D_linear(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
+    plt.title("Latent space of encoder")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = (
+        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
+    )
+    plt.savefig(os.path.join(dir_path, file_name))
     plt.show()
 
 
@@ -64,6 +70,12 @@ def plot_latent_2D_convolutional(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
+    plt.title("Latent space of encoder")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = (
+        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
+    )
+    plt.savefig(os.path.join(dir_path, file_name))
     plt.show()
 
 
@@ -121,7 +133,7 @@ def plot_latent_3D_linear(
 
         # Label the axes, config the plot
         ax.grid(False)
-        ax.set_title("Encoder Output")
+        ax.set_title("Latent space of encoder")
         ax.set_xlabel("x-axis")
         ax.set_ylabel("y-axis")
         ax.set_zlabel("z-axis")
@@ -157,7 +169,7 @@ def plot_latent_3D_convolutional(
 
         # Label the axes, config the plot
         ax.grid(False)
-        ax.set_title("Encoder Output")
+        ax.set_title("Latent space of encoder")
         ax.set_xlabel("x-axis")
         ax.set_ylabel("y-axis")
         ax.set_zlabel("z-axis")
@@ -202,7 +214,7 @@ def plot_latent3D_single_point(
     zdata = data[:, 2]
 
     # Plot the data
-    plot = ax.scatter(xdata, ydata, zdata, c=labels, cmap="tab10")  # , marker="O")
+    plot = ax.scatter(xdata, ydata, zdata, c=labels, cmap="tab10")
 
     # Label the axes, config the plot
     ax.grid(False)
@@ -263,6 +275,7 @@ def inference_convolutional(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
+    plt.title("Inference of autoencoder")
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
@@ -303,6 +316,7 @@ def inference_linear(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
+    plt.title("Inference of autoencoder")
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
