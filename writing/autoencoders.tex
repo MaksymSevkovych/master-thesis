@@ -281,18 +281,16 @@ Let's take a look at the trained autoencoders using the ADAM and the AMSGrad opt
 \caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_2d_training_progress}
 \end{figure}
 
-\iffalse
 
+Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the ADAM optimizer and in figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in figure \ref{fig:linear_AE_3d_inference} we can see ten reconstructions for each of the ten digits. The training progress is illustrated in figure \ref{fig:linear_AE_3d_training_progress}.
 
-
-Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the ADAM optimizer and in figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in figure \ref{fig:linear_AE_3d_inference} we can see ten reconstructions for each of the ten digits. The training progress is illustrated in figure ref{fig:linear_AE_3d_training_progress}.
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.45\linewidth}
+   \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_adam_latent_1}
 	\end{minipage}
-	\begin{minipage}[b]{0.45\linewidth}
+	\begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_adam_latent_2}
 	\end{minipage}
 \end{center}
@@ -301,10 +299,10 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.45\linewidth}
+   \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_latent_1}
 	\end{minipage}
-	\begin{minipage}[b]{0.45\linewidth}
+   \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_latent_2}
 	\end{minipage}
 \end{center}
@@ -314,27 +312,25 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.45\linewidth}
+   \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_adam_inference}
 	\end{minipage}
-   \begin{minipage}[b]{0.45\linewidth}
+   \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_inference}
 	\end{minipage}
 \end{center}
-The figure illustrates the inference of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right). The inference are ten reconstructed images for each of the ten digits.\label{fig:linear_AE_3d_inference}
+\caption{The figure illustrates the inference of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right). The inference are ten reconstructed images for each of the ten digits}.\label{fig:linear_AE_3d_inference}
 \end{figure}
 
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.45\linewidth}
+   \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_adam_training_progress}
 	\end{minipage}
-	\begin{minipage}[b]{0.45\linewidth}
+   \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_training_progress}
 	\end{minipage}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_2d_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_3d_training_progress}
 \end{figure}
-
-\fi
