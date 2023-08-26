@@ -6,6 +6,7 @@ from torch.nn import Module
 from torch.utils.data import DataLoader
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+FONTSIZE = 30
 
 
 # Plot the latent 2D space
@@ -35,7 +36,7 @@ def plot_latent_2D_linear(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder")
+    plt.title("Latent space of encoder", fontsize=FONTSIZE)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
         f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
@@ -70,7 +71,7 @@ def plot_latent_2D_convolutional(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder")
+    plt.title("Latent space of encoder", fontsize=FONTSIZE)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
         f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
@@ -133,7 +134,6 @@ def plot_latent_3D_linear(
 
         # Label the axes, config the plot
         ax.grid(False)
-        ax.set_title("Latent space of encoder")
         ax.set_xlabel("x-axis")
         ax.set_ylabel("y-axis")
         ax.set_zlabel("z-axis")
@@ -142,6 +142,7 @@ def plot_latent_3D_linear(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
+    plt.title("Latent space of encoder", fontsize=FONTSIZE)
     plt.show()
 
 
@@ -169,7 +170,6 @@ def plot_latent_3D_convolutional(
 
         # Label the axes, config the plot
         ax.grid(False)
-        ax.set_title("Latent space of encoder")
         ax.set_xlabel("x-axis")
         ax.set_ylabel("y-axis")
         ax.set_zlabel("z-axis")
@@ -178,6 +178,7 @@ def plot_latent_3D_convolutional(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
+    plt.title("Latent space of encoder", fontsize=FONTSIZE)
     plt.show()
 
 
@@ -275,7 +276,7 @@ def inference_convolutional(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
-    plt.title("Inference of autoencoder")
+    plt.title("Inference of autoencoder", fontsize=FONTSIZE)
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
@@ -316,7 +317,7 @@ def inference_linear(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
-    plt.title("Inference of autoencoder")
+    plt.title("Inference of autoencoder", fontsize=FONTSIZE)
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
