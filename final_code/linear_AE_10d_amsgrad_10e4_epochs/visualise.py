@@ -6,7 +6,8 @@ from torch.nn import Module
 from torch.utils.data import DataLoader
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-FONTSIZE = 30
+FONTSIZE_LATENT = 30
+FONTSIZE_INFERENCE = 20
 
 
 # Plot the latent 2D space
@@ -36,7 +37,7 @@ def plot_latent_2D_linear(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE)
+    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
         f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
@@ -71,7 +72,7 @@ def plot_latent_2D_convolutional(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE)
+    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
         f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
@@ -142,7 +143,7 @@ def plot_latent_3D_linear(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE)
+    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     plt.show()
 
 
@@ -178,7 +179,7 @@ def plot_latent_3D_convolutional(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE)
+    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     plt.show()
 
 
@@ -276,7 +277,7 @@ def inference_convolutional(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
-    plt.title("Inference of autoencoder", fontsize=FONTSIZE)
+    plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
@@ -317,7 +318,7 @@ def inference_linear(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
-    plt.title("Inference of autoencoder", fontsize=FONTSIZE)
+    plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
