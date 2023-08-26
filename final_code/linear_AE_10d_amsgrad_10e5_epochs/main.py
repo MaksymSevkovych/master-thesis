@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     file_path = os.path.join(
         BASE_PATH,
-        "version_0/checkpoints/epoch=9999-step=30000.ckpt",
+        "version_0/checkpoints/epoch=99999-step=300000.ckpt",
     )
 
     model = LinearAutoEncoder.load_from_checkpoint(
