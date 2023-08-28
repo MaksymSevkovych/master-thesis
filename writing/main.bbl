@@ -16,6 +16,10 @@ D.~P. Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em
 S.~J. Reddi, S.~Kale, and S.~Kumar, ``On the convergence of adam and beyond,''
   {\em arXiv preprint arXiv:1904.09237}, 2019.
 
+\bibitem{mcmahan2010adaptive}
+H.~B. McMahan and M.~Streeter, ``Adaptive bound optimization for online convex
+  optimization,'' {\em arXiv preprint arXiv:1002.4908}, 2010.
+
 \bibitem{foster2022generative}
 D.~Foster, {\em Generative deep learning}.
 \newblock " O'Reilly Media, Inc.", 2022.

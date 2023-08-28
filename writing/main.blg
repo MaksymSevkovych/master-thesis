@@ -6,44 +6,44 @@ A level-1 auxiliary file: autoencoders.aux
 A level-1 auxiliary file: vae.aux
 The style file: ieeetr.bst
 Database file #1: bibliography.bib
-You've used 6 entries,
+You've used 7 entries,
             1876 wiz_defined-function locations,
-            510 strings with 4367 characters,
-and the built_in function-call counts, 998 in all, are:
-= -- 79
-> -- 59
+            515 strings with 4518 characters,
+and the built_in function-call counts, 1147 in all, are:
+= -- 91
+> -- 67
 < -- 0
-+ -- 22
-- -- 16
-* -- 59
-:= -- 165
-add.period$ -- 9
-call.type$ -- 6
-change.case$ -- 3
++ -- 25
+- -- 18
+* -- 68
+:= -- 190
+add.period$ -- 10
+call.type$ -- 7
+change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 49
-empty$ -- 113
-format.name$ -- 16
-if$ -- 238
+cite$ -- 7
+duplicate$ -- 58
+empty$ -- 130
+format.name$ -- 18
+if$ -- 273
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 8
-newline$ -- 24
-num.names$ -- 6
-pop$ -- 33
+int.to.str$ -- 7
+missing$ -- 9
+newline$ -- 27
+num.names$ -- 7
+pop$ -- 37
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 10
+skip$ -- 12
 stack$ -- 0
 substring$ -- 0
-swap$ -- 5
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 6
-width$ -- 7
-write$ -- 52
+while$ -- 7
+width$ -- 8
+write$ -- 60

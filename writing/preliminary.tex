@@ -273,18 +273,25 @@ Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the gradient, i.e. the vector of pa
 However, algorithm \ref{alg:adam} was later proven to be not converging in certain settings, see \cite{reddi2019convergence}. The authors proposed another approach to the optimization problem, where they first introduced a general formulation of the algorithm, see \ref{alg:general}. Afterwards, they proposed an alternative approach called the AMSGrad algorithm. In contrast to ADAM, AMSGrad uses the maximum of past squared gradients rather than the exponential average to update the parameters. This way the authors were able to fix the issues of the original algorithm ADAM.\\
 But in order to introduce AMSGrad formally, we need to define some quantities first.
 
+\begin{definition}
+Let $\F\subset\R^d$ be a set of points. We say that $\F$ has \textbf{bounded diameter} $D_{\infty}<\infty$ if for all $x,y$ in $\F$ holds
+\begin{align*}
+\left\|x, y \right\|_{\infty} < D_{\infty}.
+\end{align*}
+\end{definition}
+
 \begin{definition}\label{def:projection}
-Let $y\in\R^d$, $\F\subset\R^d$ be a set of points and $X:\R^d\to\R^d$ an arbitrary operator. Then we define the \textbf{projection of $y$ onto $\F$} as
+Let $y\in\R^d$, $\F\subset\R^d$ with bounded diameter $D_{\infty}$ and $X:\R^d\to\R^d$ an arbitrary operator. Then we define the \textbf{$X$-projection of $y$ onto $\F$} as
 \begin{align*}
 \Pi_{\F,X} (y) = \min_{x\in\F} \left\|X^{1/2}(x - y) \right\|.
 \end{align*}
-If the operator $X$ is the identity, we reduce the notation to $\Pi_{\F,\mathbb{1}} = \Pi_{\F}$.
+If the operator $X$ is the identity $\mathbb{1}$, we reduce the notation to $\Pi_{\F} \coloneqq \Pi_{\F,\mathbb{1}}$.
 \end{definition}
 
 Now, we introduce a short technical assumption concerning the recently introduced projection.
 
-\begin{lemma}
-Let $\F\subset\R^d$ be a set of points and $\Pi_{\F, X}$ be a projection.\\
+\begin{lemma}\label{lemma:projection}
+Let $\F\subset\R^d$ be a set of points and $\Pi_{\F, X}$ be an $X$-projection with operator $X$.\\
 Then the following assertion holds for all $x^{\ast}\in \F$.
 \begin{align*}
 \Pi_{\F, X} \left(x^{\ast}\right) = x^{\ast}.
@@ -296,23 +303,23 @@ Let's first consider the definition of the projection $\Pi_{\F}$.
 \begin{align*}
 \Pi_{\F, X} \left(x^{\ast}\right) = \min_{x\in\F} \left\|X^{1/2}(x - x^{\ast}) \right\|.
 \end{align*}
-Hence, for the point that minimizes the right hand side $x^{\ast}$ holds
+Hence, for the point $x^{\prime}$ that minimizes the right hand side holds
 \begin{align*}
-x^{\ast}& = \argmin_{x\in\F}\left\|X^{1/2}(x - x^{\ast}) \right\|,
+x^{\prime} = \argmin_{x\in\F}\left\|X^{1/2}(x - x^{\ast}) \right\|,
 \end{align*}
 what can be considered equally as
 \begin{align*}
-\Longleftrightarrow = \argmin_{x\in\F}(x - x^{\ast}).
+\Longleftrightarrow \qquad x^{\prime} = \argmin_{x\in\F}\left(x - x^{\ast}\right).
 \end{align*}
-But since we assumed that $x^{\ast}\in\F$, the assertion holds.
+But since we assumed that $x^{\ast}\in\F$, it follows that $x^{\prime} = x^{\ast}$ and the assertion holds.
 \end{proof}
 
-Another quantity we need to introduce is the so called regret of an algorithm. It essentially quantifies how much an algorithm would have performed better if it had known the best action in advance. In other words, regret quantifies the cost of not making the optimal decisions at each step.
+Another quantity we need to introduce is the so called regret of an algorithm. It essentially quantifies how much an algorithm would have performed better if it had known the best action in advance. In other words, the regret quantifies the cost of not making the optimal decisions at each step. This is a common approach in online learning settings.
 
 \begin{definition}\label{def:regret}
-Let $T\in \N$, $\F\subset\R^d$ be a set of points and $f_t(\t_t)$ a stochastic objection function with parameters $\t$ at timestep $t$. Then we define the \textbf{regret} as the function
+Let $T\in \N$, $\F\subset\R^d$ be a set of points and $f_t(\t_t)$ a stochastic objection function with parameters $\t_t\in\F$ at timestep $t$. Then we define the \textbf{regret} as the function
 \begin{align*}
-R_T = \sum_{t=1}^Tf_t(\t_t) - \min_{x\in\F} \sum_{t=1}^Tf_t(x).
+R_T = \sum_{t=1}^Tf_t(\t_t) - \min_{\t \in\F} \sum_{t=1}^Tf_t(\t).
 \end{align*}
 \end{definition}
 
@@ -320,47 +327,47 @@ R_T = \sum_{t=1}^Tf_t(\t_t) - \min_{x\in\F} \sum_{t=1}^Tf_t(x).
 Let $g_t$ as in algorithm \ref{alg:adam} and let $T\in\N$. Furthermore, let $\T$ be a parameter space.
 \caption{Generic Adaptive Method Setup}\label{alg:general}
 \begin{algorithmic}[1]
-\Require $\{\a_t\}_{t=0}^T$: Stepsizes
-\Require $\{\phi_t, \p_t\}_{t=0}^T$: Sequence of functions
+\Require $\{\a_t\}_{t=1}^T$: Stepsizes
+\Require $\{\phi_t, \p_t\}_{t=1}^T$: Sequence of functions
 \Require $f(\t)$: Stochastic objective function with parameters $\t$
-\Require $\t_0\in\T$: Initial parameter vector
-\For{$t=0,\ldots,T$}
+\Require $\t_1\in\T$: Initial parameter vector
+\For{$t=1,\ldots,T$}
 	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$,}
-	\State $m_t \gets \phi\left(g_1,\ldots,g_t \right)$ \Comment{Update biased first moment estimate,}
-	\State $V_t \gets \p\left(g_1,\ldots,g_n\right)$ \Comment{Update biased second moment estimate,}
+	\State $m_t \gets \phi_t\left(g_1,\ldots,g_t \right)$ \Comment{Update biased first moment estimate,}
+	\State $V_t \gets \p_t\left(g_1,\ldots,g_t\right)$ \Comment{Update biased second moment estimate,}
 	\State $\hat{\t}_{t+1} \gets \t_t - \a_t m_t/\sqrt{V_t}$ \Comment{Compute biased updated parameters,}
 	\State $\t_{t+1} \gets \Pi_{\T,\sqrt{V_t}}\left(\hat{\t}_{t+1} \right)$ \Comment{Unbias updated parameters,}
 \EndFor
-\State \Return $\t_{t+1}$ \Comment{Return Resulting parameters.}
+\State \Return $\t_{t}$ \Comment{Return resulting parameters.}
 \end{algorithmic}
 \end{algorithm}
 
-We realize that upon defining $\phi$ and $\p$ in algorithm \ref{alg:general} in a suitable way, we can obtain various familiar algorithms. We want to consider them in the following example.
+We realize that upon defining $\phi_t$ and $\p_t$ in algorithm \ref{alg:general} in a suitable way, we can obtain various familiar algorithms. We want to consider them in the following example.
 
 \begin{example}
 Let the same assumptions as in algorithm \ref{alg:general} hold.
 \begin{enumerate}
-\item Let $\phi$ and $\p$ be defined as
+\item Let $(\phi_t)_t$ and $(\p_t)_t$ be defined as
 \begin{align*}
-\phi(g_1,\ldots, g_t) &= g_t,\\
-\p(g_1,\ldots, g_t) &= \mathbb{1}.
+\phi_t(g_1,\ldots, g_t) &= g_t,\\
+\p_t(g_1,\ldots, g_t) &= \mathbb{1}.
 \end{align*}
 Then the resulting update rule looks like
 \begin{align*}
 \t_{t+1} \gets \t_t - \a_t g_t,
 \end{align*}
 which is exactly the SGD algorithm as proposed in theorem \ref{theorem:sgd}.
-\item Let $\phi$ and $\p$ be defined as
+\item Let $\phi_t$ and $\p_t$ be defined as
 \begin{align*}
-\phi(g_1,\ldots, g_t) &= (1-\b_1)\sum_{i=1}^t\b_1^{t-i}g_i,\\
-\p(g_1,\ldots, g_t) &= (1-\b_2)\diag\left(\sum_{i=1}^t\b_2^{t-i}g_t^2\right).
+\phi_t(g_1,\ldots, g_t) &= (1-\b_1)\sum_{i=1}^t\b_1^{t-i}g_i,\\
+\p_t(g_1,\ldots, g_t) &= (1-\b_2)\diag\left(\sum_{i=1}^t\b_2^{t-i}g_t^2\right).
 \end{align*}
 Then the resulting update rule looks like
 \begin{align*}
 m_t &\gets (1-\b_1)\sum_{i=1}^t\b_1^{t-i}g_i,\\
 v_t &\gets (1-\b_2)\diag\left(\sum_{i=1}^t\b_2^{t-i}g_t^2\right),
 \end{align*}
-which is the same as in algorithm \ref{alg:adam} (without the bias-correction, but the argument still holds, see \cite{reddi2019convergence}).
+which is the same as in algorithm \ref{alg:adam} (without the bias-correction, but the argument still holds, see \cite{reddi2019convergence}). Furthermore, the $X$-projection is obsolete for the choice of $X=\mathbb{1}$ and $\F=\R^d$. This follows directly from lemma \ref{lemma:projection}.
 \end{enumerate}
 \end{example}
 
@@ -381,29 +388,99 @@ Let the same assumptions as in algorithm \ref{alg:general} hold.
 	\State $v_t \gets \b_{2}v_{t-1} + (1-\b_{2})g_t^2$ \Comment{Update biased second moment estimate,}
 	\State $\hat{v}_{t} \gets \max\{\hat{v}_{t-1}, v_t\}$ \Comment{Compute bias-corrected first moment estimate,}
 	\State $\hat{V}_{t} \gets \diag\left(\hat{v}_{t}\right)$ \Comment{Compute bias-corrected second moment estimate,}
-	\State $\t_{t+1} \gets \Pi_{\T,\sqrt{\hat{V}_t}}\left(\t_{t} - \a_tm_t/\sqrt{v_t}\right)$ \Comment{Update parameters,}
+	\State $\t_{t+1} \gets \Pi_{\T,\sqrt{\hat{V}_t}}\left(\t_{t} - \a_tm_t/\sqrt{\hat{v}_t}\right)$ \Comment{Update parameters,}
 \EndFor
 \State \Return $\t_{t+1}$ \Comment{Return Resulting parameters.}
 \end{algorithmic}
 \end{algorithm}
 
-The AMSGrad optimizer, defined in algorithm \ref{alg:amsgrad} does indeed converge, as proven in \cite[Theorem~4]{reddi2019convergence}. We take a quick look at the theorem and its proof. However, for a deeper understanding of the alternative algorithms, please refer to  \cite{reddi2019convergence}, since this would go beyond the scope of this thesis' topic.
+The AMSGrad optimizer, defined in algorithm \ref{alg:amsgrad} does indeed converge, as proven in \cite[theorem~4]{reddi2019convergence}. We take a quick look at the theorem and its proof. However, for a deeper understanding of the alternative algorithms, please refer to  \cite{reddi2019convergence}, since this would go beyond the scope of this thesis' topic.\\
+First, we need an auxiliary lemma ans cite it from \cite[lemma~4]{reddi2019convergence}, but since their proof does not align with the proof of the original paper \cite[lemma~3]{mcmahan2010adaptive} we will adjust the proof to the original one.
+
+\begin{lemma}\label{lemma:McMahan_Streeter}
+Let $\pdmat$ denote the set of all positive definite $d\times d$-matrices and let $Q\in \pdmat$. Furthermore, let $\F\subset \R^d$ be a feasible convex set.\\
+Suppose $z_1,z_2 \in\R^d$ and $u_1 = \min_{x\in\F} \|Q^{1/2}(x-z_1)\|$ as well as $u_2 = \min_{x\in\F} \|Q^{1/2}(x-z_2)\|$.\\
+Then the following inequality holds
+\begin{align*}
+\left\| Q^{1/2} \left( u_1 - u_2 \right) \right\| \leq \left\| Q^{1/2} \left( z_1 - z_2 \right) \right\|.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+We begin with defining
+\begin{align}\label{eq:ball_def}
+B(u,z) \coloneqq \frac{1}{2} \left\| Q^{1/2} \left( u - z \right) \right\|^2 = \frac{1}{2} \left( u - z \right)^{\tran} Q\left( u - z \right).
+\end{align}\label{eq:argmin}
+Hence, we can write
+\begin{align}
+u_1 = \argmin_{x\in\F} B(x, z_1).
+\end{align}
+If we now consider the gradient of \eqref{eq:ball_def}, we receive
+\begin{align*}
+\nabla_{x} B(x, z_1) = \nabla_{x} \frac{1}{2}\left( \left( x - z_1 \right)^{\tran} Q\left( x - z_1 \right) \right) = Q \left( x - z_1 \right).
+\end{align*}
+Therefore, it holds that
+\begin{align*}
+Q\left(u_1 - z_1 \right)^{\tran} \left( u_2 - u_1 \right) \geq 0,
+\end{align*}
+otherwise for $\d$ sufficiently small it would mean that $u_1 + \d \left( u_2 - u_1 \right) \in \F,$ due to the convexity of $\F$, and therefore would be closer to $z_1$ than $u_1$. This contradicts the assumption, that $u_1$ is the projection, i.e. fulfils equation \eqref{eq:argmin}.\\
+With the exact same argument it holds that
+\begin{align*}
+Q\left(u_2 - z_2 \right)^{\tran} \left( u_1 - u_2 \right) \geq 0,
+\end{align*}
+If we combine those two inequalities, we receive
+\begin{align*}
+&Q\left(u_1 - z_1 \right)^{\tran} \left( u_2 - u_1 \right) + Q\left(u_2 - z_2 \right)^{\tran} \left( u_1 - u_2 \right) \geq 0\\
+\Longleftrightarrow \qquad &Q\left(u_1 - z_1 \right)^{\tran} \left( u_2 - u_1 \right) - Q\left(u_2 - z_2 \right)^{\tran} \left( u_2 - u_1 \right) \geq 0.
+\end{align*}
+These inequalities are due to $Q\in\pdmat$ equivalent to
+\begin{align*}
+&\left(u_1 - z_1 \right)^{\tran} Q \left( u_2 - u_1 \right) - \left(u_2 - z_2 \right)^{\tran} Q\left( u_2 - u_1 \right) \geq 0,\\
+\Longleftrightarrow \qquad &\left(z_2 - z_1 \right)^{\tran} Q \left( u_2 - u_1 \right) - \left(u_2 - u_1 \right)^{\tran} Q\left( u_2 - u_1 \right) \geq 0,\\
+\Longleftrightarrow \qquad &\left(z_2 - z_1 \right)^{\tran} Q \left( u_2 - u_1 \right) \geq \left(u_2 - u_1 \right)^{\tran} Q\left( u_2 - u_1 \right).
+\end{align*}
+For readability reasons we now define $\hat{u} \coloneqq (u_2 - u_1)$ and $\hat{z} \coloneqq (z_2 - z_1)$. Therefore, we receive
+\begin{align*}
+&\hat{z}^{\tran} Q \hat{u} \geq \hat{u}^{\tran} Q\hat{u}.
+\end{align*}
+Moreover, since $Q\in\pdmat$ it holds that
+\begin{align*}
+\left(\hat{z} - \hat{u}\right)^{\tran}Q\left(\hat{z} - \hat{u}\right) &\geq 0\\
+\Longleftrightarrow \qquad \hat{z}^{\tran}Q\hat{z} - 2 \hat{u}^{\tran}Q\hat{z} + \hat{u}^{\tran}Q\hat{u} &\geq 0.
+\end{align*}
+Thus,
+\begin{align*}
+\hat{z}^{\tran}Q\hat{z} &\geq 2 \hat{u}^{\tran}Q\hat{z} - \hat{u}^{\tran}Q\hat{u}\\
+& \geq 2 \hat{u}^{\tran}Q\hat{u} - \hat{u}^{\tran}Q\hat{u} = \hat{u}^{\tran}Q\hat{u}.
+\end{align*}
+Considering the previous definitions, we achieved
+\begin{align*}
+\left\| Q^{1/2} \left( u_1 - u_2 \right) \right\|^2 = \hat{u}^{\tran}Q \hat{u} \leq \hat{z}^{\tran}Q\hat{z} = \left\| Q^{1/2} \left( z_1 - z_2 \right) \right\|^.
+\end{align*}
+Taking the square root of both sides leads to the assertion.
+\end{proof}
 
 \begin{theorem}\label{theorem:amsgrad}
-Let $(x_t)_{t\in\N}$ and $(v_t)_{t\in\N}$ be sequences as in algorithm \ref{alg:amsgrad}, $\a_t = \a/\sqrt{t}$ with $\a>0$ and $\b_1 = \b_{11}$, $\b_{1t}\leq \b_1$ for all $t \in \{1,\ldots, T\}$ and $\g = \b_1/\sqrt{\b_{2}} < 1$. \textcolor{red}{Assume that $\mathcal{F}$ has bounded diameter $D_{\infty}$ and $\|\nabla f_t(x)\|_{\infty}\leq G_{\infty}$ for all $x\in\mathcal{F}$ and $t \in \{1,\ldots, T\}$}.\\
+Let $(\t_t)_{t\in\N}$ and $(v_t)_{t\in\N}$ be sequences as in algorithm \ref{alg:amsgrad}, $\a_t = \a/\sqrt{t}$ with $\a>0$ and $\b_1 = \b_{11}$, $\b_{1t}\leq \b_1$ for all $t \in \{1,\ldots, T\}$ and $\g = \b_1/\sqrt{\b_{2}} < 1$. Assume that $\T$ has bounded diameter $D_{\infty}$ and $\|\nabla f_t(\t)\|_{\infty}\leq G_{\infty}$ for all $\t\in\T$ and $t \in \{1,\ldots, T\}$.\\
 Then for $\t_t$ generated using the AMSGrad algorithm (algorithm \ref{alg:amsgrad}) the following bound for the regret holds
 \begin{align*}
-\risk_T \leq \frac{D_{\infty}^2\sqrt{T}}{\a(1-\b_1)} \sum_{i=1}^d \hat{v}_{T,i}^{1/2} + \frac{D_{\infty}^2}{(1-\b_1)^2} \sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}+ \frac{\a\sqrt{1 + \log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}}\sum_{i=1}^d \|g_{1:T,1}\|_2,
+R_T \leq \frac{D_{\infty}^2\sqrt{T}}{\a(1-\b_1)} \sum_{i=1}^d \hat{v}_{T,i}^{1/2} + \frac{D_{\infty}^2}{(1-\b_1)^2} \sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}+ \frac{\a\sqrt{1 + \log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}}\sum_{i=1}^d \|g_{1:T,i}\|_2,
 \end{align*}
 where we denote for readability reasons $g_{1:t}\coloneqq(g_1,\ldots, g_t)$ and with $g_{j,i}$ and with $v_{j,i}$ we denote the $i$-th component of $g_j$ and $v_j$, respectively.
 \end{theorem}
 
 \begin{proof}
-Firstly, we observe with the definition of the projection
+First, we observe with the definition of the projection
 \begin{align*}
-\t_{t+1} = \Pi_{\T, \sqrt{\hat{V_t}}} \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) = \min_{\t \in \T} \left\|\hat{V}_t^{1/4} \left( \t -  \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) \right) \right\|
+\t_{t+1} = \Pi_{\T, \sqrt{\hat{V_t}}} \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) = \min_{\t \in \T} \left\|\hat{V}_t^{1/4} \left( \t -  \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) \right) \right\|.
 \end{align*}
-\textcolor{red}{to be continued...}
+Furthermore, with lemma \ref{lemma:projection} it follows, that $\Pi_{\T, \sqrt{\hat{V_t}}}(\t^{\ast}) = \t^{\ast}$ for all $\t^{\ast}\in\T$.\\
+Now, using lemma \ref{lemma:McMahan_Streeter} with $u_1 = \t_{t+1}$, $u_2= \t^{\ast}$ and $Q=\hat{V}^{1/4}$ gives us
+\begin{align*}
+&\left\| \hat{V}^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \leq  \left\| \hat{V}^{1/4} \left( \t_t -\a_t\hat{V}^{-1/2}m_t - \t^{\ast}\right)\right\|^2\\
+&\quad = \left\| \hat{V}^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}^{-1/4} m_t \right\|^2 - 2\a_t \left\langle m_t, \t_t - \t^{\ast} \right\rangle\\
+&\quad = \left\| \hat{V}^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}^{-1/4} m_t \right\|^2 - 2\a_t \left\langle \b_{1t}m_{t-1} + \left(1-\b_{1t}\right)g_t, \t_t - \t^{\ast} \right\rangle.
+\end{align*}
 \end{proof}
 
 \section{Neural networks in computer vision}
@@ -470,9 +547,8 @@ Since neural networks rarely produce a value that is a fraction with denominator
 \begin{lemma}
 Let $d\in\N$ be a number of channels and let $p\in [0,1]^d$. Then we can consider $p$ as a pixel by transforming it through
 \begin{align*}
-\p_i = \left\lceil 255 \cdot p_i - 0.5 \right\rceil, \qquad i=1,\ldots,d,
+\p_i = \left\lceil 255 \cdot p_i - 0.5 \right\rceil, \qquad i=1,\ldots,d.
 \end{align*}
-where we round each entry $p_i$ to an integer.
 \end{lemma}
 
 \begin{proof}
