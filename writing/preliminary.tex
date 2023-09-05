@@ -248,7 +248,7 @@ Let the same assumptions as in definition \ref{def:moment} hold. Usually, the fi
 Now, we can formulate the proposed algorithm itself. For further reading please take a look at \cite{kingma2014adam} or \cite[chapter~8]{goodfellow2016deep}.
 
 \begin{algorithm}[H]
-Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the gradient, i.e. the vector of partial derivatives of $f_t$ w.r.t. $\t$ evaluated at timestep $t$. Furthermore,  let $g_t^2 \coloneqq g_t \odot g_t$ denote the element-wise square of $g_t$.
+Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the gradient, i.e. the vector of partial derivatives of $f_t$ w.r.t. $\t$ evaluated at time step $t$. Furthermore,  let $g_t^2 \coloneqq g_t \odot g_t$ denote the element-wise square of $g_t$.
 \caption{ADAM optimizer}\label{alg:adam}
 \begin{algorithmic}[1]
 \Require $\a$: Stepsize
@@ -256,10 +256,10 @@ Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the gradient, i.e. the vector of pa
 \Require $f(\t)$: Stochastic objective function with parameters $\t$
 \Require $\t_0$: Initial parameter vector
 \State $m_0,v_0 \gets 0$ (Initialize $\nth{1}$ and $\nth{2}$ moment vector)
-\State $t \gets 0$ (Initialize timestep)
+\State $t \gets 0$ (Initialize time step)
 \While{$\t_t$ not converged}
 \State $t\gets t+1$
-\State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$,}
+\State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment{Get gradients w.r.t. stochastic objective at time step $t$,}
 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Update biased first moment estimate,}
 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Update biased second moment estimate,}
 \State $\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment{Compute bias-corrected first moment estimate,}
@@ -317,7 +317,7 @@ But since we assumed that $x^{\ast}\in\F$, it follows that $x^{\prime} = x^{\ast
 Another quantity we need to introduce is the so called regret of an algorithm. It essentially quantifies how much an algorithm would have performed better if it had known the best action in advance. In other words, the regret quantifies the cost of not making the optimal decisions at each step. This is a common approach in online learning settings.
 
 \begin{definition}\label{def:regret}
-Let $T\in \N$, $\F\subset\R^d$ be a set of points and $f_t(\t_t)$ a stochastic objection function with parameters $\t_t\in\F$ at timestep $t$. Then we define the \textbf{regret} as the function
+Let $T\in \N$, $\F\subset\R^d$ be a set of points and $f_t(\t_t)$ a stochastic objection function with parameters $\t_t\in\F$ at time step $t$. Then we define the \textbf{regret} as the function
 \begin{align*}
 R_T = \sum_{t=1}^Tf_t(\t_t) - \min_{\t \in\F} \sum_{t=1}^Tf_t(\t).
 \end{align*}
@@ -332,7 +332,7 @@ Let $g_t$ as in algorithm \ref{alg:adam} and let $T\in\N$. Furthermore, let $\T$
 \Require $f(\t)$: Stochastic objective function with parameters $\t$
 \Require $\t_1\in\T$: Initial parameter vector
 \For{$t=1,\ldots,T$}
-	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$,}
+	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at time step $t$,}
 	\State $m_t \gets \phi_t\left(g_1,\ldots,g_t \right)$ \Comment{Update biased first moment estimate,}
 	\State $V_t \gets \p_t\left(g_1,\ldots,g_t\right)$ \Comment{Update biased second moment estimate,}
 	\State $\hat{\t}_{t+1} \gets \t_t - \a_t m_t/\sqrt{V_t}$ \Comment{Compute biased updated parameters,}
@@ -377,20 +377,20 @@ With the help of the general algorithm we proposed in algorithm \ref{alg:general
 Let the same assumptions as in algorithm \ref{alg:general} hold.
 \caption{AMSGrad Optimizer}\label{alg:amsgrad}
 \begin{algorithmic}[1]
-\Require $\{\a_t\}_{t=0}^T$: Stepsizes
-\Require $\{\b_{1t}\}_{t=1}^T, \b_2$, with $\b_{ti},\b_2\in [0,1)$: Decay rates for the moment estimates
+\Require $\{\a_t\}_{t=1}^T$: Stepsizes
+\Require $\{\b_{1t}\}_{t=1}^T, \b_2$, with $\b_{1t},\b_2\in [0,1)$: Decay rates for the moment estimates
 \Require $f(\t)$: Stochastic objective function with parameters $\t$
-\Require $\t_0\in\T$: Initial parameter vector
+\Require $\t_1\in\T$: Initial parameter vector
 \State $m_0,v_0 \gets 0$ (Initialise $\nth{1}$ and $\nth{2}$ moment vector)
-\For{$t=0,\ldots,T$}
-	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at timestep $t$,}
+\For{$t=1,\ldots,T$}
+	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at time step $t$,}
 	\State $m_t \gets \b_{1t}m_{t-1} + (1-\b_{1t})g_t$ \Comment{Update biased first moment estimate,}
 	\State $v_t \gets \b_{2}v_{t-1} + (1-\b_{2})g_t^2$ \Comment{Update biased second moment estimate,}
 	\State $\hat{v}_{t} \gets \max\{\hat{v}_{t-1}, v_t\}$ \Comment{Compute bias-corrected first moment estimate,}
 	\State $\hat{V}_{t} \gets \diag\left(\hat{v}_{t}\right)$ \Comment{Compute bias-corrected second moment estimate,}
 	\State $\t_{t+1} \gets \Pi_{\T,\sqrt{\hat{V}_t}}\left(\t_{t} - \a_tm_t/\sqrt{\hat{v}_t}\right)$ \Comment{Update parameters,}
 \EndFor
-\State \Return $\t_{t+1}$ \Comment{Return Resulting parameters.}
+\State \Return $\t_{t+1}$ \Comment{Return resulting parameters.}
 \end{algorithmic}
 \end{algorithm}
 
@@ -475,12 +475,159 @@ First, we observe with the definition of the projection
 \t_{t+1} = \Pi_{\T, \sqrt{\hat{V_t}}} \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) = \min_{\t \in \T} \left\|\hat{V}_t^{1/4} \left( \t -  \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) \right) \right\|.
 \end{align*}
 Furthermore, with lemma \ref{lemma:projection} it follows, that $\Pi_{\T, \sqrt{\hat{V_t}}}(\t^{\ast}) = \t^{\ast}$ for all $\t^{\ast}\in\T$.\\
-Now, using lemma \ref{lemma:McMahan_Streeter} with $u_1 = \t_{t+1}$, $u_2= \t^{\ast}$ and $Q=\hat{V}^{1/4}$ gives us
+Now, using lemma \ref{lemma:McMahan_Streeter} with $u_1 = \t_{t+1}$, $u_2= \t^{\ast}$ and $Q=\hat{V}_t^{1/4}$ gives us
 \begin{align*}
-&\left\| \hat{V}^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \leq  \left\| \hat{V}^{1/4} \left( \t_t -\a_t\hat{V}^{-1/2}m_t - \t^{\ast}\right)\right\|^2\\
-&\quad = \left\| \hat{V}^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}^{-1/4} m_t \right\|^2 - 2\a_t \left\langle m_t, \t_t - \t^{\ast} \right\rangle\\
-&\quad = \left\| \hat{V}^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}^{-1/4} m_t \right\|^2 - 2\a_t \left\langle \b_{1t}m_{t-1} + \left(1-\b_{1t}\right)g_t, \t_t - \t^{\ast} \right\rangle.
+&\left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \leq  \left\| \hat{V}_t^{1/4} \left( \t_t -\a_t\hat{V}_t^{-1/2}m_t - \t^{\ast}\right)\right\|^2\\
+&\quad = \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2 - 2\a_t \left\langle m_t, \t_t - \t^{\ast} \right\rangle\\
+&\quad = \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2 - 2\a_t \left\langle \b_{1t}m_{t-1} + \left(1-\b_{1t}\right)g_t, \t_t - \t^{\ast} \right\rangle.
 \end{align*}
+If we now rearrange the last inequality, we receive
+\begin{align*}
+&\left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2\\
+&\quad \leq - 2\a_t \left\langle \b_{1t}m_{t-1} +  \left(1-\b_{1t}\right)g_t, \t_t - \t^{\ast} \right\rangle,\nonumber\\
+\Longleftrightarrow \quad &\left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2\nonumber\\
+&\quad\leq - 2\a_t\b_{1t} \left\langle m_{t-1}, \t_t - \t^{\ast} \right\rangle - 2\a_t\left(1-\b_{1t}\right) \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\nonumber\\
+\Longleftrightarrow \quad &\left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2
+- \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2\nonumber\\
+&\quad + 2\a_t\b_{1t} \left\langle m_{t-1}, \t_t - \t^{\ast} \right\rangle \leq - 2\a_t\left(1-\b_{1t}\right) \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\nonumber\\
+\Longleftrightarrow \quad &-\frac{1}{2\a_t\left(1-\b_{1t}\right)} \biggl[\left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2  - \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2\nonumber\\
+&\quad + 2\a_t\b_{1t} \left\langle m_{t-1}, \t_t - \t^{\ast} \right\rangle\biggr]\geq \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\nonumber\\
+\Longleftrightarrow \quad &\frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2\nonumber\\
+&\quad -\frac{\b_{1t}}{1-\b_{1t}} \left\langle m_{t-1}, \t_t - \t^{\ast} \right\rangle\geq \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\nonumber\\
+\end{align*}
+And if we now apply the Cauchy-Schwarz inequality and the Young's inequality, this leads to
+\begin{align}\label{eq:1.9}
+\Longleftrightarrow \quad &\left\langle g_t, \t_t - \t^{\ast} \right\rangle \leq\frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \nonumber\\
+&\quad +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\nonumber\\
+&\quad + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2.
+\end{align}
+The next step is a common approach in bounding the regret, where we will use the convexity of the function $f_t$ in each step. \textcolor{red}{is it convex? I think so, because $f_t$ is NOT the neural net here. $f_t$ is defined as \glqq A loss function $f_t$ (to be interpreted as the loss of the model with the chosen parameters in the next minibatch) is then revealed, and the algorithm incurs loss $f_t(x_t)$\grqq{}}.
+\begin{align*}
+&\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast}) \leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\\
+\quad &\leq\sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \\
+&\quad +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\\
+&\quad + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \Biggr],
+\end{align*}
+where we used inequality \eqref{eq:1.9} in the first step.\\
+If we now consider the following inequality for all $t=1,\ldots,T$
+\begin{align*}
+&\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\\
+\quad &= \frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} \left(\frac{m_{t} - (1-\b_{1t})g_t}{\b_{1t}}\right)\right\|^2,\\
+\quad &\leq \frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{1}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t}\right\|^2,\\
+\quad &\leq \frac{\a_t}{1-\b_{1}} \left\| \hat{V}_t^{-1/4} m_t \right\|^2,
+\end{align*}
+then this leads ultimately to
+\begin{align}\label{eq:1.10}
+\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast}) &\leq \sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \nonumber\\
+&\quad +\frac{\a_t}{1-\b_{1}} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \Biggr].
+\end{align}
+We now proceed by bounding the second term, separately.\\
+In order to do so, we first use the definition of $\hat{v}_T$, which is the maximum of all $v_t$ until the current time step $T$. This gives us
+\begin{align*}
+\sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &= \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a_T \sum_{i=1}^{d} \frac{m_{T,i}^2}{\sqrt{\hat{v}_{T,i}}},\\
+&\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a_T \sum_{i=1}^{d} \frac{m_{T,i}^2}{\sqrt{v_{T,i}}},\\
+&\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a \sum_{i=1}^{d} \frac{(\sum_{t=1}^T(1- \b_{1t}) \prod_{k=1}^{T-t} \b_{1(T-k+1)} g_{t,i})^2 }{\sqrt{T((1-\b_2) \sum_{t=1}^T \b_2^{T-t}g_{t,i}^2)}},
+\end{align*}
+where the last inequality follows from the update rules of $m_t$ and $v_t$ in algorithm \ref{alg:amsgrad}, respectively. If we now apply the Cauchy-Schwarz inequality, then we receive
+\begin{align*}
+\sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2\\
+&\quad + \a \sum_{i=1}^{d} \frac{(\sum_{t=1}^T\prod_{k=1}^{T-t}\b_{1(T-k+1)}) (\sum_{t=1}^T\prod_{k=1}^{T-t} \b_{1(T-k+1)} g_{t,i}^2 )}{\sqrt{T((1-\b_2) \sum_{t=1}^T \b_2^{T-t}g_{t,i}^2)}}.
+\end{align*}
+Now, considering the fact that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$, gives us
+\begin{align*}
+\sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a \sum_{i=1}^{d} \frac{(\sum_{t=1}^T\b_1^{T-t}) (\sum_{t=1}^T\b_1^{T-t}g_{t,i}^2 )}{\sqrt{T((1-\b_2) \sum_{t=1}^T \b_2^{T-t}g_{t,i}^2)}}.
+\end{align*}
+The next two steps are considering the inequality $\sum_{t=1}^T \b_1^{T-t} \leq 1/(1-\b_1)$ and afterwards using the linearity of the square root. This gives us
+\begin{align*}
+\sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\a}{1-\b_1} \sum_{i=1}^{d} \frac{\sum_{t=1}^T\b_1^{T-t}g_{t,i}^2}{\sqrt{T((1-\b_2) \sum_{t=1}^T} \b_2^{T-t}g_{t,i}^2)},\\
+&\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\a}{(1-\b_1)\sqrt{T(1-\b_2)}} \sum_{i=1}^{d} \sum_{t=1}^T\frac{\b_1^{T-t}g_{t,i}^2}{\sqrt{\b_2^{T-t}g_{t,i}^2)}},\\
+&\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\a}{(1-\b_1)\sqrt{T(1-\b_2)}} \sum_{i=1}^{d} \sum_{t=1}^T\g^{T-t}\left|g_{t,i}\right|,
+\end{align*}
+where we used the definition of $\g = \b_1/\sqrt{\b_2}$ in the last step.\\
+If we consider similar upper bounds for all time steps $t=1,\ldots,T-1$ as we did for the last time step, we receive
+\begin{align*}
+\sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \sum_{t=1}^T \frac{\a}{(1-\b_1)\sqrt{t(1-\b_2)}} \sum_{i=1}^{d} \sum_{j=1}^t\g^{t-j}\left|g_{j,i}\right|,\\
+&= \frac{\a}{(1-\b_1)\sqrt{(1-\b_2)}} \sum_{t=1}^T \sum_{i=1}^{d} \frac{1}{\sqrt{t}} \sum_{j=1}^t\g^{t-j}\left|g_{j,i}\right|,\\
+&= \frac{\a}{(1-\b_1)\sqrt{(1-\b_2)}} \sum_{t=1}^T \sum_{i=1}^{d} \left|g_{t,i} \right| \sum_{j=t}^T\frac{\g^{j-t}}{\sqrt{j}},\\
+&\leq \frac{\a}{(1-\b_1)\sqrt{(1-\b_2)}} \sum_{t=1}^T \sum_{i=1}^{d} \left|g_{t,i} \right| \sum_{j=t}^T\frac{\g^{j-t}}{\sqrt{t}}.
+\end{align*}
+Since $\g<1$, we can apply the fact that for geometric series $\sum_{k\geq 1}q^k$, where $q\in (0,1)$ holds $\sum_{k\geq 1}q^k = 1/(1-q)$. This gives us
+\begin{align*}
+\sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \frac{\a}{(1-\b_1)\sqrt{(1-\b_2)}} \sum_{t=1}^T \sum_{i=1}^{d} \left|g_{t,i} \right| \frac{1}{(1-\g)\sqrt{t}},\\
+&\leq \frac{\a}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2 \sqrt{\sum_{t=1}^T\frac{1}{t}},\\
+\end{align*}
+where we used the definition of the euclidean norm $\|\wc\|_2$ and the fact that $\sum_{t\geq 1} 1/\sqrt{t} \leq \sqrt{\sum_{t\geq 1} 1/t}$ in the last step.\\
+If we now apply the bound on harmonic sums $\sum_{t=1}^T 1/t \leq (1+\log T)$, we receive
+\begin{align}\label{eq:1.11}
+\sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \frac{\a}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2 \sqrt{1 +\log T},\nonumber\\
+&= \frac{\a\sqrt{1 +\log T}}{\left(1-\b_1\right)\left(1-\g\right)\sqrt{\left(1-\b_2\right)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
+\end{align}
+Now, plugging inequality \eqref{eq:1.11} into inequality \eqref{eq:1.10} that swe were interested in originally, gives us
+\begin{align*}
+\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+\quad &\leq \sum_{t=1}^T \left[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right]\right.\\
+&\quad + \left.\frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
+\end{align*}
+Pulling out the first summand of the sum and shifting the index leads to
+\begin{align*}
+\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+\quad &\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2 + \sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{2\a_t(1-\b_{1t})} - \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{2\a_{t-1}(1-\b_{1(t-1)})}\right]\\
+&\quad + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
+\end{align*}
+Now we expand the first sum and pull out the factor $1/2$
+\begin{align*}
+\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2\\
+&\quad + \frac{1}{2}\sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})}
+- \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})}
++ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1t})}\right.\\
+&\quad \left. - \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{\a_{t-1}(1-\b_{1(t-1)})}\right] + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right]\\
+&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
+\end{align*}
+If we now consider the fact, that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$ and the following two observations
+\begin{align*}
+\frac{\hat{v}_{t,i}^{1/2}}{\a_t} &\geq \frac{\hat{v}_{t-1,i}^{1/2}}{\a_{t-1}},\\
+\frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1t})} - \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})} &\leq \frac{\b_{1t}}{\a_t\left( 1-\b_1 \right)^2} \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2,
+\end{align*}
+this leads to
+\begin{align*}
+\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2\\
+&\quad + \frac{1}{2}\sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})}
+- \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{\a_{t-1}(1-\b_{1(t-1)})}\right]\\
+&\quad + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \sum_{t=2}^T \left[\frac{\b_{1t}}{\a_t\left( 1-\b_1 \right)^2} \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 \right]\\
+&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,\\
+&\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2\\
+&\quad + \frac{1}{2(1-\b_{1})}\sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t}
+- \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{\a_{t-1}}\right]\\
+&\quad + \sum_{t=1}^T \left[\frac{\b_{1t}}{\a_t (1-\b_{1})^2} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right]
++ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,\\
+\end{align*}
+where we simply extended the third sum with the non-negative summand for $t=1$, in order to join it with the second sum.\\
+Furthermore, using the definition of the operator $\hat{V}_t$ gives us
+\begin{align*}
+\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\leq \frac{1}{2\a_1(1-\b_{1})}\sum_{i=1}^d\hat{v}_{1,i}\left( \t_{1,i} - \t_i^{\ast} \right)^2
++ \frac{1}{2(1-\b_{1})}\sum_{t=2}^T \sum_{i=1}^d \left[ \left(\frac{\hat{v}_{t,i}^{1/2}}{\a_{t}} - \frac{\hat{v}_{t-1,i}^{1/2}}{\a_{t-1}} \right) \left( \t_{t, i} - \t_{i}^{\ast} \right)^2\right]\\
+&\quad + \frac{1}{(1-\b_{1})^2}\sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2} (\t_{t,i} - \t_{i}^{\ast})^2}{\a_t}
++ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
+\end{align*}
+Since we assumed that the parameter space $\T$ has bounded diameter $D_\infty$, we can write as well
+\begin{align*}
+\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\leq \frac{1}{2\a_1(1-\b_{1})}\sum_{i=1}^d\hat{v}_{1,i}D_\infty^2
++ \frac{1}{2(1-\b_{1})}\sum_{t=2}^T \sum_{i=1}^d \left[ \left(\frac{\hat{v}_{t,i}^{1/2}}{\a_{t}} - \frac{\hat{v}_{t-1,i}^{1/2}}{\a_{t-1}} \right) D_\infty^2\right]\\
+&\quad + \frac{1}{(1-\b_{1})^2}\sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2} D_\infty^2}{\a_t}
++ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
+\end{align*}
+Lastly, we realize that the first double sum is of telescopic nature. Hence, we can reduce it to
+\begin{align*}
+\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast})
+&\leq \frac{D_\infty^2\sqrt{T}}{2\a(1-\b_{1})}\sum_{i=1}^d\hat{v}_{T,i}
++ \frac{D_\infty^2}{(1-\b_{1})^2}\sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}\\
+&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
+\end{align*}
+where we additionally included the definition of $\a_T$.
 \end{proof}
 
 \section{Neural networks in computer vision}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  28 AUG 2023 22:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  5 SEP 2023 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -16722,7 +16722,7 @@ LaTeX Warning: Command \t invalid in math mode on input line 251.
 <recently read> \spacefactor
 
 l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
-                                                   evaluated at timestep $t$...
+                                                   evaluated at time step $t...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
 neither of these is meaningful inside \write. So
@@ -16732,7 +16732,7 @@ I'm forgetting what you said and using zero instead.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \let \maybe@load@fontshape...
 l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
-                                                   evaluated at timestep $t$...
+                                                   evaluated at time step $t...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
 you forgot something else, as in `\hbox{$x}'. In such cases
@@ -16743,7 +16743,7 @@ deleted material, e.g., by typing `I$}'.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
 l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
-                                                   evaluated at timestep $t$...
+                                                   evaluated at time step $t...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
@@ -16751,7 +16751,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 <to be read again>
                    \edef
 l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
-                                                   evaluated at timestep $t$...
+                                                   evaluated at time step $t...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
@@ -16761,7 +16761,7 @@ so that I will find a matching right brace soon.
 <inserted text>
                 }
 l.251 ... partial derivatives of $f_t$ w.r.t. $\t$
-                                                   evaluated at timestep $t$...
+                                                   evaluated at time step $t...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -16771,7 +16771,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.251 ...$f_t$ w.r.t. $\t$ evaluated at timestep $
+l.251 ...f_t$ w.r.t. $\t$ evaluated at time step $
                                                   t$. Furthermore,  let $g_t...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -16784,7 +16784,7 @@ Missing character: There is no g in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.251 ...ed at timestep $t$. Furthermore,  let $g_
+l.251 ...d at time step $t$. Furthermore,  let $g_
                                                   t^2 \coloneqq g_t \odot g_...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -17282,7 +17282,7 @@ and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
 l.259 \State
-             $t \gets 0$ (Initialize timestep)
+             $t \gets 0$ (Initialize time step)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
