@@ -584,12 +584,11 @@ Now we expand the first sum and pull out the factor $1/2$
 &\quad \left. - \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{\a_{t-1}(1-\b_{1(t-1)})}\right] + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right]\\
 &\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
 \end{align*}
-If we now consider the fact, that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$ and the following two observations
+If we now consider the fact, that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$ and the following observation
 \begin{align*}
-\frac{\hat{v}_{t,i}^{1/2}}{\a_t} &\geq \frac{\hat{v}_{t-1,i}^{1/2}}{\a_{t-1}},\\
-\frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1t})} - \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})} &\leq \frac{\b_{1t}}{\a_t\left( 1-\b_1 \right)^2} \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2,
+\frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1t})} - \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})} \leq \frac{\b_{1t}}{\a_t\left( 1-\b_1 \right)^2} \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2,
 \end{align*}
-this leads to
+then, this leads to
 \begin{align*}
 \sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
 &\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2\\
