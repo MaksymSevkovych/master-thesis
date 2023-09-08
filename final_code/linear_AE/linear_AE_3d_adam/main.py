@@ -10,9 +10,7 @@ from visualise import inference_linear, plot_latent_3D_linear
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
 
-BASE_PATH = (
-    f"./final_code/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"
-)
+BASE_PATH = f"./final_code/linear_AE/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"  # noqa: E501
 BATCH_SIZE = 64
 LATENT_DIMS = 3
 NUM_BATCHES = 50
