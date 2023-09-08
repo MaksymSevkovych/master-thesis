@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  7 SEP 2023 09:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  8 SEP 2023 19:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1171,12 +1171,12 @@ put line 252.
 
  (./autoencoders.tex
 chapter 2.
-<autoencoder.jpg, id=261, 996.72375pt x 435.6275pt>
+<autoencoder.jpg, id=263, 996.72375pt x 435.6275pt>
 File: autoencoder.jpg Graphic file (type jpg)
 <use autoencoder.jpg>
 Package pdftex.def Info: autoencoder.jpg  used on input line 17.
 (pdftex.def)             Requested size: 435.32422pt x 190.26085pt.
-<encoder.jpg, id=263, 740.7675pt x 534.99875pt>
+<encoder.jpg, id=265, 740.7675pt x 534.99875pt>
 File: encoder.jpg Graphic file (type jpg)
 <use encoder.jpg>
 Package pdftex.def Info: encoder.jpg  used on input line 35.
@@ -1187,43 +1187,43 @@ Package pdftex.def Info: encoder.jpg  used on input line 35.
 
 
 ] [25 <./autoencoder.jpg> <./encoder.jpg>]
-<decoder.jpg, id=280, 734.745pt x 527.9725pt>
+<decoder.jpg, id=282, 734.745pt x 527.9725pt>
 File: decoder.jpg Graphic file (type jpg)
 <use decoder.jpg>
 Package pdftex.def Info: decoder.jpg  used on input line 54.
 (pdftex.def)             Requested size: 435.32422pt x 312.82228pt.
  [26 <./decoder.jpg>] [27]
 [28] [29]
-<linear_AE_2d_adam_latent.png, id=327, 867.24pt x 505.89pt>
+<linear_AE_2d_adam_latent.png, id=329, 867.24pt x 505.89pt>
 File: linear_AE_2d_adam_latent.png Graphic file (type png)
 <use linear_AE_2d_adam_latent.png>
 Package pdftex.def Info: linear_AE_2d_adam_latent.png  used on input line 249.
 (pdftex.def)             Requested size: 237.01411pt x 138.25175pt.
-<linear_AE_2d_amsgrad_latent.png, id=329, 867.24pt x 505.89pt>
+<linear_AE_2d_amsgrad_latent.png, id=331, 867.24pt x 505.89pt>
 File: linear_AE_2d_amsgrad_latent.png Graphic file (type png)
 <use linear_AE_2d_amsgrad_latent.png>
 Package pdftex.def Info: linear_AE_2d_amsgrad_latent.png  used on input line 25
 2.
 (pdftex.def)             Requested size: 237.01411pt x 138.25175pt.
-<linear_AE_2d_adam_inference.png, id=330, 462.528pt x 346.896pt>
+<linear_AE_2d_adam_inference.png, id=332, 462.528pt x 346.896pt>
 File: linear_AE_2d_adam_inference.png Graphic file (type png)
 <use linear_AE_2d_adam_inference.png>
 Package pdftex.def Info: linear_AE_2d_adam_inference.png  used on input line 26
 2.
 (pdftex.def)             Requested size: 237.01411pt x 177.76152pt.
-<linear_AE_2d_amsgrad_inference.png, id=331, 462.528pt x 346.896pt>
+<linear_AE_2d_amsgrad_inference.png, id=333, 462.528pt x 346.896pt>
 File: linear_AE_2d_amsgrad_inference.png Graphic file (type png)
 <use linear_AE_2d_amsgrad_inference.png>
 Package pdftex.def Info: linear_AE_2d_amsgrad_inference.png  used on input line
  265.
 (pdftex.def)             Requested size: 237.01411pt x 177.76152pt.
-<linear_AE_2d_adam_training_progress.png, id=332, 702.625pt x 501.875pt>
+<linear_AE_2d_adam_training_progress.png, id=334, 702.625pt x 501.875pt>
 File: linear_AE_2d_adam_training_progress.png Graphic file (type png)
 <use linear_AE_2d_adam_training_progress.png>
 Package pdftex.def Info: linear_AE_2d_adam_training_progress.png  used on input
  line 275.
 (pdftex.def)             Requested size: 237.01411pt x 169.29509pt.
-<linear_AE_2d_amsgrad_training_progress.png, id=333, 702.625pt x 501.875pt>
+<linear_AE_2d_amsgrad_training_progress.png, id=335, 702.625pt x 501.875pt>
 File: linear_AE_2d_amsgrad_training_progress.png Graphic file (type png)
 <use linear_AE_2d_amsgrad_training_progress.png>
 Package pdftex.def Info: linear_AE_2d_amsgrad_training_progress.png  used on in
@@ -1233,69 +1233,69 @@ put line 278.
 <./linear_AE_2d_adam_inference.png> <./linear_AE_2d_amsgrad_inference.png> <./l
 inear_AE_2d_adam_training_progress.png> <./linear_AE_2d_amsgrad_training_progre
 ss.png>]
-<linear_AE_3d_adam_latent_1.png, id=359, 867.24pt x 505.89pt>
+<linear_AE_3d_adam_latent_1.png, id=361, 867.24pt x 505.89pt>
 File: linear_AE_3d_adam_latent_1.png Graphic file (type png)
 <use linear_AE_3d_adam_latent_1.png>
 Package pdftex.def Info: linear_AE_3d_adam_latent_1.png  used on input line 291
 .
 (pdftex.def)             Requested size: 237.01411pt x 138.25175pt.
-<linear_AE_3d_adam_latent_2.png, id=360, 867.24pt x 505.89pt>
+<linear_AE_3d_adam_latent_2.png, id=362, 867.24pt x 505.89pt>
 File: linear_AE_3d_adam_latent_2.png Graphic file (type png)
 <use linear_AE_3d_adam_latent_2.png>
 Package pdftex.def Info: linear_AE_3d_adam_latent_2.png  used on input line 294
 .
 (pdftex.def)             Requested size: 237.01411pt x 138.25175pt.
-<linear_AE_3d_amsgrad_latent_1.png, id=361, 867.24pt x 505.89pt>
+<linear_AE_3d_amsgrad_latent_1.png, id=363, 867.24pt x 505.89pt>
 File: linear_AE_3d_amsgrad_latent_1.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_latent_1.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_latent_1.png  used on input line
 303.
 (pdftex.def)             Requested size: 237.01411pt x 138.25175pt.
-<linear_AE_3d_amsgrad_latent_2.png, id=362, 867.24pt x 505.89pt>
+<linear_AE_3d_amsgrad_latent_2.png, id=364, 867.24pt x 505.89pt>
 File: linear_AE_3d_amsgrad_latent_2.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_latent_2.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_latent_2.png  used on input line
 306.
 (pdftex.def)             Requested size: 237.01411pt x 138.25175pt.
-<linear_AE_3d_adam_inference.png, id=363, 462.528pt x 346.896pt>
+<linear_AE_3d_adam_inference.png, id=365, 462.528pt x 346.896pt>
 File: linear_AE_3d_adam_inference.png Graphic file (type png)
 <use linear_AE_3d_adam_inference.png>
 Package pdftex.def Info: linear_AE_3d_adam_inference.png  used on input line 31
 6.
 (pdftex.def)             Requested size: 237.01411pt x 177.76152pt.
-<linear_AE_3d_amsgrad_inference.png, id=364, 462.528pt x 346.896pt>
+<linear_AE_3d_amsgrad_inference.png, id=366, 462.528pt x 346.896pt>
 File: linear_AE_3d_amsgrad_inference.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_inference.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_inference.png  used on input line
  319.
 (pdftex.def)             Requested size: 237.01411pt x 177.76152pt.
-<linear_AE_3d_adam_training_progress.png, id=365, 702.625pt x 501.875pt>
+<linear_AE_3d_adam_training_progress.png, id=367, 702.625pt x 501.875pt>
 File: linear_AE_3d_adam_training_progress.png Graphic file (type png)
 <use linear_AE_3d_adam_training_progress.png>
 Package pdftex.def Info: linear_AE_3d_adam_training_progress.png  used on input
  line 329.
 (pdftex.def)             Requested size: 237.01411pt x 169.29509pt.
-<linear_AE_3d_amsgrad_training_progress.png, id=366, 702.625pt x 501.875pt>
+<linear_AE_3d_amsgrad_training_progress.png, id=368, 702.625pt x 501.875pt>
 File: linear_AE_3d_amsgrad_training_progress.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_training_progress.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_training_progress.png  used on in
 put line 332.
 (pdftex.def)             Requested size: 237.01411pt x 169.29509pt.
-) [32 <./linear_AE_3d_adam_latent_1.png> <./linear_AE_3d_adam_latent_2.png> <./
-linear_AE_3d_amsgrad_latent_1.png> <./linear_AE_3d_amsgrad_latent_2.png>] [33 <
-./linear_AE_3d_adam_inference.png> <./linear_AE_3d_amsgrad_inference.png> <./li
-near_AE_3d_adam_training_progress.png> <./linear_AE_3d_amsgrad_training_progres
-s.png>]
+ [32 <./linear_AE_3d_adam_latent_1.png> <./linear_AE_3d_adam_latent_2.png> <./l
+inear_AE_3d_amsgrad_latent_1.png> <./linear_AE_3d_amsgrad_latent_2.png>] [33 <.
+/linear_AE_3d_adam_inference.png> <./linear_AE_3d_amsgrad_inference.png> <./lin
+ear_AE_3d_adam_training_progress.png> <./linear_AE_3d_amsgrad_training_progress
+.png>]) [34]
 \openout2 = `vae.aux'.
 
  (./vae.tex
 chapter 3.
-[34
+[35
 
 
 
 
-]) [35] (./main.bbl) [36
+]) [36] (./main.bbl) [37
 
 
 
@@ -1305,11 +1305,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 Here is how much of TeX's memory you used:
- 34886 strings out of 476029
- 746822 string characters out of 5790166
+ 34900 strings out of 476029
+ 747030 string characters out of 5790166
  1887346 words of memory out of 5000000
- 54639 multiletter control sequences out of 15000+600000
- 525304 words of font info for 82 fonts, out of 8000000 for 9000
+ 54645 multiletter control sequences out of 15000+600000
+ 526005 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,106p,10626b,1107s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pf
@@ -1335,10 +1335,11 @@ ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 22/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
 2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2022/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (36 pages, 1772772 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on main.pdf (37 pages, 1788053 bytes).
 PDF statistics:
- 577 PDF objects out of 1000 (max. 8388607)
- 453 compressed objects within 5 object streams
- 146 named destinations out of 1000 (max. 500000)
+ 598 PDF objects out of 1000 (max. 8388607)
+ 471 compressed objects within 5 object streams
+ 152 named destinations out of 1000 (max. 500000)
  191 words of extra memory for PDF output out of 10000 (max. 10000000)

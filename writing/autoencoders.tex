@@ -180,7 +180,7 @@ The Binary Cross-Entropy loss function is usually used for binary classification
 \section{Applications}
 
 In this section we want to train a couple of own autoencoding neural networks on the MNIST dataset - a dataset consisting of handwritten digits. Lastly, we will consider a composition of MNIST images in order to simulate a scenario that will allow the Duckeneers GmbH to generate new data. We will consider some various architectures of neural networks and visualise the results in a comprehensible manner.\\
-Firstly, we want to consider the most simple architecture, a fully connected linear neural network.
+First, we want to consider the most simple architecture, a fully connected linear neural network.
 
 \begin{definition}\label{def_linear_encoder}
 Let $\T$ be an arbitrary parameter space, $L\in \N$ and $d_1,\ldots,d_L \in \N$. Furthermore, let $\f$ be an arbitrary activation function.\\
@@ -188,7 +188,7 @@ Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined a
 \begin{align*}
 H_i(x) = \hat{\f}(W_ix + b_i), \qquad x \in \R^{d_i}, i \in \{1,\ldots, L\},
 \end{align*}
-where $\t_i(W_i, b_i)\in\T$ are the parameters of the $i$-th layer, see \eqref{eq_linear_layer}. Such a decoding neural network is called a \textbf{linear encoder}.
+where $\t_i = (W_i, b_i)\in\T$ are the parameters of the $i$-th layer, see \eqref{eq_linear_layer}. Such an encoding neural network is called a \textbf{linear encoder}.
 \end{definition}
 
 Analogously, we define a linear decoding neural network.
@@ -222,9 +222,9 @@ The MNIST dataset $\D$ consists of greyscale images with a resolution of $(28,28
 Now, let us take a look at a specific example of a linear autoencoder defined on the MNIST dataset.
 
 \begin{algorithm}
-Let the input and output dimensions be $n_i, n_o \in\N$. Furthermore, let the encoder and the decoder have $k$ hidden layers with dimensions $n_1, n_2,\ldots, n_k\in\N$ with bottleneck $n_b\N$.\\
+Let the input and output dimensions be $n_i, n_o \in\N$. Furthermore, let the linear encoder and the linear decoder have $k$ hidden linear layers with dimensions $n_1, n_2,\ldots, n_k\in\N$ with bottleneck $n_b\in\N$.\\
 Let the chosen optimizer be ADAM first and afterwards be AMSGrad with a learning rate $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs with a batch size of $512$.
-\caption{Linear Autoencoder}\label{alg:linear_AE_2d}
+\caption{Linear Autoencoder}\label{alg:linear_AE}
 \begin{algorithmic}[1]
 \Require $\g \gets \num{3e-4}$
 \For{epoch in $\{1,\ldots, 10.000\}$}
@@ -334,3 +334,58 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 \end{center}
 \caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_3d_training_progress}
 \end{figure}
+
+
+As we saw in figure \ref{fig:linear_AE_3d_inference}, the linear autoencoder does produce recognisable digits in its reconstructions, but it still performs quite poorly. To address this issue, we propose another architecture of an autoencoding neural network. In this setting, we now consider convolutional layers instead of linear layers, this means that the connections between each layer are no longer matrix multiplications, but much more convolutions. Hence, we introduce the convolutional encoder and the convolutional decoder.
+
+
+\begin{definition}\label{def_convolutional_encoder}
+Let $\T$ be an arbitrary parameter space, $L\in \N$ and $d_1,\ldots,d_L \in \N$. Furthermore, let $\f$ be an arbitrary activation function.\\
+Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
+\begin{align*}
+H_i(x) = \hat{\f}(T_{\text{conv}, i}x + b_i), \qquad x \in \R^{d_i}, i \in \{1,\ldots, L\},
+\end{align*}
+where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters of the $i$-th layer, see proposition \ref{prop:convolutional_layer}. Such an encoding neural network is called a \textbf{convolutional encoder}.
+\end{definition}
+
+Analogously, we define a convolutional decoding neural network.
+
+\begin{definition}\label{def_convolutional_decoder}
+Let $\T$ be an arbitrary parameter space, $L\in \N$ and $d_1,\ldots,d_L \in \N$. Furthermore, let $\f$ be an arbitrary activation function.\\
+Then a decoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
+\begin{align*}
+H_i(x) = \hat{\f}(T_{\text{conv}, i}x + b_i), \qquad x \in \R^{d_i}, i \in \{1,\ldots, L\},
+\end{align*}
+where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters of the $i$-th layer, see proposition \ref{prop:convolutional_layer} Such a decoding neural network is called a \textbf{convolutional decoder}.
+\end{definition}
+
+
+Analogously to the linear autoencoder, we can define the convolutional autoencoder with the convolutional encoder and decoder architecture.
+
+\begin{definition}
+Let $f_e$ and $f_d$ be a convolutional encoder and a convolutional decoder. Then a \textbf{convolutional autoencoder} $f_{\text{conv}}$ is defined as the composition
+\begin{align*}
+f_{\text{conv}} \coloneqq f_d \circ f_e.
+\end{align*}
+\end{definition}
+
+Now, lets define a specific example of a convolutional autoencoder and see how it performs.
+
+\begin{algorithm}
+Let the input and output dimensions be $n_i, n_o \in \N^{2\times 1}$. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers with dimensions $n_1, n_2,\ldots, n_k\in \N^{2\times 1}$ with bottleneck $n_b\in\N^{2\times 1}$. Here, $n_{b,12}\in\N^{2}$ represents the resolution and $n_{b,3}\in\N^{1}$ represents the number of channels in the corresponding layer, respectively.\\
+Let the chosen optimizer be ADAM first and afterwards be AMSGrad with a learning rate $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs.
+\caption{Linear Autoencoder}\label{alg:convolutional_AE}
+\begin{algorithmic}[1]
+\Require $\g \gets \num{3e-4}$
+\For{epoch in $\{1,\ldots, 10.000\}$}
+	\For{image in batch}
+	    \State encoded = encoder(image) \Comment{Encode the image onto latent space.}
+		\State reconstructed = decoder(encoded) \Comment{Decode the encoded image.}
+    	\State loss = MSE(reconstructed, image) \Comment{Compare the output to the input.}
+	    \State optimization(loss, $\g$) \Comment{Perform an optimization step.}
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+However, in our

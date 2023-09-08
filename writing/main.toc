@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {2.1}Conceptional ideas}{24}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Training of autoencoders}{28}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Applications}{29}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Variational Autoencoders}{34}{chapter.3}%
-\contentsline {section}{\numberline {3.1}What are variational autoencoders?}{34}{section.3.1}%
-\contentsline {chapter}{References}{36}{theorem.3.1.4}%
+\contentsline {chapter}{\numberline {3}Variational Autoencoders}{35}{chapter.3}%
+\contentsline {section}{\numberline {3.1}What are variational autoencoders?}{35}{section.3.1}%
+\contentsline {chapter}{References}{37}{theorem.3.1.4}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file
