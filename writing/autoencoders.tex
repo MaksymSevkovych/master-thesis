@@ -240,7 +240,7 @@ Let the chosen optimizer be ADAM first and afterwards be AMSGrad with a learning
 \end{algorithm}
 
 
-Let's take a look at the trained autoencoders using the ADAM and the AMSGrad optimizer. In figure \ref{fig:linear_AE_2d_latent} we can see the latent space of the models. Furthermore, in figure \ref{fig:linear_AE_2d_inference} we can see ten reconstructions for each of the ten digits. The training progresses are illustrated in figure \ref{fig:linear_AE_2d_training_progress}.
+Let's take a look at the trained autoencoders using the ADAM and the AMSGrad optimizer. In figure \ref{fig:linear_AE_2d_latent} we can see the latent space of the models. Furthermore, in figure \ref{fig:linear_AE_2d_inference} we can see ten reconstructions for each of the ten digits. The training progresses are illustrated in figure \ref{fig:linear_AE_2d_adam_training_progress} with the ADAM optimizer and in figure \ref{fig:linear_AE_2d_amsgrad_training_progress} with an AMSGrad optimizer, respectively.
 
 
 \begin{figure}
@@ -271,18 +271,21 @@ Let's take a look at the trained autoencoders using the ADAM and the AMSGrad opt
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_adam_training_progress}
-	\end{minipage}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_training_progress}
-	\end{minipage}
+\includegraphics[width=\linewidth]{linear_AE_2d_adam_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_2d_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_2d_adam_training_progress}
 \end{figure}
 
 
-Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the ADAM optimizer and in figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in figure \ref{fig:linear_AE_3d_inference} we can see ten reconstructions for each of the ten digits. The training progress is illustrated in figure \ref{fig:linear_AE_3d_training_progress}.
+\begin{figure}
+\begin{center}
+\includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_training_progress}
+\end{center}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_2d_amsgrad_training_progress}
+\end{figure}
+
+
+Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the ADAM optimizer and in figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in figure \ref{fig:linear_AE_3d_inference} we can see ten reconstructions for each of the ten digits. The training progress for the ADAM optimizer is illustrated in figure \ref{fig:linear_AE_3d_adam_training_progress} and for the AMSGrad optimizer in figure \ref{fig:linear_AE_3d_amsgrad_training_progress}, respectively.
 
 
 \begin{figure}
@@ -325,14 +328,17 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_adam_training_progress}
-	\end{minipage}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_training_progress}
-	\end{minipage}
+\includegraphics[width=\linewidth]{linear_AE_3d_adam_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer (left) and an AMSGrad optimizer (right) with epochs on one axis and corresponding training loss on the other axis.}\label{fig:linear_AE_3d_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_3d_adam_training_progress}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_training_progress}
+\end{center}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_3d_amsgrad_training_progress}
 \end{figure}
 
 
@@ -372,9 +378,9 @@ f_{\text{conv}} \coloneqq f_d \circ f_e.
 Now, lets define a specific example of a convolutional autoencoder and see how it performs.
 
 \begin{algorithm}
-Let the input and output dimensions be $n_i, n_o \in \N^{2\times 1}$. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers with dimensions $n_1, n_2,\ldots, n_k\in \N^{2\times 1}$ with bottleneck $n_b\in\N^{2\times 1}$. Here, $n_{b,12}\in\N^{2}$ represents the resolution and $n_{b,3}\in\N^{1}$ represents the number of channels in the corresponding layer, respectively.\\
-Let the chosen optimizer be ADAM first and afterwards be AMSGrad with a learning rate $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs.
-\caption{Linear Autoencoder}\label{alg:convolutional_AE}
+Let the input and output dimensions be $n_i, n_o \in \N^{2\times 1}$. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers with dimensions $n_1, n_2,\ldots, n_k\in \N^{2\times 1}$ with bottleneck $n_b\in\N^{2\times 1}$. Here, $n_{b;1,2}\in\N^{2}$ represents the resolution and $n_{b,3}\in\N$ represents the number of channels in the corresponding layer, respectively.\\
+Let the chosen optimizer be AMSGrad with a learning rate $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs.
+\caption{Convolutional Autoencoder}\label{alg:convolutional_AE}
 \begin{algorithmic}[1]
 \Require $\g \gets \num{3e-4}$
 \For{epoch in $\{1,\ldots, 10.000\}$}
@@ -388,4 +394,42 @@ Let the chosen optimizer be ADAM first and afterwards be AMSGrad with a learning
 \end{algorithmic}
 \end{algorithm}
 
-However, in our
+However, in contrast to the linear autoencoder, the convolutional autoencoder architecture does not allow us to visualise the latent space as easily. The reason is that we designed our two linear autoencoders, each with distinct bottleneck dimensions of 2 and 3, respectively. This choice allowed us straightforward visualization of the latent space, given the single channel nature of our data, which was not altered in the course of computation. Unfortunately, the convolutional neural network does alter the amount of channels in the course of computation, such that we encode the data onto a resolution of one single pixel that comprises of $64$ channels and therefore, we would have to visualise $64$ channels.\\
+We still came up with an idea of how to visualise the encoded representation, where we plot each channel in a separate bar in a bar plot, see figure \ref{fig:convolutional_AE_latent}. It is to be read in the following way: each digit receives an own representation in the latent space, that can be uniquely described by the composition of activations in each channel. Here, by activation we mean the value that each channel has. We see that most of the channels have quite different average values and so can be distinguished in that way.\\
+However, what is highly interesting to highlight here is that although the magnitude of the values might differ quite significantly, their signs always match.
+
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[width=\linewidth]{convolutional_AE_latent_0}
+      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $0, 1, 2, 3$ and  $4$. The average has been taken over $100$ different images of the same digit.
+	\end{minipage}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[width=\linewidth]{convolutional_AE_latent_1}
+      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $5, 6, 7, 8$ and $9$. The average has been taken over $100$ different images of the same digit.
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the activations of all $64$ channels in the latent space of our trained convolutional autoencoder, which was optimized with an AMSGrad optimizer, see algorithm \ref{alg:convolutional_AE}.}\label{fig:convolutional_AE_latent}
+\end{figure}
+
+Another interesting result that we want to highlight here is the inference of the convolutional autoencoder, which is displayed in figure \ref{fig:convolutional_AE_inference}. All reconstructions are sharp enough to be recognised as their original digit, which is a huge improvement compared to the inference of the linear autoencoder, see e.g. figure \ref{fig:linear_AE_3d_inference}.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.7\linewidth]{convolutional_AE_inference}
+\end{center}
+\caption{The figure illustrates the inference of the convolutional autoencoder, optimized with the AMSGrad optimizer. The inference consists of the reconstructed images for each of the ten digits.}\label{fig:convolutional_AE_inference}
+\end{figure}
+
+
+Lastly, we want to take a quick look at the training progress of the convolutional autoencoder, see figure \ref{fig:convolutional_AE_training_progress}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\linewidth]{convolutional_AE_training_progress}
+\end{center}
+\caption{The figure illustrates the training progresses of the convolutional autoencoder optimized with an AMSGrad optimizer  with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:convolutional_AE_training_progress}
+\end{figure}
