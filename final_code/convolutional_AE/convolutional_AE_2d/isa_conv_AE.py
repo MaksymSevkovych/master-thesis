@@ -17,7 +17,7 @@ NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
 BATCH_SIZE = 512
 PERSISTENT_WORKERS = True
-AMSGRAD = False
+AMSGRAD = True
 strategy = DDPStrategy()
 
 
@@ -94,7 +94,7 @@ class ConvolutionalEncoder(nn.Module):
             ),  # N, 16, 14, 14 -> N, 32, 7, 7
             nn.ReLU(),
             nn.Conv2d(32, 64, 7).to(DEVICE),  # N, 32, 7, 7 -> N, 64, 1, 1
-            nn.ReLU(),
+            # nn.ReLU(),
         )
 
     def forward(self, x: torch.Tensor):

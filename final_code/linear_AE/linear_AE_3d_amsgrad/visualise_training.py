@@ -21,7 +21,7 @@ def plot_training_progress(
     x_1, x_2 = df["epoch"][:2000], df["epoch"][2000:]
     y_1, y_2 = df["train_loss"][:2000], df["train_loss"][2000:]
 
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(14, 7))
     sns.set_theme()
 
     fig.add_subplot(121)

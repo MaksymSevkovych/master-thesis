@@ -7,7 +7,6 @@ import pandas as pd
 BASE_PATH = "/Users/maksym/Uni/master/coding/master-thesis/final_code/convolutional_AE/convolutional_AE_2d"  # noqa: E501
 ENCODINGS_FILE = "encodings.pickle"
 
-
 with open(os.path.join(BASE_PATH, ENCODINGS_FILE), "rb") as reader:
     dfs = pickle.load(reader)
 
@@ -29,13 +28,31 @@ for df in dfs.values():
 #         )
 #         plt.show()
 
+averages = {}
+for i in range(10):
+    averages.update({i: dfs[f"example {i}"]["average"]})
 
-values = {
-    "first": dfs[0]["average"],
-    "second": dfs[1]["average"],
-    "third": dfs[2]["average"],
-}
-test = pd.DataFrame(values)
-test.plot(y=["first", "second", "third"], kind="bar", figsize=(14, 7))
-# sns.barplot(x=list(range(64)), y=[avg1.tolist(), avg2.tolist()])
+df_averages = pd.DataFrame(averages)
+df_averages.plot(
+    y=list(range(5)),
+    kind="bar",
+    figsize=(14, 7),
+)
+dir_path = os.path.dirname(os.path.realpath(__file__))
+file_name = (
+    f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent_0.png"
+)
+plt.savefig(os.path.join(dir_path, file_name))
+plt.show()
+
+df_averages.plot(
+    y=list(range(5, 10)),
+    kind="bar",
+    figsize=(14, 7),
+)
+dir_path = os.path.dirname(os.path.realpath(__file__))
+file_name = (
+    f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent_1.png"
+)
+plt.savefig(os.path.join(dir_path, file_name))
 plt.show()

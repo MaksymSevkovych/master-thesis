@@ -15,25 +15,24 @@ BASE_PATH = "/Users/maksym/Uni/master/coding/master-thesis/final_code/convolutio
 BATCH_SIZE = 1
 LATENT_DIMS = 2
 LR = 3e-4
-MAX_AMOUNT = 30
+MAX_AMOUNT = 100
 ENCODINGS_FILE = "encodings.pickle"
 
 
 def compute_encodings(model: torch.nn.Module, max_amount: int) -> dict:
     encodings = {}
     for label in range(10):
-        amount = 0
         encodings_per_digit = []
 
         pbar = tqdm(total=max_amount)
-        while amount < max_amount:
-            for img, lbl in data_loader:
-                if lbl != label:
-                    continue
-                encodings_per_digit.append(torch.flatten(model.encoder(img).detach()))
-
-            amount += 1
+        for img, lbl in data_loader:
+            if len(encodings_per_digit) == max_amount:
+                break
+            if lbl != label:
+                continue
+            encodings_per_digit.append(torch.flatten(model.encoder(img).detach()))
             pbar.update(1)
+
         print(f"completed digit: {label}!")
         encodings.update({label: encodings_per_digit})
 
@@ -44,7 +43,10 @@ def create_dataframes(encodings: dict, max_amount: int) -> dict[pd.DataFrame]:
     dfs = {}
 
     for label, encodings_per_digit in encodings.items():
-        df = pd.DataFrame(torch.tensor(encodings_per_digit))
+        cat = torch.empty((64, 0))
+        for enc in encodings_per_digit:
+            cat = torch.cat((cat, enc.unsqueeze(1)), 1)
+        df = pd.DataFrame(cat)
         df["average"] = torch.stack(encodings_per_digit).sum(0) / max_amount
 
         dfs.update({f"example {label}": df})
