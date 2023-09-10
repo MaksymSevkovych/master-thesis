@@ -273,7 +273,7 @@ Let's take a look at the trained autoencoders using the ADAM and the AMSGrad opt
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_2d_adam_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_2d_adam_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line every $300$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_2d_adam_training_progress}
 \end{figure}
 
 
@@ -281,7 +281,7 @@ Let's take a look at the trained autoencoders using the ADAM and the AMSGrad opt
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_2d_amsgrad_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line every $300$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_2d_amsgrad_training_progress}
 \end{figure}
 
 
@@ -330,7 +330,7 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_3d_adam_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_3d_adam_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an ADAM optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line every $300$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_3d_adam_training_progress}
 \end{figure}
 
 
@@ -338,7 +338,7 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:linear_AE_3d_amsgrad_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line every $300$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_3d_amsgrad_training_progress}
 \end{figure}
 
 
@@ -396,7 +396,7 @@ Let the chosen optimizer be AMSGrad with a learning rate $\g=\num{3e-4}$ and the
 
 However, in contrast to the linear autoencoder, the convolutional autoencoder architecture does not allow us to visualise the latent space as easily. The reason is that we designed our two linear autoencoders, each with distinct bottleneck dimensions of 2 and 3, respectively. This choice allowed us straightforward visualization of the latent space, given the single channel nature of our data, which was not altered in the course of computation. Unfortunately, the convolutional neural network does alter the amount of channels in the course of computation, such that we encode the data onto a resolution of one single pixel that comprises of $64$ channels and therefore, we would have to visualise $64$ channels.\\
 We still came up with an idea of how to visualise the encoded representation, where we plot each channel in a separate bar in a bar plot, see figure \ref{fig:convolutional_AE_latent}. It is to be read in the following way: each digit receives an own representation in the latent space, that can be uniquely described by the composition of activations in each channel. Here, by activation we mean the value that each channel has. We see that most of the channels have quite different average values and so can be distinguished in that way.\\
-However, what is highly interesting to highlight here is that although the magnitude of the values might differ quite significantly, their signs always match.
+However, what is highly interesting to highlight here is that although the magnitude of the values might differ quite significantly, their signs match most of the time.
 
 
 
@@ -404,11 +404,11 @@ However, what is highly interesting to highlight here is that although the magni
 \begin{center}
    \begin{minipage}[b]{\linewidth}
       \includegraphics[width=\linewidth]{convolutional_AE_latent_0}
-      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $0, 1, 2, 3$ and  $4$. The average has been taken over $100$ different images of the same digit.
+      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $0, 1, 2, 3$ and  $4$. The average has been taken over $5.000$ different images of the same digit.
 	\end{minipage}
    \begin{minipage}[b]{\linewidth}
       \includegraphics[width=\linewidth]{convolutional_AE_latent_1}
-      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $5, 6, 7, 8$ and $9$. The average has been taken over $100$ different images of the same digit.
+      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $5, 6, 7, 8$ and $9$. The average has been taken over $5.000$ different images of the same digit.
 	\end{minipage}
 \end{center}
 \caption{The figure illustrates the activations of all $64$ channels in the latent space of our trained convolutional autoencoder, which was optimized with an AMSGrad optimizer, see algorithm \ref{alg:convolutional_AE}.}\label{fig:convolutional_AE_latent}
@@ -431,5 +431,5 @@ Lastly, we want to take a quick look at the training progress of the convolution
 \begin{center}
 \includegraphics[width=\linewidth]{convolutional_AE_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the convolutional autoencoder optimized with an AMSGrad optimizer  with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$.}\label{fig:convolutional_AE_training_progress}
+\caption{The figure illustrates the training progresses of the convolutional autoencoder optimized with an AMSGrad optimizer  with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line every $300$ epochs to point out the trend of the training progress.}\label{fig:convolutional_AE_training_progress}
 \end{figure}
