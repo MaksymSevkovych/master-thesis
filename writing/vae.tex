@@ -1,19 +1,57 @@
-\chapter{Variational Autoencoders}\label{vae}
+\chapter{Variational Autoencoders}\label{chap:vae}
 
-Differently from ordinary autoencoding neural networks, that we already mentioned to be discriminative models variational autoencodinf neural networks on the other hand are so called generative models. Instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. These models are usually referred to as generative models, see \cite[chapter~5]{cinelli2021variational} This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
+Differently from ordinary autoencoding neural networks that we already mentioned to be discriminative models, variational autoencoding neural networks on the other hand are so called generative models, see \cite[chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
 
-\section{What are variational autoencoders?}
+\section{Probabilistic foundations}
+
+Before diving into the depths of variational autoencoders, we want to begin by laying the essential probabilistic foundations. As already mentioned, in contrast to ordinary autoencoding neural networks which we discussed in chapter~\ref{chap:ae}
+variational autoencoding neural networks attempt to capture the entire probability distribution of $Y$. So the emerging question is how can we infer the probability distribution of $Y$, if we only have the observations $x$ given? We assume that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). This reason, since it is unknown or \textit{latent} to us, we will try to consider in more detail. In order to model this hidden cause, we introduce another random variable $Z$, a so called \textit{latent variable} and thus by marginalizing over $z$ obtain the joint distribution $p(x,z)$
+
+\begin{align}\label{eq:evidence}
+p(x) = \int p(x,z) dz = \int p(x|Z)p(z)dz.
+\end{align}
+
+These probability distributions we now want to introduce formally, since they will be of crucial importance in this chapter.
+
+\begin{definition}\label{def:evidence}
+Let $(\O, \A, \prob)$ be a probability space and $X$ a random variable defined on $\O$. Furthermore, let $x = (x_1, \ldots, x_n)$ be a set of $n\in\N$ realisations of $X$, which we define as \textbf{observations}.\\
+Then we call the probability density function $p: ()$, as introduced in equation \eqref{eq:evidence}, the \textbf{evidence} of $X$.
+\end{definition}
+
+
+
+
+Explain key concepts such as probability distributions, likelihood, prior, posterior, and the concept of latent variables. Use mathematical notation to define these concepts.
+
+
 Firstly, we want to define the specific structure of variational autoencoding neural networks and their key differences to ordinary autoencoding neural networks. As already motivated, variational autoencoders are generative models. This means, that they intend to capture the entire probability distribution of the observation space $Y$. Hence, they are statistical models and depend on certain probabilistic approaches.
+
+
+
+
+
+
+
+
 
 
 In order to compute the gradient of a variational autoencoding neural network, we need to determine a way to quantify the distance between probability distributions. A popular measure for this case is the so called Kullback-Leibler divergence. It assesses the dissimilarity between two probability distributions over the same 	random variable $X$.
 \begin{definition}\label{def_kl_div}
 Let $X$ be a random variable and $p, q$ two probability density functions over $X$. Then, the \textbf{Kullback-Leibler divergence} is defined as
 \begin{align}
-\infdivx{p}{q} = \int p(x) \log \left( \frac{p(x)}{q(x)}\right) dx.
+\kldiv{p}{q} = \int p(x) \log \left( \frac{p(x)}{q(x)}\right) dx.
 \end{align}
 \end{definition}
 
+If we consider the Kullback-Leibler divergence with regard to a dataset consisting of observed data samples, we can write equivalently.
+
+\begin{definition}
+Let $X$ be a random variable and $p, q$ two probability density functions over $X$. Furthermore, let $D=\{x_i\}_{i=i}^L$ be an unsupervised dataset of length $L\in\N$.\\
+Then, the \textbf{Kullback-Leibler divergence} is defined as
+\begin{align}
+\kldiv{p}{q} = \sum_{i=1}^L p(x_i) \log \left( \frac{p(x_i)}{q(x_i)}\right).
+\end{align}
+\end{definition}
 
 \begin{definition}\label{def_entropy}
 Let $X$ be a random variable and $p$ a probability density function over $X$. Then, the nonnegative measure of the expected information content of $X$ under correct distribution $p$, defined as
@@ -36,7 +74,7 @@ is called \textbf{cross-entropy} between $p$ and $q$.
 \begin{remark}
 Let $X$ be a random variable and $p, q$ probability density functions over $X$. Then the Kullback-Leibler divergence between $p$ and $q$ can be written as follows
 \begin{align*}
-\infdivx{p}{q} = \H_q(p) - \H(p),
+\kldiv{p}{q} = \H_q(p) - \H(p),
 \end{align*}
 where $\H_q$ and $\H$ denote the cross-entropy and entropy, respectively.
 \end{remark}

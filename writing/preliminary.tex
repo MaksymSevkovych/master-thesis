@@ -137,6 +137,7 @@ We will write $\risk \coloneqq \risk_{L, D}$ unless unclear in the given context
 
 With the previous definitions, we can return to considering the training of neural networks. There are many possible techniques and strategies. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function. In the following we want to consider a couple of popular algorithms that are used to train neural networks.
 
+\textcolor{red}{TODO: THE WHOLE GD AND SGD THEORY WILL BE REWORKED!!! I consider introducing the gd and sgd algorithms as in \cite{DBLP:journals/corr/abs-1902-00908}. It will require some additional quantities (RKHS, Polyak-\L{}ojasiewiecz condition), but this PL-condition is satisfied by e.g. neural networks, what makes this highly interesting.}
 
 \begin{theorem}\label{theorem_gd}
 Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$. Furthermore, let $f:\R^n \to \R$ be a continuous, convex and differentiable function. Furthermore, let $x^{(t)}$ denote the $t$-th iterate of the \textbf{gradient descent algorithm} defined by
@@ -844,3 +845,90 @@ H_{\text{conv}}: \P_0 &\to \P_1,\\
 \end{align*}
 defines a neural layer, where the parameters $\t$ are the $s$-convolution kernel $k$. We will call such a layer a \textbf{convolutional neural layer} and denote the layers' parameters $\t = T_{\text{conv}}$, since the kernel defines the convolution operator uniquely.
 \end{proposition}
+
+\section{Probability and Statistics}
+
+Another important topic for this thesis is probability theory and statistics. Especially in chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
+We want to begin by introducing the basic quantities in probability theory, merely to define a notation throughout the thesis.
+
+
+\begin{definition}\label{def:pdf}
+Let $(\O, \A, \prob)$ be a \textbf{probability space} and $\T$ a \textbf{parameter space}. Furthermore, let $X$ be a \textbf{random variable} defined over $(\O, \T)$. Then we denote the \textbf{probability density function} of $X$ as $p(x; \t)$.
+\end{definition}
+
+Furthermore, we want to introduce parametric models. These are families of distributions that can be indexed by a finite number of parameters. Here we should note, that we want to consider the defining parameters of a probability distribution in the arguments of the underlying probability density function. This means that for example for a normally distributed random variable $X$ with mean $\m$ and variance $\s^2$ we would denote its probability density function as $p(x;\m,\s^2)$.
+
+\begin{definition}\label{def:parametric_model}
+Let $(\O, \A, \prob)$ be a probability space and $X$ a random variable defined over $\O$. Furthermore, let $\T$ be an arbitrary parameter space.\\
+Then we denote the \textbf{parametric model} as the family of distributions
+\begin{align*}
+\mathcal{P}_{\T} = \left\{ p(x;\t): \t\in\T \right\}.
+\end{align*}
+\end{definition}
+
+\begin{example}\label{ex:parametric_model}
+Let's consider some elementary examples of parametric models.
+\begin{enumerate}
+\item Let $U\subset \N^2$ be a finite subset with tuples $(a,b) \in U$ and $X\sim\mathcal{U}(a, b)$ a uniformly distributed random variable. Then the parametric model of $X$ with regard to $U$ looks as follows
+\begin{align*}
+\mathcal{P}_U = \{p(x; a, b) : (a,b) \in U\},
+\end{align*}
+where for each probability density function $p(x;a,b)$ holds
+\begin{align*}
+p(x; a, b) =
+\begin{cases}
+1/(b-a), &\text{if } x\in [a, b],\\
+0, &\text{otherwise}.
+\end{cases}
+\end{align*}
+\item Let $N\subset \Q\times \Q_+$ be a finite subset with tuples $(\m,\s^2) \in N$ and $X\sim\mathcal{N}(\m, \s^2)$ a normally distributed random variable. Then the parametric model of $X$ with regard to $N$ looks as follows
+\begin{align*}
+\mathcal{P}_N = \{p(x; \m, \s^2) : (\m,\s^2) \in N\},
+\end{align*}
+where for each probability density function $p(x; \m, \s^2)$ holds
+\begin{align*}
+p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2}.
+\end{align*}
+\end{enumerate}
+\end{example}
+
+Another way to generate a family of distributions is to alter an underlying base probability density function, hence named standard probability density function. Possible alterations might be shifting or scaling the standard probability density function (or applying both alterations). Therefore, we cite a theorem from \cite[Theorem~2.1]{cinelli2021variational}, which addresses exactly this problem.
+
+\begin{theorem}\label{theorem:pdf_gen}
+Let $p(x)$ be a probability density function and $\m$ and $\s > 0$ constants. Then the following functions are also probability density functions
+\begin{align*}
+g(x;\m,\s) = \frac{1}{\s} p\left( \frac{x - \m}{\s} \right).
+\end{align*}
+We refer to the parameters $\m$ as \textbf{location parameter} and $\s$ as \textbf{scale parameter}. Moreover, we call the family $\mathcal{P}_{\m,\s} = \{g(x;\m,\s):\m$ and $\s > 0\}$ a \textbf{location-scale family}.
+\end{theorem}
+
+Now, let's consider some examples of location-scale families. Moreover, we borrow two graphics from \cite{cinelli2021variational} that serve to illustrate the assertion from theorem \ref{theorem:pdf_gen}. These graphics are shown in figure \ref{fig:pdf_gen} and show the generation of a Gamma and a Gaussian distributed probability density function family, which we consider in example \ref{ex:loc-scale_fam}.
+
+\begin{example}\label{ex:loc-scale_fam}
+The following examples are all location-scale families.
+\begin{enumerate}
+\item Let $\a,\b >0$ be constants. Then the Gamma distribution $\text{Ga}(\a,\b)$ is a scale family for each value of the shape parameter $\a$
+\begin{align*}
+p(x;\a,\b) = \frac{\b^\a}{\Gamma(\a)}x^{\a-1} e^{-\b x}.
+\end{align*}
+\item Let $\m\in\R$ and $\s>0$ be constants. Then the Gaussian distribution $\mathcal{N}(\m,\s^2)$ is a location-scale family for both, the location parameter $\m$ and the scale parameter $\s$, respectively. This leads to
+\begin{align*}
+p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2},
+\end{align*}
+similarly to example \ref{ex:parametric_model}.
+\end{enumerate}
+\end{example}
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{gamma_family}
+		\caption*{\textbf{(a)}}
+	\end{minipage}
+	\begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{gaussian_family}
+		\caption*{\textbf{(b)}}
+	\end{minipage}
+	\caption{Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\b$, the scale parameter as defined in theorem \ref{theorem:pdf_gen} is actually $\s = 1/\b$. Note that as the scale $\s$ increases the distribution becomes less concentrated around the location parameter $\m$. In particular, $\lim_{\s\to\infty} p(x; \m,\s) = \d(x-\m)$. \textbf{(a)} Members of the same scale family of Gamma distributions with shape parameter $\a = 2.2$. \textbf{(b)} Members of the same location-scale family of Gaussian distributions.}\label{fig:pdf_gen}
+\end{center}
+\end{figure}
