@@ -25,13 +25,17 @@ S.~J. Reddi, S.~Kale, and S.~Kumar, ``On the convergence of adam and beyond,''
 H.~B. McMahan and M.~Streeter, ``Adaptive bound optimization for online convex
   optimization,'' {\em arXiv preprint arXiv:1002.4908}, 2010.
 
-\bibitem{foster2022generative}
-D.~Foster, {\em Generative deep learning}.
-\newblock " O'Reilly Media, Inc.", 2022.
+\bibitem{klenke2013probability}
+A.~Klenke, {\em Probability theory: a comprehensive course}.
+\newblock Springer Science \& Business Media, 2013.
 
 \bibitem{cinelli2021variational}
 L.~P. Cinelli, M.~A. Marins, E.~A.~B. Da~Silva, and S.~L. Netto, {\em
   Variational methods for machine learning with applications to deep networks}.
 \newblock Springer, 2021.
+
+\bibitem{foster2022generative}
+D.~Foster, {\em Generative deep learning}.
+\newblock " O'Reilly Media, Inc.", 2022.
 
 \end{thebibliography}
