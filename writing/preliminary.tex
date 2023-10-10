@@ -350,6 +350,13 @@ Plugging this result into \eqref{eq:combined}, gives us
 This is exactly the inequality asserted in the theorem.
 \end{proof}
 
+\textcolor{red}{TODO: Here we should show how to compute the gradient of a risk, where a neural network is considered as a prediction function. This would show that in applications it is very expensive to compute the gradient with regard to the whole dataset, which is the motivation for SGD.}
+
+However, the gradient descent algorithm relies on computing the gradient of the risk function in each iteration, which oftentimes is too expensive and therefore is being relaxed by only considering the gradient in one sample (or multiple samples -> mini-batch). T
+\textcolor{green}{NOTE: A very promising reference seems to be chapter 4.2 (p.39) in Saad David - On-Line Learning in Neural Networks. Furthermore, I should mention 13.3.2 in Sra, Nowozin, Wright as further reference!}
+
+
+
 \iffalse
 \textcolor{red}{TODO: THE WHOLE GD AND SGD THEORY WILL BE REWORKED!!! I consider introducing the gd and sgd algorithms as in \cite{DBLP:journals/corr/abs-1902-00908}. It will require some additional quantities (RKHS, Polyak-\L{}ojasiewiecz condition), but this PL-condition is satisfied by e.g. neural networks, what makes this highly interesting.}
 
