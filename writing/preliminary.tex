@@ -135,8 +135,222 @@ We will write $\risk \coloneqq \risk_{L, D}$ unless unclear in the given context
 \end{definition}
 
 
-With the previous definitions, we can return to considering the training of neural networks. There are many possible techniques and strategies. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function. In the following we want to consider a couple of popular algorithms that are used to train neural networks.
+With the previous definitions, we can return to considering the training of neural networks. There are many possible techniques and strategies. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function, and afterwards performing a step in the found direction. This approach dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview please take a look at \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be discovered in numerous literary works. We will mostly draw inspiration form \cite[chapter~XV]{kantorovich2016functional}. For in-depth explanation, please take a look at the reference.\\
+Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and aim to find an element $x^{\ast}\in X$ such that
 
+\begin{align*}
+f(x) \geq f(x^{\ast}),
+\end{align*}
+
+for all $x\in X$. Hence, $x^{\ast}$ minimizing the function $f$. To solve this problem, one usually constructs a sequence $(x_n)$ that minimizes $f$, in the sense that
+
+\begin{align*}
+\lim_{n\to\infty} f(x_n) = \inf_{x\in X} f(x).
+\end{align*}
+
+In certain cases, one can construct such a sequence such that it convergence to an optimum $x^{\ast}$. If the considered function $f$ is assumed to be continuous, then this element will be a solution to the proposed problem.\\
+To construct such a sequence, we assume that the function $f$ is differentiable. This means, that the derivative
+
+\begin{align*}
+\frac{\partial f (x)}{\partial z} = \frac{1}{\|z\|} \lim_{h \to 0^+} \frac{f(x + hz) - f(x)}{h},
+\end{align*}
+exists at each point $x \in X$ and for every direction $z \in X$. We call such a function simply \textbf{differentiable}. If the function and its derivative are additionally continuous, we call it \textbf{continuously differentiable}.\\
+Furthermore, we assume that there exists a direction for which the derivative takes minimum value. This direction is essentially the negative direction of the gradient of $f$. If we now perform a step towards the recently found direction, we completed an iteration of the so called steepest descent method - or nowadays better known as the gradient descent algorithm. This algorithm we now want to define a little more precisely.\\
+Let $X$ be a normed space and $f:X\to \R$ be a continuously differentiable function.
+Furthermore, let there be a direction of steepest descent in every $x \in X$ and $x_0\in X$ an arbitrary (initial) element. Assume that we already found the $k$-th iterate $x^{(k)}$, then we define the $(k+1)$-th iterate by
+
+\begin{align}\label{eq:gd}
+x^{(k+1)} = x^{(k)} + \g_{k+1} z_{k+1},
+\end{align}
+
+where $z^{(k+1)}$ denotes the direction of steepest descent at $x^{(k)}$. The numerical parameter $\g^{(k+1)}$ can be found in various ways. However, we propose the following one.\\
+We specify a sequence of positive numbers $(\g_k)$ such that $\g_k \to 0$ and $\sum_{k\geq 1} \g_k = \infty$. Furthermore, we assume the $z_k$ to be normalized for all $k\in \N$, i.e. $\|z_k\| = 1$. Hence, the descent value at the $k$-th iteration is $\g_k$.\\
+Furthermore, we note at this point that we can establish a connection between the problem of minimizing a functional and that of solving a linear functional equation as follows.\\
+Let $U$ be a self-adjoint operator on a Hilbert space $\H$. We assume that the operator $U$ is below bounded by $m>0$ and above bounded by $M>0$. Now, lets consider the linear functional equation
+
+\begin{align}\label{eq:lfe}
+Ux = y,
+\end{align}
+
+since the inverse operator $U^{-1}$ exists (because the eigenvalue $\lambda = 0$ does not belong to the spectrum, see \cite[theorem~IX.5.3]{kantorovich2016functional}), there exists one unique solution to \ref{eq:lfe}, for each $y\in\H$. Now, we define the functional
+
+\begin{align}\label{eq:functional}
+F(x) = \left\langle Ux, x\right\rangle - \left( \left\langle x, y\right\rangle + \left\langle y, x\right\rangle \right).
+\end{align}
+
+With the help of the functional \eqref{eq:functional} we can formulate the following theorem.
+
+\begin{theorem}\label{theorem:min_lfe}
+Let $\H$ be a Hilbert space. A solution $x^{\ast}\in \H$ of \eqref{eq:lfe} yields a minimum of \eqref{eq:functional}. Conversely, if \eqref{eq:functional} attains a minimum at $x^{\prime} \in \H$, then $x^{\prime}$ is a solution of \eqref{eq:lfe}: that is: $x^{\prime} = x^{\ast}$.
+\end{theorem}
+
+\begin{proof}
+Since we assumed $x^{\prime} \in \H$ to be a solution of \eqref{eq:lfe}, we can express $F$ as
+\begin{align}\label{eq:F_rewritten}
+F(x) = \left\langle Ux, x \right\rangle - \left\langle x, Ux^{\ast} \right\rangle - \left\langle Ux^{\ast}, x \right\rangle = \left\langle U(x - x^{\ast}), x - x^{\ast} \right\rangle - \left\langle Ux^{\ast}, x^{\ast} \right\rangle.
+\end{align}
+Using the boundedness of $U$ we receive
+\begin{align*}
+F(x) \geq m\left\langle x - x^{\ast}, x - x^{\ast} \right\rangle - \left\langle Ux^{\ast}, Ux^{\ast} \right\rangle \geq \left\langle Ux^{\ast}, Ux^{\ast} \right\rangle = F(x^{\ast}).
+\end{align*}
+That is, $x^{\ast} \in \H$ indeed minimizes the functional $F$.\\
+to prove the second part of the theorem, we will use the same inequality.
+\begin{align*}
+0 = F(x^{\prime}) - F(x^{\ast}) \left\langle U(x^{\prime} - x^{\ast}), x^{\prime} - x^{\ast} \right\rangle \geq m \left\langle (x^{\prime} - x^{\ast}), x^{\prime} - x^{\ast} \right\rangle,
+\end{align*}
+and therefore, $x^{\prime} = x^{\ast}$.
+\end{proof}
+
+Furthermore, we realise that the application of the gradient descent algorithm to the functional \eqref{eq:functional} leads to a sequence that converges to $x^{\ast}$, which is a solution to \eqref{eq:lfe} as we saw in theorem \ref{theorem:min_lfe}. Now, lets take a look at how applying the gradient descent algorithm to the functional $F$ would look like, in particular.
+
+\begin{corollary}\label{cor:gd}
+Let $\H$ be a Hilbert space and $F$ be a functional as defined in \eqref{eq:functional}.\\
+Then the gradient descent algorithm applied to the functional $F$ with arbitrary initial iterate $x^{(0)}\in\H$ looks like
+\begin{align*}
+x^{(k)} = x^{(k-1)} - \g_{k-1}z_{k-1},
+\end{align*}
+where $z_k\in\H$ and $\g_k>0$ look like
+\begin{align*}
+z_k = Ux^{(k-1)} - y \qquad\text{and} \qquad\g_k = \frac{\langle z_k, z_k \rangle}{\langle Uz_k, z_k \rangle}.
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+Let $x, z\in \H$, then
+\begin{align}\label{eq:F_dir}
+F(x + z) &= \left\langle U(x + z), x + z \right\rangle - \left( \left\langle x + z, y \right\rangle + \left\langle y, x + z \right\rangle  \right)\nonumber\\
+&= \left\langle Ux, x \right\rangle - \left( \left\langle x, y \right\rangle + \left\langle y, x \right\rangle  \right) + \left( \left\langle Ux - y, z \right\rangle + \left\langle z, Ux - y \right\rangle \right) + \left\langle Uz, z \right\rangle\nonumber\\
+&= F(x) + \left( \left\langle Ux - y, z \right\rangle + \left\langle z, Ux - y \right\rangle \right) + \left\langle Uz, z \right\rangle.
+\end{align}
+Considering the derivative in direction $z$ gives us
+\begin{align*}
+\frac{\partial F}{\partial z} (x) = \frac{1}{\|z\|} \left(  \left\langle Ux - y, z \right\rangle + \left\langle z, Ux - y \right\rangle \right) = \frac{2 \langle Ux - y, z \rangle}{\|z\|}.
+\end{align*}
+Thus the direction of steepest descent at $x^{(0)}\in\H$ is given by $z_1 = Ux^{(0)} - y$.\\
+Lastly, to determine the descent value we consider the equation
+\begin{align*}
+\lim_{h\to 0^+} \frac{F(x^{(0)} + hz_1) - F(x^{(0)})}{h} = 0,
+\end{align*}
+where with the use of equation \eqref{eq:F_dir}, we have
+\begin{align*}
+F(x^{(0)} - z_1) = F(x^{(0)}) - 2 \left\langle z_1, z_1 \right\rangle + \left\langle Uz_1, z_1 \right\rangle
+\end{align*}
+what ultimately leads to the step size
+\begin{align*}
+\g_1 = \frac{\langle z_1, z_1 \rangle}{\langle Uz_1, z_1 \rangle}.
+\end{align*}
+In exactly the same way, $\g_k$ and $z_k$ can be determined for all $k>1$ and hence, all assertions from the theorem are proven.
+\end{proof}
+
+The gradient descent algorithm with parameters as asserted in \ref{cor:gd} does converge, as we have seen in the proof. However, one might pose the question how quickly it converges. This question we want to consider in the following theorem.
+
+\begin{theorem}
+Let the same assumptions as in corollary \ref{cor:gd} hold. Then the constructed sequence $(x^{(n)})$ with $(z_k), (\g_k)$ as in corollary \ref{cor:gd}, converges to $x^{\ast}\in\H$. Its speed of convergence is given by
+\begin{align*}
+\left\|x^{(n)} - x^{\ast}\right\| \leq \frac{\|z_1\|}{m}\left( \frac{M - m}{M + m} \right)^n,
+\end{align*}
+for all $n\in\N_0$.
+\end{theorem}
+
+\begin{proof}
+Firstly, we rewrite the equation \eqref{eq:lfe} to
+\begin{align}\label{eq:rewritten}
+Ux &= y\nonumber\\
+\Longleftrightarrow \qquad 0 &= ky - kUx\nonumber\\
+\Longleftrightarrow \qquad x &= x - kUx + ky.
+\end{align}
+We chose the numerical factor $k>0$ in a way, that the operator $T=I-kU$ has the smallest possible norm. Since we assumed $U$ to be lower bounded by $m$ and upper bounded by $M$, the operator $T$ needs to be lower bounded by $1-km$ and upper bounded by $1-kM$, where the minimal norm will occur if
+\begin{align*}
+1-km = -(1-kM).
+\end{align*}
+This leads to
+\begin{align*}
+k = \frac{2}{m + M}.
+\end{align*}
+Therefore, for $\|T\|$ holds
+\begin{align}\label{eq:lower}
+\|T\| = 1 - km = 1 - \frac{2m}{m+M},
+\end{align}
+as well as
+\begin{align}\label{eq:upper}
+\|T\| = kM - 1 = \frac{2M}{m+M} - 1.
+\end{align}
+Combining the equations \eqref{eq:lower} and \eqref{eq:upper} leads to
+\begin{align*}
+\|T\| = \frac{M-m}{M+m}.
+\end{align*}
+Moreover, applying \eqref{eq:rewritten} and rewriting it gives us
+\begin{align}\label{eq:x_prime}
+x^{\prime}_1 = Tx^{(0)} + ky = x^{(0)} - k(Ux^{(0)} - y) = x^{(0)} - kz_1.
+\end{align}
+Let us introduce the operator $V = U^{1/2}$ and plug it into \eqref{eq:F_rewritten}. Note that since $U$ is a self-adjoint operator, so is $V$ (see \cite[theorem~V.6.2]{kantorovich2016functional}).
+\begin{align}\label{eq:F_rewritten2}
+F(x) &= \left\langle U(x - x^{\ast}), x - x^{\ast} \right\rangle - \left\langle Ux^{\ast}, x^{\ast} \right\rangle\nonumber\\
+&= \left\langle V(x - x^{\ast}), V(x - x^{\ast}) \right\rangle - \left\langle Vx^{\ast}, Vx^{\ast} \right\rangle\nonumber\\
+&= \left\|V(x - x^{\ast}) \right\|^2 - \left\|Vx^{\ast} \right\|^2
+\end{align}
+Considering the inequality $F(x^{\prime}_1) \geq F(x_1)$, which holds due to the fact that $x_1$ is the iterate performed with optimal descent value (\textcolor{red}{at least the author proposes? Feels somewhat awkward though}), leads to
+\begin{align*}
+F(x^{(1)}) -F(x^{\ast}) \leq F(x^{\prime}_1) -F(x^{\ast}),
+\end{align*}
+which we can rewrite again with the use of \eqref{eq:F_rewritten2}
+\begin{align}\label{ineq:1}
+\left\| V(x^{(1)} - x^{\ast}) \right\| \leq \left\| V(x^{\prime}_1 - x^{\ast}) \right\|.
+\end{align}
+Since equation \eqref{eq:F_rewritten} was the rewritten equation \eqref{eq:lfe}, we can write with the definition of $T$
+\begin{align*}
+x^{\ast} = Tx^{\ast} + ky,
+\end{align*}
+subtracting this equation from \eqref{eq:x_prime} gives us
+\begin{align*}
+x^{\prime}_1 - x^{\ast} = T(x^{(0)} - x^{\ast}),
+\end{align*}
+applying the operator $V$ on both sides gives us at last
+\begin{align*}
+V\left(x^{\prime}_1 - x^{\ast}\right) = TV(x^{(0)} - x^{\ast}).
+\end{align*}
+Considering the norm leads to
+\begin{align*}
+\left\|V\left(x^{\prime}_1 - x^{\ast}\right)\right\| &= \left\| TV(x^{(0)} - x^{\ast})\right\|\\
+&\leq \left\| T \right\| \left\|V(x^{(0)} - x^{\ast})\right\|\\
+&=\frac{M-m}{M+m} \left\|V(x^{(0)} - x^{\ast})\right\|\\
+\end{align*}
+Therefore, with inequality \eqref{ineq:1} we have
+\begin{align*}
+\left\| V(x^{(1)} - x^{\ast}) \right\|\leq \frac{M-m}{M+m} \left\|V(x^{(0)} - x^{\ast})\right\|.
+\end{align*}
+If we apply exactly the same arguments for all $k\in\{1,\ldots n\}$, then we have the following bound for the $n$-th iterate
+\begin{align*}
+\left\| V(x^{(n)} - x^{\ast}) \right\|\leq \frac{M-m}{M+m} \left\|V(x^{(n-1)} - x^{\ast})\right\|,
+\end{align*}
+which leads to the bound
+\begin{align*}
+\left\| V(x^{(n)} - x^{\ast}) \right\|\leq \left(\frac{M-m}{M+m}\right)^n \left\|V(x^{(0)} - x^{\ast})\right\|.
+\end{align*}
+Furthermore, we realise that the function $t^{-1/2}$ is continuous in $[m, M]$ and therefore on the spectrum of $U$, which leads to the observation that the inverse operator $V^{-1/2}$ exists.\\
+Moreover, with the help of \cite[theorem~V.6.2]{kantorovich2016functional} (which regards the spectrum $S_U$ of the operator $U$) the following equations hold
+\begin{align*}
+\left\|V^{-1}\right\| &= \max_{t\in S_U} \frac{1}{\sqrt{t}} = \frac{1}{\sqrt{m}},\\
+\left\|V\right\| &= \max_{t\in S_U} \sqrt{t} = \sqrt{M}.
+\end{align*}
+Combining the above results, we receive
+\begin{align}\label{eq:combined}
+\left\| x^{(n)} - x^{\ast} \right\| = \left\| V^{-1}V\left(x^{(n)} - x^{\ast}\right) \right\|&\leq \left\| V^{-1}\right\| \left\|V\left(x^{(n)} - x^{\ast}\right) \right\|\nonumber\\
+&\leq \left\| V^{-1}\right\|\left( \frac{M-m}{M+m} \right)^n \left\|V\left(x^{(0)} - x^{\ast}\right) \right\|\nonumber\\
+&\leq \frac{1}{\sqrt{m}}\left( \frac{M-m}{M+m} \right)^n \left\|V\left(x^{(0)} - x^{\ast}\right) \right\|.
+\end{align}
+However, since the unknown element $x^{\ast}$ appears on the right-hand side, we want to somehow remove it. In order to do this, we consider
+\begin{align*}
+\left\|V(x^{(0)} - x^{\ast}) \right\| = \left\|V^{-1}U(x^{(0)} - x^{\ast}) \right\| \leq \left\|V^{-1}\right\| \left\|U(x^{(0)} - x^{\ast}) \right\| = \frac{\|z_1\|}{\sqrt{m}}.
+\end{align*}
+Plugging this result into \eqref{eq:combined}, gives us
+\begin{align*}
+\left\| x^{(n)} - x^{\ast} \right\| \leq \frac{\|z_1\|}{m}\left( \frac{M-m}{M+m} \right)^n.
+\end{align*}
+This is exactly the inequality asserted in the theorem.
+\end{proof}
+
+\iffalse
 \textcolor{red}{TODO: THE WHOLE GD AND SGD THEORY WILL BE REWORKED!!! I consider introducing the gd and sgd algorithms as in \cite{DBLP:journals/corr/abs-1902-00908}. It will require some additional quantities (RKHS, Polyak-\L{}ojasiewiecz condition), but this PL-condition is satisfied by e.g. neural networks, what makes this highly interesting.}
 
 \begin{theorem}\label{theorem_gd}
@@ -173,11 +387,12 @@ f\left(x^{\prime} \right) = f\left(\frac{1}{2}x_1^{\ast} + \frac{1}{2} x_2^{\ast
 This would contradict the assumption that $f\left(x_1^{\ast}\right), f\left(x_2^{\ast}\right)$ are minima, especially global minima. Hence, the assertion holds.
 \end{proof}
 
+\fi
 
-In order to apply theorem \ref{theorem_gd} to neural networks, we have to consider how to actually compute the gradient of the empirical risk function, where we consider a neural network as prediction function.
+However, in order to apply the gradient descent algorithm to train neural networks, we have to consider how to actually compute the gradient of the empirical risk function, where we consider a neural network as prediction function.
 
 
-\begin{lemma}\label{nn_gradient}
+\begin{lemma}\label{lemma:nn_gradient}
 Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L_n\in\N$ and arbitrary activation function $\f$. Furthermore, let $D$ be a dataset of length $k\in \N$ and $L$ be an arbitrary loss function.\\
 The gradient of the risk function $\risk(\cdot)$ with regard to the neural network $f_\t$ and thus the parameters $\t$ look as follows
 \begin{align*}
@@ -201,11 +416,11 @@ With the previous definitions and results we can formulate the gradient descent 
 
 \begin{corollary}
 Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$ and $D$ be a dataset of length $k\in \N$.\\
-Then one can train the neural network $f_\t$ with the gradient descent algorithm proposed in theorem \ref{theorem_gd}. In this setting, the algorithm looks as follows
+Then one can train the neural network $f_\t$ with the gradient descent algorithm proposed in \eqref{eq:gd}. In this setting, the algorithm looks as follows
 \begin{align*}
 \t^{(t)} = \t^{(t - 1)} - \g_{t-1} \partial_\t \risk \left(f_{\t^{(t -1)}}\right),
 \end{align*}
-where the gradient can be computed as in lemma \ref{nn_gradient}
+where the gradient can be computed as in lemma \ref{lemma:nn_gradient}
 \end{corollary}
 
 
@@ -225,6 +440,7 @@ with $i \in \{1,\ldots, k\}$ and $\partial_{\t, i} \risk \left(f_{\t^{(t)}}\righ
 
 
 \textcolor{red}{TODO:} Name some properties (convergence, rate, etc.) and reference them
+
 
 Lastly, we want to consider another powerful optimization algorithm that adapts learning rates based on past gradient magnitudes and momenta - it is called \glqq Adaptive Moment Estimation (ADAM)\grqq{}.\\
 However, in order to formulate the algorithm formally we need to introduce stochastic moments first. We do so analogously to \cite[chapter~5]{edition2002probability}

@@ -1,8 +1,16 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{goodfellow2016deep}
 I.~Goodfellow, Y.~Bengio, and A.~Courville, {\em Deep learning}.
 \newblock MIT press, 2016.
+
+\bibitem{lemarechal2012cauchy}
+C.~Lemar{\'e}chal, ``Cauchy and the gradient method,'' {\em Doc Math Extra},
+  vol.~251, no.~254, p.~10, 2012.
+
+\bibitem{kantorovich2016functional}
+L.~V. Kantorovich and G.~P. Akilov, {\em Functional analysis}.
+\newblock Elsevier, 2016.
 
 \bibitem{DBLP:journals/corr/abs-1902-00908}
 Y.~Lei, T.~Hu, and K.~Tang, ``Stochastic gradient descent for nonconvex
