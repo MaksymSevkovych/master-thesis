@@ -12,10 +12,22 @@ C.~Lemar{\'e}chal, ``Cauchy and the gradient method,'' {\em Doc Math Extra},
 L.~V. Kantorovich and G.~P. Akilov, {\em Functional analysis}.
 \newblock Elsevier, 2016.
 
-\bibitem{DBLP:journals/corr/abs-1902-00908}
-Y.~Lei, T.~Hu, and K.~Tang, ``Stochastic gradient descent for nonconvex
-  learning without bounded gradient assumptions,'' {\em CoRR},
-  vol.~abs/1902.00908, 2019.
+\bibitem{sra2012optimization}
+S.~Sra, S.~Nowozin, and S.~J. Wright, {\em Optimization for machine learning}.
+\newblock Mit Press, 2012.
+
+\bibitem{saad2009line}
+D.~Saad, {\em On-line learning in neural networks}.
+\newblock Cambridge University Press, 2009.
+
+\bibitem{https://doi.org/10.5281/zenodo.4638695}
+G.~Turinici, ``The convergence of the stochastic gradient descent (sgd) : a
+  self-contained proof,'' tech. rep., 2021.
+
+\bibitem{lei2019stochastic}
+Y.~Lei, T.~Hu, G.~Li, and K.~Tang, ``Stochastic gradient descent for nonconvex
+  learning without bounded gradient assumptions,'' {\em IEEE transactions on
+  neural networks and learning systems}, vol.~31, no.~10, pp.~4394--4400, 2019.
 
 \bibitem{edition2002probability}
 F.~Edition, A.~Papoulis, and S.~U. Pillai, ``Probability, random variables, and

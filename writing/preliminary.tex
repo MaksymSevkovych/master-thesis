@@ -1,9 +1,9 @@
 \chapter{Preliminary}\label{preliminary}
-In order to fathom the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of neural networks and their optimization - usually being called training. In this chapter, we will tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a couple of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images. This discipline of machine learning is usually referred to as computer vision.
+In order to comprehend the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of neural networks and their optimization - usually being called training. In this chapter, we will tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a handful of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images. This discipline of machine learning is usually referred to as computer vision.
 
 \section{Neural networks}
 The idea of artificial neural networks originated from analysing mammal's brains. An accumulation of nodes - so called neurons, connected in a very special way that fire an electric impulse to adjacent neurons upon being triggered and transmit information that way. Scientists tried to mimic this natural architecture and replicate this mammal intelligence artificially. This research has been going for almost 80 years and became immensely popular recently through artificial intelligences like OpenAI's ChatGPT or Google's Bard for the broad public. But what actually is a neural network? What happens in a neural network? Those are very interesting and important questions that we will find answers for.\\
-As already mentioned, neural networks consist of single neurons that transmit information upon being \glqq triggered\grqq{}. Obviously, triggering an artificial neuron can't happen the same way as neurological neurons are being triggered through stimulus. Hence, we need to model the triggering of a neuron in some way. The idea is to filter information that does not exceed a certain stimulus threshold. This filter is usually being called activation function. Indeed, there are lots of ways of modelling such activation functions and it primarily depends on the specific use-case what exactly the activation function has to fulfil. Therefore, we define activation functions in the most general way possible.\\
+As already mentioned, neural networks consist of single neurons that transmit information upon being \glqq triggered\grqq{}. Obviously, triggering an artificial neuron can't happen the same way as neurological neurons are being triggered through stimulus. Hence, we need to model the triggering of a neuron in some way. The idea is to filter information that does not exceed a certain stimulus threshold. This filter is usually called activation function. In practice, there are many ways of modelling such activation functions and it mainly depends the use-case what exactly is demanded from the activation function. Therefore, we define activation functions as general as possible.\\
 \textcolor{red}{TODO:} Give a formal reference to neural networks somewhere?
 
 \begin{definition}
@@ -19,7 +19,7 @@ The following functions are activation functions.
 \begin{mydescription}{\widthof{\textbf{Leaky Rectified Linear Unit (Leaky ReLU)}}}
 \item[\textbf{Rectified Linear Unit (ReLU)}] $\f(t) = \max\{0, t\}$,
 \item[\textbf{Leaky Rectified Linear Unit (Leaky ReLU)}] $\displaystyle \f(t) = \begin{cases}
-\a t, 	& t \leq 0,\\
+\a t, 	& t \leq 0, \a>0,\\
 t,		& t > 0.
 \end{cases}$
 \item[\textbf{Sigmoid}] $\displaystyle \f(t) = \frac{1}{1 + e^{-t}}.$
@@ -39,7 +39,7 @@ We call $\t \coloneqq (w, b)$ the parameters of the neuron $h$.
 \end{definition}
 
 
-If we arrange multiple neurons next to each other, we can define a layer consisting of neurons. This way we can expand the architecture from one to multiple neurons.
+If we arrange multiple neurons into a vector, we can define a layer consisting of neurons. This way we can expand the architecture from one to multiple neurons.
 
 
 \begin{definition}\label{def_layer}
@@ -48,7 +48,7 @@ If we consider $\hat{\f}: \R^k \to \R$ as the component-wise mapping of $\f:\R\t
 \begin{align}\label{eq_linear_layer}
 H(x) = \hat{\f}(Wx + b), \qquad x \in \R^k.
 \end{align}
-In the following, we will denote the weights $W$ and biases $b$ as \textbf{parameters of the neural network} $\t \coloneqq (W, b)$.
+In the following, we will denote the weights $W$ and biases $b$ as \textbf{parameters of the neural layer} $\t \coloneqq (W, b)$.
 \end{definition}
 
 
@@ -56,17 +56,17 @@ Finally, we can introduce neural networks as an arrangement of multiple neural l
 
 
 \begin{definition}
-Let $L\in\N$, $\f_1,\ldots,\f_L$ be activation functions and $H_1, \ldots, H_L$ be $\f_i$-layers with parameters $\t_i = (W_i, b_i)$ for all $i \in \{1,\ldots,L\}$. Furthermore, let  $\t = (\t_1, \ldots \t_L)$, $\f = (\f_1, \ldots, \f_L)$ and $d_1,\ldots,d_{L+1}\in\N$.\\
+Let $L\in\N$, $\f_1,\ldots,\f_L$ be activation functions and $H_1, \ldots, H_L$ be $\f_i$-layers with parameters $\t_i = (W_i, b_i)\in\T$ for all $i \in \{1,\ldots,L\}$, where $\T$ is a \textbf{parameter space}. Furthermore, let  $\t = (\t_1, \ldots \t_L)$, $\f = (\f_1, \ldots, \f_L)$ and $d_1,\ldots,d_{L+1}\in\N$.\\
 Then we define a \textbf{$\f$-deep neural network} of depth $L$ with parameters $\t \in \T$ as
 \begin{align}
 f_{\f, L, \t}: \R^{d_1} &\to \R^{d_{L+1}}\nonumber\\
 x &\to H_L \circ \ldots \circ H_1 (x), \qquad x \in \R^{d_1},
 \end{align}
 where each $H_i: \R^{d_i} \to \R^{d_{i+1}}$ is a $\f_i$-layer. Ultimately, $d_1$ describes the input dimension and $d_{L+1}$ the output dimension of the neural network.\\
-Lastly, we will write $f\coloneqq f_{\f, L, \t}$, if the activation function $\f$, the depth $L$ and the parameters $\t$ are clear out of context.
+Lastly, we will write $f\coloneqq f_{\f, L, \t}$, if the activation function $\f$, the depth $L$ and the parameters $\t$ are clear from the context.
 \end{definition}
 
-One may realize, that the neural network is defined in a way that the activation function may vary in each layer. However, in most applications the input layer and the hidden layers ($i \in \{1, \ldots, L-1\}$) share the same activation function. The last layer, often referred to as output layer, usually has a different activation function. This activation function may as well be the identity function.\\
+One may realize, that the neural network is defined in a way that the activation function may vary in each layer. However, in most applications the input layer and the hidden layers ($i \in \{1, \ldots, L-1\}$) share the same activation function. The last layer, often referred to as output layer, usually has a different activation function. This activation function may in some use-cases as well be the identity function.\\
 A visual representation of a neural network can be found in figure \ref{img_nn}
 
 
@@ -82,28 +82,28 @@ A visual representation of a neural network can be found in figure \ref{img_nn}
 
 \section{Training of neural networks}
 
-Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network. However, all of them require the definitions of quantities called loss function and risk function. The loss function is a function that measures the point-wise error of a neural network, or any other prediction function in general. This is fundamental in supervised learning. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
+Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network. However, all of them require the definitions of a loss function and risk function. The loss function is a function that measures the point-wise error of a neural network, or any other prediction function in general. This is fundamental in supervised learning. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
 
 
-\begin{definition}\label{def_loss}
-Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$, that we will refer to as input and output space and $t\in\R^n$ be a prediction for $y\in Y$.\\
+\begin{definition}\label{def:loss}
+Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$, that we will refer to as input and output space. Furthermore, let $t\in\R^n$ be a prediction for $y\in Y$.\\
 Then we define a \textbf{supervised loss function} $L: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.
 \end{definition}
 
-The recently introduced loss function allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
+The recently introduced loss function from definition \ref{def:loss} allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
 We want to consider a couple of important examples for loss functions, for further reading please take a look at \cite[chapter~4.3]{goodfellow2016deep}.
 
 
 \begin{example}
 Let $y\in Y\coloneqq \R$ and $t\in \R$, then the following functions are loss functions.
 \begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
-\item[\textbf{Squared Error Loss}] $L(x, y, t) = \left|y - t\right|^2$,
-\item[\textbf{Linear Error Loss}]  $L(x, y, t) = \left|y - t\right|$.
+\item[\textbf{Squared Error Loss}] $L(y, t) = \left|y - t\right|^2$,
+\item[\textbf{Linear Error Loss}]  $L(y, t) = \left|y - t\right|$.
 \end{mydescription}
 Now, let $y\in Y \coloneqq \R^n$ and $t\in\R^n$ with $n>1$. Then, we consider the squared error loss and the linear error loss pointwise:
 \begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
-\item[\textbf{Squared Error Loss}] $L(x, y, t) = \sum_{i=1}^n\left|y_i - t_i\right|^2$,
-\item[\textbf{Linear Error Loss}]  $L(x, y, t) = \sum_{i=1}^n\left|y_i - t_i\right|$,
+\item[\textbf{Squared Error Loss}] $L(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|^2$,
+\item[\textbf{Linear Error Loss}]  $L(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|$,
 \end{mydescription}
 where $y = (y_1,\ldots, y_n)$ and $t = (t_1,\ldots, t_n)$.
 \end{example}
@@ -112,8 +112,8 @@ where $y = (y_1,\ldots, y_n)$ and $t = (t_1,\ldots, t_n)$.
 However, loss functions only quantify the disparity between one predicted outcome and one actual value. In order to compare the predictions over a wider range of data points, we need to introduce another quantity, the risk function.
 
 
-\begin{definition}\label{def_risk}
-Let $X,Y$ be input and output spaces, $L$ be a loss function and $\prob$ be a probability measure on $X \times Y$.\\
+\begin{definition}\label{def:risk}
+Let $X,Y$ be arbitrary input and output spaces, $L$ be a loss function and $\prob$ be a probability measure on $X \times Y$.\\
 Then we define the \textbf{risk of the function $f$} with regard to a loss function $L$ as
 \begin{align*}
 \risk_{L, \prob}(f) = \int_{X\times Y} L\left(x, y, f(x) \right) d \prob(x, y).
@@ -122,49 +122,49 @@ In the following, we will denote this as the \textbf{$L$-risk of $f$}.
 \end{definition}
 
 
-Considering applications, one usually wants to compute the risk with regard to observed data instead of a probability measure, since it usually is unknown. In this case, the general risk function becomes more tangible, as we see in the following definition.
+Considering applications, one usually wants to compute the risk with regard to observed data instead of a probability measure, since the true probability measure usually is unknown. In this case, the general risk function becomes more tangible, as we see in the following definition.
 
 
-\begin{definition}\label{def_empirical_risk}
+\begin{definition}\label{def:empirical_risk}
 Let $X, Y$ be arbitrary input and output spaces, $D = \left((x_1,y_1), \ldots, (x_k,y_k)\right)$ be a dataset consisting of $k\in\N$ data points. Furthermore, let $L$ be a loss function and $f$ be an arbitrary prediction function.\\
 Then we define the \textbf{empirical risk function} as
-\begin{align}
+\begin{align*}
 \risk_{L, D} (f) = \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f(x_i)\right).
-\end{align}
+\end{align*}
 We will write $\risk \coloneqq \risk_{L, D}$ unless unclear in the given context.
 \end{definition}
 
 
-With the previous definitions, we can return to considering the training of neural networks. There are many possible techniques and strategies. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function, and afterwards performing a step in the found direction. This approach dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview please take a look at \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be discovered in numerous literary works. We will mostly draw inspiration form \cite[chapter~XV]{kantorovich2016functional}. For in-depth explanation, please take a look at the reference.\\
-Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and aim to find an element $x^{\ast}\in X$ such that
+With the previous definitions, we can return to considering the training of neural networks. There are many possible techniques and strategies. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function, and afterwards performing a step in the opposite of the found direction. This approach dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview please take a look at \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be discovered in numerous literary works. We will mostly draw inspiration form \cite[chapter~XV]{kantorovich2016functional}. For in-depth explanation, please take a look at the reference.\\
+Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and we aim to find an element $x^{\ast}\in X$ such that
 
 \begin{align*}
 f(x) \geq f(x^{\ast}),
 \end{align*}
 
-for all $x\in X$. Hence, $x^{\ast}$ minimizing the function $f$. To solve this problem, one usually constructs a sequence $(x_n)$ that minimizes $f$, in the sense that
+for all $x\in X$. Hence, $x^{\ast}$ minimizes the function $f$. To solve this problem, one usually constructs a sequence $(x_n)$ that minimizes $f$, in the sense that
 
 \begin{align*}
 \lim_{n\to\infty} f(x_n) = \inf_{x\in X} f(x).
 \end{align*}
 
-In certain cases, one can construct such a sequence such that it convergence to an optimum $x^{\ast}$. If the considered function $f$ is assumed to be continuous, then this element will be a solution to the proposed problem.\\
+In certain cases, one can construct such a sequence that it converges to an optimum $x^{\ast}$. If the considered function $f$ is assumed to be continuous, then this element will be a solution to the proposed problem.\\
 To construct such a sequence, we assume that the function $f$ is differentiable. This means, that the derivative
 
 \begin{align*}
 \frac{\partial f (x)}{\partial z} = \frac{1}{\|z\|} \lim_{h \to 0^+} \frac{f(x + hz) - f(x)}{h},
 \end{align*}
 exists at each point $x \in X$ and for every direction $z \in X$. We call such a function simply \textbf{differentiable}. If the function and its derivative are additionally continuous, we call it \textbf{continuously differentiable}.\\
-Furthermore, we assume that there exists a direction for which the derivative takes minimum value. This direction is essentially the negative direction of the gradient of $f$. If we now perform a step towards the recently found direction, we completed an iteration of the so called steepest descent method - or nowadays better known as the gradient descent algorithm. This algorithm we now want to define a little more precisely.\\
-Let $X$ be a normed space and $f:X\to \R$ be a continuously differentiable function.
-Furthermore, let there be a direction of steepest descent in every $x \in X$ and $x_0\in X$ an arbitrary (initial) element. Assume that we already found the $k$-th iterate $x^{(k)}$, then we define the $(k+1)$-th iterate by
+Furthermore, we assume that there exists a direction for which the derivative takes minimum value - thus, the direction of steepest descent. This direction is essentially the negative direction of the gradient of $f$. If we now perform a step towards the direction of steepest descent, we completed an iteration of the so called steepest descent method - or nowadays better known as the gradient descent algorithm. This algorithm we now want to define a little more precisely.\\
+Let $X$ be a normed space and $f:X\to \R$ be a continuously differentiable function with existing minimum $f(x^{\ast)}$.
+Furthermore, let there be a direction of steepest descent in every $x \in X$ and $x^{(0)}\in X$ an arbitrary (initial) element. Assume that we already found the $k$-th iterate $x^{(k)}$, then we define the $(k+1)$-th iterate by
 
 \begin{align}\label{eq:gd}
-x^{(k+1)} = x^{(k)} + \g_{k+1} z_{k+1},
+x^{(k+1)} = x^{(k)} - \g_{k+1} z_{k+1},
 \end{align}
 
-where $z^{(k+1)}$ denotes the direction of steepest descent at $x^{(k)}$. The numerical parameter $\g^{(k+1)}$ can be found in various ways. However, we propose the following one.\\
-We specify a sequence of positive numbers $(\g_k)$ such that $\g_k \to 0$ and $\sum_{k\geq 1} \g_k = \infty$. Furthermore, we assume the $z_k$ to be normalized for all $k\in \N$, i.e. $\|z_k\| = 1$. Hence, the descent value at the $k$-th iteration is $\g_k$.\\
+where $z_{k+1}$ denotes the direction of steepest descent at $x^{(k)}$. The numerical parameter $\g^{(k+1)}$ can be found in various ways. However, we propose the following one.\\
+We specify a sequence of positive numbers $(\g_k)$ such that $\g_k \to 0$ and $\sum_{k\geq 1} \g_k = \infty$. Furthermore, we assume the $z_k$ to be normalized for all $k\in \N$, i.e. $\|z_k\| = 1$. Hence, the descent value at the $k$-th iteration is $\g_k$. We do this in order to avoid doing to great steps, which would eventually avert the convergence of the algorithm.\\
 Furthermore, we note at this point that we can establish a connection between the problem of minimizing a functional and that of solving a linear functional equation as follows.\\
 Let $U$ be a self-adjoint operator on a Hilbert space $\H$. We assume that the operator $U$ is below bounded by $m>0$ and above bounded by $M>0$. Now, lets consider the linear functional equation
 
@@ -185,20 +185,42 @@ Let $\H$ be a Hilbert space. A solution $x^{\ast}\in \H$ of \eqref{eq:lfe} yield
 \end{theorem}
 
 \begin{proof}
-Since we assumed $x^{\prime} \in \H$ to be a solution of \eqref{eq:lfe}, we can express $F$ as
+Since we assumed $x^{\ast} \in \H$ to be a solution of \eqref{eq:lfe}, we can express $F$ as
 \begin{align}\label{eq:F_rewritten}
 F(x) = \left\langle Ux, x \right\rangle - \left\langle x, Ux^{\ast} \right\rangle - \left\langle Ux^{\ast}, x \right\rangle = \left\langle U(x - x^{\ast}), x - x^{\ast} \right\rangle - \left\langle Ux^{\ast}, x^{\ast} \right\rangle.
 \end{align}
 Using the boundedness of $U$ we receive
-\begin{align*}
-F(x) \geq m\left\langle x - x^{\ast}, x - x^{\ast} \right\rangle - \left\langle Ux^{\ast}, Ux^{\ast} \right\rangle \geq \left\langle Ux^{\ast}, Ux^{\ast} \right\rangle = F(x^{\ast}).
-\end{align*}
+\begin{align}\label{eq:1.8}
+F(x) \geq m\left\langle x - x^{\ast}, x - x^{\ast} \right\rangle - \left\langle Ux^{\ast}, x^{\ast} \right\rangle &\geq - \left\langle Ux^{\ast}, x^{\ast} \right\rangle\nonumber\\
+&= \left\langle Ux^{\ast}, x^{\ast} \right\rangle  -2\left\langle Ux^{\ast}, x^{\ast} \right\rangle = F(x^{\ast}).
+\end{align}
 That is, $x^{\ast} \in \H$ indeed minimizes the functional $F$.\\
-to prove the second part of the theorem, we will use the same inequality.
+to prove the second part of the theorem, we will use the same inequality. Lets first consider the following equation and the definition of the functional \eqref{eq:functional}
 \begin{align*}
-0 = F(x^{\prime}) - F(x^{\ast}) \left\langle U(x^{\prime} - x^{\ast}), x^{\prime} - x^{\ast} \right\rangle \geq m \left\langle (x^{\prime} - x^{\ast}), x^{\prime} - x^{\ast} \right\rangle,
+0 = F(x^{\prime}) - F(x^{\ast}) &= \left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle x^{\prime}, y\right\rangle + \left\langle y, x^{\prime}\right\rangle \right)- \left\langle Ux^{\ast}, x^{\ast}\right\rangle - \left( \left\langle x^{\ast}, y\right\rangle + \left\langle y, x^{\ast}\right\rangle \right)\\
+&=\left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle x^{\prime}, y\right\rangle + \left\langle y, x^{\prime}\right\rangle \right)
++ \left\langle Ux^{\ast}, x^{\ast}\right\rangle,
 \end{align*}
-and therefore, $x^{\prime} = x^{\ast}$.
+where in the last step we used the same equation as on the right-hand side of \eqref{eq:1.8}.\\
+Now we use the fact, that $x^{\ast}$ solves the equation \eqref{eq:lfe}.
+\begin{align*}
+\left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle x^{\prime}, y\right\rangle + \left\langle y, x^{\prime}\right\rangle \right)
++ \left\langle Ux^{\ast}, x^{\ast}\right\rangle
+&= \left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle x^{\prime}, Ux^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right) + \left\langle Ux^{\ast}, x^{\ast}\right\rangle.
+\end{align*}
+The next step is to use the fact that $U$ is a self-adjoint operator.
+\begin{align*}
+\left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle x^{\prime}, Ux^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right)
++ \left\langle Ux^{\ast}, x^{\ast}\right\rangle
+&= \left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle Ux^{\prime}, x^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right)	+ \left\langle Ux^{\ast}, x^{\ast}\right\rangle
+\end{align*}
+Lastly, we use the linearity of the inner product and the lower bound of the operator $U$.
+\begin{align*}
+\left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle Ux^{\prime}, x^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right)
++ \left\langle Ux^{\ast}, x^{\ast}\right\rangle &=\left\langle U(x^{\prime} - x^{\ast}), x^{\prime} - x^{\ast} \right\rangle\\
+&\geq m \left\langle x^{\prime} - x^{\ast}, x^{\prime} - x^{\ast} \right\rangle,
+\end{align*}
+therefore, $x^{\prime} = x^{\ast}$.
 \end{proof}
 
 Furthermore, we realise that the application of the gradient descent algorithm to the functional \eqref{eq:functional} leads to a sequence that converges to $x^{\ast}$, which is a solution to \eqref{eq:lfe} as we saw in theorem \ref{theorem:min_lfe}. Now, lets take a look at how applying the gradient descent algorithm to the functional $F$ would look like, in particular.
@@ -289,7 +311,7 @@ F(x) &= \left\langle U(x - x^{\ast}), x - x^{\ast} \right\rangle - \left\langle 
 &= \left\langle V(x - x^{\ast}), V(x - x^{\ast}) \right\rangle - \left\langle Vx^{\ast}, Vx^{\ast} \right\rangle\nonumber\\
 &= \left\|V(x - x^{\ast}) \right\|^2 - \left\|Vx^{\ast} \right\|^2
 \end{align}
-Considering the inequality $F(x^{\prime}_1) \geq F(x_1)$, which holds due to the fact that $x_1$ is the iterate performed with optimal descent value (\textcolor{red}{at least the author proposes? Feels somewhat awkward though}), leads to
+Considering the inequality $F(x^{\prime}_1) \geq F(x^{(1)})$, which holds due to the fact that $x_1$ is the iterate performed with optimal descent value (\textcolor{red}{at least the author proposes? Feels somewhat awkward though}), leads to
 \begin{align*}
 F(x^{(1)}) -F(x^{\ast}) \leq F(x^{\prime}_1) -F(x^{\ast}),
 \end{align*}
@@ -352,8 +374,43 @@ This is exactly the inequality asserted in the theorem.
 
 \textcolor{red}{TODO: Here we should show how to compute the gradient of a risk, where a neural network is considered as a prediction function. This would show that in applications it is very expensive to compute the gradient with regard to the whole dataset, which is the motivation for SGD.}
 
-However, the gradient descent algorithm relies on computing the gradient of the risk function in each iteration, which oftentimes is too expensive and therefore is being relaxed by only considering the gradient in one sample (or multiple samples -> mini-batch). T
-\textcolor{green}{NOTE: A very promising reference seems to be chapter 4.2 (p.39) in Saad David - On-Line Learning in Neural Networks. Furthermore, I should mention 13.3.2 in Sra, Nowozin, Wright as further reference!}
+However, the gradient descent algorithm relies on computing the gradient of the risk function in each iteration, which oftentimes is too expensive and therefore is being relaxed by only considering the gradient in one sample (or multiple samples, we speak of a mini-batch then). We want to take a closer look at this algorithm as well. Since it is quite popular, there are many good references in literature, e.g see \cite[chapter~13.3.2]{sra2012optimization}, \cite[chapter~4.2]{saad2009line} and \cite{https://doi.org/10.5281/zenodo.4638695}. We will focus on the latter reference.\\
+Beforehand, we need to consider the empirical risk, which we defined in definition \ref{def:empirical_risk}. Since we take the average of the loss functions with regard to the whole data set $D$, we can denote it as an integral over the dataset $D$
+\begin{align*}
+\risk_{L, D} (f) = \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f(x_i)\right) = \int_{D} L(x,y,f(x)) d(x,y).
+\end{align*}
+If we now randomly choose a subset $B \subseteq D$ of length $b\in\{1,\ldots,n\}$ which we will call \textbf{mini-batch of size $b$}, we can approximate the empirical risk $\risk_{L, D} (f)$ through $\risk_{L, B} (f)$.
+\begin{align*}
+\risk_{L,B}(f) = \int_{B}L(x, y, f(x)) d(x,y).
+\end{align*}
+One may quickly realise, that if $b=n$, we are in the regular gradient descent setting. If one chooses to be $b=1$, i.e. the subset $B$ consisting of one single sample, then we speak of \textbf{stochastic gradient descent}, otherwise of \textbf{stochastic gradient descent with batch-size $b$}.\\
+In the following, we want to summarize the data samples $\o_i=(x_i,y_i)$. Hence, we can write
+\begin{align*}
+\risk_{L,B}(f) = \int_{B}L(\o, f(x)) d\o.
+\end{align*}
+Furthermore, we remember that we essentially are interested in the setting, where $f$ is a neural network. Since the neural network $f$ has parameters $\t$, which we denoted as $f_{\t}$, we will now simply the notation as follows
+\begin{align*}
+\risk_{L,B}(f_{\t}) = \int_{B}L(\o, f_{\t}(x)) d\o \eqqcolon \int_{B}L(\o,\t) d\o \eqqcolon \risk_{L,B}(\t).
+\end{align*}
+Our goal is to find a minimum of $\risk_{L,B}$, we approach this problem the same way as we approached the gradient descent algorithm, where we iteratively update the parameters $\t$ to minimize the risk. Therefore, we define the update rule as follows. Lets assume we already found the $k$-th iterate $\t^{(k)}$. Now we randomly choose a sample $\o_k$ and compute its loss with regard to the recently found parameters $\t^{(k)}$. Afterwards, we compute the gradient of the empirical risk in the sample $\o_k$ and update the parameters. This would look like
+\begin{align}\label{eq:sgd}
+\t^{(k+1)} = \t^{(k)} -\g_k \nabla_{\t} L(\o_k,\t^{(k)}).
+\end{align}
+This way we define a sequence of parameters $(\t^{k})$, which we will show to converge to some $\t^{\ast}$ that minimizes the empirical risk $\risk_{L,B}(\t)$.
+However, to prove this convergence we need some assumptions
+\begin{enumerate}
+\item The gradient of $\risk_{L,B}(\t)$ is bounded, i.e.
+\begin{align*}
+\exists G > 0: \sup_{\o\in D} \left\| \nabla_{\t} \risk_{L,B}(\t) \right\|^2 \leq G,
+\end{align*}
+for all $\t\in\T$.
+\item $\risk_{L,B}(\t)$ is strongly convex, i.e.
+\begin{align*}
+\exists \m>0: \risk_{L,B}(\t_2) \geq \risk_{L,B}(\t_1) + \left\langle \nabla_{\t} \risk_{L,B}(\t_2), \t_2-\t_1 \right\rangle + \frac{\m}{2} \left\| \t_1 - \t_2 \right\|^2,
+\end{align*}
+for all $\t_1,\t_2 \in\T$.
+\end{enumerate}
+At this point we should note that the second assumption is quite restricting and can indeed be relaxed. Since neural networks rarely are convex and especially not strictly convex functions, the corresponding empirical risk function is neither. However, relaxing this assumption makes the proof far more challenging, what we do not want to tackle in this thesis. Instead we want to reference e.g. \cite{lei2019stochastic}, where the authors prove the stochastic gradient descent algorithm to converge even for non-convex functions, which still have to fulfil some constraints, such as Hölder continuity and the Polyak-\L{}ojasiewicz condition.
 
 
 
@@ -410,7 +467,7 @@ Hence, it is the average of gradients in all data points $(x_i,y_i) \in D$.
 
 
 \begin{proof}
-To prove the assertion we simply use the definition \ref{def_empirical_risk} of the empirical risk function and consider the linearity property of derivatives.
+To prove the assertion we simply use the definition \ref{def:empirical_risk} of the empirical risk function and consider the linearity property of derivatives.
 \begin{align*}
 \partial_\t \risk \left(f_{\t}\right) &= \partial_\t \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f_\t(x_i)\right)\\
 &= \frac{1}{k} \sum_{i=1}^{k} \partial_\t L\left(x_i, y_i, f_\t(x_i)\right).
