@@ -55,8 +55,8 @@ In the following, we will denote the weights $W$ and biases $b$ as \textbf{param
 Finally, we can introduce neural networks as an arrangement of multiple neural layers.
 
 
-\begin{definition}
-Let $L\in\N$, $\f_1,\ldots,\f_L$ be activation functions and $H_1, \ldots, H_L$ be $\f_i$-layers with parameters $\t_i = (W_i, b_i)\in\T$ for all $i \in \{1,\ldots,L\}$, where $\T$ is a \textbf{parameter space}. Furthermore, let  $\t = (\t_1, \ldots \t_L)$, $\f = (\f_1, \ldots, \f_L)$ and $d_1,\ldots,d_{L+1}\in\N$.\\
+\begin{definition}\label{def:nn}
+Let $L\in\N$, $\f_1,\ldots,\f_L$ be activation functions and $H_1, \ldots, H_L$ be $\f_i$-layers with parameters $\t_i = (W_i, b_i)T$ for all $i \in \{1,\ldots,L\}$. Furthermore, let  $\t = (\t_1, \ldots \t_L)$, $\f = (\f_1, \ldots, \f_L)$ and $d_1,\ldots,d_{L+1}\in\N$.\\
 Then we define a \textbf{$\f$-deep neural network} of depth $L$ with parameters $\t \in \T$ as
 \begin{align}
 f_{\f, L, \t}: \R^{d_1} &\to \R^{d_{L+1}}\nonumber\\
@@ -66,7 +66,20 @@ where each $H_i: \R^{d_i} \to \R^{d_{i+1}}$ is a $\f_i$-layer. Ultimately, $d_1$
 Lastly, we will write $f\coloneqq f_{\f, L, \t}$, if the activation function $\f$, the depth $L$ and the parameters $\t$ are clear from the context.
 \end{definition}
 
-One may realize, that the neural network is defined in a way that the activation function may vary in each layer. However, in most applications the input layer and the hidden layers ($i \in \{1, \ldots, L-1\}$) share the same activation function. The last layer, often referred to as output layer, usually has a different activation function. This activation function may in some use-cases as well be the identity function.\\
+Furthermore, we should consider how the parameters of a neural network actually look like. To do this we introduce the parameter space.
+
+\begin{definition}
+Let $f_{\f, L, \t}$ be a neural network as in Definition \ref{def:nn}, with parameters $\t\in\T$, where we denote $\T$ as the \textbf{parameter space}, that is a set that contains all feasible parameters.
+\end{definition}
+
+The parameter space is defined in a very general manner, since we usually do not demand any restrictions other than that the parameters should have fitting dimensions to be compatible with the considered neural networks.\\
+At last, we want to introduce prediction functions. This is a quantity we will refer to oftentimes through the thesis and hence, should mention it at this point. It merely describes a neural network that was trained on a dataset. Hence, the parameters of the neural network are tuned to represent the dataset as good as possible. We will consider training of neural networks in Section \ref{sec:training_of_nn}.
+
+\begin{definition}
+Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$, that we will refer to as \textbf{input} and \textbf{output space}. Furthermore, let $D=\{(x_1,y_1),\ldots, (x_k,y_k)\}$ be a \textbf{dataset} of length $k\in\N$. Then a neural network that is trained on the dataset $D$ is called \textbf{prediction function}. We then denote its parameters as $\t_{D}$.
+\end{definition}
+
+One may realize that neural networks are defined in a way that the activation function may vary in each layer. However, in most applications the input layer and the hidden layers ($i \in \{1, \ldots, L-1\}$) share the same activation function. The last layer, often referred to as output layer, usually has a different activation function. This activation function may in some use-cases as well be the identity function.\\
 A visual representation of a neural network can be found in figure \ref{img_nn}
 
 
@@ -80,14 +93,14 @@ A visual representation of a neural network can be found in figure \ref{img_nn}
 \end{figure}
 
 
-\section{Training of neural networks}
+\section{Training of neural networks}\label{sec:training_of_nn}
 
 Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network. However, all of them require the definitions of a loss function and risk function. The loss function is a function that measures the point-wise error of a neural network, or any other prediction function in general. This is fundamental in supervised learning. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
 
 
 \begin{definition}\label{def:loss}
-Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$, that we will refer to as input and output space. Furthermore, let $t\in\R^n$ be a prediction for $y\in Y$.\\
-Then we define a \textbf{supervised loss function} $L: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.
+Let $X,Y$ be arbitrary input and output spaces. Furthermore, let $t\in\R^n$ be a prediction for $y\in Y$.\\
+Then we define a \textbf{supervised loss function} $\loss: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.
 \end{definition}
 
 The recently introduced loss function from definition \ref{def:loss} allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
@@ -97,13 +110,13 @@ We want to consider a couple of important examples for loss functions, for furth
 \begin{example}
 Let $y\in Y\coloneqq \R$ and $t\in \R$, then the following functions are loss functions.
 \begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
-\item[\textbf{Squared Error Loss}] $L(y, t) = \left|y - t\right|^2$,
-\item[\textbf{Linear Error Loss}]  $L(y, t) = \left|y - t\right|$.
+\item[\textbf{Squared Error Loss}] $\loss(y, t) = \left|y - t\right|^2$,
+\item[\textbf{Linear Error Loss}]  $\loss(y, t) = \left|y - t\right|$.
 \end{mydescription}
 Now, let $y\in Y \coloneqq \R^n$ and $t\in\R^n$ with $n>1$. Then, we consider the squared error loss and the linear error loss pointwise:
 \begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
-\item[\textbf{Squared Error Loss}] $L(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|^2$,
-\item[\textbf{Linear Error Loss}]  $L(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|$,
+\item[\textbf{Squared Error Loss}] $\loss(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|^2$,
+\item[\textbf{Linear Error Loss}]  $\loss(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|$,
 \end{mydescription}
 where $y = (y_1,\ldots, y_n)$ and $t = (t_1,\ldots, t_n)$.
 \end{example}
@@ -113,12 +126,12 @@ However, loss functions only quantify the disparity between one predicted outcom
 
 
 \begin{definition}\label{def:risk}
-Let $X,Y$ be arbitrary input and output spaces, $L$ be a loss function and $\prob$ be a probability measure on $X \times Y$.\\
-Then we define the \textbf{risk of the function $f$} with regard to a loss function $L$ as
+Let $X,Y$ be arbitrary input and output spaces, $\loss$ be a supervised loss function and $\prob$ be a probability measure on $X \times Y$.\\
+Then we define the \textbf{risk of the function $f$} with regard to a loss function $\loss$ as
 \begin{align*}
-\risk_{L, \prob}(f) = \int_{X\times Y} L\left(x, y, f(x) \right) d \prob(x, y).
+\risk_{\loss, \prob}(f) = \int_{X\times Y} \loss\left(x, y, f(x) \right) d \prob(x, y).
 \end{align*}
-In the following, we will denote this as the \textbf{$L$-risk of $f$}.
+In the following, we will denote this as the \textbf{$\loss$-risk of $f$}.
 \end{definition}
 
 
@@ -126,12 +139,12 @@ Considering applications, one usually wants to compute the risk with regard to o
 
 
 \begin{definition}\label{def:empirical_risk}
-Let $X, Y$ be arbitrary input and output spaces, $D = \left((x_1,y_1), \ldots, (x_k,y_k)\right)$ be a dataset consisting of $k\in\N$ data points. Furthermore, let $L$ be a loss function and $f$ be an arbitrary prediction function.\\
+Let $X, Y$ be arbitrary input and output spaces, $D = \left((x_1,y_1), \ldots, (x_k,y_k)\right)$ be a dataset consisting of $k\in\N$ data points. Furthermore, let $\loss$ be a supervised loss function and $f$ be an arbitrary prediction function.\\
 Then we define the \textbf{empirical risk function} as
 \begin{align*}
-\risk_{L, D} (f) = \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f(x_i)\right).
+\risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right).
 \end{align*}
-We will write $\risk \coloneqq \risk_{L, D}$ unless unclear in the given context.
+We will write $\risk \coloneqq \risk_{\loss, D}$ unless unclear in the given context.
 \end{definition}
 
 
@@ -210,9 +223,9 @@ Now we use the fact, that $x^{\ast}$ solves the equation \eqref{eq:lfe}.
 \end{align*}
 The next step is to use the fact that $U$ is a self-adjoint operator.
 \begin{align*}
-\left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle x^{\prime}, Ux^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right)
-+ \left\langle Ux^{\ast}, x^{\ast}\right\rangle
-&= \left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle Ux^{\prime}, x^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right)	+ \left\langle Ux^{\ast}, x^{\ast}\right\rangle
+&\left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle x^{\prime}, Ux^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right)
++ \left\langle Ux^{\ast}, x^{\ast}\right\rangle\\
+&\qquad= \left\langle Ux^{\prime}, x^{\prime}\right\rangle - \left( \left\langle Ux^{\prime}, x^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\prime}\right\rangle \right)	+ \left\langle Ux^{\ast}, x^{\ast}\right\rangle.
 \end{align*}
 Lastly, we use the linearity of the inner product and the lower bound of the operator $U$.
 \begin{align*}
@@ -246,16 +259,17 @@ F(x + z) &= \left\langle U(x + z), x + z \right\rangle - \left( \left\langle x +
 \end{align}
 Considering the derivative in direction $z$ gives us
 \begin{align*}
-\frac{\partial F}{\partial z} (x) = \frac{1}{\|z\|} \left(  \left\langle Ux - y, z \right\rangle + \left\langle z, Ux - y \right\rangle \right) = \frac{2 \langle Ux - y, z \rangle}{\|z\|}.
+\frac{\partial F}{\partial z} (x) = \frac{1}{\|z\|} \left(  \left\langle Ux - y, z \right\rangle + \left\langle z, Ux - y \right\rangle \right) = \frac{2 \langle Ux - y, z \rangle}{\|z\|},
 \end{align*}
-Thus the direction of steepest descent at $x^{(0)}\in\H$ is given by $z_1 = Ux^{(0)} - y$.\\
-Lastly, to determine the descent value we consider the equation
+where in the last equation we used the fact that $F$ is a real-values function.\\
+Thus the direction of steepest ascent at $x^{(0)}\in\H$ is given by $z_1 = Ux^{(0)} - y$ and the direction of steepest descent by $-z_1$.\\
+Lastly, to determine the descent value we consider the equation \textcolor{red}{The author considered rays, i.e. $\phi(\a;x, z) = \Phi(x+\a z)$, I guess we need to do the same?}
 \begin{align*}
-\lim_{h\to 0^+} \frac{F(x^{(0)} + hz_1) - F(x^{(0)})}{h} = 0,
+\lim_{h\to 0^+} \frac{F(x^{(0)} - hz_1) - F(x^{(0)})}{h} = 0,
 \end{align*}
 where with the use of equation \eqref{eq:F_dir}, we have
 \begin{align*}
-F(x^{(0)} - z_1) = F(x^{(0)}) - 2 \left\langle z_1, z_1 \right\rangle + \left\langle Uz_1, z_1 \right\rangle
+F(x^{(0)} - z_1) = F(x^{(0)}) - 2 \left\langle z_1, z_1 \right\rangle + \left\langle Uz_1, z_1 \right\rangle,
 \end{align*}
 what ultimately leads to the step size
 \begin{align*}
@@ -299,7 +313,8 @@ as well as
 \end{align}
 Combining the equations \eqref{eq:lower} and \eqref{eq:upper} leads to
 \begin{align*}
-\|T\| = \frac{M-m}{M+m}.
+2\|T\| &= \left( 1 - \frac{2m}{m+M}\right) + \left( \frac{2M}{m+M} - 1\right) = \frac{2M - 2m}{m+M}\\
+\Longleftrightarrow \qquad \|T\| &= \frac{M-m}{M+m}.
 \end{align*}
 Moreover, applying \eqref{eq:rewritten} and rewriting it gives us
 \begin{align}\label{eq:x_prime}
@@ -311,7 +326,7 @@ F(x) &= \left\langle U(x - x^{\ast}), x - x^{\ast} \right\rangle - \left\langle 
 &= \left\langle V(x - x^{\ast}), V(x - x^{\ast}) \right\rangle - \left\langle Vx^{\ast}, Vx^{\ast} \right\rangle\nonumber\\
 &= \left\|V(x - x^{\ast}) \right\|^2 - \left\|Vx^{\ast} \right\|^2
 \end{align}
-Considering the inequality $F(x^{\prime}_1) \geq F(x^{(1)})$, which holds due to the fact that $x_1$ is the iterate performed with optimal descent value (\textcolor{red}{at least the author proposes? Feels somewhat awkward though}), leads to
+Considering the inequality $F(x^{\prime}_1) \geq F(x^{(1)})$, which holds due to the fact that $x^{(1)}$ is the iterate performed with optimal descent value (\textcolor{red}{at least the author proposes? Feels somewhat awkward though}), leads to
 \begin{align*}
 F(x^{(1)}) -F(x^{\ast}) \leq F(x^{\prime}_1) -F(x^{\ast}),
 \end{align*}
@@ -327,14 +342,21 @@ subtracting this equation from \eqref{eq:x_prime} gives us
 \begin{align*}
 x^{\prime}_1 - x^{\ast} = T(x^{(0)} - x^{\ast}),
 \end{align*}
-applying the operator $V$ on both sides gives us at last
+applying the operator $V$ on both sides gives us
+\begin{align}\label{eq:1.16}
+V\left(x^{\prime}_1 - x^{\ast}\right) = VT(x^{(0)} - x^{\ast}).
+\end{align}
+With the easy calculation
+\begin{align*}
+VT = V\left( I - kU\right) = V -kVU = V - kVVV = \left(I-kU\right)V = TV,
+\end{align*}
+we realise that the operators $T$ and $V$ commute. Hence, we can rewrite \eqref{eq:1.16} to
 \begin{align*}
 V\left(x^{\prime}_1 - x^{\ast}\right) = TV(x^{(0)} - x^{\ast}).
 \end{align*}
 Considering the norm leads to
 \begin{align*}
-\left\|V\left(x^{\prime}_1 - x^{\ast}\right)\right\| &= \left\| TV(x^{(0)} - x^{\ast})\right\|\\
-&\leq \left\| T \right\| \left\|V(x^{(0)} - x^{\ast})\right\|\\
+\left\|V\left(x^{\prime}_1 - x^{\ast}\right)\right\| &= \left\| TV(x^{(0)} - x^{\ast})\right\| \leq \left\| T \right\| \left\|V(x^{(0)} - x^{\ast})\right\|\\
 &=\frac{M-m}{M+m} \left\|V(x^{(0)} - x^{\ast})\right\|\\
 \end{align*}
 Therefore, with inequality \eqref{ineq:1} we have
@@ -349,7 +371,7 @@ which leads to the bound
 \begin{align*}
 \left\| V(x^{(n)} - x^{\ast}) \right\|\leq \left(\frac{M-m}{M+m}\right)^n \left\|V(x^{(0)} - x^{\ast})\right\|.
 \end{align*}
-Furthermore, we realise that the function $t^{-1/2}$ is continuous in $[m, M]$ and therefore on the spectrum of $U$, which leads to the observation that the inverse operator $V^{-1/2}$ exists.\\
+Furthermore, we realise that the function $t^{-1/2}$ is continuous in $[m, M]$ and therefore especially on the spectrum of $U$, which leads to the observation that the inverse operator $V^{-1/2}$ exists.\\
 Moreover, with the help of \cite[theorem~V.6.2]{kantorovich2016functional} (which regards the spectrum $S_U$ of the operator $U$) the following equations hold
 \begin{align*}
 \left\|V^{-1}\right\| &= \max_{t\in S_U} \frac{1}{\sqrt{t}} = \frac{1}{\sqrt{m}},\\
@@ -377,42 +399,98 @@ This is exactly the inequality asserted in the theorem.
 However, the gradient descent algorithm relies on computing the gradient of the risk function in each iteration, which oftentimes is too expensive and therefore is being relaxed by only considering the gradient in one sample (or multiple samples, we speak of a mini-batch then). We want to take a closer look at this algorithm as well. Since it is quite popular, there are many good references in literature, e.g see \cite[chapter~13.3.2]{sra2012optimization}, \cite[chapter~4.2]{saad2009line} and \cite{https://doi.org/10.5281/zenodo.4638695}. We will focus on the latter reference.\\
 Beforehand, we need to consider the empirical risk, which we defined in definition \ref{def:empirical_risk}. Since we take the average of the loss functions with regard to the whole data set $D$, we can denote it as an integral over the dataset $D$
 \begin{align*}
-\risk_{L, D} (f) = \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f(x_i)\right) = \int_{D} L(x,y,f(x)) d(x,y).
+\risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right) = \int_{D} \loss(x,y,f(x)) d(x,y).
 \end{align*}
-If we now randomly choose a subset $B \subseteq D$ of length $b\in\{1,\ldots,n\}$ which we will call \textbf{mini-batch of size $b$}, we can approximate the empirical risk $\risk_{L, D} (f)$ through $\risk_{L, B} (f)$.
+If we now randomly choose a subset $B \subseteq D$ of length $b\in\{1,\ldots,n\}$ which we will call \textbf{mini-batch of size $b$}, we can approximate the empirical risk $\risk_{\loss, D} (f)$ through $\risk_{\loss, B} (f)$.
 \begin{align*}
-\risk_{L,B}(f) = \int_{B}L(x, y, f(x)) d(x,y).
+\risk_{\loss,B}(f) = \int_{B}\loss(x, y, f(x)) d(x,y).
 \end{align*}
 One may quickly realise, that if $b=n$, we are in the regular gradient descent setting. If one chooses to be $b=1$, i.e. the subset $B$ consisting of one single sample, then we speak of \textbf{stochastic gradient descent}, otherwise of \textbf{stochastic gradient descent with batch-size $b$}.\\
 In the following, we want to summarize the data samples $\o_i=(x_i,y_i)$. Hence, we can write
 \begin{align*}
-\risk_{L,B}(f) = \int_{B}L(\o, f(x)) d\o.
+\risk_{\loss,B}(f) = \int_{B}\loss(\o, f(x)) d\o.
 \end{align*}
 Furthermore, we remember that we essentially are interested in the setting, where $f$ is a neural network. Since the neural network $f$ has parameters $\t$, which we denoted as $f_{\t}$, we will now simply the notation as follows
 \begin{align*}
-\risk_{L,B}(f_{\t}) = \int_{B}L(\o, f_{\t}(x)) d\o \eqqcolon \int_{B}L(\o,\t) d\o \eqqcolon \risk_{L,B}(\t).
+\risk_{\loss,B}(f_{\t}) = \int_{B}\loss(\o, f_{\t}(x)) d\o \eqqcolon \int_{B}\loss(\o,\t) d\o \eqqcolon \risk_{\loss,B}(\t).
 \end{align*}
-Our goal is to find a minimum of $\risk_{L,B}$, we approach this problem the same way as we approached the gradient descent algorithm, where we iteratively update the parameters $\t$ to minimize the risk. Therefore, we define the update rule as follows. Lets assume we already found the $k$-th iterate $\t^{(k)}$. Now we randomly choose a sample $\o_k$ and compute its loss with regard to the recently found parameters $\t^{(k)}$. Afterwards, we compute the gradient of the empirical risk in the sample $\o_k$ and update the parameters. This would look like
+Our goal is to find a minimum of $\risk_{\loss,B}$, we approach this problem the same way as we approached the gradient descent algorithm, where we iteratively update the parameters $\t$ to minimize the risk. Therefore, we define the update rule as follows. Lets assume we already found the $k$-th iterate $\t^{(k)}$. Now we randomly choose a sample $\o_k$ and compute its loss with regard to the current parameters $\t^{(k)}$. Afterwards, we compute the gradient of the empirical risk in the sample $\o_k$ and update the parameters. This looks like
 \begin{align}\label{eq:sgd}
-\t^{(k+1)} = \t^{(k)} -\g_k \nabla_{\t} L(\o_k,\t^{(k)}).
+\t^{(k+1)} = \t^{(k)} -\g_k \nabla_{\t} \loss(\o_k,\t^{(k)}).
 \end{align}
-This way we define a sequence of parameters $(\t^{k})$, which we will show to converge to some $\t^{\ast}$ that minimizes the empirical risk $\risk_{L,B}(\t)$.
-However, to prove this convergence we need some assumptions
+This way we define a sequence of parameters $(\t^{(k)})$, which we will show to converge to some $\t^{\ast}$ that minimizes the empirical risk $\risk_{\loss,B}(\t)$.
+However, to prove this convergence we need to pose some assumptions.
+\begin{assumption}\label{ass:sgd}
+We assume that the risk function $\risk_{\loss,\o}$ meets the following conditions.
 \begin{enumerate}
-\item The gradient of $\risk_{L,B}(\t)$ is bounded, i.e.
-\begin{align*}
-\exists G > 0: \sup_{\o\in D} \left\| \nabla_{\t} \risk_{L,B}(\t) \right\|^2 \leq G,
-\end{align*}
+\item The gradient of $\risk_{\loss,\o}(\t)$ is bounded, i.e.
+\begin{align}\label{eq:ass1}
+\exists G > 0: \sup_{\o\in D} \left\| \nabla_{\t} \risk_{\loss,\o}(\t) \right\|^2 \leq G,
+\end{align}
 for all $\t\in\T$.
-\item $\risk_{L,B}(\t)$ is strongly convex, i.e.
-\begin{align*}
-\exists \m>0: \risk_{L,B}(\t_2) \geq \risk_{L,B}(\t_1) + \left\langle \nabla_{\t} \risk_{L,B}(\t_2), \t_2-\t_1 \right\rangle + \frac{\m}{2} \left\| \t_1 - \t_2 \right\|^2,
-\end{align*}
+\item $\risk_{\loss,\o}(\t)$ is strongly convex, i.e.
+\begin{align}\label{eq:ass2}
+\exists \m>0: \risk_{\loss,\o}(\t_2) \geq \risk_{\loss,\o}(\t_1) + \left\langle \nabla_{\t} \risk_{\loss,\o}(\t_2), \t_2-\t_1 \right\rangle + \frac{\m}{2} \left\| \t_1 - \t_2 \right\|^2,
+\end{align}
 for all $\t_1,\t_2 \in\T$.
 \end{enumerate}
-At this point we should note that the second assumption is quite restricting and can indeed be relaxed. Since neural networks rarely are convex and especially not strictly convex functions, the corresponding empirical risk function is neither. However, relaxing this assumption makes the proof far more challenging, what we do not want to tackle in this thesis. Instead we want to reference e.g. \cite{lei2019stochastic}, where the authors prove the stochastic gradient descent algorithm to converge even for non-convex functions, which still have to fulfil some constraints, such as Hölder continuity and the Polyak-\L{}ojasiewicz condition.
+\end{assumption}
+At this point we should note that the second assumption is quite restrictive and can indeed be relaxed. Since neural networks rarely are convex and especially not strictly convex functions, the corresponding empirical risk function is neither. However, relaxing this assumption makes the proof far more challenging, what we do not want to tackle in this thesis. Instead we want to reference e.g. \cite{lei2019stochastic}, where the authors prove the stochastic gradient descent algorithm to converge even for non-convex functions, which still have to fulfil some constraints, such as Hölder continuity and the Polyak-\L{}ojasiewicz condition. Nonetheless, these conditions are far less restrictive and neural networks are proposed to meet those.\\
+Having explored nuances of the made assumptions, we now return to the central focus, which is the convergence of the stochastic gradient descent algorithm.
 
+\begin{theorem}
+Let $(\O, \A, \prob)$ be a probability space, $X$, $Y$ be arbitrary input and output spaces and $\T$ an arbitrary parameter space. Furthermore, let $\loss$ denote an arbitrary supervised loss function and let the corresponding empirical risk $\risk_{\loss, \o}$ be continuously differentiable in every $\o\in X\times Y$.\\
+Then the stochastic gradient descent algorithm with update rule \eqref{eq:sgd} and posed assumptions \ref{ass:sgd} satisfies the following assertions.
+\begin{enumerate}
+\item \label{ass1} The empirical risk function $\risk_{\loss, \o}$ has a unique minimum at $\t^{\ast}\in\T$.
+\item \label{ass2}For any $n\geq 0$ denote the \textbf{stochastic distance} as
+\begin{align}\label{eq:dist}
+d_n = \E \left( \left\| \t^{(n)} - \t^{\ast} \right\|^2 \right).
+\end{align}
+Then for $d_{n+1}$ holds
+\begin{align}\label{eq:dist_rec}
+d_{n+1} \leq (1 - \g_n\m)d_n + \g_n^2B.
+\end{align}
+\item \label{ass3}For any $\e>0$ there exists a $\g>0$ such that if $\g_n=\g$, then
+\begin{align}\label{eq:limsup}
+\limsup_{n\to \infty} \left( \left\| \t^{(n)} - \t^{\ast} \right\|^2 \right) \leq \e.
+\end{align}
+\item \label{ass4} If the sequence $(\g_n)$ meets the conditions
+\begin{align}\label{eq:step_size}
+\g_n\to 0 \qquad \text{and} \qquad \sum_{n\geq 0} \g_n = \infty,
+\end{align}
+then $d_n\to 0$, that is $\lim_{n\to\infty}\t^{(n)} = \t^{\ast}$, where the convergence is the $L^2$-convergence of random variables, see e.g. \cite[chapter~7]{klenke2013probability}.
+\end{enumerate}
+\end{theorem}
 
+\begin{proof}
+Assertion~\ref{ass1}: The existence of a minimum follows from the continuity and lower boundedness of $\risk_{\loss, \o}$. The uniqueness follows from the strong convexity of $\risk_{\loss, \o}$.\\
+Assertion~\ref{ass2}: It holds that
+\begin{align}\label{eq:item2}
+&d_{n+1} = \E\left( \left\| \t^{(n+1)} - \t^{\ast} \right\|^2 \right) = \E\left( \left\| \t^{(n)} - \t^{\ast} - \g_n \nabla_{\t} \loss(\o_n, \t^{(n)}) \right\|^2 \right)\nonumber\\
+&\quad= \E\left( \left\| \t^{(n)} - \t^{\ast}\right\|^2 \right) - 2\g_n\E\left(\left\langle \t^{(n)}- \t^{\ast}, \nabla_{\t}\loss(\o_n, \t^{(n)}) \right\rangle\right) + \E \left( \g_n^2 \left\| \nabla_{\t} \loss(\o_n, \t^{(n)}) \right\|^2 \right).
+\end{align}
+First, we consider that
+\begin{align*}
+\E\left( \left\langle \t^{(n)} - \t^{\ast}, \nabla_{\t}\loss(\o_n, \t^{(n)}) \right\rangle \right)= \E\left( \t^{(n)} - \t^{\ast}, \nabla_{\t} \risk_{\loss, \o_n} \right),
+\end{align*}
+what we can bound with the help of the second assumption \eqref{eq:ass2} by
+\begin{align*}
+\E\left( \t^{(n)} - \t^{\ast}, \nabla_{\t} \risk_{\loss, \o_n} \right) \geq
+\E\left( \risk_{\loss, \o_n} (\t^{(n)})	 - \risk_{\loss, \o_n} (\t^{\ast}) + \frac{\m}{2} \left\| \t^{(n)} - \t^{\ast} \right\|^2	\right).
+\end{align*}
+Since $\t^{\ast}$ minimizes $\risk_{\loss, \o}$, the difference $\E(\risk_{\loss, \o_n} (\t^{(n)})) - \E(\risk_{\loss, \o_n} (\t^{\ast}))$ is positive and we can bound this even further to
+\begin{align*}
+\E\left( \risk_{\loss, \o_n} (\t^{(n)})	 - \risk_{\loss, \o_n} (\t^{\ast}) + \frac{\m}{2} \left\| \t^{(n)} - \t^{\ast} \right\|^2	\right) \geq
+\frac{\m}{2}\E\left( \left\| \t^{(n)} - \t^{\ast} \right\|^2\right).
+\end{align*}
+Lastly, we consider \eqref{eq:item2} and use the first assumption \eqref{eq:ass1}. This gives us
+\begin{align*}
+&\E\left( \left\| \t^{(n)} - \t^{\ast}\right\|^2 \right) - 2\g_n\E\left(\left\langle \t^{(n)}- \t^{\ast}, \nabla_{\t}\loss(\o_n, \t^{(n)}) \right\rangle\right) + \E \left( \left\| \nabla_{\t} \loss(\o_n, \t^{(n)}) \right\|^2 \right)\\
+&\quad\leq d_n - \g_n\m d_n + \g_n^2B = \left(1 - \g_n\m\right)d_n + \g_n^2B.
+\end{align*}
+Assertion~\ref{ass3}:
+\end{proof}
 
 \iffalse
 \textcolor{red}{TODO: THE WHOLE GD AND SGD THEORY WILL BE REWORKED!!! I consider introducing the gd and sgd algorithms as in \cite{DBLP:journals/corr/abs-1902-00908}. It will require some additional quantities (RKHS, Polyak-\L{}ojasiewiecz condition), but this PL-condition is satisfied by e.g. neural networks, what makes this highly interesting.}
@@ -584,7 +662,7 @@ Let's first consider the definition of the projection $\Pi_{\F}$.
 \begin{align*}
 \Pi_{\F, X} \left(x^{\ast}\right) = \min_{x\in\F} \left\|X^{1/2}(x - x^{\ast}) \right\|.
 \end{align*}
-Hence, for the point $x^{\prime}$ that minimizes the right hand side holds
+Hence, for any point $x^{\prime}$ that minimizes the right hand side holds
 \begin{align*}
 x^{\prime} = \argmin_{x\in\F}\left\|X^{1/2}(x - x^{\ast}) \right\|,
 \end{align*}
@@ -691,9 +769,9 @@ Then the following inequality holds
 We begin with defining
 \begin{align}\label{eq:ball_def}
 B(u,z) \coloneqq \frac{1}{2} \left\| Q^{1/2} \left( u - z \right) \right\|^2 = \frac{1}{2} \left( u - z \right)^{\tran} Q\left( u - z \right).
-\end{align}\label{eq:argmin}
+\end{align}
 Hence, we can write
-\begin{align}
+\begin{align}\label{eq:argmin}
 u_1 = \argmin_{x\in\F} B(x, z_1).
 \end{align}
 If we now consider the gradient of \eqref{eq:ball_def}, we receive
@@ -751,7 +829,7 @@ where we denote for readability reasons $g_{1:t}\coloneqq(g_1,\ldots, g_t)$ and 
 \end{theorem}
 
 \begin{proof}
-First, we observe with the definition of the projection
+First, we observe with the definition \ref{def:projection} of the projection
 \begin{align*}
 \t_{t+1} = \Pi_{\T, \sqrt{\hat{V_t}}} \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) = \min_{\t \in \T} \left\|\hat{V}_t^{1/4} \left( \t -  \left(\t_t - \a_t \hat{V}_t^{-1/2}m_t \right) \right) \right\|.
 \end{align*}
@@ -782,10 +860,10 @@ And if we now apply the Cauchy-Schwarz inequality and the Young's inequality, th
 &\quad +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\nonumber\\
 &\quad + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2.
 \end{align}
-The next step is a common approach in bounding the regret, where we will use the convexity of the function $f_t$ in each step. \textcolor{red}{is it convex? I think so, because $f_t$ is NOT the neural net here. $f_t$ is defined as \glqq A loss function $f_t$ (to be interpreted as the loss of the model with the chosen parameters in the next minibatch) is then revealed, and the algorithm incurs loss $f_t(x_t)$\grqq{}}.
+The next step is a common approach in bounding the regret, where we will use the convexity of the function $f_t$ in each step. Here we should remind, that $f_t$ as defined in Definition \ref{def:regret} is the loss of the prediction function with parameters $\t_t. $\textcolor{red}{is it convex? I think so, because $f_t$ is NOT the neural net here. $f_t$ is defined as \glqq A loss function $f_t$ (to be interpreted as the loss of the model with the chosen parameters in the next minibatch) is then revealed, and the algorithm incurs loss $f_t(x_t)$\grqq{}}.
 \begin{align*}
-&\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast}) \leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\\
-\quad &\leq\sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \\
+\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast}) &\leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\\
+&\leq\sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \\
 &\quad +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\\
 &\quad + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \Biggr],
 \end{align*}
@@ -1183,23 +1261,6 @@ Then for any $A\in\A$ with $\prob(A) > 0$ and any $k\in I$ holds
 \prob(B_k | A) = \frac{\prob(A | B_k) \prob(B_k)}{\sum_{i \in I} \prob(A | B_i) \prob(B_i)}.
 \end{align*}
 \end{theorem}
-
-\begin{proof}
-Using the definition \ref{def:cond_prob} of the conditional probability twice, we receive
-\begin{align}\label{eq:summation_formula}
-\prob(B_k | A) = \frac{\prob(B_k \cap A)}{\prob(A)} = \frac{\prob(A | B_k) \prob(B_k)}{\prob(A)}.
-\end{align}
-Now, due to the $\s$-additivity of $\prob$, the following holds
-\begin{align*}
-\prob(A) = \prob \left( \bigcup_{i\in I} \left(A \cap B_i \right) \right) = \sum_{i\in I} \prob \left( A \cap B_i \right) = \sum_{i\in I} \prob(A | B_i) \prob(B_i).
-\end{align*}
-Plugging this result right into equation \eqref{eq:summation_formula} yields
-\begin{align*}
-\prob(B_k | A) = \frac{\prob(A | B_k) \prob(B_k)}{\sum_{i \in I} \prob(A | B_i) \prob(B_i)},
-\end{align*}
-which is exactly the proposed assertion.
-\end{proof}
-
 
 Since we will be interested in modelling probability distributions to approximate observed data as well as possible, we now want to consider how to construct a family of distributions by tweaking the parameters of the probability distribution. One example of such a family are parametric models. These are families of distributions that can be indexed by a finite number of parameters.
 
