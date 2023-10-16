@@ -1,7 +1,7 @@
 import os
 
 import torch
-from isa29.isa_runner import ConvolutionalVariationalAutoencoder
+from isa29.isa_runner_snd import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 

@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 FONTSIZE_LATENT = 30
+FONTSIZE_RECONSTRUCTION = 30
 FONTSIZE_INFERENCE = 20
 
 
@@ -17,7 +18,7 @@ def plot_latent_2D_linear(
     num_batches=150,
 ) -> None:
     # Define the figure
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(10, 7))
     ax = fig.add_subplot(111)
 
     for i, (img, label) in enumerate(data_loader):
@@ -53,7 +54,7 @@ def plot_latent_2D_convolutional(
     num_batches=150,
 ) -> None:
     # Define the figure
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(10, 7))
     ax = fig.add_subplot(111)
 
     for i, (img, label) in enumerate(data_loader):
@@ -85,8 +86,9 @@ def plot_reconstructed_2D(
     autoencoder: Module,
     r0: tuple[int, int] = (-5, 10),
     r1: tuple[int, int] = (-10, 5),
-    n=12,
+    n=10,
 ) -> None:
+    plt.figure(figsize=(10, 7))
     w = 28
     img = torch.zeros((n * w, n * w))
     for i, y in enumerate(torch.linspace(*r1, n)):
@@ -96,6 +98,10 @@ def plot_reconstructed_2D(
             x_hat = x_hat.reshape(28, 28).to(DEVICE).detach()
             img[(n - 1 - i) * w : (n - 1 - i + 1) * w, j * w : (j + 1) * w] = x_hat
     plt.imshow(img, extent=[*r0, *r1])
+    plt.title("Reconstruction of latent space", fontsize=FONTSIZE_RECONSTRUCTION)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_reconstruction.png"  # noqa: E501
+    plt.savefig(os.path.join(dir_path, file_name))
     plt.show()
 
 

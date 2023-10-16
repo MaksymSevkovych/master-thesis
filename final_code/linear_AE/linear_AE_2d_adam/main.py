@@ -5,7 +5,7 @@ from isa_linear_AE import LinearAutoEncoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from visualise import inference_linear, plot_latent_2D_linear
+from visualise import inference_linear, plot_latent_2D_linear, plot_reconstructed_2D
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
@@ -35,3 +35,4 @@ if __name__ == "__main__":
     # plot
     plot_latent_2D_linear(model, data_loader, num_batches=NUM_BATCHES)
     inference_linear(model, data_loader, 10)
+    plot_reconstructed_2D(model, (-60, 10), (-10, 60))
