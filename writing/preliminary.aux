@@ -5,7 +5,7 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{preliminary}{{1}{3}{Preliminary}{chapter.1}{}}
+\newlabel{chap:preliminary}{{1}{3}{Preliminary}{chapter.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Neural networks}{3}{section.1.1}\protected@file@percent }
 \newlabel{def_neuron}{{1.1}{4}{}{equation.1.1.1}{}}
 \newlabel{def_layer}{{1.1.4}{4}{}{theorem.1.1.4}{}}
@@ -42,7 +42,7 @@
 \newlabel{eq:1.16}{{1.16}{11}{Training of neural networks}{equation.1.2.16}{}}
 \citation{sra2012optimization}
 \citation{saad2009line}
-\citation{https://doi.org/10.5281/zenodo.4638695}
+\citation{turinici2021convergence}
 \newlabel{eq:combined}{{1.17}{12}{Training of neural networks}{equation.1.2.17}{}}
 \citation{lei2019stochastic}
 \newlabel{eq:sgd}{{1.18}{13}{Training of neural networks}{equation.1.2.18}{}}
@@ -50,6 +50,7 @@
 \newlabel{eq:ass1}{{1.19}{13}{}{equation.1.2.19}{}}
 \citation{klenke2013probability}
 \newlabel{eq:ass2}{{1.20}{14}{}{equation.1.2.20}{}}
+\newlabel{theorem:sgd}{{1.2.9}{14}{}{theorem.1.2.9}{}}
 \newlabel{ass1}{{1}{14}{}{Item.3}{}}
 \newlabel{ass2}{{2}{14}{}{Item.4}{}}
 \newlabel{eq:dist}{{1.21}{14}{}{equation.1.2.21}{}}
@@ -59,66 +60,67 @@
 \newlabel{ass4}{{4}{14}{}{Item.6}{}}
 \newlabel{eq:step_size}{{1.24}{14}{}{equation.1.2.24}{}}
 \newlabel{eq:item2}{{1.25}{15}{Training of neural networks}{equation.1.2.25}{}}
-\newlabel{lemma:nn_gradient}{{1.2.10}{15}{}{theorem.1.2.10}{}}
-\citation{edition2002probability}
+\newlabel{ineq:2}{{1.26}{15}{Training of neural networks}{equation.1.2.26}{}}
+\citation{papoulis02}
+\newlabel{ineq:3}{{1.27}{16}{Training of neural networks}{equation.1.2.27}{}}
+\newlabel{ineq:iter}{{1.28}{16}{Training of neural networks}{equation.1.2.28}{}}
 \citation{kingma2014adam}
 \citation{goodfellow2016deep}
-\newlabel{theorem:sgd}{{1.2.12}{16}{}{theorem.1.2.12}{}}
-\newlabel{def:moment}{{1.2.13}{16}{}{theorem.1.2.13}{}}
 \citation{reddi2019convergence}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces ADAM optimizer\relax }}{17}{algorithm.1}\protected@file@percent }
-\newlabel{alg:adam}{{1}{17}{ADAM optimizer\relax }{algorithm.1}{}}
-\newlabel{def:projection}{{1.2.16}{17}{}{theorem.1.2.16}{}}
-\newlabel{lemma:projection}{{1.2.17}{18}{}{theorem.1.2.17}{}}
-\newlabel{def:regret}{{1.2.18}{18}{}{theorem.1.2.18}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Generic Adaptive Method Setup\relax }}{18}{algorithm.2}\protected@file@percent }
-\newlabel{alg:general}{{2}{18}{Generic Adaptive Method Setup\relax }{algorithm.2}{}}
+\newlabel{def:moment}{{1.2.10}{17}{}{theorem.1.2.10}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Adam optimizer\relax }}{17}{algorithm.1}\protected@file@percent }
+\newlabel{alg:adam}{{1}{17}{Adam optimizer\relax }{algorithm.1}{}}
+\newlabel{def:projection}{{1.2.13}{18}{}{theorem.1.2.13}{}}
+\newlabel{lemma:projection}{{1.2.14}{18}{}{theorem.1.2.14}{}}
+\newlabel{def:regret}{{1.2.15}{18}{}{theorem.1.2.15}{}}
 \citation{reddi2019convergence}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Generic Adaptive Method Setup\relax }}{19}{algorithm.2}\protected@file@percent }
+\newlabel{alg:general}{{2}{19}{Generic Adaptive Method Setup\relax }{algorithm.2}{}}
 \citation{reddi2019convergence}
 \citation{reddi2019convergence}
 \citation{reddi2019convergence}
 \citation{mcmahan2010adaptive}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces AMSGrad Optimizer\relax }}{19}{algorithm.3}\protected@file@percent }
-\newlabel{alg:amsgrad}{{3}{19}{AMSGrad Optimizer\relax }{algorithm.3}{}}
-\newlabel{lemma:McMahan_Streeter}{{1.2.20}{20}{}{theorem.1.2.20}{}}
-\newlabel{eq:ball_def}{{1.27}{20}{Training of neural networks}{equation.1.2.27}{}}
-\newlabel{eq:argmin}{{1.28}{20}{Training of neural networks}{equation.1.2.28}{}}
-\newlabel{theorem:amsgrad}{{1.2.21}{21}{}{theorem.1.2.21}{}}
-\newlabel{eq:1.9}{{1.29}{22}{Training of neural networks}{equation.1.2.29}{}}
-\newlabel{eq:1.10}{{1.30}{23}{Training of neural networks}{equation.1.2.30}{}}
-\newlabel{eq:1.11}{{1.31}{24}{Training of neural networks}{equation.1.2.31}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces AMSGrad Optimizer\relax }}{20}{algorithm.3}\protected@file@percent }
+\newlabel{alg:amsgrad}{{3}{20}{AMSGrad Optimizer\relax }{algorithm.3}{}}
+\newlabel{lemma:McMahan_Streeter}{{1.2.17}{20}{}{theorem.1.2.17}{}}
+\newlabel{eq:ball_def}{{1.29}{20}{Training of neural networks}{equation.1.2.29}{}}
+\newlabel{eq:argmin}{{1.30}{20}{Training of neural networks}{equation.1.2.30}{}}
+\newlabel{theorem:amsgrad}{{1.2.18}{21}{}{theorem.1.2.18}{}}
+\newlabel{eq:1.9}{{1.31}{22}{Training of neural networks}{equation.1.2.31}{}}
+\newlabel{eq:1.10}{{1.32}{23}{Training of neural networks}{equation.1.2.32}{}}
+\newlabel{eq:1.11}{{1.33}{25}{Training of neural networks}{equation.1.2.33}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Neural networks in computer vision}{27}{section.1.3}\protected@file@percent }
 \newlabel{def:pixel}{{1.3.1}{27}{}{theorem.1.3.1}{}}
-\newlabel{def:pixel_domain}{{1.3.3}{27}{}{theorem.1.3.3}{}}
-\newlabel{def:image}{{1.3.4}{27}{}{theorem.1.3.4}{}}
-\newlabel{lemma:mat_as_array}{{1.3.7}{28}{}{theorem.1.3.7}{}}
-\citation{goodfellow2016deep}
+\newlabel{def:pixel_domain}{{1.3.3}{28}{}{theorem.1.3.3}{}}
+\newlabel{def:image}{{1.3.4}{28}{}{theorem.1.3.4}{}}
+\newlabel{lemma:mat_as_array}{{1.3.7}{29}{}{theorem.1.3.7}{}}
 \newlabel{def:img_operator}{{1.3.8}{29}{}{theorem.1.3.8}{}}
-\newlabel{def:cv_layer}{{1.3.9}{29}{}{theorem.1.3.9}{}}
+\citation{goodfellow2016deep}
+\newlabel{def:cv_layer}{{1.3.9}{30}{}{theorem.1.3.9}{}}
 \newlabel{def:convolution_op}{{1.3.10}{30}{}{theorem.1.3.10}{}}
 \newlabel{def:avg_pooling_op}{{1.3.11}{30}{}{theorem.1.3.11}{}}
-\newlabel{def:min_pooling_op}{{1.3.12}{30}{}{theorem.1.3.12}{}}
+\newlabel{def:min_pooling_op}{{1.3.12}{31}{}{theorem.1.3.12}{}}
 \newlabel{def:max_pooling_op}{{1.3.13}{31}{}{theorem.1.3.13}{}}
-\newlabel{prop:convolutional_layer}{{1.3.14}{31}{}{theorem.1.3.14}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.4}Probability and Statistics}{31}{section.1.4}\protected@file@percent }
-\newlabel{def:pdf}{{1.4.1}{31}{}{theorem.1.4.1}{}}
+\newlabel{def:convolutional_layer}{{1.3.14}{31}{}{theorem.1.3.14}{}}
 \citation{klenke2013probability}
 \citation{klenke2013probability}
 \citation{klenke2013probability}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}Probability and Statistics}{32}{section.1.4}\protected@file@percent }
+\newlabel{def:pdf}{{1.4.1}{32}{}{theorem.1.4.1}{}}
 \newlabel{def:joint_pdf}{{1.4.2}{32}{}{theorem.1.4.2}{}}
 \newlabel{def:cond_prob}{{1.4.4}{32}{}{theorem.1.4.4}{}}
-\newlabel{theorem:bayes_rule}{{1.4.5}{32}{}{theorem.1.4.5}{}}
 \citation{cinelli2021variational}
-\citation{cinelli2021variational}
+\newlabel{theorem:bayes_rule}{{1.4.5}{33}{}{theorem.1.4.5}{}}
 \newlabel{def:parametric_model}{{1.4.6}{33}{}{theorem.1.4.6}{}}
 \newlabel{ex:parametric_model}{{1.4.7}{33}{}{theorem.1.4.7}{}}
-\newlabel{theorem:pdf_gen}{{1.4.8}{33}{}{theorem.1.4.8}{}}
-\newlabel{ex:loc-scale_fam}{{1.4.9}{33}{}{theorem.1.4.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\beta $, the scale parameter as defined in theorem \ref {theorem:pdf_gen} is actually $\s  = 1/\beta $. Note that as the scale $\s  $ increases the distribution becomes less concentrated around the location parameter $\m  $. In particular, $\lim _{\s  \to \infty } p(x; \m  ,\s  ) = \delta (x-\m  )$. \textbf  {(a)} Members of the same scale family of Gamma distributions with shape parameter $\alpha = 2.2$. \textbf  {(b)} Members of the same location-scale family of Gaussian distributions.\relax }}{34}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:pdf_gen}{{1.2}{34}{Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\b $, the scale parameter as defined in theorem \ref {theorem:pdf_gen} is actually $\s = 1/\b $. Note that as the scale $\s $ increases the distribution becomes less concentrated around the location parameter $\m $. In particular, $\lim _{\s \to \infty } p(x; \m ,\s ) = \d (x-\m )$. \textbf {(a)} Members of the same scale family of Gamma distributions with shape parameter $\a = 2.2$. \textbf {(b)} Members of the same location-scale family of Gaussian distributions.\relax }{figure.caption.3}{}}
+\citation{cinelli2021variational}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\beta $, the scale parameter as defined in Theorem \ref {theorem:pdf_gen} is actually $\s  = 1/\beta $. Note that as the scale $\s  $ increases the distribution becomes less concentrated around the location parameter $\m  $. In particular, $\lim _{\s  \to \infty } p(x; \m  ,\s  ) = \delta (x-\m  )$. \textbf  {(a)} Members of the same scale family of Gamma distributions with shape parameter $\alpha = 2.2$. \textbf  {(b)} Members of the same location-scale family of Gaussian distributions.\relax }}{34}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:pdf_gen}{{1.2}{34}{Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\b $, the scale parameter as defined in Theorem \ref {theorem:pdf_gen} is actually $\s = 1/\b $. Note that as the scale $\s $ increases the distribution becomes less concentrated around the location parameter $\m $. In particular, $\lim _{\s \to \infty } p(x; \m ,\s ) = \d (x-\m )$. \textbf {(a)} Members of the same scale family of Gamma distributions with shape parameter $\a = 2.2$. \textbf {(b)} Members of the same location-scale family of Gaussian distributions.\relax }{figure.caption.3}{}}
+\newlabel{theorem:pdf_gen}{{1.4.8}{34}{}{theorem.1.4.8}{}}
+\newlabel{ex:loc-scale_fam}{{1.4.9}{34}{}{theorem.1.4.9}{}}
 \@setckpt{preliminary}{
 \setcounter{page}{35}
-\setcounter{equation}{35}
+\setcounter{equation}{37}
 \setcounter{enumi}{2}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}

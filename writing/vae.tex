@@ -1,6 +1,6 @@
 \chapter{Variational Autoencoders}\label{chap:vae}
 
-Differently from ordinary autoencoding neural networks that we already mentioned to be discriminative models, variational autoencoding neural networks on the other hand are so called generative models, see \cite[chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
+Differently from ordinary autoencoding neural networks that we already mentioned to be discriminative models, variational autoencoding neural networks on the other hand are so called generative models, see \cite[Chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
 
 \section{Probabilistic foundations}
 
@@ -11,7 +11,7 @@ variational autoencoding neural networks attempt to capture the entire probabili
 p(x) = \int p(x,z) dz = \int p(x|Z)p(z)dz.
 \end{align}
 
-This probability distribution we now want to introduce formally, since they will be of crucial importance in this chapter. However, we first need to introduce the latent space and the observation space.
+This probability distribution we now want to introduce formally, since it will be of crucial importance in this chapter. However, we first need to introduce the latent space and the observation space.
 
 \begin{definition}\label{def:spaces}
 Let $(\O, \A, \prob)$ be a probability space and let $\mathcal{X}$ as well as $\mathcal{Z}$ be measurable spaces. Furthermore, let $X$ be a random variable defined on $\mathcal{X}$ and $Z$ be a random variable defined on $\mathcal{Z}$, respectively.\\
@@ -21,14 +21,14 @@ We will call $\mathcal{X}$ the \textbf{observation space}, $X$ the \textbf{obser
 Considering the marginal distributions of the joint distribution, we can introduce the model evidence and the model prior, where the first refers to the observable data and the second refers to our prior belief in what the latent space might look like.
 
 \begin{definition}
-Let $(\O, \A, \prob)$ be a probability space and $X$, $Z$ be observation and latent random variables, respectively. Therefore, $p(x, z)$ descriebs the joint distribution of $X$ and $Z$. Then we call the marginal distribution
+Let $(\O, \A, \prob)$ be a probability space and $X$, $Z$ be observation and latent random variables, respectively. Therefore, $p(x, z)$ describes the joint distribution of $X$ and $Z$. Then we call the marginal distribution
 \begin{align*}
 p(x) = \int p(x, z) dz = \int p(x|Z) p(z) dz,
 \end{align*}
 the \textbf{model evidence} (sometimes referred to as \textbf{marginal likelihood}).\\
 Moreover, we call the marginal distribution
 \begin{align*}
-p(z) = \int p(x,z)
+p(z) = \int p(x,z)dx
 \end{align*}
 the \textbf{model prior}.
 \end{definition}

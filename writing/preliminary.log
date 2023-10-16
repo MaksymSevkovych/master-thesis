@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  13 OCT 2023 18:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  16 OCT 2023 16:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,7 +8,7 @@ LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-07>
 ! Undefined control sequence.
 l.1 \chapter
-            {Preliminary}\label{preliminary}
+            {Preliminary}\label{chap:preliminary}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -23,7 +23,7 @@ Type  H <return>  for immediate help.
  ...
 
 l.1 \chapter{P
-              reliminary}\label{preliminary}
+              reliminary}\label{chap:preliminary}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -2183,7 +2183,7 @@ Missing character: There is no [ in font nullfont!
 ! Undefined control sequence.
 <write> ...: Citation `\@citeb ' on page \thepage
                                                   \space undefined\on@line .
-l.14 ..., see \cite[chapter~6]{goodfellow2016deep}
+l.14 ..., see \cite[Chapter~6]{goodfellow2016deep}
                                                   .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2196,7 +2196,7 @@ LaTeX Warning: Citation `goodfellow2016deep' on page  undefined on input line 1
 4.
 
 Missing character: There is no , in font nullfont!
-Missing character: There is no c in font nullfont!
+Missing character: There is no C in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -7136,7 +7136,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no f in font nullfont!
+Missing character: There is no F in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no g in font nullfont!
 Missing character: There is no u in font nullfont!
@@ -7145,7 +7145,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...g: Reference `img_nn' on page \thepage
                                                   \space undefined\on@line .
-l.83 ...etwork can be found in figure \ref{img_nn}
+l.83 ...etwork can be found in Figure \ref{img_nn}
 
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -8390,8 +8390,8 @@ or  <return>  to continue without it.
 
 [1
 ! Undefined control sequence.
-<write> \newlabel{preliminary}{{}{\thepage
-                                           }}
+<write> \newlabel{chap:preliminary}{{}{\thepage
+                                                }}
 l.105
 
 The control sequence at the end of the top line
@@ -8400,7 +8400,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-\newlabel{preliminary}{{}{}}
+\newlabel{chap:preliminary}{{}{}}
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 ! Undefined control sequence.
 <write> \newlabel{def_neuron}{{}{\thepage
@@ -8524,7 +8524,7 @@ Missing character: There is no f in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no d in font nullfont!
+Missing character: There is no D in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -8537,7 +8537,7 @@ Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
 <write> ... Reference `def:loss' on page \thepage
                                                   \space undefined\on@line .
-l.106 ...s function from definition \ref{def:loss}
+l.106 ...s function from Definition \ref{def:loss}
                                                    allows us to compare a tr...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -8967,7 +8967,7 @@ Missing character: There is no [ in font nullfont!
 ! Undefined control sequence.
 <write> ...: Citation `\@citeb ' on page \thepage
                                                   \space undefined\on@line .
-l.107 ...at \cite[chapter~4.3]{goodfellow2016deep}
+l.107 ...at \cite[Chapter~4.3]{goodfellow2016deep}
                                                   .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -8980,7 +8980,7 @@ LaTeX Warning: Citation `goodfellow2016deep' on page  undefined on input line 1
 07.
 
 Missing character: There is no , in font nullfont!
-Missing character: There is no c in font nullfont!
+Missing character: There is no C in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -11373,7 +11373,7 @@ Missing character: There is no [ in font nullfont!
 ! Undefined control sequence.
 <write> ...: Citation `\@citeb ' on page \thepage
                                                   \space undefined\on@line .
-l.151 ...te[chapter~XV]{kantorovich2016functional}
+l.151 ...te[Chapter~XV]{kantorovich2016functional}
                                                   . For in-depth explanation...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -11386,7 +11386,7 @@ LaTeX Warning: Citation `kantorovich2016functional' on page  undefined on input
  line 151.
 
 Missing character: There is no , in font nullfont!
-Missing character: There is no c in font nullfont!
+Missing character: There is no C in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -14167,7 +14167,7 @@ LaTeX Warning: Citation `kantorovich2016functional' on page  undefined on input
  line 188.
 
 Missing character: There is no , in font nullfont!
-Missing character: There is no t in font nullfont!
+Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -14214,19 +14214,20 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 ! Undefined control sequence.
-<write> ...g: Reference `eq:lfe' on page \thepage
-                                                  \space undefined\on@line .
-l.188 ...xists one unique solution to \ref{eq:lfe}
-                                                  , for each $y\in\H$. Now, ...
+l.188 ...here exists one unique solution to \eqref
+                                                  {eq:lfe}, for each $y\in\H...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-
-LaTeX Warning: Reference `eq:lfe' on page  undefined on input line 188.
-
+Missing character: There is no e in font nullfont!
+Missing character: There is no q in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -14244,7 +14245,7 @@ LaTeX Warning: Command \H invalid in math mode on input line 188.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.188 ...lution to \ref{eq:lfe}, for each $y\in\H$
+l.188 ...tion to \eqref{eq:lfe}, for each $y\in\H$
                                                   . Now, we define the funct...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -14254,7 +14255,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \let \maybe@load@fontshape...
-l.188 ...lution to \ref{eq:lfe}, for each $y\in\H$
+l.188 ...tion to \eqref{eq:lfe}, for each $y\in\H$
                                                   . Now, we define the funct...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -14265,7 +14266,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.188 ...lution to \ref{eq:lfe}, for each $y\in\H$
+l.188 ...tion to \eqref{eq:lfe}, for each $y\in\H$
                                                   . Now, we define the funct...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -14273,7 +14274,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.188 ...lution to \ref{eq:lfe}, for each $y\in\H$
+l.188 ...tion to \eqref{eq:lfe}, for each $y\in\H$
                                                   . Now, we define the funct...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -14283,7 +14284,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.188 ...lution to \ref{eq:lfe}, for each $y\in\H$
+l.188 ...tion to \eqref{eq:lfe}, for each $y\in\H$
                                                   . Now, we define the funct...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -14332,11 +14333,6 @@ Overfull \hbox (5.00002pt too wide) in paragraph at lines 188--189
 
 
 Overfull \hbox (5.43053pt too wide) in paragraph at lines 188--189
-[]
- []
-
-
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 188--189
 []
  []
 
@@ -15977,7 +15973,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 ! Undefined control sequence.
 l.239 ...$x^{\ast}$, which is a solution to \eqref
-                                                  {eq:lfe} as we saw in theo...
+                                                  {eq:lfe} as we saw in Theo...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -15999,7 +15995,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
+Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -16009,7 +16005,7 @@ Missing character: There is no m in font nullfont!
 ! Undefined control sequence.
 <write> ...nce `theorem:min_lfe' on page \thepage
                                                   \space undefined\on@line .
-l.239 ...s we saw in theorem \ref{theorem:min_lfe}
+l.239 ...s we saw in Theorem \ref{theorem:min_lfe}
                                                   . Now, lets take a look at...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -17467,10 +17463,19 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
 ! Undefined control sequence.
 <write> ...g: Reference `cor:gd' on page \thepage
                                                   \space undefined\on@line .
-l.281 ...th parameters as asserted in \ref{cor:gd}
+l.281 ...ers as asserted in Corollary \ref{cor:gd}
                                                    does converge, as we have...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -17668,7 +17673,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
+Missing character: There is no C in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -17680,7 +17685,7 @@ Missing character: There is no y in font nullfont!
 ! Undefined control sequence.
 <write> ...g: Reference `cor:gd' on page \thepage
                                                   \space undefined\on@line .
-l.284 ... assumptions as in corollary \ref{cor:gd}
+l.284 ... assumptions as in Corollary \ref{cor:gd}
                                                    hold. Then the constructe...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -17728,7 +17733,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 ! Undefined control sequence.
 l.284 ...ted sequence $(x^{(n)})$ with $(z_k), (\g
-                                                  _k)$ as in corollary \ref{...
+                                                  _k)$ as in Corollary \ref{...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -17739,7 +17744,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
+Missing character: There is no C in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -17751,7 +17756,7 @@ Missing character: There is no y in font nullfont!
 ! Undefined control sequence.
 <write> ...g: Reference `cor:gd' on page \thepage
                                                   \space undefined\on@line .
-l.284 ..._k), (\g_k)$ as in corollary \ref{cor:gd}
+l.284 ..._k), (\g_k)$ as in Corollary \ref{cor:gd}
                                                   , converges to $x^{\ast}\i...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -18824,7 +18829,7 @@ Missing character: There is no V in font nullfont!
 ! Undefined control sequence.
 <write> ...: Citation `\@citeb ' on page \thepage
                                                   \space undefined\on@line .
-l.323 ...theorem~V.6.2]{kantorovich2016functional}
+l.323 ...Theorem~V.6.2]{kantorovich2016functional}
                                                   ).
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -19775,7 +19780,7 @@ Missing character: There is no [ in font nullfont!
 ! Undefined control sequence.
 <write> ...: Citation `\@citeb ' on page \thepage
                                                   \space undefined\on@line .
-l.375 ...theorem~V.6.2]{kantorovich2016functional}
+l.375 ...Theorem~V.6.2]{kantorovich2016functional}
                                                    (which regards the spectr...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -19788,7 +19793,7 @@ LaTeX Warning: Citation `kantorovich2016functional' on page  undefined on input
  line 375.
 
 Missing character: There is no , in font nullfont!
-Missing character: There is no t in font nullfont!
+Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -20029,10 +20034,10 @@ l.385 \end{align}
 
 (That makes 100 errors; please try again.)
 Here is how much of TeX's memory you used:
- 72 strings out of 476029
- 994 string characters out of 5790166
+ 71 strings out of 476029
+ 986 string characters out of 5790166
  1876346 words of memory out of 5000000
- 20610 multiletter control sequences out of 15000+600000
+ 20609 multiletter control sequences out of 15000+600000
  513270 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  25i,18n,32p,824b,193s stack positions out of 10000i,1000n,20000p,200000b,200000s

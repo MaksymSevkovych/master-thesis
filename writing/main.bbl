@@ -1,61 +1,62 @@
 \begin{thebibliography}{10}
 
 \bibitem{goodfellow2016deep}
-I.~Goodfellow, Y.~Bengio, and A.~Courville, {\em Deep learning}.
+I.~Goodfellow, Y.~Bengio, and A.~Courville, {\em Deep Learning}.
 \newblock MIT press, 2016.
 
 \bibitem{lemarechal2012cauchy}
-C.~Lemar{\'e}chal, ``Cauchy and the gradient method,'' {\em Doc Math Extra},
-  vol.~251, no.~254, p.~10, 2012.
+C.~Lemar{\'e}chal, ``{Cauchy and the Gradient Method},'' {\em Doc Math Extra},
+  2012.
 
 \bibitem{kantorovich2016functional}
-L.~V. Kantorovich and G.~P. Akilov, {\em Functional analysis}.
+L.~V. Kantorovich and G.~P. Akilov, {\em Functional Analysis}.
 \newblock Elsevier, 2016.
 
 \bibitem{sra2012optimization}
-S.~Sra, S.~Nowozin, and S.~J. Wright, {\em Optimization for machine learning}.
-\newblock Mit Press, 2012.
+S.~Sra, S.~Nowozin, and S.~J. Wright, {\em Optimization for Machine Learning}.
+\newblock MIT press, 2012.
 
 \bibitem{saad2009line}
-D.~Saad, {\em On-line learning in neural networks}.
+D.~Saad, {\em On-line Learning in Neural Networks}.
 \newblock Cambridge University Press, 2009.
 
-\bibitem{https://doi.org/10.5281/zenodo.4638695}
-G.~Turinici, ``The convergence of the stochastic gradient descent (sgd) : a
-  self-contained proof,'' tech. rep., 2021.
+\bibitem{turinici2021convergence}
+G.~Turinici, ``{The Convergence of the Stochastic Gradient Descent (SGD): a
+  Self-Contained Proof},'' {\em arXiv:2103.14350}, 2021.
 
 \bibitem{lei2019stochastic}
-Y.~Lei, T.~Hu, G.~Li, and K.~Tang, ``Stochastic gradient descent for nonconvex
-  learning without bounded gradient assumptions,'' {\em IEEE transactions on
-  neural networks and learning systems}, vol.~31, no.~10, pp.~4394--4400, 2019.
-
-\bibitem{edition2002probability}
-F.~Edition, A.~Papoulis, and S.~U. Pillai, ``Probability, random variables, and
-  stochastic processes,'' 2002.
-
-\bibitem{kingma2014adam}
-D.~P. Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em
-  arXiv preprint arXiv:1412.6980}, 2014.
-
-\bibitem{reddi2019convergence}
-S.~J. Reddi, S.~Kale, and S.~Kumar, ``On the convergence of adam and beyond,''
-  {\em arXiv preprint arXiv:1904.09237}, 2019.
-
-\bibitem{mcmahan2010adaptive}
-H.~B. McMahan and M.~Streeter, ``Adaptive bound optimization for online convex
-  optimization,'' {\em arXiv preprint arXiv:1002.4908}, 2010.
+Y.~Lei, T.~Hu, G.~Li, and K.~Tang, ``{Stochastic Gradient Descent for Nonconvex
+  Learning without Bounded Gradient Assumptions},'' {\em IEEE Transactions on
+  Neural Networks and Learning Systems}, 2019.
 
 \bibitem{klenke2013probability}
-A.~Klenke, {\em Probability theory: a comprehensive course}.
-\newblock Springer Science \& Business Media, 2013.
+A.~Klenke, {\em Probability Theory: a Comprehensive Course}.
+\newblock Springer, 2013.
+
+\bibitem{papoulis02}
+A.~Papoulis and S.~U. Pillai, {\em Probability, Random Variables and Stochastic
+  Processes}.
+\newblock McGraw Hill, 2002.
+
+\bibitem{kingma2014adam}
+D.~P. Kingma and J.~Ba, ``{Adam: A Method for Stochastic Optimization},'' {\em
+  International Conference on Learning Representations}, 2014.
+
+\bibitem{reddi2019convergence}
+S.~J. Reddi, S.~Kale, and S.~Kumar, ``{On the Convergence of Adam and
+  Beyond},'' {\em International Conference on Learning Representations}, 2019.
+
+\bibitem{mcmahan2010adaptive}
+H.~B. McMahan and M.~Streeter, ``{Adaptive Bound Optimization for Online Convex
+  Optimization},'' {\em C0LT 2010}, 2010.
 
 \bibitem{cinelli2021variational}
 L.~P. Cinelli, M.~A. Marins, E.~A.~B. Da~Silva, and S.~L. Netto, {\em
-  Variational methods for machine learning with applications to deep networks}.
+  Variational Methods for Machine Learning with Applications to Deep Networks}.
 \newblock Springer, 2021.
 
 \bibitem{foster2022generative}
-D.~Foster, {\em Generative deep learning}.
-\newblock " O'Reilly Media, Inc.", 2022.
+D.~Foster, {\em Generative Deep Learning}.
+\newblock O'Reilly Media, Inc., 2022.
 
 \end{thebibliography}
