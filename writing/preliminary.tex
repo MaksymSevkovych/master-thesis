@@ -1,7 +1,213 @@
 \chapter{Preliminary}\label{chap:preliminary}
-In order to comprehend the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of neural networks and their optimization - usually being called training. In this chapter, we will tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a handful of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images. This discipline of machine learning is usually referred to as computer vision.
+In order to comprehend the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of concepts of probability theory and statistics, statistical learning theory, neural networks and their optimization - often referred to as training of neural networks. In this chapter, we will begin with fundamental definitions we need for the statistical learning setting and afterwards tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a handful of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images. This discipline of machine learning is usually referred to as computer vision.
 
-\section{Neural networks}
+
+\section{Probability and Statistics}
+
+A fundamental topic for this thesis is probability theory and statistics. Especially in Chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
+We want to begin by introducing the basic quantities in probability theory, merely to define a notation throughout the thesis.
+
+
+\begin{definition}\label{def:pdf}
+Let $(\O, \A, \prob)$ be a \textbf{probability space} and $(\mathcal{X}, \A)$ be a \textbf{measurable space}. Furthermore, let $X$ be a \textbf{random variable} defined over $\mathcal{X}$. Then we define the measurable function $p:(\O,\A) \to (\mathcal{X}, \A)$ that satisfies
+\begin{align*}
+&\int_{\O} p^+ d\prob< \infty &\text{or} &\int_{\O} p^- d\prob < \infty,
+\end{align*}
+where $p^+ = \max \{p, 0\}$ and $p^- = - \min\{p, 0\}$ describe the positive and negative part of $p$, as \textbf{probability density function} of $\prob$.\\
+Moreover, let $\T$ be a \textbf{parameter space}. We will denote the probability density function as $p(x; \t)$, where $\t$ describes the parameters of the probability distribution of $X$.
+\end{definition}
+
+Here we should note, that we want to consider the defining parameters of a probability distribution in the arguments of the underlying probability density function. This means that for example for a normally distributed random variable $X$ with mean $\m$ and variance $\s^2$ we would denote its probability density function as $p(x;\m,\s^2)$.\\
+Another important quantity we need to consider beforehand is the joint distribution, as well as marginal distributions.
+
+\begin{definition}\label{def:joint_pdf}
+Let $(\O, \A, \prob)$ be a probability space and $(\mathcal{X}, \A)$, $(\mathcal{Y}, \A)$ be measurable spaces. Furthermore, let $X$ and $Y$ be random variables defined on $\mathcal{X}$ and $\mathcal{Y}$, respectively. Then the distribution $p(x,y) $of the random variable $(X, Y)$ defined on $\mathcal{X} \times \mathcal{Y}$ is called the \textbf{joint probability distribution}.
+\end{definition}
+
+By marginalizing over one of both random variables we receive the marginal distribution.
+
+\begin{definition}
+Let $(\O, \A, \prob)$ be a probability space, $(\mathcal{X}, \A)$, $(\mathcal{Y}, \A)$ be measurable spaces and $X$, $Y$ random variables defined on the corresponding measurable spaces. Then we define the \textbf{marginal probability distribution of $X$} as
+\begin{align*}
+p(x) = \int p(x,z) dz,
+\end{align*}
+as well as the \textbf{marginal probability distribution of $Y$} as
+\begin{align*}
+p(y) = \int p(y,z) dz.
+\end{align*}
+\end{definition}
+
+Another important quantity is the conditional probability. Since if there is partial information on the outcome of a random experiment, the probabilities for the possible events may change. Thus, we introduce this quantity analogous to \cite[Chapter~8]{klenke2013probability}.
+
+\begin{definition}\label{def:cond_prob}
+Let $(\O, \A, \prob)$ be a probability space and $A\in\A$. For any $B\in\A$ we define the \textbf{conditional probability of $B$ given $A$} by
+\begin{align*}
+\prob(B | A) =
+\begin{cases}
+\frac{P(A\cap B)}{P(A)}, &\text{if }\prob(A)>0,\\
+0, &\text{else}.
+\end{cases}
+\end{align*}
+\end{definition}
+
+At this point we should note, that the conditional probability, introduced in Definition \ref{def:cond_prob} is indeed a probability measure, see \cite[Theorem~8.4]{klenke2013probability}. Lastly, we want to introduce the famous Bayes' formula, see e.g \cite[Theorem~8.7]{klenke2013probability}. This will be fundamental for our Bayesian learning setting in Chapter \ref{chap:vae}.
+
+\begin{theorem}\label{theorem:bayes_rule}
+Let $(\O, \A, \prob)$ be a probability space and $I$ be a countable set. Furthermore, let $(B_i)_{i\in I}$ be a sequence of pairwise disjoint sets with $\prob (\bigcup_{i\in I} B_i) = 1$.\\
+Then for any $A\in\A$ with $\prob(A) > 0$ and any $k\in I$ holds
+\begin{align*}
+\prob(B_k | A) = \frac{\prob(A | B_k) \prob(B_k)}{\sum_{i \in I} \prob(A | B_i) \prob(B_i)}.
+\end{align*}
+\end{theorem}
+
+Since we will be interested in modelling probability distributions to approximate observed data as well as possible, we now want to consider how to construct a family of distributions by tweaking the parameters of the probability distribution. One example of such a family are parametric models. These are families of distributions that can be indexed by a finite number of parameters.
+
+\begin{definition}\label{def:parametric_model}
+Let $(\O, \A, \prob)$ be a probability space and $X$ a random variable defined over $\O$. Furthermore, let $\T$ be an arbitrary parameter space.\\
+Then we denote the \textbf{parametric model} as the family of distributions
+\begin{align*}
+\mathcal{P}_{\T} = \left\{ p(x;\t): \t\in\T \right\}.
+\end{align*}
+\end{definition}
+
+\begin{example}\label{ex:parametric_model}
+Let's consider some elementary examples of parametric models.
+\begin{enumerate}
+\item Let $U\subset \N^2$ be a finite subset with tuples $(a,b) \in U$ and $X\sim\mathcal{U}(a, b)$ a uniformly distributed random variable. Then the parametric model of $X$ with regard to $U$ looks as follows
+\begin{align*}
+\mathcal{P}_U = \{p(x; a, b) : (a,b) \in U\},
+\end{align*}
+where for each probability density function $p(x;a,b)$ holds
+\begin{align*}
+p(x; a, b) =
+\begin{cases}
+1/(b-a), &\text{if } x\in [a, b],\\
+0, &\text{otherwise}.
+\end{cases}
+\end{align*}
+\item Let $N\subset \Q\times \Q_+$ be a finite subset with tuples $(\m,\s^2) \in N$ and $X\sim\mathcal{N}(\m, \s^2)$ a normally distributed random variable. Then the parametric model of $X$ with regard to $N$ looks as follows
+\begin{align*}
+\mathcal{P}_N = \{p(x; \m, \s^2) : (\m,\s^2) \in N\},
+\end{align*}
+where for each probability density function $p(x; \m, \s^2)$ holds
+\begin{align*}
+p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2}.
+\end{align*}
+\end{enumerate}
+\end{example}
+
+Another way to generate a family of distributions is to alter an underlying base probability density function, hence named standard probability density function. Possible alterations might be shifting or scaling (or both) the standard probability density function. Therefore, we cite a theorem from \cite[Theorem~2.1]{cinelli2021variational}, which proposes exactly such a construction.
+
+\begin{theorem}\label{theorem:pdf_gen}
+Let $p(x)$ be a probability density function and $\m\in\R$ and $\s > 0$ constants. Then the following functions are also probability density functions
+\begin{align*}
+g(x;\m,\s) = \frac{1}{\s} p\left( \frac{x - \m}{\s} \right).
+\end{align*}
+We refer to the parameters $\m$ as \textbf{location parameter} and $\s$ as \textbf{scale parameter}. Moreover, we call the family $\mathcal{P}_{\m,\s} = \{g(x;\m,\s):\m$ and $\s > 0\}$ a \textbf{location-scale family}.
+\end{theorem}
+
+Now, let's consider some examples of location-scale families. Moreover, we borrow two graphics from \cite{cinelli2021variational} that serve to illustrate the assertion from Theorem \ref{theorem:pdf_gen}. These graphics are shown in Figure \ref{fig:pdf_gen} and show the generation of a Gamma and a Gaussian distributed probability density function family, which we consider in Example \ref{ex:loc-scale_fam}.
+
+\begin{example}\label{ex:loc-scale_fam}
+The following examples are all location-scale families.
+\begin{enumerate}
+\item Let $\a,\b >0$ be constants. Then the Gamma distribution $\text{Ga}(\a,\b)$ is a scale family for each value of the shape parameter $\a$
+\begin{align*}
+p(x;\a,\b) = \frac{\b^\a}{\Gamma(\a)}x^{\a-1} e^{-\b x}.
+\end{align*}
+\item Let $\m\in\R$ and $\s>0$ be constants. Then the Gaussian distribution $\mathcal{N}(\m,\s^2)$ is a location-scale family for both, the location parameter $\m$ and the scale parameter $\s$, respectively. This leads to
+\begin{align*}
+p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2},
+\end{align*}
+similarly to Example \ref{ex:parametric_model}.
+\end{enumerate}
+\end{example}
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{gamma_family}
+		\caption*{\textbf{(a)}}
+	\end{minipage}
+	\begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[width=\linewidth]{gaussian_family}
+		\caption*{\textbf{(b)}}
+	\end{minipage}
+	\caption{Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\b$, the scale parameter as defined in Theorem \ref{theorem:pdf_gen} is actually $\s = 1/\b$. Note that as the scale $\s$ increases the distribution becomes less concentrated around the location parameter $\m$. In particular, $\lim_{\s\to\infty} p(x; \m,\s) = \d(x-\m)$. \textbf{(a)} Members of the same scale family of Gamma distributions with shape parameter $\a = 2.2$. \textbf{(b)} Members of the same location-scale family of Gaussian distributions.}\label{fig:pdf_gen}
+\end{center}
+\end{figure}
+
+
+Having introduced the basics of probability theory, we now want to consider the actual statistical learning setting that we find ourselves in. The fundamental idea is that we have some kind of data that represents reality. Our goal is to find a function that approximates the given data as accurately as possible. There are many ways to do so, but we will focus on one certain class of functions. These functions are called neural networks, which we will introduce is Section \ref{sec:nn}. However, before considering neural networks we have to introduce some quantities that we will need later on, first. These quantities are well-known in statistical learning theory and are called loss and risk function. The loss function is a function that measures the point-wise error between the prediction of a found approximative function to the actually true value. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
+
+
+\begin{definition}\label{def:loss}
+Let $X,Y$ be arbitrary input and output spaces. Furthermore, let $t\in\R^n$ be a prediction for $y\in Y$.\\
+Then we define a \textbf{supervised loss function} $\loss: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.
+\end{definition}
+
+The recently introduced loss function from Definition \ref{def:loss} allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
+We want to consider a couple of important examples for loss functions, for further reading please take a look at \cite[Chapter~4.3]{goodfellow2016deep}.
+
+
+\begin{example}\label{ex:supervised_loss}
+Let $y\in Y\coloneqq \R$ and $t\in \R$, then the following functions are loss functions.
+\begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
+\item[\textbf{Squared Error Loss}] $\loss(y, t) = \left|y - t\right|^2$,
+\item[\textbf{Linear Error Loss}]  $\loss(y, t) = \left|y - t\right|$.
+\end{mydescription}
+Now, let $y\in Y \coloneqq \R^n$ and $t\in\R^n$ with $n>1$. Then, we consider the squared error loss and the linear error loss pointwise:
+\begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
+\item[\textbf{Squared Error Loss}] $\loss(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|^2$,
+\item[\textbf{Linear Error Loss}]  $\loss(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|$,
+\end{mydescription}
+where $y = (y_1,\ldots, y_n)$ and $t = (t_1,\ldots, t_n)$.
+\end{example}
+
+
+However, loss functions only quantify the disparity between one predicted outcome and one actual value. In order to compare the predictions over a wider range of data points, we need to introduce another quantity, the risk function.
+
+
+\begin{definition}\label{def:risk}
+Let $X,Y$ be arbitrary input and output spaces, $\loss$ be a supervised loss function and $\prob$ be a probability measure on $X \times Y$.\\
+Then we define the \textbf{risk of the function $f$} with regard to a loss function $\loss$ as
+\begin{align*}
+\risk_{\loss, \prob}(f) = \int_{X\times Y} \loss\left(x, y, f(x) \right) d \prob(x, y).
+\end{align*}
+In the following, we will denote this as the \textbf{$\loss$-risk of $f$}.
+\end{definition}
+
+
+Considering applications, one usually wants to compute the risk with regard to observed data instead of a probability measure, since the true probability measure usually is unknown. In this case, the general risk function becomes more tangible, as we see in the following definition.
+
+
+\begin{definition}\label{def:empirical_risk}
+Let $X, Y$ be arbitrary input and output spaces, $D = \left((x_1,y_1), \ldots, (x_k,y_k)\right)$ be a dataset consisting of $k\in\N$ data points. Furthermore, let $\loss$ be a supervised loss function and $f$ be an arbitrary prediction function.\\
+Then we define the \textbf{empirical risk function} as
+\begin{align*}
+\risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right).
+\end{align*}
+We will write $\risk \coloneqq \risk_{\loss, D}$ unless unclear in the given context.
+\end{definition}
+
+
+Before continuing to the theory, we want to introduce a short auxiliary lemma that considers the convexity of loss and risk functions
+
+\begin{lemma}\label{lemma:convex_risk}
+Let $\loss$ be a convex loss function and $D$ be an arbitrary dataset of length $k\in\N$.\\
+Then the empirical risk function $\risk_{\loss, D}$ is also convex.
+\end{lemma}
+
+\begin{proof}
+We begin by considering the Definition \ref{def:empirical_risk} of the empirical risk
+\begin{align*}
+\risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right).
+\end{align*}
+Since $\loss$ is assumed to be a convex loss function as is its sum. Therefore, the empirical risk which is a finite sum of convex loss functions, is also a convex function and the assertion is proven.
+\end{proof}
+
+
+\section{Neural networks}\label{sec:nn}
 The idea of artificial neural networks originated from analysing mammal's brains. An accumulation of nodes - so called neurons, connected in a very special way that fire an electric impulse to adjacent neurons upon being triggered and transmit information that way. Scientists tried to mimic this natural architecture and replicate this mammal intelligence artificially. This research has been going for almost 80 years and became immensely popular recently through artificial intelligences like OpenAI's ChatGPT or Google's Bard for the broad public. But what actually is a neural network? What happens in a neural network? Those are very interesting and important questions that we will find answers for.\\
 As already mentioned, neural networks consist of single neurons that transmit information upon being \glqq triggered\grqq{}. Obviously, triggering an artificial neuron can't happen the same way as neurological neurons are being triggered through stimulus. Hence, we need to model the triggering of a neuron in some way. The idea is to filter information that does not exceed a certain stimulus threshold. This filter is usually called activation function. In practice, there are many ways of modelling such activation functions and it mainly depends the use-case what exactly is demanded from the activation function. Therefore, we define activation functions as general as possible.\\
 \textcolor{red}{TODO:} Give a formal reference to neural networks somewhere?
@@ -94,61 +300,7 @@ A visual representation of a neural network can be found in Figure \ref{img_nn}
 
 
 \section{Training of neural networks}\label{sec:training_of_nn}
-
-Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network. However, all of them require the definitions of a loss function and risk function. The loss function is a function that measures the point-wise error of a neural network, or any other prediction function in general. This is fundamental in supervised learning. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
-
-
-\begin{definition}\label{def:loss}
-Let $X,Y$ be arbitrary input and output spaces. Furthermore, let $t\in\R^n$ be a prediction for $y\in Y$.\\
-Then we define a \textbf{supervised loss function} $\loss: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t$ in a suitable way.
-\end{definition}
-
-The recently introduced loss function from Definition \ref{def:loss} allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
-We want to consider a couple of important examples for loss functions, for further reading please take a look at \cite[Chapter~4.3]{goodfellow2016deep}.
-
-
-\begin{example}
-Let $y\in Y\coloneqq \R$ and $t\in \R$, then the following functions are loss functions.
-\begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
-\item[\textbf{Squared Error Loss}] $\loss(y, t) = \left|y - t\right|^2$,
-\item[\textbf{Linear Error Loss}]  $\loss(y, t) = \left|y - t\right|$.
-\end{mydescription}
-Now, let $y\in Y \coloneqq \R^n$ and $t\in\R^n$ with $n>1$. Then, we consider the squared error loss and the linear error loss pointwise:
-\begin{mydescription}{\widthof{\textbf{Squared Error Loss}}}
-\item[\textbf{Squared Error Loss}] $\loss(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|^2$,
-\item[\textbf{Linear Error Loss}]  $\loss(y, t) = \sum_{i=1}^n\left|y_i - t_i\right|$,
-\end{mydescription}
-where $y = (y_1,\ldots, y_n)$ and $t = (t_1,\ldots, t_n)$.
-\end{example}
-
-
-However, loss functions only quantify the disparity between one predicted outcome and one actual value. In order to compare the predictions over a wider range of data points, we need to introduce another quantity, the risk function.
-
-
-\begin{definition}\label{def:risk}
-Let $X,Y$ be arbitrary input and output spaces, $\loss$ be a supervised loss function and $\prob$ be a probability measure on $X \times Y$.\\
-Then we define the \textbf{risk of the function $f$} with regard to a loss function $\loss$ as
-\begin{align*}
-\risk_{\loss, \prob}(f) = \int_{X\times Y} \loss\left(x, y, f(x) \right) d \prob(x, y).
-\end{align*}
-In the following, we will denote this as the \textbf{$\loss$-risk of $f$}.
-\end{definition}
-
-
-Considering applications, one usually wants to compute the risk with regard to observed data instead of a probability measure, since the true probability measure usually is unknown. In this case, the general risk function becomes more tangible, as we see in the following definition.
-
-
-\begin{definition}\label{def:empirical_risk}
-Let $X, Y$ be arbitrary input and output spaces, $D = \left((x_1,y_1), \ldots, (x_k,y_k)\right)$ be a dataset consisting of $k\in\N$ data points. Furthermore, let $\loss$ be a supervised loss function and $f$ be an arbitrary prediction function.\\
-Then we define the \textbf{empirical risk function} as
-\begin{align*}
-\risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right).
-\end{align*}
-We will write $\risk \coloneqq \risk_{\loss, D}$ unless unclear in the given context.
-\end{definition}
-
-
-With the previous definitions, we can return to considering the training of neural networks. There are many possible techniques and strategies. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function, and afterwards performing a step in the opposite of the found direction. This approach dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview please take a look at \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be discovered in numerous literary works. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, please take a look at the reference.\\
+Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network. However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function, and afterwards performing an optimization step in the opposite of the found direction. This approach dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview please take a look at \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be discovered in numerous literary works. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, please take a look at the reference.\\
 Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and we aim to find an element $x^{\ast}\in X$ such that
 
 \begin{align*}
@@ -169,7 +321,7 @@ To construct such a sequence, we assume that the function $f$ is differentiable.
 \end{align*}
 exists at each point $x \in X$ and for every direction $z \in X$. We call such a function simply \textbf{differentiable}. If the function and its derivative are additionally continuous, we call it \textbf{continuously differentiable}.\\
 Furthermore, we assume that there exists a direction for which the derivative takes minimum value - thus, the direction of steepest descent. This direction is essentially the negative direction of the gradient of $f$. If we now perform a step towards the direction of steepest descent, we completed an iteration of the so called steepest descent method - or nowadays better known as the gradient descent algorithm. This algorithm we now want to define a little more precisely.\\
-Let $X$ be a normed space and $f:X\to \R$ be a continuously differentiable function with existing minimum $f(x^{\ast)}$.
+Let $X$ be a normed space and $f:X\to \R$ be a continuously differentiable function with existing minimum $f(x^{\ast})$.
 Furthermore, let there be a direction of steepest descent in every $x \in X$ and $x^{(0)}\in X$ an arbitrary (initial) element. Assume that we already found the $k$-th iterate $x^{(k)}$, then we define the $(k+1)$-th iterate by
 
 \begin{align}\label{eq:gd}
@@ -263,25 +415,32 @@ Considering the derivative in direction $z$ gives us
 \end{align*}
 where in the last equation we used the fact that $F$ is a real-values function.\\
 Thus the direction of steepest ascent at $x^{(0)}\in\H$ is given by $z_1 = Ux^{(0)} - y$ and the direction of steepest descent by $-z_1$.\\
-Lastly, to determine the descent value we consider the equation \textcolor{red}{The author considered rays, i.e. $\phi(\a;x, z) = \Phi(x+\a z)$, I guess we need to do the same?}
-\begin{align*}
-\lim_{h\to 0^+} \frac{F(x^{(0)} - hz_1) - F(x^{(0)})}{h} = 0,
-\end{align*}
+Lastly, to determine the descent value we want to introduce the concept of rays, emanating of a point $x\in \H$ in direction $z\in\H$. This is the set of elements that is generated by $x + \a z$, where $\a>0$ is a non-negative real number and $z\in\H$ is the direction of the ray. The restriction of the function $F$ onto this ray is thereby a function of a real variable that we will denote as $f(\a; x, z) = F(x + \a z)$ for $\a \geq 0$.\\
+We consider the ray emanating of our current iterate $x^{(0)}$ in the direction of the steepest descent $z_1$ and consider it as a real valued function in $\a$. Since we want to find an optimal descent value, we look for the minimum on this ray, what ultimately results in a one dimensional optimization problem. Hence, we consider the equation
+\begin{align}\label{eq:deriv_cond}
+\frac{\partial f(\a; x^{(0)}, - z_1)}{\partial \a} = 0,
+\end{align}
 where with the use of equation \eqref{eq:F_dir}, we have
 \begin{align*}
-F(x^{(0)} - z_1) = F(x^{(0)}) - 2 \left\langle z_1, z_1 \right\rangle + \left\langle Uz_1, z_1 \right\rangle,
+f(\a; x^{(0)}, -z_1) = F(x^{(0)} - \a z_1) = F(x^{(0)}) - 2 \a\left\langle z_1, z_1 \right\rangle + \a^2\left\langle Uz_1, z_1 \right\rangle.
 \end{align*}
-what ultimately leads to the step size
+Thus, the derivative $\partial f(\a; x^{(0)}, - z_1)/\partial \a$ looks like
 \begin{align*}
-\g_1 = \frac{\langle z_1, z_1 \rangle}{\langle Uz_1, z_1 \rangle}.
+\frac{\partial f(\a; x^{(0)}, - z_1)}{\partial \a} = - 2\left\langle z_1, z_1 \right\rangle + 2\a\left\langle Uz_1, z_1 \right\rangle.
 \end{align*}
-In exactly the same way, $\g_k$ and $z_k$ can be determined for all $k>1$ and hence, all assertions from the theorem are proven.
+Considering the condition \eqref{eq:deriv_cond} gives us the descent value by solving for $\a$
+\begin{align*}
+\Longleftrightarrow \qquad  2\left\langle z_1, z_1 \right\rangle &= 2\a\left\langle Uz_1, z_1 \right\rangle\\
+\Longleftrightarrow \qquad \frac{\left\langle z_1, z_1 \right\rangle}{\left\langle Uz_1, z_1 \right\rangle} &= \a.
+\end{align*}
+Therefore, by defining $\g_1 = \a$ we receive the optimal descent value in the direction $z_1$.\\
+In exactly the same way $\g_k$ and $z_k$ can be determined for all $k>1$ and hence, all assertions from the theorem are proven.
 \end{proof}
 
 The gradient descent algorithm with parameters as asserted in Corollary \ref{cor:gd} does converge, as we have seen in the proof. However, one might pose the question how quickly it converges. This question we want to consider in the following theorem.
 
-\begin{theorem}
-Let the same assumptions as in Corollary \ref{cor:gd} hold. Then the constructed sequence $(x^{(n)})$ with $(z_k), (\g_k)$ as in Corollary \ref{cor:gd}, converges to $x^{\ast}\in\H$. Its speed of convergence is given by
+\begin{theorem}\label{theorem:gd}
+Let the same assumptions as in Corollary \ref{cor:gd} hold. Then the constructed sequence $(x^{(n)})$ with $(z_n), (\g_n)$ as in Corollary \ref{cor:gd}, converges to $x^{\ast}\in\H$. Its speed of convergence is given by
 \begin{align*}
 \left\|x^{(n)} - x^{\ast}\right\| \leq \frac{\|z_1\|}{m}\left( \frac{M - m}{M + m} \right)^n,
 \end{align*}
@@ -326,7 +485,7 @@ F(x) &= \left\langle U(x - x^{\ast}), x - x^{\ast} \right\rangle - \left\langle 
 &= \left\langle V(x - x^{\ast}), V(x - x^{\ast}) \right\rangle - \left\langle Vx^{\ast}, Vx^{\ast} \right\rangle\nonumber\\
 &= \left\|V(x - x^{\ast}) \right\|^2 - \left\|Vx^{\ast} \right\|^2
 \end{align}
-Considering the inequality $F(x^{\prime}_1) \geq F(x^{(1)})$, which holds due to the fact that $x^{(1)}$ is the iterate performed with optimal descent value (\textcolor{red}{at least the author proposes? Feels somewhat awkward though}), leads to
+Considering the inequality $F(x^{\prime}_1) \geq F(x^{(1)})$, which holds due to the fact that $x^{(1)}$ is the iterate performed with optimal descent value, leads to
 \begin{align*}
 F(x^{(1)}) -F(x^{\ast}) \leq F(x^{\prime}_1) -F(x^{\ast}),
 \end{align*}
@@ -394,9 +553,177 @@ Plugging this result into \eqref{eq:combined}, gives us
 This is exactly the inequality asserted in the theorem.
 \end{proof}
 
-\textcolor{red}{TODO: Here we should show how to compute the gradient of a risk, where a neural network is considered as a prediction function. This would show that in applications it is very expensive to compute the gradient with regard to the whole dataset, which is the motivation for SGD.}
+As we saw in  Theorem \ref{theorem:gd} the gradient descent algorithm does converge, we even determined an upper bound to its convergence speed. However, the algorithm relies on computing the gradient of the function to be optimized. In our setting, this is the gradient of the risk function that has a neural network as prediction function, where the gradient is computed with regard to the parameters of the neural network. Since it is unclear how such a gradient actually looks like, we want to consider some examples.
 
-However, the gradient descent algorithm relies on computing the gradient of the risk function in each iteration, which oftentimes is too expensive and therefore is being relaxed by only considering the gradient in one sample (or multiple samples, we speak of a mini-batch then). We want to take a closer look at this algorithm as well. Since it is quite popular, there are many good references in literature, e.g see \cite[Chapter~13.3.2]{sra2012optimization}, \cite[Chapter~4.2]{saad2009line} and \cite{turinici2021convergence}. We will focus on the latter reference.\\
+\begin{example}\label{ex:nn_gradients}
+Let's first consider the easiest neural network possible, two connected neurons. Afterwards, we want to generalize this to a neural network that consists of $L\in\N$ layers, where each layer does only have one neuron. Lastly, we will consider a neural network with two hidden layers, where there are $d_1>1$ and $d_2>1$ neurons in the first and second layer, respectively. Moreover, let $\f$ be the sigmoid activation function, $D$ be an arbitrary dataset of length $d\in\N$ and $\loss$ be the mean squared error loss, see Example \ref{ex:supervised_loss}.
+\begin{enumerate}
+\item We consider a neural network $f$, that consists of an input neuron and an output neuron. Hence, we can describe it as
+\begin{align}\label{eq:nn1}
+f(x) = \f\left(wx + b\right) \qquad x\in\R,
+\end{align}
+where $w\in\R$ is the networks weight and $b\in\R$ is the networks bias. For simplicity, we assume $b=0$.\\
+Since we are interested in computing the gradient of the empirical risk function, we want to formulate it explicitly.
+\begin{align*}
+\risk_{\loss, D} (f_\t) = \frac{1}{d} \sum_{i=1}^d \left| y_i - f(x_i) \right|^2.
+\end{align*}
+Plugging in the explicit definition of the neural network from equation \eqref{eq:nn1}, gives us
+\begin{align}\label{eq:risk_expl}
+\risk_{\loss, D} (f_\t) = \frac{1}{d} \sum_{i=1}^d \left| y_i - \f(wx_i) \right|^2.
+\end{align}
+Now, lets consider how the gradient of \eqref{eq:risk_expl} with regard to the parameter $\t=w$ of the neural network $w$ looks like. In mathematical notation, this means $\partial \risk_{\loss, D}(f_w)/\partial w$.\\
+However, since the empirical risk function is the mean of loss functions, the gradient of the empirical risk function is the mean of the gradients of the loss functions as well. Hence, we need to compute $\partial \loss(f_w, y)/\partial w$.\\
+At this point, we want to remember the chain rule of differentiation, which states
+\begin{align}\label{eq:chain_rule}
+\frac{\partial f(g(x))}{\partial x} = \frac{\partial g(x)}{\partial x} \frac{\partial f(g(x))}{\partial g(x)}.
+\end{align}
+With the help of the chain rule, we can compute the gradient of the loss function by computing it as
+\begin{align}\label{eq:loss_expl}
+\frac{\partial \loss(f_w(x), y)}{\partial w} = \frac{\partial \loss(f_w(x), y)}{\partial f_w(x)}\frac{\partial f_w(x)}{\partial w}.
+\end{align}
+This expression we can compute easily, since $\partial f_w(x)/\partial w$ is
+\begin{align*}
+\frac{\partial f_w(x)}{\partial w} = \frac{\partial \f(wx)}{\partial w} = \frac{\partial \f(wx)}{\partial wx} \frac{\partial wx}{\partial w} = x\f^{\prime}(x),
+\end{align*}
+where the derivative of the sigmoid function is $\f^{\prime}(x) = \f(x)(1 - \f(x))$.\\
+Furthermore, the second part of the right-hand side $\partial \loss(f_w(x), y)/\partial f_w(x)$ is
+\begin{align*}
+\frac{\partial \loss(f_w(x), y)}{\partial f_w(x)} = \frac{\partial |f_w(x) - y|^2}{\partial f_w(x)} = 2 \left(f_w(x) - y \right) = 2 \left(\f(wx) - y \right).
+\end{align*}
+Therefore, plugging this into equation \eqref{eq:loss_expl}, we receive
+\begin{align*}
+\frac{\partial \loss(f_w(x), y)}{\partial w} = 2x \f^{\prime}(x) \left(wx - y \right) = 2 \f^{\prime}(x) \left(wx^2 - yx \right).
+\end{align*}
+Lastly, we can insert the data samples $(x_i, y_i)\in D$ to compute the gradient of the empirical risk function.
+\item Since, neural networks usually consist of more than two neurons, we now want to consider how we can generalize the neural network to more than two neurons.\\
+Let $L\in\N$ and $L+1$ denote the number of layers in the neural network. Furthermore, let each layer consist of one neuron, hence for each $i=1,\ldots, L$ holds
+\begin{align*}
+H_i: \R &\to \R,\\
+x &\mapsto \f\left(wx_i + b_i\right).
+\end{align*}
+For simplicity reasons, we assume again that $\f=\id$. Therefore, we can denote the neural network as
+\begin{align*}
+f_\t(x) = H_L \circ \ldots \circ H_1(x) = H_L(H_{L-1}(\ldots(H_1(x))\ldots) \qquad x\in\R,
+\end{align*}
+where $\t=(\t_1,\ldots,\t_L)$ denotes the parameters of the neural network.\\
+Since our goal is to compute the gradient of the empirical risk function, we can compute the gradient of the loss, analogously to the first example.
+\begin{align*}
+\frac{\partial \loss(f_\t(x), y)}{\partial \t} = \frac{\partial \loss(H_L(\ldots(H_1(x)\ldots), y)}{\partial \t}.
+\end{align*}
+Considering the chain rule of derivation from equation \eqref{eq:chain_rule}, we receive
+\begin{align*}
+\frac{\partial \loss(f_\t(x), y)}{\partial \t} = \frac{\partial \loss(f_\t(x), y)}{\partial f_\t(x)} \frac{\partial f_\t(x)}{\partial \t} = \frac{\partial \loss(f_\t(x), y)}{\partial f_\t(x)}\frac{\partial H_L(x)}{\partial H_{L-1}(x)}\frac{\partial H_{L-1}(x)}{\partial H_{L-2}(x)} \ldots \frac{\partial H_1(x)}{\partial \t_1}.
+\end{align*}
+At this point, we want to consider $b_i=0$ for all $i=1,\ldots L$ for simplicity reasons, as well. Hence, $\t_i=w_i$ for all $i=1,\ldots L$ and the gradient simplifies to
+\begin{align*}
+\frac{\partial \loss(f_\t(x), y)}{\partial \t} &= \frac{\partial \loss(f_\t(x), y)}{\partial f_\t(x)}\frac{\partial H_L(x)}{\partial H_{L-1}(x)}\frac{\partial H_{L-1}(x)}{\partial H_{L-2}(x)} \ldots \frac{\partial H_2(x)}{\partial H_1(x)} \frac{\partial H_1(x)}{\partial w_1}\\
+&= \frac{\partial \loss(f_\t(x), y)}{\partial f_\t(x)}\frac{\partial H_1(x)}{\partial w_1} \prod_{i=1}^{L-1} \frac{\partial H_{i+1}(x)}{\partial H_{i}(x)}.
+\end{align*}
+Now, considering the gradient of each layer iteratively, we receive
+\begin{align*}
+\frac{\partial H_1(x)}{\partial w_1} &= x,\\
+\frac{\partial H_2(x)}{\partial H_1(x)} &= w_2,\\
+&=\; \vdots\\
+\frac{\partial H_L(x)}{\partial H_{L-1}(x)} &= w_L.
+\end{align*}
+Lastly, we need to consider the gradient of $\partial \loss(f_\t(x), y)/\partial f_\t(x)$, what we already know from the first example to be
+\begin{align*}
+\frac{\partial \loss(f_\t(x), y)}{\partial f_\t(x)} = \frac{\partial |f_\t(x)- y|^2}{\partial f_\t(x)} = 2\left( f_\t(x) - y \right)
+\end{align*}
+Combining the determined gradients of each layer, we receive
+\begin{align*}
+\frac{\partial \loss(f_\t(x), y)}{\partial \t} = 2x\left( f_\t(x) - y \right)  \prod_{i=2}^{L} w_i,
+\end{align*}
+which is the gradient of the loss function with the neural network as predictor.
+\item The last example we want to consider is a neural network with an input layer of dimension $d_i\in\N$, an output layer of dimension $d_o\in\N$ and a hidden layer of dimension  $d_h\in\N$. Furthermore, we assume $d_i, d_o, d_h > 1$. Therefore the first layer looks like
+\begin{align*}
+H_1: \R^{d_i} &\to \R^{d_h},\\
+x &\mapsto W_1x + b_1,
+\end{align*}
+where $b_1\in\R^{d_h}$ and $W_1\in\R^{d_h}\times\R^{d_i}$, and the second layer looks like
+\begin{align*}
+H_2: \R^{d_h} &\to \R^{d_o},\\
+x &\mapsto W_2x + b_2,
+\end{align*}
+where $b_2\in\R^{d_o}$ and $W_2\in\R^{d_o}\times\R^{d_h}$.\\
+Moreover, we consider the activation function to be $\f=\id$ and the biases be $0$. The neural network then results to look like
+\begin{align*}
+f_{\t}(x) = H_2 \circ H_1 (x) = H_2(H_1(x)) = W_2 W_1 x,
+\end{align*}
+where $\t = (W_1, W_2)$.\\
+Let $f_{\t}(x)_i$ denote the $i$-th coordinate of $f_{\t}(x)$, then the loss function $\loss$ looks like
+\begin{align*}
+\loss(f_{\t}(x), y) = \sum_{i=1}^{d_o}\left| f_{\t}(x)_i - y_i \right|^2 = \sum_{i=1}^{d_o}\left| (W_2 W_1 x)_i - y_i \right|^2.
+\end{align*}
+Deriving the loss function with regard to the weights, gives us with the chain rule from equation \eqref{eq:chain_rule}
+\begin{align}\label{eq:loss_chained}
+\frac{\partial \loss(f_{\t}(x), y)}{\partial \t} = \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial f_{\t}(x)}{\partial \t}.
+\end{align}
+However, since we find ourselves in the multidimensional setting we need to introduce a well known quantity from calculus, the Jacobian matrix. Let $f:\R^n \to \R^m$ be a function that looks like $f(x) = [f_1(x_1,\ldots,x_n), \ldots, f_m(x_1,\ldots,x_n)]$. Then its derivative is called \textbf{Jacobian matrix} and looks like
+\begin{align}\label{eq:Jacobian}
+\frac{\partial f}{\partial x} = \left[
+\begin{matrix}
+&\frac{\partial f_1}{\partial x_1} &\cdots &\frac{\partial f_1}{\partial x_n}\\
+&\vdots & \ddots &\vdots\\
+&\frac{\partial f_m}{\partial x_1} &\cdots &\frac{\partial f_m}{\partial x_n}
+\end{matrix}.
+\right]
+\end{align}
+With the help of the Jacobian matrix from equation \eqref{eq:Jacobian} we can compute the derivatives on the right-hand side of equation \eqref{eq:loss_chained}, but we want to consider them separately.\\
+Let $f_\t(x)_i$ denote the $i$-th coordinate of $f_\t(x)$. Then the Jacobian of $\loss(f_{\t}(x), y)$ with regard to $f_{\t}(x)$ looks like
+\begin{align*}
+\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)} =
+\left[\begin{matrix}
+\displaystyle\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_1}\; \cdots\; \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_{d_o}}
+\end{matrix} \right],
+\end{align*}
+since the loss function $\loss$ maps from $\R^{d_o}$ to $\R$.\\
+Now we want to consider the second term of the right-hand side of \eqref{eq:loss_chained}. First of, we realise that the neural network $f_{\t}$ maps from $\R^{d_i}$ to $\R^{d_o}$. Therefore, we need to use the multi-variable chain rule, see e.g. \cite{simmons1995calculus}. This means that if we have a function in two variables $f(x,y)$, where we define $x=g(t)$ and $y=h(t)$ that the derivative $\partial f/\partial t$ looks as follows
+\begin{align}\label{eq:multi_chain}
+\frac{\partial f}{\partial t} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}.
+\end{align}
+Applying this to our setting, where we have the neural network $f_{\t}$, which ultimately is a function in $d_o$ variables. Let $f_{\t}(x)_i$ denote the $i$-th coordinate of $f_{\t}(x)$,
+hence we can write $f_{\t}(x) = [f_{\t}(x)_1, \ldots f_{\t}(x)_{d_o}]$. Furthermore, we realise that for each $i=1,\ldots,d_o$ holds
+\begin{align*}
+f_{\t}(x)_i = W_{2,i} W_1(x) \qquad x\in \R^{d_i},
+\end{align*}
+where we define $W_{2,i}$ as the $i$-th row of the matrix $W_2$. Analogously, we define $H_{2,i}(x) = W_{2,i}x$ for $x\in\R^{d_h}$. Hence, we can write
+\begin{align*}
+f_{\t}(x) = \left[H_{2,1}(z), \ldots H_{2,d_o}(z) \right],
+\end{align*}
+with $z\coloneqq H_1(x)$, to simplify the notation. If we now apply the multi-variable chain rule from equation \eqref{eq:multi_chain}, we receive
+\begin{align*}
+\frac{\partial f_{\t}}{\partial \t} = \sum_{i=1}^{d_o} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial \t}.
+\end{align*}
+However, we realise that for each $i=1,\ldots d_o$ we can represent $H_{2,i}(z)$ again as a function in $d_h$ variables. Hence, we can write
+\begin{align*}
+H_{2,i}(z) = \left[H_{1,1}(x), \ldots H_{1,d_h}(x) \right], \qquad x\in\R^{d_i}.
+\end{align*}
+Therefore, we can apply the multi-variable chain rule again and receive
+\begin{align*}
+\frac{\partial f_{\t}}{\partial \t} = \sum_{i=1}^{d_o} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial \t} = \sum_{i=1}^{d_o} \sum_{j=1}^{d_h} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial H_{1,j}}
+\frac{\partial H_{1,j}}{\partial \t}.
+\end{align*}
+One may realise that as soon as the architecture of the neural network becomes more and more complex, as does the computation of the gradient. For this case, where we only have one hidden layer and one output layer the gradient of the loss function results to
+\begin{align*}
+\frac{\partial \loss(f_{\t}(x), y)}{\partial \t} = \left[\begin{matrix}
+\displaystyle\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_1}\; \cdots\; \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_{d_o}}
+\end{matrix} \right] \cdot \sum_{i=1}^{d_o} \sum_{j=1}^{d_h} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial H_{1,j}}
+\frac{\partial H_{1,j}}{\partial \t}.
+\end{align*}
+Since we are actually interested in the gradient of the empirical risk function with regard to the dataset $D$ of length $d$, we can compute the said gradient by
+\begin{align*}
+\nabla_{\t} \risk_{\loss, D} (f_{\t}) = \sum_{(x, y)\in D} \left[\begin{matrix}
+\displaystyle\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_1}\; \cdots\; \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_{d_o}}
+\end{matrix} \right] \cdot \sum_{i=1}^{d_o} \sum_{j=1}^{d_h} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial H_{1,j}}
+\frac{\partial H_{1,j}}{\partial \t} (x)
+\end{align*}
+\end{enumerate}
+\end{example}
+
+
+As the name already suggests, the gradient descent algorithm relies on computing the gradient of the risk function in each iteration, which often is too expensive as shown in the comparatively easy architecture in the last example of Example \ref{ex:nn_gradients}.
+Therefore, a popular approach is to relax this computation by only considering the gradient in one sample (or multiple samples, we speak of a mini-batch then). We want to take a closer look at this algorithm as well. Since it is quite popular, there are many good references in literature, e.g see \cite[Chapter~13.3.2]{sra2012optimization}, \cite[Chapter~4.2]{saad2009line} and \cite{turinici2021convergence}. We will focus on the latter reference.\\
 Beforehand, we need to consider the empirical risk, which we defined in Definition \ref{def:empirical_risk}. Since we take the average of the loss functions with regard to the whole data set $D$, we can denote it as an integral over the dataset $D$
 \begin{align*}
 \risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right) = \int_{D} \loss(x,y,f(x)) d(x,y).
@@ -551,97 +878,6 @@ Lastly, we note that $\e_n$ was defined as $\e_n = \g_n B/\m$, where $B, m$ are 
 which is exactly Assertion~\ref{ass4}.
 \end{proof}
 
-\iffalse
-\textcolor{red}{TODO: THE WHOLE GD AND SGD THEORY WILL BE REWORKED!!! I consider introducing the gd and sgd algorithms as in \cite{DBLP:journals/corr/abs-1902-00908}. It will require some additional quantities (RKHS, Polyak-\L{}ojasiewiecz condition), but this PL-condition is satisfied by e.g. neural networks, what makes this highly interesting.}
-
-\begin{theorem}\label{theorem_gd}
-Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$. Furthermore, let $f:\R^n \to \R$ be a continuous, convex and differentiable function. Furthermore, let $x^{(t)}$ denote the $t$-th iterate of the \textbf{gradient descent algorithm} defined by
-\begin{align}
-x^{(t+1)} = x^{(t)} - \g_t \partial_x f(x^{(t)}),
-\end{align}
-with a suitable initial guess $x^{(0)}\in \R^n$.\\
-Then the algorithm converges to the global minimum $f(x^{\ast})\in \R$, meaning
-\begin{align*}
-x^{\ast} \coloneqq \argmin_{x\in\R^n}f(x) = \lim_{t\to\infty} x^{(t)}.
-\end{align*}
-Lastly, if the function $f$ is strictly convex, then the global minimum $f(x^{\ast}) \in\R$ is unique.
-\end{theorem}
-
-
-\begin{proof}
-If the step size is sufficiently small such that the iterate is contained in the sphere around $x^{\ast}$ with radius $d\left(x^{\ast}, x^{(t)}\right)$,
-the iterate $x^{(t+1)}$ is bound by a sphere around $x^{\ast}$ with radius $d\left(x^{\ast}, x^{(t)} - \g_t \nabla_x f(x^{(t)})\right) < d\left(x^{\ast}, x^{(t)}\right)$, since
-\begin{align*}
-d\left(x^{\ast}, x^{(t)}\right) &\geq d\left(x^{\ast}, x^{(t+1)}\right)\\
-&= d\left(x^{\ast}, x^{(t)} - \g_t \nabla_x f(x^{(t)})\right).
-\end{align*}
-Hence, the distance $d(x^{\ast}, x^{(t)})$ becomes smaller in each iteration, due to the convexity of $f$, with
-\begin{align*}
-\lim_{t\to\infty} d\left(x^{\ast}, x^{(t)}\right) = 0,
-\end{align*}
-since we know that $\R^n$ is a Banach space and $\left(d\left(x^{\ast}, x^{(t)}\right)\right)_{t\in\N}$ is a converging sequence by construction.\\
-It is left to show, that if the function $f$ is strictly convex, then the global minimum $f(x^{\ast})\in\R$ is unique. This assertion holds, since if there were two global minima $f\left(x_1^{\ast}\right), f\left(x_2^{\ast}\right)$ with $x_1^{\ast} \neq x_2^{\ast}$.\\
-Now consider $x^{\prime} \coloneqq \frac{x_1^{\ast} + x_2^{\ast}}{2}$, a point between $x_1^{\ast}$ and $x_1^{\ast}$. Since $f$ is assumed to be strictly convex, this leads to
-\begin{align*}
-f\left(x^{\prime} \right) = f\left(\frac{1}{2}x_1^{\ast} + \frac{1}{2} x_2^{\ast}\right) < \frac{1}{2} f\left(x_1^{\ast} \right) + \frac{1}{2} f\left(x_2^{\ast}\right) = f\left(x_1^{\ast}\right) = f\left(x_2^{\ast}\right).
-\end{align*}
-This would contradict the assumption that $f\left(x_1^{\ast}\right), f\left(x_2^{\ast}\right)$ are minima, especially global minima. Hence, the assertion holds.
-\end{proof}
-
-
-However, in order to apply the gradient descent algorithm to train neural networks, we have to consider how to actually compute the gradient of the empirical risk function, where we consider a neural network as prediction function.
-
-
-\begin{lemma}\label{lemma:nn_gradient}
-Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L_n\in\N$ and arbitrary activation function $\f$. Furthermore, let $D$ be a dataset of length $k\in \N$ and $L$ be an arbitrary loss function.\\
-The gradient of the risk function $\risk(\cdot)$ with regard to the neural network $f_\t$ and thus the parameters $\t$ look as follows
-\begin{align*}
-\partial_\t \risk \left(f_{\t}\right) = \frac{1}{k} \sum_{i=1}^{k} \partial_\t L\left(x_i, y_i, f_\t(x_i)\right).
-\end{align*}
-Hence, it is the average of gradients in all data points $(x_i,y_i) \in D$.
-\end{lemma}
-
-
-\begin{proof}
-To prove the assertion we simply use the Definition \ref{def:empirical_risk} of the empirical risk function and consider the linearity property of derivatives.
-\begin{align*}
-\partial_\t \risk \left(f_{\t}\right) &= \partial_\t \frac{1}{k} \sum_{i=1}^{k} L\left(x_i, y_i, f_\t(x_i)\right)\\
-&= \frac{1}{k} \sum_{i=1}^{k} \partial_\t L\left(x_i, y_i, f_\t(x_i)\right).
-\end{align*}
-\end{proof}
-
-
-With the previous definitions and results we can formulate the gradient descent algorithm for a neural network.
-
-
-\begin{corollary}
-Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$ and $D$ be a dataset of length $k\in \N$.\\
-Then one can train the neural network $f_\t$ with the gradient descent algorithm proposed in \eqref{eq:gd}. In this setting, the algorithm looks as follows
-\begin{align*}
-\t^{(t)} = \t^{(t - 1)} - \g_{t-1} \partial_\t \risk \left(f_{\t^{(t -1)}}\right),
-\end{align*}
-where the gradient can be computed as in Lemma \ref{lemma:nn_gradient}
-\end{corollary}
-
-
-\textcolor{red}{TODO:} Name some properties (convergence, rate, etc.) and reference them
-
-
-This is a valuable result, since this way one can iteratively optimize any convex function. Such iterative methods are powerful in numerical settings, where one could use a machine to compute the result. However, there is one problem: in many practical cases it is way to expensive to compute the gradient with regard to the whole dataset, if the dataset becomes significantly large. This lead to a bunch of approaches on how to make this algorithm more efficient, one of those being the stochastic gradient descent algorithm.
-
-\begin{theorem}\label{theorem:sgd}
-Let $f_\t:\R^d\to \R$ be a neural network with parameters $\t\in\T$, arbitrary depth $L\in\N$ and arbitrary activation function $\f$. Let $(\g_t)_{t \in \N}$ be a sequence with $\g_t \to 0$ and $D$ be a dataset of length $k\in \N$.\\
-Then we define the $t$-th iterate of the \textbf{stochastic gradient descent algorithm} by
-\begin{align}
-\t^{(t)} = \t^{(t - 1)} - \g_{t-1} \partial_{\t, i} \risk \left(f_{\t^{(t - 1)}}\right),
-\end{align}
-with $i \in \{1,\ldots, k\}$ and $\partial_{\t, i} \risk \left(f_{\t^{(t)}}\right)$ denoting the gradient with regard to the $i$-th data tuple $(x_i, y_i) \in D$.
-\end{theorem}
-
-
-\textcolor{red}{TODO:} Name some properties (convergence, rate, etc.) and reference them
-\fi
-
 Lastly, we want to consider another powerful optimization algorithm that adapts learning rates based on past gradient magnitudes and momenta - it is called \glqq Adaptive Moment Estimation (Adam)\grqq{}.\\
 However, in order to formulate the algorithm formally we need to introduce stochastic moments first. We do so analogously to \cite[Chapter~5]{papoulis02}
 
@@ -665,18 +901,18 @@ Let the same assumptions as in Definition \ref{def:moment} hold. Usually, the fi
 Now, we can formulate the proposed algorithm itself. For further reading please take a look at \cite{kingma2014adam} or \cite[Chapter~8]{goodfellow2016deep}.
 
 \begin{algorithm}[H]
-Let $g_t\coloneqq \nabla_{\t}f_t(\t)$ denote the gradient, i.e. the vector of partial derivatives of $f_t$ w.r.t. $\t$ evaluated at time step $t$. Furthermore,  let $g_t^2 \coloneqq g_t \odot g_t$ denote the element-wise square of $g_t$.
+Let $D$ be an arbitrary dataset and $g_t\coloneqq \nabla_{\t}\risk_{\loss, D}(f_t(\t))$ denote the gradient, i.e. the vector of partial derivatives of $\risk_{\loss, D}(f_t(\t))$ with regard to $\t$ evaluated at time step $t$. Furthermore,  let $g_t^2 \coloneqq g_t \odot g_t$ denote the element-wise square of $g_t$.
 \caption{Adam optimizer}\label{alg:adam}
 \begin{algorithmic}[1]
 \Require $\a$: Stepsize
 \Require $\b_1,\b_2\in [0,1)$: Exponential decay rates for the moment estimates
-\Require $f(\t)$: Stochastic objective function with parameters $\t$
+\Require $f(\t)$: Prediction function with parameters $\t$
 \Require $\t_0$: Initial parameter vector
 \State $m_0,v_0 \gets 0$ (Initialize $\nth{1}$ and $\nth{2}$ moment vector)
 \State $t \gets 0$ (Initialize time step)
 \While{$\t_t$ not converged}
 \State $t\gets t+1$
-\State $g_t \gets \nabla_{\t}f_t(\t_{t-1})$ \Comment{Get gradients w.r.t. stochastic objective at time step $t$,}
+\State $g_t \gets \nabla_{\t}\risk_{\loss, D}(f_t(\t_{t-1}))$ \Comment{Get gradients w.r.t. prediction function at time step $t$,}
 \State $m_t \gets\b_1 \cdot m_{t-1} + (1-\b_1)\cdot g_t$ \Comment{Update biased first moment estimate,}
 \State $v_t \gets\b_2 \cdot v_{t-1} + (1-\b_2)\cdot g_t^2$ \Comment{Update biased second moment estimate,}
 \State $\hat{m}_t \gets m_t/(1-\b_1^t)$ \Comment{Compute bias-corrected first moment estimate,}
@@ -731,25 +967,25 @@ what can be considered equally as
 But since we assumed that $x^{\ast}\in\F$, it follows that $x^{\prime} = x^{\ast}$ and the assertion holds.
 \end{proof}
 
-Another quantity we need to introduce is the so called regret of an algorithm. It essentially quantifies how much an algorithm would have performed better if it had known the best action in advance. In other words, the regret quantifies the cost of not making the optimal decisions at each step. This is a common approach in online learning settings.
+Another quantity we need to introduce is the so called regret of an algorithm. It essentially quantifies how much an algorithm would have performed better if it had known the best action in advance. In other words, the regret quantifies the cost of not making the optimal decisions at each step. This is a common approach in on-line learning settings.
 
 \begin{definition}\label{def:regret}
-Let $T\in \N$, $\F\subset\R^d$ be a set of points and $f_t(\t_t)$ a stochastic objection function with parameters $\t_t\in\F$ at time step $t$. Then we define the \textbf{regret} as the function
+Let $T\in \N$, $D$ be an arbitrary dataset and $\T\subset\R^d$ be a parameter space and $\loss$ be an arbitrary loss function. Furthermore, let $f_t(\t_t)$ be a prediction function with parameters $\t_t\in\T$ at time step $t$. Then we define the \textbf{regret} as the function
 \begin{align*}
-R_T = \sum_{t=1}^Tf_t(\t_t) - \min_{\t \in\F} \sum_{t=1}^Tf_t(\t).
+R_T = \sum_{t=1}^T\risk_{\loss, D}\left(f_t(\t_t) \right) - \min_{\t \in\T} \sum_{t=1}^T\risk_{\loss, D}\left(f_t(\t)\right).
 \end{align*}
 \end{definition}
 
 \begin{algorithm}[H]
-Let $g_t$ as in Algorithm \ref{alg:adam} and let $T\in\N$. Furthermore, let $\T$ be a parameter space.
+Let $g_t$ as in Algorithm \ref{alg:adam}, $D$ be an arbitrary dataset and let $T\in\N$. Furthermore, let $\T$ be a parameter space.
 \caption{Generic Adaptive Method Setup}\label{alg:general}
 \begin{algorithmic}[1]
 \Require $\{\a_t\}_{t=1}^T$: Stepsizes
 \Require $\{\phi_t, \p_t\}_{t=1}^T$: Sequence of functions
-\Require $f(\t)$: Stochastic objective function with parameters $\t$
+\Require $f(\t)$: Prediction function with parameters $\t$
 \Require $\t_1\in\T$: Initial parameter vector
 \For{$t=1,\ldots,T$}
-	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at time step $t$,}
+	\State $g_t \gets \nabla_{\t}\risk_{\loss, D}(f_t(\t_t))$ \Comment{Get gradients w.r.t. prediction function at time step $t$,}
 	\State $m_t \gets \phi_t\left(g_1,\ldots,g_t \right)$ \Comment{Update biased first moment estimate,}
 	\State $V_t \gets \p_t\left(g_1,\ldots,g_t\right)$ \Comment{Update biased second moment estimate,}
 	\State $\hat{\t}_{t+1} \gets \t_t - \a_t m_t/\sqrt{V_t}$ \Comment{Compute biased updated parameters,}
@@ -796,11 +1032,11 @@ Let the same assumptions as in Algorithm \ref{alg:general} hold.
 \begin{algorithmic}[1]
 \Require $\{\a_t\}_{t=1}^T$: Stepsizes
 \Require $\{\b_{1t}\}_{t=1}^T, \b_2$, with $\b_{1t},\b_2\in [0,1)$: Decay rates for the moment estimates
-\Require $f(\t)$: Stochastic objective function with parameters $\t$
+\Require $f(\t)$: Prediction function with parameters $\t$
 \Require $\t_1\in\T$: Initial parameter vector
 \State $m_0,v_0 \gets 0$ (Initialise $\nth{1}$ and $\nth{2}$ moment vector)
 \For{$t=1,\ldots,T$}
-	\State $g_t \gets \nabla_{\t}f_t(\t_{t})$ \Comment{Get gradients w.r.t. stochastic objective at time step $t$,}
+	\State $g_t \gets \nabla_{\t}\risk_{\loss, D}(f_t(\t_t))$ \Comment{Get gradients w.r.t. prediction function at time step $t$,}
 	\State $m_t \gets \b_{1t}m_{t-1} + (1-\b_{1t})g_t$ \Comment{Update biased first moment estimate,}
 	\State $v_t \gets \b_{2}v_{t-1} + (1-\b_{2})g_t^2$ \Comment{Update biased second moment estimate,}
 	\State $\hat{v}_{t} \gets \max\{\hat{v}_{t-1}, v_t\}$ \Comment{Compute bias-corrected first moment estimate,}
@@ -833,19 +1069,19 @@ Hence, we can write
 u_1 = \argmin_{x\in\F} B(x, z_1).
 \end{align}
 If we now consider the gradient of \eqref{eq:ball_def}, we receive
-\begin{align*}
+\begin{align}\label{eq:grad}
 \nabla_{x} B(x, z_1) = \nabla_{x} \frac{1}{2}\left( \left( x - z_1 \right)^{\tran} Q\left( x - z_1 \right) \right) = Q \left( x - z_1 \right).
-\end{align*}
+\end{align}
 Therefore, it holds that
-\begin{align*}
+\begin{align}\label{ineq:convex}
 Q\left(u_1 - z_1 \right)^{\tran} \left( u_2 - u_1 \right) \geq 0,
-\end{align*}
-otherwise for $\d$ sufficiently small it would mean that $u_1 + \d \left( u_2 - u_1 \right) \in \F,$ due to the convexity of $\F$, and therefore would be closer to $z_1$ than $u_1$. This contradicts the assumption, that $u_1$ is the projection, i.e. fulfils equation \eqref{eq:argmin}.\\
+\end{align}
+otherwise for $\d>0$ sufficiently small it would mean that $u_1 + \d \left( u_2 - u_1 \right) \in \F,$ due to the convexity of $\F$, and therefore would be closer to $z_1$ than $u_1$. This contradicts the assumption, that $u_1$ is the best approximation of $z_1$ in $\F$, i.e. fulfils equation \eqref{eq:argmin}.\\
 With the exact same argument it holds that
 \begin{align*}
 Q\left(u_2 - z_2 \right)^{\tran} \left( u_1 - u_2 \right) \geq 0,
 \end{align*}
-If we combine those two inequalities, we receive
+If we combine the two inequalities \eqref{eq:grad} and \eqref{ineq:convex}, we receive
 \begin{align*}
 &Q\left(u_1 - z_1 \right)^{\tran} \left( u_2 - u_1 \right) + Q\left(u_2 - z_2 \right)^{\tran} \left( u_1 - u_2 \right) \geq 0\\
 \Longleftrightarrow \qquad &Q\left(u_1 - z_1 \right)^{\tran} \left( u_2 - u_1 \right) - Q\left(u_2 - z_2 \right)^{\tran} \left( u_2 - u_1 \right) \geq 0.
@@ -878,10 +1114,11 @@ Taking the square root of both sides leads to the assertion.
 \end{proof}
 
 \begin{theorem}\label{theorem:amsgrad}
-Let $(\t_t)_{t\in\N}$ and $(v_t)_{t\in\N}$ be sequences as in Algorithm \ref{alg:amsgrad}, $\a_t = \a/\sqrt{t}$ with $\a>0$ and $\b_1 = \b_{11}$, $\b_{1t}\leq \b_1$ for all $t \in \{1,\ldots, T\}$ and $\g = \b_1/\sqrt{\b_{2}} < 1$. Assume that $\T$ has bounded diameter $D_{\infty}<\infty$ and $\max_{\t\in\T}\|\nabla f_t(\t)\|_{\infty}= G_{\infty}<\infty$ for all $t \in \{1,\ldots, T\}$.\\
-Then for $\t_t$ generated using the AMSGrad Algorithm \ref{alg:amsgrad}, the following bound for the regret holds
+Let $(\t_t)_{t\in\N}$ and $(v_t)_{t\in\N}$ be sequences as in Algorithm \ref{alg:amsgrad}, $D$ be an arbitrary dataset of length $d\in\N$ and $\a_t = \a/\sqrt{t}$ with $\a>0$ and $\b_1 = \b_{11}$, $\b_{1t}\leq \b_1$ for all $t \in \{1,\ldots, T\}$ and $\g = \b_1/\sqrt{\b_{2}} < 1$. Assume that $\T$ has bounded diameter $D_{\infty}<\infty$ and $\max_{\t\in\T}\|\nabla_{\t}\risk_{\loss, D}(f_t(\t_t))\|_{\infty}= G_{\infty}<\infty$ for all $t \in \{1,\ldots, T\}$. Furthermore, let $\loss$ be a convex loss function.\\
+Then for $\t_t$ the following bound for the regret holds
 \begin{align*}
-R_T \leq \frac{D_{\infty}^2\sqrt{T}}{\a(1-\b_1)} \sum_{i=1}^d \hat{v}_{T,i}^{1/2} + \frac{D_{\infty}^2}{(1-\b_1)^2} \sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}+ \frac{\a\sqrt{1 + \log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}}\sum_{i=1}^d \|g_{1:T,i}\|_2,
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
+&\quad\leq \frac{D_{\infty}^2\sqrt{T}}{2\a(1-\b_1)} \sum_{i=1}^d \hat{v}_{T,i}^{1/2} + \frac{D_{\infty}^2}{(1-\b_1)^2} \sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}+ \frac{\a\sqrt{1 + \log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}}\sum_{i=1}^d \|g_{1:T,i}\|_2,
 \end{align*}
 where we denote for readability reasons $g_{1:t}\coloneqq(g_1,\ldots, g_t)$ and with $g_{j,i}$ and with $v_{j,i}$ we denote the $i$-th component of $g_j$ and $v_j$, respectively.
 \end{theorem}
@@ -894,8 +1131,8 @@ First, we observe with the Definition \ref{def:projection} of the projection
 Furthermore, with Lemma \ref{lemma:projection} it follows, that $\Pi_{\T, \sqrt{\hat{V_t}}}(\t^{\ast}) = \t^{\ast}$ for all $\t^{\ast}\in\T$.\\
 Now, using Lemma \ref{lemma:McMahan_Streeter} with $u_1 = \t_{t+1}$, $u_2= \t^{\ast}$ and $Q=\hat{V}_t^{1/4}$ gives us
 \begin{align*}
-&\left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \leq  \left\| \hat{V}_t^{1/4} \left( \t_t -\a_t\hat{V}_t^{-1/2}m_t - \t^{\ast}\right)\right\|^2\\
-&\quad = \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2 - 2\a_t \left\langle m_t, \t_t - \t^{\ast} \right\rangle\\
+&\left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \leq  \left\| \hat{V}_t^{1/4} \left( \t_t -\a_t\hat{V}_t^{-1/2}m_t - \t^{\ast}\right)\right\|^2,\\
+&\quad = \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2 - 2\a_t \left\langle m_t, \t_t - \t^{\ast} \right\rangle,\\
 &\quad = \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 + \a_t^2 \left\| \hat{V}_t^{-1/4} m_t \right\|^2 - 2\a_t \left\langle \b_{1t}m_{t-1} + \left(1-\b_{1t}\right)g_t, \t_t - \t^{\ast} \right\rangle.
 \end{align*}
 If we now rearrange the last inequality, we receive
@@ -918,15 +1155,17 @@ And if we now apply the Cauchy-Schwarz inequality and the Young's inequality, th
 &\quad +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\nonumber\\
 &\quad + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2.
 \end{align}
-The next step is a common approach in bounding the regret, where we will use the convexity of the function $f_t$ in each step. Here we should remind, that $f_t$ as defined in Definition \ref{def:regret} is the loss of the prediction function with parameters $\t_t. $\textcolor{red}{is it convex? I think so, because $f_t$ is NOT the neural net here. $f_t$ is defined as \glqq A loss function $f_t$ (to be interpreted as the loss of the model with the chosen parameters in the next minibatch) is then revealed, and the algorithm incurs loss $f_t(x_t)$\grqq{}}.
+The next step is a common approach in bounding the regret, where we will use the convexity of the risk function $\risk_{\loss, D}(f_t(\t_t))$ in each step, which follows from the fact that $\loss$ is a convex loss function and Lemma \ref{lemma:convex_risk}. With these facts holds
 \begin{align*}
-\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast}) &\leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle,\\
-&\leq\sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \\
-&\quad +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\\
-&\quad + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \Biggr],
+\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle.
 \end{align*}
-where we used inequality \eqref{eq:1.9} in the first step.\\
-If we now consider the following inequality for all $t=1,\ldots,T$
+This we can further bound by the previously considered inequality \eqref{eq:1.9}.
+\begin{align*}
+\sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle &\leq\sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \\
+&\quad +\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\\
+&\quad + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \Biggr].
+\end{align*}
+If we now consider the following inequality, where we use the fact that $\b_1\geq \b_{1t}$ for all $t=1,\ldots,T$
 \begin{align*}
 &\frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} m_{t-1}\right\|^2\\
 \quad &= \frac{\a_t}{2\left(1-\b_{1t}\right)} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\left(1-\b_{1t}\right)} \a_t \left\| \hat{V}_t^{-1/4} \left(\frac{m_{t} - (1-\b_{1t})g_t}{\b_{1t}}\right)\right\|^2,\\
@@ -935,22 +1174,22 @@ If we now consider the following inequality for all $t=1,\ldots,T$
 \end{align*}
 then this leads ultimately to
 \begin{align}\label{eq:1.10}
-\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast}) &\leq \sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \nonumber\\
+\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast})) &\leq \sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \nonumber\\
 &\quad +\frac{\a_t}{1-\b_{1}} \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \Biggr].
 \end{align}
-We now proceed by bounding the second term, separately.\\
+We now proceed by bounding the second term of the right-hand side, separately.\\
 In order to do so, we first use the definition of $\hat{v}_T$, which is the maximum of all $v_t$ until the current time step $T$. This gives us
 \begin{align*}
 \sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &= \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a_T \sum_{i=1}^{d} \frac{m_{T,i}^2}{\sqrt{\hat{v}_{T,i}}},\\
 &\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a_T \sum_{i=1}^{d} \frac{m_{T,i}^2}{\sqrt{v_{T,i}}},\\
 &\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a \sum_{i=1}^{d} \frac{(\sum_{t=1}^T(1- \b_{1t}) \prod_{k=1}^{T-t} \b_{1(T-k+1)} g_{t,i})^2 }{\sqrt{T((1-\b_2) \sum_{t=1}^T \b_2^{T-t}g_{t,i}^2)}},
 \end{align*}
-where the last inequality follows from the update rules of $m_t$ and $v_t$ in Algorithm \ref{alg:amsgrad}, respectively. If we now apply the Cauchy-Schwarz inequality, then we receive
+where the last inequality follows from the update rules of $m_t$ and $v_t$ in Algorithm \ref{alg:amsgrad}, respectively. If we now apply the Cauchy-Schwarz inequality, we receive
 \begin{align*}
 \sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2\\
 &\quad + \a \sum_{i=1}^{d} \frac{(\sum_{t=1}^T\prod_{k=1}^{T-t}\b_{1(T-k+1)}) (\sum_{t=1}^T\prod_{k=1}^{T-t} \b_{1(T-k+1)} g_{t,i}^2 )}{\sqrt{T((1-\b_2) \sum_{t=1}^T \b_2^{T-t}g_{t,i}^2)}}.
 \end{align*}
-Now, considering the fact that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$, gives us
+Now, considering the fact that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$ again, gives us
 \begin{align*}
 \sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \sum_{t=1}^{T-1} \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 + \a \sum_{i=1}^{d} \frac{(\sum_{t=1}^T\b_1^{T-t}) (\sum_{t=1}^T\b_1^{T-t}g_{t,i}^2 )}{\sqrt{T((1-\b_2) \sum_{t=1}^T \b_2^{T-t}g_{t,i}^2)}}.
 \end{align*}
@@ -979,27 +1218,27 @@ If we now apply the bound on harmonic sums $\sum_{t=1}^T 1/t \leq (1+\log T)$, w
 \sum_{t=1}^T \a_t \left\| \hat{V}_t^{-1/4} m_t \right\|^2 &\leq \frac{\a}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2 \sqrt{1 +\log T},\nonumber\\
 &= \frac{\a\sqrt{1 +\log T}}{\left(1-\b_1\right)\left(1-\g\right)\sqrt{\left(1-\b_2\right)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
 \end{align}
-Now, plugging inequality \eqref{eq:1.11} into inequality \eqref{eq:1.10} that swe were interested in originally, gives us
+Now, plugging inequality \eqref{eq:1.11} into inequality \eqref{eq:1.10} which we were interested in originally, gives us
 \begin{align*}
-\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
 \quad &\leq \sum_{t=1}^T \left[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right]\right.\\
-&\quad + \left.\frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
+&\quad + \left.\frac{\b_{1t}}{2\a_t \left( 1-\b_{1t} \right)} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
 \end{align*}
 Pulling out the first summand of the sum and shifting the index leads to
 \begin{align*}
-\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
 \quad &\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2 + \sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{2\a_t(1-\b_{1t})} - \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{2\a_{t-1}(1-\b_{1(t-1)})}\right]\\
-&\quad + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
+&\quad + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
 \end{align*}
 Now we expand the first sum and pull out the factor $1/2$
 \begin{align*}
-\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
 &\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2\\
 &\quad + \frac{1}{2}\sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})}
 - \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})}
 + \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1t})}\right.\\
 &\quad \left. - \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{\a_{t-1}(1-\b_{1(t-1)})}\right] + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right]\\
-&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
+&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2.
 \end{align*}
 If we now consider the fact, that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$ and the following observation
 \begin{align*}
@@ -1007,41 +1246,41 @@ If we now consider the fact, that $\b_{1t}\leq \b_1$ for all $t=1,\ldots,T$ and 
 \end{align*}
 then, this leads to
 \begin{align*}
-\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
 &\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2\\
 &\quad + \frac{1}{2}\sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t(1-\b_{1(t-1)})}
 - \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{\a_{t-1}(1-\b_{1(t-1)})}\right]\\
 &\quad + \sum_{t=1}^T \left[\frac{\b_{1t}}{2\a_t (1-\b_{1t})} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right] + \sum_{t=2}^T \left[\frac{\b_{1t}}{\a_t\left( 1-\b_1 \right)^2} \left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 \right]\\
-&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,\\
+&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,\\
 &\leq \frac{1}{2\a_1(1-\b_{1})}\left\| \hat{V}_1^{1/4} \left( \t_1 - \t^{\ast} \right) \right\|^2\\
 &\quad + \frac{1}{2(1-\b_{1})}\sum_{t=2}^T \left[ \frac{\left\| \hat{V}_t^{1/4}\left( \t_t - \t^{\ast}\right)\right\|^2}{\a_t}
 - \frac{\left\| \hat{V}_{t-1}^{1/4}\left(\t_{t} - \t^{\ast}\right)\right\|^2}{\a_{t-1}}\right]\\
 &\quad + \sum_{t=1}^T \left[\frac{\b_{1t}}{\a_t (1-\b_{1})^2} \left\| \hat{V}_t^{1/4}\left(\t_t -\t^{\ast} \right) \right\|^2 \right]
-+ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,\\
++ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,\\
 \end{align*}
 where we simply extended the third sum with the non-negative summand for $t=1$, in order to join it with the second sum.\\
 Furthermore, using the definition of the operator $\hat{V}_t$ gives us
 \begin{align*}
-\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
-&\leq \frac{1}{2\a_1(1-\b_{1})}\sum_{i=1}^d\hat{v}_{1,i}\left( \t_{1,i} - \t_i^{\ast} \right)^2
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
+&\leq \frac{1}{2\a_1(1-\b_{1})}\sum_{i=1}^d\hat{v}_{1,i}^{1/2}\left( \t_{1,i} - \t_i^{\ast} \right)^2
 + \frac{1}{2(1-\b_{1})}\sum_{t=2}^T \sum_{i=1}^d \left[ \left(\frac{\hat{v}_{t,i}^{1/2}}{\a_{t}} - \frac{\hat{v}_{t-1,i}^{1/2}}{\a_{t-1}} \right) \left( \t_{t, i} - \t_{i}^{\ast} \right)^2\right]\\
 &\quad + \frac{1}{(1-\b_{1})^2}\sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2} (\t_{t,i} - \t_{i}^{\ast})^2}{\a_t}
-+ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
++ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
 \end{align*}
 Since we assumed that the parameter space $\T$ has bounded diameter $D_\infty$, we can write as well
 \begin{align*}
-\sum_{t=1}^T &f_t(\t_t) - f_t(\t^{\ast})\\
-&\leq \frac{1}{2\a_1(1-\b_{1})}\sum_{i=1}^d\hat{v}_{1,i}D_\infty^2
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
+&\leq \frac{1}{2\a_1(1-\b_{1})}\sum_{i=1}^d\hat{v}_{1,i}^{1/2}D_\infty^2
 + \frac{1}{2(1-\b_{1})}\sum_{t=2}^T \sum_{i=1}^d \left[ \left(\frac{\hat{v}_{t,i}^{1/2}}{\a_{t}} - \frac{\hat{v}_{t-1,i}^{1/2}}{\a_{t-1}} \right) D_\infty^2\right]\\
 &\quad + \frac{1}{(1-\b_{1})^2}\sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2} D_\infty^2}{\a_t}
-+ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
++ \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
 \end{align*}
 Lastly, we realize that the first double sum is of telescopic nature. Hence, we can reduce it to
 \begin{align*}
-\sum_{t=1}^T f_t(\t_t) - f_t(\t^{\ast})
-&\leq \frac{D_\infty^2\sqrt{T}}{2\a(1-\b_{1})}\sum_{i=1}^d\hat{v}_{T,i}
+&\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
+&\leq \frac{D_\infty^2\sqrt{T}}{2\a(1-\b_{1})}\sum_{i=1}^d\hat{v}_{T,i}^{1/2}
 + \frac{D_\infty^2}{(1-\b_{1})^2}\sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}\\
-&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
+&\quad + \frac{\a\sqrt{1 +\log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}} \sum_{i=1}^{d} \left\|g_{1:T,i} \right\|_2,
 \end{align*}
 where we additionally included the definition of $\a_T$.
 \end{proof}
@@ -1261,138 +1500,3 @@ H_{\text{conv}}: \P_0 &\to \P_1,\\
 \end{align*}
 defines a neural layer, where the parameters $\t$ are the $s$-convolution kernel $k$. We will call such a layer a \textbf{convolutional neural layer} and denote the layers' parameters $\t = T_{\text{conv}}$, since the kernel defines the convolution operator uniquely.
 \end{definition}
-
-\section{Probability and Statistics}
-
-Another important topic for this thesis is probability theory and statistics. Especially in Chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
-We want to begin by introducing the basic quantities in probability theory, merely to define a notation throughout the thesis.
-
-
-\begin{definition}\label{def:pdf}
-Let $(\O, \A, \prob)$ be a \textbf{probability space} and $(\mathcal{X}, \A)$ be a \textbf{measurable space}. Furthermore, let $X$ be a \textbf{random variable} defined over $\mathcal{X}$. Then we define the measurable function $p:(\O,\A) \to (\mathcal{X}, \A)$ that satisfies
-\begin{align*}
-&\int_{\O} p^+ d\prob< \infty &\text{or} &\int_{\O} p^- d\prob < \infty,
-\end{align*}
-where $p^+ = \max \{p, 0\}$ and $p^- = - \min\{p, 0\}$ describe the positive and negative part of $p$, as \textbf{probability density function} of $\prob$.\\
-Moreover, let $\T$ be a \textbf{parameter space}. We will denote the probability density function as $p(x; \t)$, where $\t$ describes the parameters of the probability distribution of $X$.
-\end{definition}
-
-Here we should note, that we want to consider the defining parameters of a probability distribution in the arguments of the underlying probability density function. This means that for example for a normally distributed random variable $X$ with mean $\m$ and variance $\s^2$ we would denote its probability density function as $p(x;\m,\s^2)$.\\
-Another important quantity we need to consider beforehand is the joint distribution, as well as marginal distributions.
-
-\begin{definition}\label{def:joint_pdf}
-Let $(\O, \A, \prob)$ be a probability space and $(\mathcal{X}, \A)$, $(\mathcal{Y}, \A)$ be measurable spaces. Furthermore, let $X$ and $Y$ be random variables defined on $\mathcal{X}$ and $\mathcal{Y}$, respectively. Then the distribution $p(x,y) $of the random variable $(X, Y)$ defined on $\mathcal{X} \times \mathcal{Y}$ is called the \textbf{joint probability distribution}.
-\end{definition}
-
-By marginalizing over one of both random variables we receive the marginal distribution.
-
-\begin{definition}
-Let $(\O, \A, \prob)$ be a probability space, $(\mathcal{X}, \A)$, $(\mathcal{Y}, \A)$ be measurable spaces and $X$, $Y$ random variables defined on the corresponding measurable spaces. Then we define the \textbf{marginal probability distribution of $X$} as
-\begin{align*}
-p(x) = \int p(x,z) dz,
-\end{align*}
-as well as the \textbf{marginal probability distribution of $Y$} as
-\begin{align*}
-p(y) = \int p(y,z) dz.
-\end{align*}
-\end{definition}
-
-Another important quantity is the conditional probability. Since if there is partial information on the outcome of a random experiment, the probabilities for the possible events may change. Thus, we introduce this quantity analogous to \cite[Chapter~8]{klenke2013probability}.
-
-\begin{definition}\label{def:cond_prob}
-Let $(\O, \A, \prob)$ be a probability space and $A\in\A$. For any $B\in\A$ we define the \textbf{conditional probability of $B$ given $A$} by
-\begin{align*}
-\prob(B | A) =
-\begin{cases}
-\frac{P(A\cap B)}{P(A)}, &\text{if }\prob(A)>0,\\
-0, &\text{else}.
-\end{cases}
-\end{align*}
-\end{definition}
-
-At this point we should note, that the conditional probability, introduced in Definition \ref{def:cond_prob} is indeed a probability measure, see \cite[Theorem~8.4]{klenke2013probability}. Lastly, we want to introduce the famous Bayes' formula, see e.g \cite[Theorem~8.7]{klenke2013probability}. This will be fundamental for our Bayesian learning setting in Chapter \ref{chap:vae}.
-
-\begin{theorem}\label{theorem:bayes_rule}
-Let $(\O, \A, \prob)$ be a probability space and $I$ be a countable set. Furthermore, let $(B_i)_{i\in I}$ be a sequence of pairwise disjoint sets with $\prob (\bigcup_{i\in I} B_i) = 1$.\\
-Then for any $A\in\A$ with $\prob(A) > 0$ and any $k\in I$ holds
-\begin{align*}
-\prob(B_k | A) = \frac{\prob(A | B_k) \prob(B_k)}{\sum_{i \in I} \prob(A | B_i) \prob(B_i)}.
-\end{align*}
-\end{theorem}
-
-Since we will be interested in modelling probability distributions to approximate observed data as well as possible, we now want to consider how to construct a family of distributions by tweaking the parameters of the probability distribution. One example of such a family are parametric models. These are families of distributions that can be indexed by a finite number of parameters.
-
-\begin{definition}\label{def:parametric_model}
-Let $(\O, \A, \prob)$ be a probability space and $X$ a random variable defined over $\O$. Furthermore, let $\T$ be an arbitrary parameter space.\\
-Then we denote the \textbf{parametric model} as the family of distributions
-\begin{align*}
-\mathcal{P}_{\T} = \left\{ p(x;\t): \t\in\T \right\}.
-\end{align*}
-\end{definition}
-
-\begin{example}\label{ex:parametric_model}
-Let's consider some elementary examples of parametric models.
-\begin{enumerate}
-\item Let $U\subset \N^2$ be a finite subset with tuples $(a,b) \in U$ and $X\sim\mathcal{U}(a, b)$ a uniformly distributed random variable. Then the parametric model of $X$ with regard to $U$ looks as follows
-\begin{align*}
-\mathcal{P}_U = \{p(x; a, b) : (a,b) \in U\},
-\end{align*}
-where for each probability density function $p(x;a,b)$ holds
-\begin{align*}
-p(x; a, b) =
-\begin{cases}
-1/(b-a), &\text{if } x\in [a, b],\\
-0, &\text{otherwise}.
-\end{cases}
-\end{align*}
-\item Let $N\subset \Q\times \Q_+$ be a finite subset with tuples $(\m,\s^2) \in N$ and $X\sim\mathcal{N}(\m, \s^2)$ a normally distributed random variable. Then the parametric model of $X$ with regard to $N$ looks as follows
-\begin{align*}
-\mathcal{P}_N = \{p(x; \m, \s^2) : (\m,\s^2) \in N\},
-\end{align*}
-where for each probability density function $p(x; \m, \s^2)$ holds
-\begin{align*}
-p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2}.
-\end{align*}
-\end{enumerate}
-\end{example}
-
-Another way to generate a family of distributions is to alter an underlying base probability density function, hence named standard probability density function. Possible alterations might be shifting or scaling (or both) the standard probability density function. Therefore, we cite a theorem from \cite[Theorem~2.1]{cinelli2021variational}, which proposes exactly such a construction.
-
-\begin{theorem}\label{theorem:pdf_gen}
-Let $p(x)$ be a probability density function and $\m$ and $\s > 0$ constants. Then the following functions are also probability density functions
-\begin{align*}
-g(x;\m,\s) = \frac{1}{\s} p\left( \frac{x - \m}{\s} \right).
-\end{align*}
-We refer to the parameters $\m$ as \textbf{location parameter} and $\s$ as \textbf{scale parameter}. Moreover, we call the family $\mathcal{P}_{\m,\s} = \{g(x;\m,\s):\m$ and $\s > 0\}$ a \textbf{location-scale family}.
-\end{theorem}
-
-Now, let's consider some examples of location-scale families. Moreover, we borrow two graphics from \cite{cinelli2021variational} that serve to illustrate the assertion from Theorem \ref{theorem:pdf_gen}. These graphics are shown in Figure \ref{fig:pdf_gen} and show the generation of a Gamma and a Gaussian distributed probability density function family, which we consider in Example \ref{ex:loc-scale_fam}.
-
-\begin{example}\label{ex:loc-scale_fam}
-The following examples are all location-scale families.
-\begin{enumerate}
-\item Let $\a,\b >0$ be constants. Then the Gamma distribution $\text{Ga}(\a,\b)$ is a scale family for each value of the shape parameter $\a$
-\begin{align*}
-p(x;\a,\b) = \frac{\b^\a}{\Gamma(\a)}x^{\a-1} e^{-\b x}.
-\end{align*}
-\item Let $\m\in\R$ and $\s>0$ be constants. Then the Gaussian distribution $\mathcal{N}(\m,\s^2)$ is a location-scale family for both, the location parameter $\m$ and the scale parameter $\s$, respectively. This leads to
-\begin{align*}
-p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2},
-\end{align*}
-similarly to Example \ref{ex:parametric_model}.
-\end{enumerate}
-\end{example}
-
-\begin{figure}
-\begin{center}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{gamma_family}
-		\caption*{\textbf{(a)}}
-	\end{minipage}
-	\begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{gaussian_family}
-		\caption*{\textbf{(b)}}
-	\end{minipage}
-	\caption{Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\b$, the scale parameter as defined in Theorem \ref{theorem:pdf_gen} is actually $\s = 1/\b$. Note that as the scale $\s$ increases the distribution becomes less concentrated around the location parameter $\m$. In particular, $\lim_{\s\to\infty} p(x; \m,\s) = \d(x-\m)$. \textbf{(a)} Members of the same scale family of Gamma distributions with shape parameter $\a = 2.2$. \textbf{(b)} Members of the same location-scale family of Gaussian distributions.}\label{fig:pdf_gen}
-\end{center}
-\end{figure}
