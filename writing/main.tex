@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper]{scrreprt}
+\documentclass[12pt, a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb, amsthm}
 \usepackage{amsfonts}
@@ -6,7 +6,6 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[parfill]{parskip}
 \usepackage[figure]{hypcap}
 \usepackage[super]{nth}
 \usepackage{tikz}
@@ -17,13 +16,11 @@
 \usepackage{mathtools}
 \usepackage[english]{babel}
 \usepackage{typearea}
-\usepackage[outer=2cm, inner=2cm, top=1.5cm, bottom=25mm,includehead]{geometry}
+\usepackage[outer=2cm, inner=2cm, top=2cm, bottom=25mm,includehead]{geometry}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
-
-\setkomafont{caption}{\footnotesize}
-\setkomafont{captionlabel}{\usekomafont{caption}}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
 
 \usepackage[clines, headsepline, plainfootsepline,automark]{scrlayer-scrpage}
 \usepackage{subfig}
@@ -110,8 +107,6 @@
 \title{On variational autoencoders: theory and applications}
 \date{November 22, 2023}
 \author{Maksym Sevkovych}
-\subject{Report}
-\publishers{Inspector: Univ. Prof. Dr. Ingo Steinwart}
 
 \begin{document}
 \begin{titlepage}
@@ -152,7 +147,7 @@ Applications of VAEs extend from anomaly detection to image generation. However,
 \include{vae}
 
 \addcontentsline{toc}{chapter}{References}
-\bibliographystyle{ieeetr}
+\bibliographystyle{siam}
 \bibliography{bibliography}
 \vspace{4 cm}
 
