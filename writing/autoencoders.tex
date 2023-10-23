@@ -241,16 +241,16 @@ Let the chosen optimizer be Adam first and afterwards be AMSGrad with a learning
 \end{algorithm}
 
 
-Let's take a look at the trained autoencoders using the Adam and the AMSGrad optimizer. In Figure \ref{fig:linear_AE_2d_adam_latent} we can see the latent space of the model trained with the Adam optimizer and in Figure \ref{fig:linear_AE_2d_amsgrad_latent} with the AMSGrad optimizer, respectively. The figure illustrates on the left side the encoded latent space as point clouds in a coordinate system, and on the right side we lay a $10\times 10$ mesh on the coordinate system and feed each of the $100$ nodes into the decoding architecture of the autoencoder. Through that we generate an image of a digit that corresponds to a specific point in the coordinate system. Furthermore, in Figure \ref{fig:linear_AE_2d_inference} we can see ten reconstructions for each of the ten digits. The training progresses are illustrated in Figure \ref{fig:linear_AE_2d_adam_training_progress} with the Adam optimizer and in Figure \ref{fig:linear_AE_2d_amsgrad_training_progress} with an AMSGrad optimizer, respectively.
+Let's take a look at the trained autoencoders using the Adam and the AMSGrad optimizer. In Figure \ref{fig:linear_AE_2d_adam_latent} we can see the latent space of the model trained with the Adam optimizer and in Figure \ref{fig:linear_AE_2d_amsgrad_latent} with the AMSGrad optimizer, respectively. The figure illustrates on the left side the encoded latent space as point clouds in a coordinate system, and on the right side we lay a $10\times 10$ mesh on the coordinate system and feed each of the $100$ nodes into the decoding architecture of the autoencoder. Through that we generate an image of a digit that corresponds to a specific point in the coordinate system. Furthermore, in Figure \ref{fig:linear_AE_2d_adam_inference} we can see ten reconstructions for each of the ten digits generated with a linear autoencoder which was optimized by an Adam optimizer. In contrast, Figure \ref{fig:linear_AE_2d_amsgrad_inference} depicts the same for a linear autoencoder optimized with an AMSGrad optimizer. The training progresses are illustrated in Figure \ref{fig:linear_AE_2d_adam_training_progress} with the Adam optimizer and in Figure \ref{fig:linear_AE_2d_amsgrad_training_progress} with an AMSGrad optimizer, respectively.
 
 
 \begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_adam_latent}
+      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_adam_latent}
 	\end{minipage}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_adam_reconstruction}
+      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_adam_reconstruction}
 	\end{minipage}
 \end{center}
 \caption{On the left side, the figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=2$ optimized with an Adam optimizer, where each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded. On the right side the figure illustrates the corresponding reconstruction through the autoencoder. Each coordinate tuple is fed into the decoding architecture of the autoencoder to generate an image.}\label{fig:linear_AE_2d_adam_latent}
@@ -260,10 +260,10 @@ Let's take a look at the trained autoencoders using the Adam and the AMSGrad opt
 \begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_latent}
+      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_latent}
 	\end{minipage}
 	\begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_reconstruction}
+      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_reconstruction}
 	\end{minipage}
 \end{center}
 \caption{On the left side, the figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer, where each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded. On the right side the figure illustrates the corresponding reconstruction through the autoencoder. Each coordinate tuple is fed into the decoding architecture of the autoencoder to generate an image.}\label{fig:linear_AE_2d_amsgrad_latent}
@@ -272,14 +272,21 @@ Let's take a look at the trained autoencoders using the Adam and the AMSGrad opt
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_adam_inference}
-	\end{minipage}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_inference}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_adam_inference}
 	\end{minipage}
 \end{center}
-\caption{The figure illustrates the inference of the linear autoencoder with bottleneck $n_b=2$ optimized with an Adam optimizer (left) and an AMSGrad optimizer (right). The inference are ten reconstructed images for each of the ten digits.}\label{fig:linear_AE_2d_inference}
+\caption{On the left side, the figure illustrates $100$ original digits from the MNIST dataset. On the right side, the figure illustrates the same digits after feeding them through the linear autoencoder with bottleneck $n_b=2$ optimized with an Adam optimizer.}\label{fig:linear_AE_2d_adam_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_inference}
+	\end{minipage}
+\end{center}
+\caption{On the left side, the figure illustrates $100$ original digits from the MNIST dataset. On the right side, the figure illustrates the same digits after feeding them through the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer.}\label{fig:linear_AE_2d_amsgrad_inference}
 \end{figure}
 
 
