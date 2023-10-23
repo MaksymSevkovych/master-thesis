@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 FONTSIZE_LATENT = 30
+FONTSIZE_RECONSTRUCTION = 30
 FONTSIZE_INFERENCE = 20
 
 
@@ -17,7 +18,7 @@ def plot_latent_2D_linear(
     num_batches=150,
 ) -> None:
     # Define the figure
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(7, 5))
     ax = fig.add_subplot(111)
 
     for i, (img, label) in enumerate(data_loader):
@@ -37,7 +38,7 @@ def plot_latent_2D_linear(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
+    # plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
         f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
@@ -53,7 +54,7 @@ def plot_latent_2D_convolutional(
     num_batches=150,
 ) -> None:
     # Define the figure
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(7, 5))
     ax = fig.add_subplot(111)
 
     for i, (img, label) in enumerate(data_loader):
@@ -72,7 +73,7 @@ def plot_latent_2D_convolutional(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
+    # plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
         f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
@@ -85,8 +86,9 @@ def plot_reconstructed_2D(
     autoencoder: Module,
     r0: tuple[int, int] = (-5, 10),
     r1: tuple[int, int] = (-10, 5),
-    n=12,
+    n=10,
 ) -> None:
+    plt.figure(figsize=(7, 5))
     w = 28
     img = torch.zeros((n * w, n * w))
     for i, y in enumerate(torch.linspace(*r1, n)):
@@ -96,6 +98,10 @@ def plot_reconstructed_2D(
             x_hat = x_hat.reshape(28, 28).to(DEVICE).detach()
             img[(n - 1 - i) * w : (n - 1 - i + 1) * w, j * w : (j + 1) * w] = x_hat
     plt.imshow(img, extent=[*r0, *r1])
+    # plt.title("Reconstruction of latent space", fontsize=FONTSIZE_RECONSTRUCTION)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_reconstruction.png"  # noqa: E501
+    plt.savefig(os.path.join(dir_path, file_name))
     plt.show()
 
 
@@ -116,7 +122,7 @@ def plot_latent_3D_linear(
     num_batches=100,
 ) -> None:
     # Define the figure
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(7, 5))
     ax = fig.add_subplot(111, projection="3d")
 
     for i, (img, label) in enumerate(data_loader):
@@ -143,7 +149,7 @@ def plot_latent_3D_linear(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
+    # plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     plt.show()
 
 
@@ -152,7 +158,7 @@ def plot_latent_3D_convolutional(
     model: Module, data_loader: DataLoader, num_batches=100
 ) -> None:
     # Define the figure
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(7, 5))
     ax = fig.add_subplot(111, projection="3d")
 
     for i, (img, label) in enumerate(data_loader):
@@ -179,7 +185,7 @@ def plot_latent_3D_convolutional(
         if i > num_batches:
             fig.colorbar(plot, ax=ax)
             break
-    plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
+    # plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
     plt.show()
 
 
@@ -188,7 +194,7 @@ def plot_latent3D_single_point(
     data_loader: DataLoader,
 ):
     # Define the figure
-    fig = plt.figure(figsize=(12, 7))
+    fig = plt.figure(figsize=(7, 5))
     ax = fig.add_subplot(111, projection="3d")
 
     plotted = {}
@@ -277,7 +283,7 @@ def inference_convolutional(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
-    plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
+    # plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
@@ -291,8 +297,9 @@ def inference_linear(
     amount: int,
 ) -> None:
     width = 28
-    recons = []
+    images, recons = [], []
     recon = []
+    img_to_plot = []
 
     for num in range(10):
         for imgs, labels in data_loader:
@@ -303,13 +310,31 @@ def inference_linear(
                     continue
                 if label != num:
                     continue
+                img_to_plot.append(img)
                 img = img.reshape(-1, 28 * 28)
                 img_rec = model(img).to(DEVICE).detach()
                 img_rec = img_rec.reshape(28, 28)
                 recon.append(img_rec)
         recons.append(recon)
+        images.append(img_to_plot)
         recon = []
+        img_to_plot = []
 
+    fig = plt.figure(figsize=(14, 7))
+    fig.add_subplot(121)
+    img = torch.zeros((amount * width, amount * width))
+
+    for i, imgs in enumerate(images):
+        for j, image in enumerate(imgs):
+            img[
+                (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
+                j * width : (j + 1) * width,
+            ] = image
+    plt.xticks([])
+    plt.yticks([])
+    plt.imshow(img)
+
+    fig.add_subplot(122)
     img = torch.zeros((amount * width, amount * width))
 
     for i, recs in enumerate(recons):
@@ -318,9 +343,9 @@ def inference_linear(
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
             ] = recon
-    plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
     plt.xticks([])
     plt.yticks([])
+
     plt.imshow(img)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
