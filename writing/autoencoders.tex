@@ -179,8 +179,8 @@ The Binary Cross-Entropy loss function is usually used for binary classification
 
 \section{Applications}
 
-In this section we want to train a couple of own autoencoding neural networks on the MNIST dataset - a dataset consisting of handwritten digits. We will consider various architectures of neural networks and visualise the results in a comprehensible manner.\\
-First, we want to take a look at the most simple architecture, a fully connected linear neural network. However, we want to introduce the encoder and the decoder separately.
+In this section we want to introduce and train a couple of specific autoencoding neural networks on the MNIST dataset - a dataset consisting of handwritten digits. We will consider various architectures of neural networks and visualise the results in a comprehensible manner.\\
+First, we want to take a look at the most simple architecture, a fully connected linear neural network, where we want to introduce the encoder and the decoder separately.
 
 \begin{definition}\label{def:linear_encoder}
 Let $\T$ be an arbitrary parameter space, $L\in \N$ and $d_1,\ldots,d_L \in \N$, where $d_1\geq \ldots \geq d_L$. Furthermore, let $\hat{\f}$ be an arbitrary activation function.\\
@@ -188,10 +188,10 @@ Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined a
 \begin{align*}
 H_i(x) = \hat{\f}(W_ix + b_i), \qquad x \in \R^{d_i}, i \in \{1,\ldots, L\},
 \end{align*}
-where $\t_i = (W_i, b_i)\in\T$ are the parameters of the $i$-th layer, see \eqref{eq_linear_layer}. Such an encoding neural network is called a \textbf{linear encoder}.
+where $\t_i = (W_i, b_i)\in\T$ are the parameters of the $i$-th layer, see \eqref{eq_linear_layer}. Such an encoding neural network is called a \textbf{linear encoder}, since the operations considered in the layers are linear operations.
 \end{definition}
 
-Analogously, we define a linear decoding neural network.
+Analogously, we define a linear decoding neural network as follows.
 
 \begin{definition}\label{def:linear_decoder}
 Let $\T$ be an arbitrary parameter space, $L\in \N$ and $d_1,\ldots,d_L \in \N$, where $d_1\leq \ldots \leq d_L$. Furthermore, let $\hat{f}$ be an arbitrary activation function.\\
@@ -199,12 +199,10 @@ Then a decoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
 \begin{align*}
 H_i(x) = \hat{\f}(W_ix + b_i), \qquad x \in \R^{d_i}, i \in \{1,\ldots, L\},
 \end{align*}
-where $\t_i=(W_i, b_i)\in\T$ are the parameters of the $i$-th layer $H_i$, see \eqref{eq_linear_layer}. Such a decoding neural network is called a \textbf{linear decoder}.
+where $\t_i=(W_i, b_i)\in\T$ are the parameters of the $i$-th layer $H_i$, see \eqref{eq_linear_layer}. Such a decoding neural network is called a \textbf{linear decoder}, since the operations considered in the layers are linear operations.
 \end{definition}
 
-
-With the Definition \ref{def:linear_encoder} of the linear encoder and the Definition \ref{def:linear_decoder} of the linear decoder, we now can define a linear autoencoder.
-
+With the Definition \ref{def:linear_encoder} of the linear encoder and the Definition \ref{def:linear_decoder} of the linear decoder, we now can define a linear autoencoder as their composition.
 
 \begin{definition}
 Let $f_e$ and $f_d$ be a linear encoder and a linear decoder. Then a \textbf{linear autoencoder} $f_{\text{lin}}$ is defined as the composition
@@ -216,7 +214,7 @@ The output dimension of the linear encoder $f_e$ is called \textbf{bottleneck} o
 
 Before considering specific examples on the MNIST dataset, we need to consider some properties of the said dataset first.
 
-\begin{remark}\label{def:mnist}
+\begin{remark}\label{remark:mnist}
 The MNIST dataset $D$ consists of greyscale images with a resolution of $(28,28)$. Hence, the images are defined on the pixel domain $\O$ of $D$ with $\O=\{1,\ldots,28\}\times\{1,\ldots,28\}$ with only one channel.
 \end{remark}
 
@@ -224,10 +222,10 @@ Now, let us take a look at a specific example of a linear autoencoder defined on
 
 \begin{algorithm}
 Let the input and output dimensions be $n_i, n_o \in\N$. Furthermore, let the linear encoder and the linear decoder have $k$ hidden linear layers with dimensions $n_1, n_2,\ldots, n_k\in\N$ with bottleneck $n_b\in\N$.\\
-Let the chosen optimizer be Adam first and afterwards be AMSGrad with a learning rate $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs with a batch size of $512$.
+Furthermore, let the chosen optimizer be Adam or AMSGrad with a learning rate $\g>0$ and the chosen loss function be the MSE loss function. Then the training of a linear autoencoder looks like
 \caption{Linear Autoencoder}\label{alg:linear_AE}
 \begin{algorithmic}[1]
-\Require $\g \gets \num{3e-4}$
+\Require $\g$: Step size
 \For{epoch in $\{1,\ldots, 10.000\}$}
 	\For{image in batch}
 		\State image = image.reshape(784) \Comment{Convert the image from matrix to array.}
@@ -241,13 +239,13 @@ Let the chosen optimizer be Adam first and afterwards be AMSGrad with a learning
 \end{algorithm}
 
 
-Let's take a look at the trained autoencoders using the Adam and the AMSGrad optimizer. In Figure \ref{fig:linear_AE_2d_adam_latent} we can see the latent space of the model trained with the Adam optimizer and in Figure \ref{fig:linear_AE_2d_amsgrad_latent} with the AMSGrad optimizer, respectively. The figure illustrates on the left side the encoded latent space as point clouds in a coordinate system, and on the right side we lay a $10\times 10$ mesh on the coordinate system and feed each of the $100$ nodes into the decoding architecture of the autoencoder. Through that we generate an image of a digit that corresponds to a specific point in the coordinate system. Furthermore, in Figure \ref{fig:linear_AE_2d_adam_inference} we can see ten reconstructions for each of the ten digits generated with a linear autoencoder which was optimized by an Adam optimizer. In contrast, Figure \ref{fig:linear_AE_2d_amsgrad_inference} depicts the same for a linear autoencoder optimized with an AMSGrad optimizer. The training progresses are illustrated in Figure \ref{fig:linear_AE_2d_adam_training_progress} with the Adam optimizer and in Figure \ref{fig:linear_AE_2d_amsgrad_training_progress} with an AMSGrad optimizer, respectively.
-
+Let's take a look at the trained autoencoders using the Adam and the AMSGrad optimizer. The first thing we want to do is to consider how the latent space looks like. The latent space is the space, where the encoding part of the neural network maps the input. That is, since we process samples from the MNIST dataset, whose properties we considered in Remark \ref{remark:mnist}, we know that the input dimension is $784$. The first autoencoder we want to train will have a bottleneck dimension of $2$, so it reduces the dimensions of the input from $784$ to just $2$. This resulting $2$-dimensional vector we can easily visualise in a coordinate system, which we do in the left charts of Figure \ref{fig:linear_AE_2d_adam_latent}, where we used Adam for optimization and Figure \ref{fig:linear_AE_2d_amsgrad_latent}, where we used AMSGrad for optimization, respectively. In these charts we see point clouds of ten different colours, where each point represents an encoding of a sample. The colours of the encoding represents what digit the sample had, what we can see in the color map on the right-hand sides of the said charts. Furthermore, since we know that the MNIST dataset has samples with ten different possible labels, the digits from $0$ to $9$, we hope to see ten different clusters in the visualisation of the latent space. This would mean, that the encoder somehow \glqq groups\grqq{} samples with the same label to the same location in the latent space. Taking a look at the Figure \ref{fig:linear_AE_2d_adam_latent} and Figure \ref{fig:linear_AE_2d_amsgrad_latent} we see, that some digits are separated very well, e.g. the digits $0$ and $1$ are clearly separated from the rest. On the other hand, clusters of the digits that look similar, e.g. $3$ and $8$ or $4$ and $9$, are not separated at all. Hence, when feeding the encodings into the decoding part of the autoencoder, i.e. reconstructing the image of the digit, it will be hard to see a difference between those digits. This we can see clearly in Figure \ref{fig:linear_AE_2d_adam_inference} and Figure \ref{fig:linear_AE_2d_amsgrad_inference}, where in each figure the left chart shows $100$ samples from the MNIST dataset, with ten samples for each of the ten digits and on the right side of the figures we can see the corresponding digit fed into the autoencoder. We see, that the samples, which are encoded in a way that they are clearly separated from the other digits are reconstructed in a way that we can recognize the original digit. However, samples that are not encoded as nicely, are not recognizable when reconstructed. Another thing we want to take a look at is the reconstruction of the latent space, explicitly. We already described that the encoder maps the samples onto a $2$-dimensional vector. Hence, we can take a look at the entire $2$-dimensional plane and see what the decoder does. This we can see on the right-hand side of Figure \ref{fig:linear_AE_2d_adam_latent} and Figure \ref{fig:linear_AE_2d_amsgrad_latent}, respectively. Basically, we consider a mesh of $10\times 10$ nodes in the coordinate system, where each node has the same distance to its neighbour. These nodes then are being fed into the decoder. Conceptionally, we see how each vector in this plane corresponds to a reconstructed image.\\
+Lastly, we want to take a quick look at the training progress of the two autoencoders. These we can see in Figure \ref{fig:linear_AE_2d_adam_training_progress} for the Adam optimizer and in Figure \ref{fig:linear_AE_2d_amsgrad_training_progress} for the AMSGrad optimizer. We see that in roughly the first $100$ epochs the training loss falls dramatically. From around epoch $1000$ on, the training loss is decreased only slowly. This is due to the fact, that we chose the step size so small, that convergence takes a lot of time. Furthermore, we want to mention the fact that the training loss does not decrease monotonous. Since, we do not consider the entire dataset, we do not chose the exact gradient of the risk function in each training step. Therefore, it happens that the optimizer chooses a direction, which in the end results to increase the training loss. However, we can clearly see that on average the loss is being minimized.
 
 \begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_adam_latent}
+      \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{linear_AE_2d_adam_latent}
 	\end{minipage}
    \begin{minipage}[b]{0.49\linewidth}
       \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_adam_reconstruction}
@@ -260,7 +258,7 @@ Let's take a look at the trained autoencoders using the Adam and the AMSGrad opt
 \begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_latent}
+      \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_latent}
 	\end{minipage}
 	\begin{minipage}[b]{0.49\linewidth}
       \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_reconstruction}
@@ -306,16 +304,16 @@ Let's take a look at the trained autoencoders using the Adam and the AMSGrad opt
 \end{figure}
 
 
-Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In Figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the Adam optimizer and in Figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in Figure \ref{fig:linear_AE_3d_inference} we can see ten reconstructions for each of the ten digits. The training progress for the Adam optimizer is illustrated in Figure \ref{fig:linear_AE_3d_adam_training_progress} and for the AMSGrad optimizer in Figure \ref{fig:linear_AE_3d_amsgrad_training_progress}, respectively.
+Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In Figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the Adam optimizer and in Figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in Figure \ref{fig:linear_AE_3d_adam_inference} we can see on the left side ten original samples for each of the ten digits and on the right side the resulting image after feeding the sample into the autoencoding neural network optimized with an Adam optimizer. In contrast, in Figure \ref{fig:linear_AE_3d_amsgrad_inference} depicts the same for an autoencoder which was optimized with an AMSGrad optimizer. The training progress for the Adam optimizer is illustrated in Figure \ref{fig:linear_AE_3d_adam_training_progress} and for the AMSGrad optimizer in Figure \ref{fig:linear_AE_3d_amsgrad_training_progress}, respectively.
 
 
 \begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_adam_latent_1}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{linear_AE_3d_adam_latent_1}
 	\end{minipage}
 	\begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_adam_latent_2}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{linear_AE_3d_adam_latent_2}
 	\end{minipage}
 \end{center}
 \caption{The figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=3$ optimized with an Adam optimizer from two different perspectives. Each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded.}\label{fig:linear_AE_3d_adam_latent}
@@ -324,10 +322,10 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 \begin{figure}
 \begin{center}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_latent_1}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{linear_AE_3d_amsgrad_latent_1}
 	\end{minipage}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_latent_2}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{linear_AE_3d_amsgrad_latent_2}
 	\end{minipage}
 \end{center}
 \caption{The figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer from two different perspectives. Each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded.}\label{fig:linear_AE_3d_amsgrad_latent}
@@ -336,14 +334,21 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 
 \begin{figure}
 \begin{center}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_adam_inference}
-	\end{minipage}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_inference}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{linear_AE_3d_adam_inference}
 	\end{minipage}
 \end{center}
-\caption{The figure illustrates the inference of the linear autoencoder with bottleneck $n_b=3$ optimized with an Adam optimizer (left) and an AMSGrad optimizer (right). The inference are ten reconstructed images for each of the ten digits}.\label{fig:linear_AE_3d_inference}
+\caption{On the left side, the figure illustrates $100$ original digits from the MNIST dataset. On the right side, the figure illustrates the same digits after feeding them through the linear autoencoder with bottleneck $n_b=3$ optimized with an Adam optimizer.}\label{fig:linear_AE_3d_adam_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{\linewidth}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{linear_AE_3d_amsgrad_inference}
+	\end{minipage}
+\end{center}
+\caption{On the left side, the figure illustrates $100$ original digits from the MNIST dataset. On the right side, the figure illustrates the same digits after feeding them through the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer.}\label{fig:linear_AE_3d_amsgrad_inference}
 \end{figure}
 
 
@@ -363,7 +368,7 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 \end{figure}
 
 
-As we saw in Figure \ref{fig:linear_AE_3d_inference}, the linear autoencoder does produce recognisable digits in its reconstructions, but it still performs quite poorly. To address this issue, we propose another architecture of an autoencoding neural network. In this setting, we now consider convolutional layers instead of linear layers, this means that the connections between each layer are no longer matrix multiplications, but much more convolutions. Hence, we introduce the convolutional encoder and the convolutional decoder.
+As we saw in Figure \ref{fig:linear_AE_3d_adam_inference} and in Figure \ref{fig:linear_AE_3d_amsgrad_inference}, the linear autoencoder does produce recognisable digits in its reconstructions, but it still performs quite poorly. To address this issue, we propose another architecture of an autoencoding neural network. In this setting, we now consider convolutional layers instead of linear layers, this means that the connections between each layer are no longer matrix multiplications, but much more convolutions. Hence, we introduce the convolutional encoder and the convolutional decoder.
 
 
 \textcolor{red}{TODO: the inputs and outputs in each layer are NOT $\R^{d_i}$, but $\P_{\O_i}$ instead. Hence, the encoding and the decoding property has to be highlighted!!!}
@@ -436,7 +441,7 @@ However, what is highly interesting to highlight here is that although the magni
 \caption{The figure illustrates the activations of all $64$ channels in the latent space of our trained convolutional autoencoder, which was optimized with an AMSGrad optimizer, see Algorithm \ref{alg:convolutional_AE}.}\label{fig:convolutional_AE_latent}
 \end{figure}
 
-Another interesting result that we want to highlight here is the inference of the convolutional autoencoder, which is displayed in Figure \ref{fig:convolutional_AE_inference}. All reconstructions are sharp enough to be recognised as their original digit, which is a huge improvement compared to the inference of the linear autoencoder, see e.g. Figure \ref{fig:linear_AE_3d_inference}.
+Another interesting result that we want to highlight here is the inference of the convolutional autoencoder, which is displayed in Figure \ref{fig:convolutional_AE_inference}. All reconstructions are sharp enough to be recognised as their original digit, which is a huge improvement compared to the inference of the linear autoencoder, see e.g. Figure \ref{fig:linear_AE_3d_adam_inference} or Figure \ref{fig:linear_AE_3d_amsgrad_inference}.
 
 
 \begin{figure}

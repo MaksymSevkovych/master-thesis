@@ -8,6 +8,6 @@
 \contentsline {section}{\numberline {2.1}Conceptional ideas}{41}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Training of autoencoders}{46}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Applications}{47}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Variational Autoencoders}{58}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Probabilistic foundations}{58}{section.3.1}%
-\contentsline {chapter}{References}{61}{theorem.3.1.10}%
+\contentsline {chapter}{\numberline {3}Variational Autoencoders}{59}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Probabilistic foundations}{59}{section.3.1}%
+\contentsline {chapter}{References}{62}{theorem.3.1.10}%
