@@ -244,20 +244,22 @@ def inference_convolutional(
 ) -> None:
     generating_data = {}
     for imgs, labels in data_loader:
-        for img, label in zip(imgs, labels):
+        if len(generating_data) == 10:
+            break
+
+        mu, log_var = model.encoder(imgs)
+        for index, label in enumerate(labels):
             if len(generating_data) == 10:
                 break
 
             if label in generating_data:
                 continue
 
-            mu, log_var = model.encoder(img)
-
             generating_data.update(
                 {
                     label.item(): {
-                        "mu": mu.detach(),
-                        "log_var": log_var.detach(),
+                        "mu": mu[index].detach(),
+                        "log_var": log_var[index].detach(),
                     }
                 }
             )
@@ -271,13 +273,12 @@ def inference_convolutional(
 
     for i, params in generating_data_sorted.items():
         mu, log_var = params.values()
-        samples = []
-        for _ in range(10):
-            _, _, sample = model.sample(mu, log_var)
-            samples.append(sample)
-        # samples = [model.sample(mu, log_var)[2] for _ in range(10)]
-        recons = [model.decoder(sample) for sample in samples]
-        recons = [recon.reshape(28, 28).to(DEVICE).detach() for recon in recons]
+
+        samples = [model.sample(mu, log_var)[2].unsqueeze(0) for _ in range(10)]
+        recons = [
+            model.decoder(sample).reshape(28, 28).to(DEVICE).detach()
+            for sample in samples
+        ]
         for j, recon in enumerate(recons):
             img[
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
