@@ -139,29 +139,27 @@ Let $f_e$ and $f_d$ be an encoding and a decoding neural network as in Definitio
 
 \section{Training of autoencoders}
 
-When tackling the question of how to train an autoencoding neural network, we realize that in contrast to regular neural networks, where we compare the output of the neural network to a label, in the current setting we can compare the input data to the computed output, since the goal of an autoencoding neural network ultimately is to alter and reconstruct images. In other words, we approach this optimization problem in an unsupervised learning setting. This forces us to consider slightly different loss functions than in the supervised learning setting.
+When tackling the question of how to train an autoencoding neural network, we realize that in contrast to regular neural networks, where we compare the output of the neural network to a label, in the current setting we can compare the input data to the computed output, since the goal of an autoencoding neural network ultimately is to alter and reconstruct images. In other words, we approach this optimization problem in an unsupervised learning setting. This forces us to consider slightly different loss functions than in the supervised learning setting, since we now want to compare the predicted value to the input.
 
 
 \begin{definition}
-Let $X, Y$ be Banach spaces representing the input and output space, respectively.\\
-Then a continuous function defined as
+Let $X\subseteq \R^{d}$ be an input space and let $p:X\to \R^{n}$ be a prediction function. Furthermore, let $\hat{x}\coloneqq p(x)$ be the predicted value of $x\in X$. Then a measurable function defined as
 \begin{align*}
-L:X\times Y &\to \R,\\
-\left(x, p(x)\right) &\mapsto L\left(x, p(x)\right),
+\loss:X \times \R^{n} &\to [0, \infty),\\
+\left(x, \hat{x}\right) &\mapsto \loss\left(x, \hat{x}\right),
 \end{align*}
 is called \textbf{unsupervised loss function}.
 \end{definition}
 
 
-There are multiple important loss functions in computer vision. We will consider a couple of those in the following example. For further reading please take a look at \cite{foster2022generative}
+There are multiple important loss functions in computer vision. We will consider a couple of those in the following example. For further details we refer to \cite{foster2022generative}
 
 
 \begin{example}
-Let $\O$ be a pixel domain with resolution $(M,N)$ and $d$ the number of channels. Furthermore, let $f$ be a neural network with arbitrary but fixed architecture.\\
-Then the following functions are loss functions operating on images.
+Let $\O$ be a pixel domain with resolution $(M,N)$ and $d$ the number of channels. Furthermore, let $f$ be a neural network with arbitrary but fixed architecture. Then the following functions are loss functions operating on images.
 \begin{mydescription}{\widthof{\textbf{Binary Cross-Entropy (BCE)}}}
 \item[\textbf{Mean Squared Error (MSE)}] \begin{align*}
-\MSE(\p, f(\p)) = \sum_{i=1}^{M}\sum_{j=1}^{N}\left\|\p_{ij} - f(\p)_{ij}\right\|^2,
+\MSE(\p, f(\p)) = \left(\sum_{i=1}^{M}\sum_{j=1}^{N}\left|\p_{ij} - f(\p)_{ij}\right|^2\right)^{1/2},
 \end{align*}
 \item[\textbf{Binary Cross-Entropy (BCE)}]
 \begin{align*}
@@ -222,11 +220,11 @@ Now, let us take a look at a specific example of a linear autoencoder defined on
 
 \begin{algorithm}
 Let the input and output dimensions be $n_i, n_o \in\N$. Furthermore, let the linear encoder and the linear decoder have $k$ hidden linear layers with dimensions $n_1, n_2,\ldots, n_k\in\N$ with bottleneck $n_b\in\N$.\\
-Furthermore, let the chosen optimizer be Adam or AMSGrad with a learning rate $\g>0$ and the chosen loss function be the MSE loss function. Then the training of a linear autoencoder looks like
+Furthermore, let the chosen optimizer be Adam or AMSGrad with a learning rate $\g>0$ and the chosen loss function be the MSE loss function. Then the training of a linear autoencoder looks as follows.
 \caption{Linear Autoencoder}\label{alg:linear_AE}
 \begin{algorithmic}[1]
 \Require $\g$: Step size
-\For{epoch in $\{1,\ldots, 10.000\}$}
+\For{epoch in epochs}
 	\For{image in batch}
 		\State image = image.reshape(784) \Comment{Convert the image from matrix to array.}
 	    \State encoded = encoder(image) \Comment{Encode the image onto latent space.}
@@ -304,8 +302,7 @@ Lastly, we want to take a quick look at the training progress of the two autoenc
 \end{figure}
 
 
-Now, let's consider another latent dimension, resulting in $3$ dimensions. This allows the neural network to save more information upon encoding the data and hence, it should be able to perform better reconstructions. However, it makes visualising the latent space a bit more difficult. In Figure \ref{fig:linear_AE_3d_adam_latent} we can see the latent space of the autoencoder from two different perspectives trained with the Adam optimizer and in Figure \ref{fig:linear_AE_3d_amsgrad_latent} with the AMSGrad optimizer. Furthermore, in Figure \ref{fig:linear_AE_3d_adam_inference} we can see on the left side ten original samples for each of the ten digits and on the right side the resulting image after feeding the sample into the autoencoding neural network optimized with an Adam optimizer. In contrast, in Figure \ref{fig:linear_AE_3d_amsgrad_inference} depicts the same for an autoencoder which was optimized with an AMSGrad optimizer. The training progress for the Adam optimizer is illustrated in Figure \ref{fig:linear_AE_3d_adam_training_progress} and for the AMSGrad optimizer in Figure \ref{fig:linear_AE_3d_amsgrad_training_progress}, respectively.
-
+Now, let's take a look at what happens if we increase the bottleneck dimension. The next experiment we want to conduct is an autoencoder that has the same architecture as the previous one, but has bottleneck dimension $3$ instead. This allows the neural network to save more information upon encoding the data and hence, it should be able to produce better reconstructions. However, it makes visualising the latent space a bit more challenging. In the first experiment we were able to visualize the latent space in a plane, now we have to consider it in a $3$-d space. In order to do so, we created an interactive visualisation, which can be found in the attached Python code. For the sake of completeness, we want to show the visualization here as well. In Figure \ref{fig:linear_AE_3d_adam_latent} and Figure Figure \ref{fig:linear_AE_3d_amsgrad_latent} we can see two different perspectives of the $3$-dimensional latent space, respectively. The first figure depicts the latent space of an autoencoder trained with an Adam optimizer and the second figure shows the latent space of an autoencoder trained with an AMSgrad optimizer. We can see in these figures clearly that the encoder behaves the same way as it did in the $2$-dimensional setting, that is for each digit we can see that the encodings for one digit are all aligned on a ray. The more the digits differ, the farther apart are the rays. For example, we can see clearly in Figure \ref{fig:linear_AE_3d_adam_latent} that the cluster of encoded $2$'s is isolated well, as well as the cluster of encoded $1$'s. In contrast, the clusters of encoded $4$'s, $7$'s and $9$'s is heavily intertwined, which results in bad reconstructions, as we can see in Figure \ref{fig:linear_AE_3d_adam_inference}. The same behaviour we can see in Figure \ref{fig:linear_AE_3d_amsgrad_latent}, which depicts the latent space of the autoencoder, where we used the AMSgrad optimizer. The clusters are indeed slightly better separated, but still not good. This we can see in the reconstructions in Figure \ref{fig:linear_AE_3d_amsgrad_inference}. Lastly, we take a look at the training progress of the two described autoencoders, which we can see in Figure \ref{fig:linear_AE_3d_adam_training_progress} with the Adam optimizer and in Figure \ref{fig:linear_AE_3d_amsgrad_training_progress} with the AMSGrad optimizer, respectively. We can see that the moving average of the training loss is slightly less smooth than it was in the two dimensional setting, but the overall training progress is very similar though.
 
 \begin{figure}
 \begin{center}
@@ -368,28 +365,25 @@ Now, let's consider another latent dimension, resulting in $3$ dimensions. This 
 \end{figure}
 
 
-As we saw in Figure \ref{fig:linear_AE_3d_adam_inference} and in Figure \ref{fig:linear_AE_3d_amsgrad_inference}, the linear autoencoder does produce recognisable digits in its reconstructions, but it still performs quite poorly. To address this issue, we propose another architecture of an autoencoding neural network. In this setting, we now consider convolutional layers instead of linear layers, this means that the connections between each layer are no longer matrix multiplications, but much more convolutions. Hence, we introduce the convolutional encoder and the convolutional decoder.
+As we saw in Figure \ref{fig:linear_AE_3d_adam_inference} and in Figure \ref{fig:linear_AE_3d_amsgrad_inference}, the linear autoencoder does produce recognisable digits in its reconstructions, but it still performs quite poorly. To address this issue, we propose another architecture of an autoencoding neural network. In this setting, we now consider convolutional layers instead of linear layers, this means that the connections between each layer are no longer matrix multiplications, but convolutions instead. Hence, we introduce the convolutional encoder and the convolutional decoder as follows.
 
 
-\textcolor{red}{TODO: the inputs and outputs in each layer are NOT $\R^{d_i}$, but $\P_{\O_i}$ instead. Hence, the encoding and the decoding property has to be highlighted!!!}
 \begin{definition}\label{def_convolutional_encoder}
-Let $\T$ be an arbitrary parameter space, $L\in \N$ and $(M_1,N_1),\ldots,(M_L,N_L) \in \N^2$, where $M_1\geq \ldots \geq M_L$ and $N_1\geq \ldots \geq N_L$. Furthermore, let $\hat{\f}$ be an arbitrary activation function.\\
-Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
+Let $\T$ be a parameter space, $L\in \N$ and $d_1,\ldots, d_L\in\N$ be the number of channels as well as $(M_1,N_1),\ldots,(M_L,N_L) \in \N^2$ be the resolution of the pixel domain in the $i$-th layer, where $M_1\geq \ldots \geq M_L$ and $N_1\geq \ldots \geq N_L$. Furthermore, let $\hat{\f}$ be an arbitrary activation function. Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
 \begin{align*}
-H_i(\p) = \hat{\f}(T_{\text{conv}, i}\p + b_i), \qquad \p \in \P_{d,\O_i}, i \in \{1,\ldots, L\},
+H_i(\p) = \hat{\f}(T_{\text{conv}, i}\p + b_i), \qquad \p \in \P_{d_i,\O_i}, i \in \{1,\ldots, L\},
 \end{align*}
-where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters and $\P_{d,\O_i}$ the image domain of the $i$-th layer, see Definition \ref{def:convolutional_layer}. Such an encoding neural network is called a \textbf{convolutional encoder}.
+where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters and $\P_{d_i,\O_i}$ the image domain of the $i$-th layer, see Definition \ref{def:convolutional_layer}. Such an encoding neural network is called a \textbf{convolutional encoder}.
 \end{definition}
 
-Analogously, we define a convolutional decoding neural network.
+Analogously, we define a convolutional decoding neural network as follows.
 
 \begin{definition}\label{def_convolutional_decoder}
-Let $\T$ be an arbitrary parameter space, $L\in \N$ and $(M_1,N_1),\ldots,(M_L,N_L) \in \N^2$, where $M_1\leq \ldots \leq M_L$ and $N_1\geq \ldots \geq N_L$. Furthermore, let $\hat{\f}$ be an arbitrary activation function.\\
-Then a decoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
+Let $\T$ be a parameter space, $L\in \N$ and $d_1,\ldots, d_L\in\N$ be the number of channels as well as $(M_1,N_1),\ldots,(M_L,N_L) \in \N^2$ be the resolution of the pixel domain in the $i$-th layer, where $M_1\leq \ldots \leq M_L$ and $N_1\geq \ldots \geq N_L$. Furthermore, let $\hat{\f}$ be an arbitrary activation function. Then a decoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
 \begin{align*}
-H_i(x) = \hat{\f}(T_{\text{conv}, i}x + b_i), \qquad x \in \R^{d_i}, i \in \{1,\ldots, L\},
+H_i(\p) = \hat{\f}(T_{\text{conv}, i}\p + b_i), \qquad \p \in \P_{d_i,\O_i}, i \in \{1,\ldots, L\},
 \end{align*}
-where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters and $\P_{d,\O_i}$ the image domain of the $i$-th layer, see Definition \ref{def:convolutional_layer}. Such a decoding neural network is called a \textbf{convolutional decoder}.
+where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters and $\P_{d_i,\O_i}$ the image domain of the $i$-th layer, see Definition \ref{def:convolutional_layer}. Such a decoding neural network is called a \textbf{convolutional decoder}.
 \end{definition}
 
 
@@ -405,12 +399,12 @@ f_{\text{conv}} \coloneqq f_d \circ f_e.
 Now, lets define a specific example of a convolutional autoencoder and see how it performs.
 
 \begin{algorithm}
-Let the input and output dimensions be $n_i, n_o \in \N^{2\times 1}$. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers with dimensions $n_1, n_2,\ldots, n_k\in \N^{2\times 1}$ with bottleneck $n_b\in\N^{2\times 1}$. Here, $n_{b;1,2}\in\N^{2}$ represents the resolution and $n_{b,3}\in\N$ represents the number of channels in the corresponding layer, respectively.\\
-Let the chosen optimizer be AMSGrad with a learning rate $\g=\num{3e-4}$ and the MSE loss function. We will perform the training on $10.000$ epochs.
+Let the input and output dimensions be $(M_i,N_i, d_i), (M_o,N_o,d_o) \in \N^{2\times 1}$, where $(M_j, N_j)$ denotes the resolution of the image domain and $d_j$ the amount of channels in the $j$-th layer. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers.\\
+Let the chosen optimizer be AMSGrad with a learning rate $\g>0$ and the chosen loss function be the MSE loss function. Then the training of a convolutional autoencoder looks as follows.
 \caption{Convolutional Autoencoder}\label{alg:convolutional_AE}
 \begin{algorithmic}[1]
 \Require $\g \gets \num{3e-4}$
-\For{epoch in $\{1,\ldots, 10.000\}$}
+\For{epoch in epochs}
 	\For{image in batch}
 	    \State encoded = encoder(image) \Comment{Encode the image onto latent space.}
 		\State reconstructed = decoder(encoded) \Comment{Decode the encoded image.}
@@ -421,7 +415,7 @@ Let the chosen optimizer be AMSGrad with a learning rate $\g=\num{3e-4}$ and the
 \end{algorithmic}
 \end{algorithm}
 
-However, in contrast to the linear autoencoder, the convolutional autoencoder architecture does not allow us to visualise the latent space as easily. The reason is that we designed our two linear autoencoders, each with distinct bottleneck dimensions of 2 and 3, respectively. This choice allowed us straightforward visualization of the latent space, given the single channel nature of our data, which was not altered in the course of computation. Unfortunately, the convolutional neural network does alter the amount of channels in the course of computation, such that we encode the data onto a resolution of one single pixel that comprises of $64$ channels and therefore, we would have to visualise $64$ channels.\\
+In contrast to the linear autoencoder, the convolutional autoencoder architecture does not allow us to visualise the latent space as easily. The reason is that we designed our two linear autoencoders, each with distinct bottleneck dimensions of 2 and 3, respectively. This choice allowed us straightforward visualization of the latent space, given the single channel nature of our data, which was not altered in the course of computation. Unfortunately, the convolutional neural network does alter the amount of channels in the course of computation, such that we encode the data onto a resolution of one single pixel that comprises of $64$ channels and therefore, we would have to visualise $64$ channels.\\
 We still came up with an idea of how to visualise the encoded representation, where we plot each channel in a separate bar in a bar plot, see Figure \ref{fig:convolutional_AE_latent}. It is to be read in the following way: each digit receives an own representation in the latent space, that can be uniquely described by the composition of activations in each channel. Here, by activation we mean the value that each channel has. We see that most of the channels have quite different average values and so can be distinguished in that way.\\
 However, what is highly interesting to highlight here is that although the magnitude of the values might differ quite significantly, their signs match most of the time.
 
@@ -446,9 +440,9 @@ Another interesting result that we want to highlight here is the inference of th
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.7\linewidth]{convolutional_AE_inference}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_AE_inference}
 \end{center}
-\caption{The figure illustrates the inference of the convolutional autoencoder, optimized with the AMSGrad optimizer. The inference consists of the reconstructed images for each of the ten digits.}\label{fig:convolutional_AE_inference}
+\caption{On the left side, the figure illustrates $100$ original digits from the MNIST dataset. On the right side, the figure illustrates the same digits after feeding them through the convolutional autoencoder which was optimized with an AMSGrad optimizer.}\label{fig:convolutional_AE_inference}
 \end{figure}
 
 

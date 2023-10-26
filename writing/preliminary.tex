@@ -138,16 +138,16 @@ similarly to Example \ref{ex:parametric_model}.
 \end{figure}
 
 
-Having introduced the basics of probability theory, we now want to consider the actual statistical learning setting that we find ourselves in. The fundamental idea is that we have some kind of data that represents reality. Our goal is to find a function that approximates the given data as accurately as possible. There are many ways to do so, but we will focus on one certain class of functions. These functions are called neural networks, which we will introduce is Section \ref{sec:nn}. However, before considering neural networks we have to introduce some quantities that we will need later on, first. These quantities are well-known in statistical learning theory and are called loss and risk function. The loss function is a function that measures the point-wise error between the prediction of a found approximative function to the actually true value. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
+Having introduced the basics of probability theory, we now want to consider the actual statistical learning setting that we find ourselves in. We introduce this setting inspired by \cite[Chapter~2]{steinwart2008support}. The fundamental idea is that we have some kind of data that represents reality. Our goal is to find a function that approximates the given data as accurately as possible. There are many ways to do so, but we will focus on one certain class of functions. These functions are called neural networks, which we will introduce is Section \ref{sec:nn}. However, before considering neural networks we have to introduce some quantities that we will need later on, first. These quantities are well-known in statistical learning theory and are called loss and risk function. The loss function is a function that measures the point-wise discrepancy between the prediction of a found approximative function to the actually true value. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
 
 
 \begin{definition}\label{def:loss}
 Let $X,Y$ be arbitrary input and output spaces. Furthermore, let $t\in\R^n$ be a prediction for $y\in Y$.\\
-Then we define a \textbf{supervised loss function} $\loss: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t \in\R^{n}$ at some $x\in\R^{d}$ in a suitable way.
+Then we define a \textbf{supervised loss function} $\loss: X \times Y \times \R^n \to [0, \infty)$ as a measurable function that compares a true value $y \in Y \subset \R^n$ to a predicted value $\hat{y} = t \in\R^{n}$ at some $x\in X$ in a suitable way.
 \end{definition}
 
 The recently introduced loss function from Definition \ref{def:loss} allows us to compare a true label to a prediction. However, since we only require it to be measurable, the function is defined very general. This is solely, because one may be interested in different loss functions in different settings, since the choice of a specific loss functions is a crucial aspect of learning theory, as it directly impacts the behaviour of learning algorithms.\\
-We want to consider a couple of important examples for loss functions, for further reading please take a look at \cite[Chapter~4.3]{goodfellow2016deep}.
+We want to consider a couple of important examples for loss functions, for further reading we kindly refer to \cite[Chapter~4.3]{goodfellow2016deep}.
 
 
 \begin{example}\label{ex:supervised_loss}
@@ -244,7 +244,7 @@ We call $\t \coloneqq (w, b)$ the parameters of the neuron $h$.
 If we arrange multiple neurons into a vector, we can define a layer consisting of neurons. This way we can expand the architecture from one to multiple neurons.
 
 
-\begin{definition}\label{def_layer}
+\begin{definition}\label{def:layer}
 Let $\f: \R \to \R$ be an activation function and $W \in \R^{m\times k}$, $b\in \R^m$. Then a function $H:\R^k \to \R^m$ is called \textbf{$\f$-layer} of width $m$ with \textbf{weights} $W$ and \textbf{biases} $b$ if for all $i=1,\ldots,m$ the component function $h_i$ of $H$ is a $\f$-neuron with weight $w_i = W^\top e_i$ and bias $b_i = \langle b, e_i \rangle$, where $e_i$ denotes the standard ONB of $\R^m$.\\
 If we consider $\hat{\f}: \R^k \to \R$ as the component-wise mapping of $\f:\R\to \R$, meaning $\hat{\f}(v) = (\f(v_1), \ldots, \f(v_k))$, we can write the $\f$-layer $H:\R^k \to \R^m$ as
 \begin{align}\label{eq_linear_layer}
@@ -258,7 +258,7 @@ Finally, we can introduce neural networks as an arrangement of multiple neural l
 
 
 \begin{definition}\label{def:nn}
-Let $L\in\N$, $\f_1,\ldots,\f_L$ be activation functions and $H_1, \ldots, H_L$ be $\f_i$-layers with parameters $\t_i = (W_i, b_i)$ for all $i \in \{1,\ldots,L\}$, where the output dimensions of the $i$-th layer equals the input dimensions of the $(i+1)$-th layer. Furthermore, let  $\t = (\t_1, \ldots \t_L)$, $\f = (\f_1, \ldots, \f_L)$ and $d_1,\ldots,d_{L+1}\in\N$.\\
+Let $L\in\N$, $\f_1,\ldots,\f_L$ be activation functions and $H_1, \ldots, H_L$ be $\f_i$-layers with parameters $\t_i = (W_i, b_i)$ for all $i \in \{1,\ldots,L\}$, where the output dimensions of the $i$-th layer equals the input dimensions of the $(i+1)$-th layer. Furthermore, let  $\t = (\t_1, \ldots \t_L)$ describe the \textbf{parameters of the neural network}, $\f = (\f_1, \ldots, \f_L)$ and $d_1,\ldots,d_{L+1}\in\N$.\\
 Then we define a \textbf{$\f$-deep neural network} of depth $L$ with parameters $\t$ as
 \begin{align}
 f_{\f, L, \t}: \R^{d_1} &\to \R^{d_{L+1}}\nonumber\\
@@ -759,7 +759,7 @@ Since we are actually interested in the gradient of the empirical risk function 
 \end{enumerate}
 \end{example}
 
-We just saw an example of the gradient of an empirical risk function, where the prediction function is a (deep) neural network in Example \ref{ex:nn_gradients_1dim}. However, we only considered the layers to have one single neuron. Naturally, in practice neural networks rarely have layers with merely one neuron. This generalization we now want to consider. But firstly, we note that the computation of the gradient relied on the chain rule, well known in calculus. Since we now want to generalize the layers to have more than one neuron, we need to introduce another well-known result from the calculus realm called multi-variable chain rule. This result is fundamental to immensely popular back-propagation algorithm, which is commonly used in most scenarios where one needs to compute the gradient of a function.
+We just saw an example of the gradient of an empirical risk function, where the prediction function is a (deep) neural network in Example \ref{ex:nn_gradients_1dim}. However, we only considered the layers to have one single neuron. Naturally, in practice neural networks rarely have layers with merely one neuron. This generalization we now want to consider. But firstly, we note that the computation of the gradient relied on the chain rule, well known in calculus. Since we now want to generalize the layers to have more than one neuron, we need to extend the chain rule to multiple dimensions. It is then called multi-variable chain rule. This result is fundamental to the immensely popular back-propagation algorithm, which is often used in scenarios where one needs to compute the gradient of a function.
 
 \begin{theorem}\label{theorem:multi_var_chainrule}
 Let $n,m\in\N$ and $f:\R^{n} \to \R$ and $g:\R^{m} \to \R^{m}$ be differentiable functions. Furthermore, we define $y \coloneqq g(x)$ and $z=f(y)$, then the \textbf{multi-variable chain rule} states that the following holds
@@ -773,25 +773,99 @@ In vector notation this can be equivalently expressed as
 where $\partial y/\partial x$ is the $n\times m$ Jacobian matrix of $g$.
 \end{theorem}
 
-At this point, we want to note that the chain rule can even be extended from vectors to tensors. This is very interesting, since in many Machine Learning setting the proposed neural networks operate on tensors. However, we do not want to consider this in depth and rather refer to \cite[Chapter~6.5.2]{goodfellow2016deep}.\\
-Returning to the theory we want to consider, with the help of the multi-variable chain rule which we introduced in Theorem \ref{theorem:multi_var_chainrule} we can compute the gradients of empirical risk functions, where the corresponding neural network has arbitrary size of layers.
-
-\begin{theorem}\label{theorem:grad_nn}
-Let $L\in\N$ and $f_{\f,L+1, \t}$ be a neural network with activation function $\f$ and parameters $\t\in\T$ with parameter space $\T$. For simplicity reasons we assume for the bias $b_i=0$ for all $i=1,\ldots, L$. Furthermore, let $d_0,\ldots,d_L\in\N$ denote the depth of the $i$-th layer, i.e. for all $i=1,\ldots,L$ holds
+At this point, we want to note that the chain rule can even be extended from vectors to tensors. This is very interesting, since in many Machine Learning settings the proposed neural networks operate on tensors. However, we do not want to consider this in depth and rather refer to \cite[Chapter~6.5.2]{goodfellow2016deep}.\\
+Returning to the theory we want to consider, with the help of the multi-variable chain rule which we introduced in Theorem \ref{theorem:multi_var_chainrule} we can compute the gradients of empirical risk functions, where the corresponding neural network has arbitrary size of layers.\\
+The back-propagation algorithm as already described, is in its fundamental idea simple. Since the weights in each layer of the neural network depend on all the consecutive weights, we start computing the gradients for all weights in the last layer and iteratively work our way through the previous layers, until we computed the gradients for every weight. However, formulating this idea formally correct is quite messy. Therefore, we want to introduce some quantities beforehand. We know that each layer $H_i$ looks like
 \begin{align*}
 H_i: \R^{d_{i-1}} &\to \R^{d_{i}},\\
-x &\mapsto H_i(x) = W_ix,
+x &\mapsto H_i(x) = \f(W_ix + b_i),
 \end{align*}
-where we want to define $x^{(i)}\coloneqq H_i(x)$, for $x\in\R^{i-1}$.\\
-Moreover, let $\loss$ be a loss function and $D$ be a dataset of length $d$. Then the gradient of the empirical loss function $\risk_{\loss, D}$ looks like
+where $d_i$ describes the output dimension of the $i$-th layer and $d_{i-1}$ describes the input dimension of the $i$-th layer, as we defined in Definition \ref{def:layer}. In the following we want to denote the weight matrix as $W^{(i)}\coloneqq W_i$, since we will need the index otherwise. Furthermore, we want to denote the weight matrix as $W^{(i)} = (w^{(i)}_{jk})$, where each of the entries $w^{i}_{jk}$ describes the weight between the $k$-th neuron in the $(i-1)$-th layer and the $j$-th neuron in the $i$-th layer. With these considerations we can write the input to the $j$-th neuron of the $i$-th layer, which we want to denote as $z_{j}^{(i)}$, as
 \begin{align*}
-\nabla_{\t} \risk_{\loss, D} (f_{\t}) = \frac{1}{d}\sum_{(x,y) \in D}\left( \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)} \prod_{i=1}^{L-2}\left(\frac{\partial x^{(i+1)}}{\partial x^{(i)}} \right)^{\tran} \nabla_{x^{(L-1)}}H_L(x^{(L-1)})\right).
+z_{j}^{(i)} = \sum_{k=1}^{d_{i-1}} w^{(i)}_{jk} \f (z_{k}^{(i-1)}) + b_j^{(i)},
 \end{align*}
-\end{theorem}
-
-
-As the name already suggests, the gradient descent algorithm relies on computing the gradient of the risk function in each iteration, which often is too expensive as shown in Theorem \ref{theorem:grad_nn}.
-Therefore, a popular approach is to relax this computation by only considering the gradient in one sample (or multiple samples, we speak of a mini-batch then). We want to take a closer look at this algorithm as well. Since it is quite popular, there are many good references in literature, e.g see \cite[Chapter~13.3.2]{sra2012optimization}, \cite[Chapter~4.2]{saad2009line} and \cite{turinici2021convergence}. We will focus on the latter reference.\\
+where $b_j^{(i)}$ denotes the $j$-th entry of the bias in the $i$-th layer.\\
+To simplify the notation even more, we will denote $a_{j}^{(i)} = \f (z_{j}^{(i)})$. We note that the $z_{j}^{(i)}$ are defined in such a way that they describe the output of a neuron before applying the activation function and the $a_{j}^{(i)}$ are defined so that they describe the output of a neuron after applying the activation function. Hence, we will call this quantity the \textbf{activation} of the $j$-th neuron in the $i$-th layer.\\
+Moreover, we note that the gradient of the risk function, which is the mean of gradients of the loss function with regard to the parameters of the neural network $\t$, can be denoted as follows
+\begin{align*}
+\nabla_\t \risk_{\loss, D} (f_{\t}) = \left[ \begin{matrix}
+\nabla_{\t_{1}} \risk_{\loss, D} (f_{\t})\\
+\vdots\\
+\nabla_{\t_{L}} \risk_{\loss, D} (f_{\t})\\
+\end{matrix}\right],
+\end{align*}
+where again the gradients $\nabla_{\t_{i}} \risk_{\loss, D} (f_{\t})$ can be expressed as a vector of gradients with regard to the weights and biases of the $i$-th layer.\\
+With the above considerations we can compute the gradients of the risk function in each parameter. However, the computation is slightly different in the output layer and in the hidden layers. First, we want to consider the gradients for the output layer. We know that if we consider the mean squared error loss $\loss$ for an arbitrary data sample $(x,y)$ the loss function looks like
+\begin{align}\label{eq:nn_loss}
+\loss(y, f(x)) = \sum_{j=0}^{d_L-1} \left(a_{j}^{(L)} - y_j \right)^2,
+\end{align}
+such that it is the squared sum over all entries of the output vector, which is the activation vector of the last layer $a^{(L)} \coloneqq (a^{(L)}_1, \ldots, a^{(L)}_{d_L})$.
+Moreover, we consider $\nabla_{\t_{L}} \risk_{\loss, D} (f_{\t})$ as the vector of gradients
+\begin{align*}
+\nabla_{\t_{L}} \risk_{\loss, D} (f_{\t}) = \left[\begin{matrix}
+\nabla_{w^{(L)}_{11}} \risk_{\loss, D} (f_{\t})\\
+\vdots\\
+\nabla_{w^{(L)}_{jk}} \risk_{\loss, D} (f_{\t})\\
+\nabla_{b^{(L)}_{1}} \risk_{\loss, D} (f_{\t})\\
+\vdots\\
+\nabla_{b^{(L)}_{j}} \risk_{\loss, D} (f_{\t})
+\end{matrix} \right].
+\end{align*}
+These gradients we can compute easily now. We already mentioned that the gradient of the risk function is the mean of gradients of the loss functions. Hence, we can consider the gradients of the loss functions analogously to the gradient of the risk function as
+\begin{align*}
+\nabla_{\t_{L}} \loss(y, f_{\t}(x)) = \left[\begin{matrix}
+\nabla_{w^{(L)}_{11}} \loss(y, f_{\t}(x))\\
+\vdots\\
+\nabla_{w^{(L)}_{jk}} \loss(y, f_{\t}(x))\\
+\nabla_{b^{(L)}_{1}} \loss(y, f_{\t}(x))\\
+\vdots\\
+\nabla_{b^{(L)}_{j}} \loss(y, f_{\t}(x))
+\end{matrix} \right].
+\end{align*}
+Explicitly, the computation of these gradients looks like
+\begin{align*}
+\nabla_{w^{(L)}_{jk}} \loss(y, a^{(L)}) = \frac{\partial \loss(y, a^{(L)})}{\partial w^{(L)}_{jk}} = \frac{\partial \loss(y, f_{\t}(x))}{\partial a_{j}^{(L)}} \frac{\partial a_{j}^{(L)}}{\partial w^{(L)}_{jk}} = \frac{\partial \loss(y, f_{\t}(x))}{\partial a_{j}^{(L)}} \frac{\partial a_{j}^{(L)}}{\partial z_{j}^{(L)}} \frac{\partial z_{j}^{(L)}}{\partial w^{(L)}_{jk}}.
+\end{align*}
+Now, remembering the definition of these quantities, we can compute each of the three factors on the right-hand side. It holds then with equation \eqref{eq:nn_loss}
+\begin{align}\label{eq:part1}
+\frac{\partial \loss(y, a^{(L)})}{\partial a_{j}^{(L)}} = \frac{\partial \sum_{j=0}^{d_L-1} \left(a_{j}^{(L)} - y_j \right)^2}{\partial a_{j}^{(L)}} = 2(a_{j}^{(L)} - y_j).
+\end{align}
+For the second term holds
+\begin{align}\label{eq:part2}
+\frac{\partial a_{j}^{(L)}}{\partial z_{j}^{(L)}} = \frac{\partial \f(z_{j}^{(L)})}{\partial z_{j}^{(L)}} = \f^{\prime} (z_{j}^{(L)}),
+\end{align}
+and for the third term holds
+\begin{align}\label{eq:part3}
+\frac{\partial z_{j}^{(L)}}{\partial w^{(L)}_{jk}} = \frac{\partial \left(\sum_{l=1}^{d_{L-1}} w^{(L)}_{jl} a_{l}^{(L-1)} + b_j^{(L)}\right)}{\partial w^{(L)}_{jk}} = a_{k}^{(L-1)}.
+\end{align}
+Therefore, combining the three partial derivatives gives us the gradient. This leads to
+\begin{align*}
+\nabla_{w^{(L)}_{jk}} \loss(y, f_{\t}(x)) = 2(a_{j}^{(L)} - y_j) \f^{\prime} (z_{j}^{(L)})) a_{k}^{(L-1)}.
+\end{align*}
+At this point we want to note quickly, that if we consider the partial derivative of the risk function with respect to the biases $b_{j}^{(L)}$, only the third term of the right-hand side changes. This term we considered in equation \eqref{eq:part3}. The new partial derivative is then
+\begin{align*}
+\frac{\partial z_{j}^{(L)}}{\partial b^{(L)}_{j}} = \frac{\partial \left(\sum_{k=1}^{d_{L-1}} w^{(L)}_{jk} a_{k}^{(L-1)} + b_j^{(L)}\right)}{\partial b^{(L)}_{j}} = 1.
+\end{align*}
+With these considerations we now know how to compute the gradient of the risk function with respect to $\t_L$, the parameters of the last layer. Before proceeding to compute the gradients with respect to the remaining weights, we want to first consider what we mentioned earlier. We said that computing the gradient is slightly different in the output layer than in the previous, the hidden layers. This is due to the fact that a weight that is located in the output layer affects only the activation of one output neuron. E.g. if we consider the weight $w_{jk}^{(L)}$ which connects the $k$-th neuron of the $(L-1)$-th layer with the $j$-th neuron of the $L$-th layer, then it only affects this single output neuron. In contrast, the weights in all other previous layers, the hidden layers, affect the activations of all output neurons. Since we consider neural networks where each neuron affects all activations of the subsequent layer, it is sufficient to alter any weight in the hidden layers to affect the activation of the corresponding neuron which is attached to this weight and afterwards, this one altered activation has effect on all activations in all subsequent layers. Taking this into consideration, we can compute the gradient of the risk function with respect to the weight $w_{jk}^{(L-1)}$, which connects the $k$-th neuron of the $(L-2)$-th layer with the $j$-th neuron of the $(L-1)$-th layer. We receive
+\begin{align*}
+\nabla_{w^{(L-1)}_{jk}} \loss(y, a^{(L)}) = \frac{\partial \loss(y, a^{(L)})}{\partial w^{(L-1)}_{jk}}.
+\end{align*}
+As we described the weight $w^{(L-1)}_{jk}$ affects all activations of the output layer. Thus, applying the chain rules gives us
+\begin{align*}
+\frac{\partial \loss(y, a^{(L)})}{\partial w^{(L-1)}_{jk}} = \sum_{h=1}^{d_L}\frac{\partial \loss(y, a^{(L)})}{\partial a_h^{(L)}} \frac{\partial a_h^{(L)}}{\partial w^{(L-1)}_{jk}},
+\end{align*}
+where we sum the partial derivatives with respect to all neurons $a_h^{(L)}$ in the output layer. Applying the chain rule three more times gives us
+\begin{align*}
+\frac{\partial \loss(y, a^{(L)})}{\partial w^{(L-1)}_{jk}} &= \sum_{h=1}^{d_L}\frac{\partial \loss(y, a^{(L)})}{\partial a_h^{(L)}} \frac{\partial a_h^{(L)}}{\partial z_h^{(L)}} \frac{\partial z_h^{(L)}}{\partial w^{(L-1)}_{jk}},\\
+&= \sum_{h=1}^{d_L}\frac{\partial \loss(y, a^{(L)})}{\partial a_h^{(L)}} \frac{\partial a_h^{(L)}}{\partial z_h^{(L)}} \frac{\partial z_h^{(L)}}{\partial a_j^{(L-1)}} \frac{\partial a_j^{(L-1)}}{\partial w^{(L-1)}_{jk}},\\
+&= \sum_{h=1}^{d_L}\frac{\partial \loss(y, a^{(L)})}{\partial a_h^{(L)}} \frac{\partial a_h^{(L)}}{\partial z_h^{(L)}} \frac{\partial z_h^{(L)}}{\partial a_j^{(L-1)}} \frac{\partial a_j^{(L-1)}}{\partial z_j^{(L-1)}} \frac{\partial z_j^{(L-1)}}{\partial w^{(L-1)}_{jk}}.
+\end{align*}
+We realise, that the first three partial derivatives of the right-hand side are exactly the same computation as when we computed the gradient with regard to a weight that is located in the output layer. Furthermore, the last two expressions consider the effect of the altered activation of the $(L-1)$-th layer on the $L$-th, the output layer. Lastly, we want to explicitly consider the last partial derivative of the right-hand side. It holds that
+\begin{align*}
+\frac{\partial z_j^{(L-1)}}{\partial w^{(L-1)}_{jk}} = \frac{\partial \left(\sum_{l=1}^{d_{L-2}} w_{jl}^{(L-1)}a_l^{(L-2)} + b_j^{(L-1)}\right)}{\partial w^{(L-1)}_{jk}} = a_k^{(L-2)},
+\end{align*}
+which is the same result as for the output layer, see \eqref{eq:part3}. Therefore, we can apply exactly the same computation until we reach the input layer. This procedure allows us to component-wise compute the gradient $\nabla_{\t}\loss(a^{(L)}, y)$, at last. Finally, we can compute the gradient of the risk function with respect to the parameters $\t$ by averaging the gradients of the loss function over the given dataset $D$.\\
+Having tackled the back-propagation algorithm we now know how to compute the gradient of the risk function with regard to the parameters of a given prediction function. However, as the back-propagation algorithm clearly shows, the computation of this gradient is highly expensive, since one has to compute the gradient for every single weight in the entire neural network, separately. A popular approach is to relax this computation by only considering the gradient in one sample (or multiple samples, we speak of a mini-batch then). We want to take a closer look at this algorithm as well. Since it is quite popular, there are many good references in literature, e.g see \cite[Chapter~13.3.2]{sra2012optimization}, \cite[Chapter~4.2]{saad2009line} and \cite{turinici2021convergence}. We will focus on the latter reference.\\
 Beforehand, we need to consider the empirical risk, which we defined in Definition \ref{def:empirical_risk}. Since we take the average of the loss functions with regard to the whole data set $D$, we can denote it as an integral over the dataset $D$
 \begin{align*}
 \risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right) = \int_{D} \loss(x,y,f(x)) d(x,y).
@@ -1213,8 +1287,7 @@ Taking the square root of both sides leads to the assertion.
 \end{proof}
 
 \begin{theorem}\label{theorem:amsgrad}
-Let $(\t_t)_{t\in\N}$ and $(v_t)_{t\in\N}$ be sequences as in Algorithm \ref{alg:amsgrad}, $D$ be an arbitrary dataset of length $d\in\N$ and $\a_t = \a/\sqrt{t}$ with $\a>0$ and $\b_1 = \b_{11}$, $\b_{1t}\leq \b_1$ for all $t \in \{1,\ldots, T\}$ and $\g = \b_1/\sqrt{\b_{2}} < 1$. Assume that $\T$ has bounded diameter $D_{\infty}<\infty$ and $\max_{\t\in\T}\|\nabla_{\t}\risk_{\loss, D}(f_t(\t_t))\|_{\infty}= G_{\infty}<\infty$ for all $t \in \{1,\ldots, T\}$. Furthermore, let $\loss$ be a convex loss function.\\
-Then for $\t_t$ the following bound for the regret holds
+Let $(\t_t)_{t\in\N}$ and $(v_t)_{t\in\N}$ be sequences as in Algorithm \ref{alg:amsgrad}, $D$ be an arbitrary dataset of length $d\in\N$ and $\a_t = \a/\sqrt{t}$ with $\a>0$ and $\b_1 = \b_{11}$, $\b_{1t}\leq \b_1$ for all $t \in \{1,\ldots, T\}$ and $\g = \b_1/\sqrt{\b_{2}} < 1$. Assume that $\T$ has bounded diameter $D_{\infty}<\infty$ and $\max_{\t\in\T}\|\nabla_{\t}\risk_{\loss, D}(f_t(\t_t))\|_{\infty}= G_{\infty}<\infty$ for all $t \in \{1,\ldots, T\}$. Furthermore, let $\loss$ be a convex loss function. Then for $\t_t$ the following bound for the regret holds
 \begin{align*}
 &\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\\
 &\quad\leq \frac{D_{\infty}^2\sqrt{T}}{2\a(1-\b_1)} \sum_{i=1}^d \hat{v}_{T,i}^{1/2} + \frac{D_{\infty}^2}{(1-\b_1)^2} \sum_{t=1}^T \sum_{i=1}^d \frac{\b_{1t}\hat{v}_{t,i}^{1/2}}{\a_t}+ \frac{\a\sqrt{1 + \log T}}{(1-\b_1)^2(1-\g)\sqrt{(1-\b_2)}}\sum_{i=1}^d \|g_{1:T,i}\|_2,
@@ -1256,8 +1329,9 @@ And if we now apply the Cauchy-Schwarz inequality and the Young's inequality, th
 \end{align}
 The next step is a common approach in bounding the regret, where we will use the convexity of the risk function $\risk_{\loss, D}(f_t(\t_t))$ in each step, which follows from the fact that $\loss$ is a convex loss function and Lemma \ref{lemma:convex_risk}. With these facts holds
 \begin{align*}
-\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle.
+\sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle,
 \end{align*}
+which we can do, since we consider the risk $\risk_{\loss, D}(f_t)$ function in the parameters $\t_t$. \textcolor{red}{Cite the subdifferential inequality (?) at this point!!}\\
 This we can further bound by the previously considered inequality \eqref{eq:1.9}.
 \begin{align*}
 \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle &\leq\sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \\
@@ -1514,7 +1588,7 @@ The Definition \ref{def:img_operator} is quite general, since we do not demand a
 These technicalities help us introduce neural networks operating on images.
 
 \begin{definition}\label{def:cv_layer}
-Let $\f$ be an arbitrary activation function and $\hat{\f}$ the component-wise mapping of $\f$ as in Definition \ref{def_layer} and $\O_0$ be an arbitrary pixel domain with resolution $(M_0,N_0)\in\N^2$. Let $\p$ be an image with number of channels $d\in\N$.\\
+Let $\f$ be an arbitrary activation function and $\hat{\f}$ the component-wise mapping of $\f$ as in Definition \ref{def:layer} and $\O_0$ be an arbitrary pixel domain with resolution $(M_0,N_0)\in\N^2$. Let $\p$ be an image with number of channels $d\in\N$.\\
 Then a neural layer that operates on images looks as follows
 \begin{align*}
 H: \P_{\O_0} &\to \P_{\O_1}\\

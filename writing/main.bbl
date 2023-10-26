@@ -65,6 +65,10 @@
 {\sc S.~Sra, S.~Nowozin, and S.~J. Wright}, {\em Optimization for Machine
   Learning}, MIT Press, 2012.
 
+\bibitem{steinwart2008support}
+{\sc I.~Steinwart and A.~Christmann}, {\em Support Vector Machines}, Springer,
+  2008.
+
 \bibitem{turinici2021convergence}
 {\sc G.~Turinici}, {\em The convergence of the stochastic gradient descent
   (sgd): a self-contained proof}, arXiv:2103.14350,  (2021).
