@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  26 OCT 2023 17:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  30 OCT 2023 18:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -898,24 +898,24 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 (./main.aux (./preliminary.aux) (./autoencoders.aux) (./vae.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
 
 (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -947,7 +947,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 111.
+Package hyperref Info: Link coloring OFF on input line 113.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
@@ -960,7 +960,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 111.
+or `english'. on input line 113.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1020,7 +1020,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again>
                    \relax
-l.145 \include{preliminary}
+l.147 \include{preliminary}
                             [1
 
 ]
@@ -1028,221 +1028,211 @@ l.145 \include{preliminary}
 
  (./preliminary.tex
 Chapter 1.
-[2
+LaTeX Font Info:    Trying to load font information for U+bbold on input line 8
+.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/bbold/Ubbold.fd) [2
 
 
-]
-LaTeX Font Info:    Trying to load font information for U+bbold on input line 7
-6.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/bbold/Ubbold.fd) [3]
-<gamma_family.png, id=114, 540.0175pt x 351.3125pt>
-File: gamma_family.png Graphic file (type png)
-<use gamma_family.png>
-Package pdftex.def Info: gamma_family.png  used on input line 129.
-(pdftex.def)             Requested size: 237.01411pt x 154.18665pt.
-<gaussian_family.png, id=116, 540.0175pt x 351.3125pt>
-File: gaussian_family.png Graphic file (type png)
-<use gaussian_family.png>
-Package pdftex.def Info: gaussian_family.png  used on input line 133.
-(pdftex.def)             Requested size: 237.01411pt x 154.18665pt.
- [4]
-[5 <./gamma_family.png> <./gaussian_family.png>] [6] [7] [8]
-<neural_net.jpg, id=189, 923.45pt x 549.05125pt>
+] [3] [4]
+[5] [6] [7] [8]
+<neural_net.jpg, id=179, 923.45pt x 549.05125pt>
 File: neural_net.jpg Graphic file (type jpg)
 <use neural_net.jpg>
-Package pdftex.def Info: neural_net.jpg  used on input line 291.
+Package pdftex.def Info: neural_net.jpg  used on input line 305.
 (pdftex.def)             Requested size: 435.32422pt x 258.82487pt.
- [9 <./neural_net.jpg>] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
-[21] [22] [23]
-[24] [25] [26] [27]
+ [9] [10 <./neural_net.jpg>] [11] [12] [13] [14] [15] [16]
+[17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 1074.
- [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38]
-[39] [40] [41] [42]) [43]
+put line 1088.
+ [29] [30] [31]
+[32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43]) [44]
 \openout2 = `autoencoders.aux'.
 
- (./autoencoders.tex
+
+(./autoencoders.tex
 Chapter 2.
-<autoencoder.jpg, id=570, 996.72375pt x 435.6275pt>
+<autoencoder.jpg, id=571, 996.72375pt x 435.6275pt>
 File: autoencoder.jpg Graphic file (type jpg)
 <use autoencoder.jpg>
 Package pdftex.def Info: autoencoder.jpg  used on input line 17.
 (pdftex.def)             Requested size: 435.32422pt x 190.26085pt.
-[44
+[45
 
 
 
 
 ]
-<encoder.jpg, id=579, 740.7675pt x 534.99875pt>
+<encoder.jpg, id=578, 740.7675pt x 534.99875pt>
 File: encoder.jpg Graphic file (type jpg)
 <use encoder.jpg>
 Package pdftex.def Info: encoder.jpg  used on input line 35.
 (pdftex.def)             Requested size: 435.32422pt x 314.40569pt.
-<decoder.jpg, id=582, 734.745pt x 527.9725pt>
+<decoder.jpg, id=581, 734.745pt x 527.9725pt>
 File: decoder.jpg Graphic file (type jpg)
 <use decoder.jpg>
 Package pdftex.def Info: decoder.jpg  used on input line 54.
 (pdftex.def)             Requested size: 435.32422pt x 312.82228pt.
- [45 <./autoencoder.jpg>] [46 <./encoder.jpg>] [47 <./decoder.jpg>]
-[48] [49] [50] [51]
-<linear_AE_2d_adam_latent.png, id=660, 505.89pt x 361.35pt>
+ [46 <./autoencoder.jpg>] [47 <./encoder.jpg>] [48 <./decoder.jpg>]
+[49] [50] [51] [52]
+<linear_AE_2d_adam_latent.png, id=659, 505.89pt x 361.35pt>
 File: linear_AE_2d_adam_latent.png Graphic file (type png)
 <use linear_AE_2d_adam_latent.png>
-Package pdftex.def Info: linear_AE_2d_adam_latent.png  used on input line 246.
+Package pdftex.def Info: linear_AE_2d_adam_latent.png  used on input line 244.
 (pdftex.def)             Requested size: 237.01411pt x 179.6069pt.
 <linear_AE_2d_adam_reconstruction.png, id=662, 505.89pt x 361.35pt>
 File: linear_AE_2d_adam_reconstruction.png Graphic file (type png)
 <use linear_AE_2d_adam_reconstruction.png>
 Package pdftex.def Info: linear_AE_2d_adam_reconstruction.png  used on input li
-ne 249.
+ne 247.
 (pdftex.def)             Requested size: 237.01411pt x 171.58875pt.
 <linear_AE_2d_amsgrad_latent.png, id=664, 505.89pt x 361.35pt>
 File: linear_AE_2d_amsgrad_latent.png Graphic file (type png)
 <use linear_AE_2d_amsgrad_latent.png>
 Package pdftex.def Info: linear_AE_2d_amsgrad_latent.png  used on input line 25
-9.
+7.
 (pdftex.def)             Requested size: 237.01411pt x 179.6069pt.
 <linear_AE_2d_amsgrad_reconstruction.png, id=666, 505.89pt x 361.35pt>
 File: linear_AE_2d_amsgrad_reconstruction.png Graphic file (type png)
 <use linear_AE_2d_amsgrad_reconstruction.png>
 Package pdftex.def Info: linear_AE_2d_amsgrad_reconstruction.png  used on input
- line 262.
+ line 260.
 (pdftex.def)             Requested size: 237.01411pt x 171.58875pt.
 <linear_AE_2d_adam_inference.png, id=668, 1011.78pt x 505.89pt>
 File: linear_AE_2d_adam_inference.png Graphic file (type png)
 <use linear_AE_2d_adam_inference.png>
 Package pdftex.def Info: linear_AE_2d_adam_inference.png  used on input line 27
-2.
+0.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
 <linear_AE_2d_amsgrad_inference.png, id=670, 1011.78pt x 505.89pt>
 File: linear_AE_2d_amsgrad_inference.png Graphic file (type png)
 <use linear_AE_2d_amsgrad_inference.png>
 Package pdftex.def Info: linear_AE_2d_amsgrad_inference.png  used on input line
- 282.
+ 280.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
 <linear_AE_2d_adam_training_progress.png, id=672, 1011.78pt x 505.89pt>
 File: linear_AE_2d_adam_training_progress.png Graphic file (type png)
 <use linear_AE_2d_adam_training_progress.png>
 Package pdftex.def Info: linear_AE_2d_adam_training_progress.png  used on input
- line 291.
+ line 289.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
 <linear_AE_2d_amsgrad_training_progress.png, id=673, 1011.78pt x 505.89pt>
 File: linear_AE_2d_amsgrad_training_progress.png Graphic file (type png)
 <use linear_AE_2d_amsgrad_training_progress.png>
 Package pdftex.def Info: linear_AE_2d_amsgrad_training_progress.png  used on in
-put line 299.
+put line 297.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
- [52 <./linear_AE_2d_adam_latent.png> <./linear_AE_2d_adam_reconstruction.png>]
- [53 <./linear_AE_2d_amsgrad_latent.png> <./linear_AE_2d_amsgrad_reconstruction
-.png> <./linear_AE_2d_adam_inference.png>] [54 <./linear_AE_2d_amsgrad_inferenc
-e.png> <./linear_AE_2d_adam_training_progress.png>]
-<linear_AE_3d_adam_latent_1.png, id=712, 505.89pt x 361.35pt>
+ [53] [54 <./linear_AE_2d_adam_latent.png> <./linear_AE_2d_adam_reconstruction.
+png> <./linear_AE_2d_amsgrad_latent.png> <./linear_AE_2d_amsgrad_reconstruction
+.png>] [55 <./linear_AE_2d_adam_inference.png> <./linear_AE_2d_amsgrad_inferenc
+e.png>] [56 <./linear_AE_2d_adam_training_progress.png> <./linear_AE_2d_amsgrad
+_training_progress.png>]
+<linear_AE_3d_adam_latent_1.png, id=720, 505.89pt x 361.35pt>
 File: linear_AE_3d_adam_latent_1.png Graphic file (type png)
 <use linear_AE_3d_adam_latent_1.png>
-Package pdftex.def Info: linear_AE_3d_adam_latent_1.png  used on input line 310
+Package pdftex.def Info: linear_AE_3d_adam_latent_1.png  used on input line 308
 .
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<linear_AE_3d_adam_latent_2.png, id=714, 505.89pt x 361.35pt>
+<linear_AE_3d_adam_latent_2.png, id=722, 505.89pt x 361.35pt>
 File: linear_AE_3d_adam_latent_2.png Graphic file (type png)
 <use linear_AE_3d_adam_latent_2.png>
-Package pdftex.def Info: linear_AE_3d_adam_latent_2.png  used on input line 313
+Package pdftex.def Info: linear_AE_3d_adam_latent_2.png  used on input line 311
 .
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<linear_AE_3d_amsgrad_latent_1.png, id=716, 505.89pt x 361.35pt>
+<linear_AE_3d_amsgrad_latent_1.png, id=724, 505.89pt x 361.35pt>
 File: linear_AE_3d_amsgrad_latent_1.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_latent_1.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_latent_1.png  used on input line
-322.
+320.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<linear_AE_3d_amsgrad_latent_2.png, id=718, 505.89pt x 361.35pt>
+<linear_AE_3d_amsgrad_latent_2.png, id=726, 505.89pt x 361.35pt>
 File: linear_AE_3d_amsgrad_latent_2.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_latent_2.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_latent_2.png  used on input line
-325.
+323.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<linear_AE_3d_adam_inference.png, id=720, 1011.78pt x 505.89pt>
+<linear_AE_3d_adam_inference.png, id=728, 1011.78pt x 505.89pt>
 File: linear_AE_3d_adam_inference.png Graphic file (type png)
 <use linear_AE_3d_adam_inference.png>
 Package pdftex.def Info: linear_AE_3d_adam_inference.png  used on input line 33
-5.
+3.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
-<linear_AE_3d_amsgrad_inference.png, id=722, 1011.78pt x 505.89pt>
+<linear_AE_3d_amsgrad_inference.png, id=730, 1011.78pt x 505.89pt>
 File: linear_AE_3d_amsgrad_inference.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_inference.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_inference.png  used on input line
- 345.
+ 343.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
-<linear_AE_3d_adam_training_progress.png, id=724, 1011.78pt x 505.89pt>
+<linear_AE_3d_adam_training_progress.png, id=732, 1011.78pt x 505.89pt>
 File: linear_AE_3d_adam_training_progress.png Graphic file (type png)
 <use linear_AE_3d_adam_training_progress.png>
 Package pdftex.def Info: linear_AE_3d_adam_training_progress.png  used on input
- line 354.
+ line 352.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
-<linear_AE_3d_amsgrad_training_progress.png, id=725, 1011.78pt x 505.89pt>
+<linear_AE_3d_amsgrad_training_progress.png, id=733, 1011.78pt x 505.89pt>
 File: linear_AE_3d_amsgrad_training_progress.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_training_progress.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_training_progress.png  used on in
-put line 362.
+put line 360.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
- [55 <./linear_AE_2d_amsgrad_training_progress.png>] [56 <./linear_AE_3d_adam_l
-atent_1.png> <./linear_AE_3d_adam_latent_2.png> <./linear_AE_3d_amsgrad_latent_
-1.png> <./linear_AE_3d_amsgrad_latent_2.png>] [57 <./linear_AE_3d_adam_inferenc
-e.png> <./linear_AE_3d_amsgrad_inference.png>] [58 <./linear_AE_3d_adam_trainin
-g_progress.png> <./linear_AE_3d_amsgrad_training_progress.png>] [59]
-<convolutional_AE_latent_0.png, id=774, 1011.78pt x 505.89pt>
+ [57 <./linear_AE_3d_adam_latent_1.png> <./linear_AE_3d_adam_latent_2.png>] [58
+ <./linear_AE_3d_amsgrad_latent_1.png> <./linear_AE_3d_amsgrad_latent_2.png> <.
+/linear_AE_3d_adam_inference.png>]
+[59 <./linear_AE_3d_amsgrad_inference.png> <./linear_AE_3d_adam_training_progre
+ss.png>] [60 <./linear_AE_3d_amsgrad_training_progress.png>]
+<convolutional_AE_latent_0.png, id=778, 1011.78pt x 505.89pt>
 File: convolutional_AE_latent_0.png Graphic file (type png)
 <use convolutional_AE_latent_0.png>
-Package pdftex.def Info: convolutional_AE_latent_0.png  used on input line 427.
+Package pdftex.def Info: convolutional_AE_latent_0.png  used on input line 424.
 
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
-<convolutional_AE_latent_1.png, id=775, 1011.78pt x 505.89pt>
+<convolutional_AE_latent_1.png, id=779, 1011.78pt x 505.89pt>
 File: convolutional_AE_latent_1.png Graphic file (type png)
 <use convolutional_AE_latent_1.png>
-Package pdftex.def Info: convolutional_AE_latent_1.png  used on input line 431.
+Package pdftex.def Info: convolutional_AE_latent_1.png  used on input line 428.
 
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
-<convolutional_AE_inference.png, id=781, 1011.78pt x 505.89pt>
+<convolutional_AE_inference.png, id=785, 1011.78pt x 505.89pt>
 File: convolutional_AE_inference.png Graphic file (type png)
 <use convolutional_AE_inference.png>
-Package pdftex.def Info: convolutional_AE_inference.png  used on input line 443
+Package pdftex.def Info: convolutional_AE_inference.png  used on input line 440
 .
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
-<convolutional_AE_training_progress.png, id=784, 1011.78pt x 505.89pt>
+ [61] [62 <./convolutional_AE_latent_0.png> <./convolutional_AE_latent_1.png>]
+<convolutional_AE_training_progress.png, id=806, 1011.78pt x 505.89pt>
 File: convolutional_AE_training_progress.png Graphic file (type png)
 <use convolutional_AE_training_progress.png>
 Package pdftex.def Info: convolutional_AE_training_progress.png  used on input
-line 453.
+line 450.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
-) [60] [61 <./convolutional_AE_latent_0.png> <./convolutional_AE_latent_1.png>]
- [62 <./convolutional_AE_inference.png> <./convolutional_AE_training_progress.p
-ng>]
+) [63 <./convolutional_AE_inference.png>] [64 <./convolutional_AE_training_prog
+ress.png>]
 \openout2 = `vae.aux'.
 
- (./vae.tex
+
+(./vae.tex
 Chapter 3.
-[63
+[65
 
 
 
 
-] [64]) [65] (./main.bbl [66
+] [66]) [67] (./main.bbl [68
 
 
 
-]) [67] (./main.aux (./preliminary.aux)
+]) [69] (./main.aux (./preliminary.aux)
 (./autoencoders.aux) (./vae.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D6267D17E7AA47002E63D3A7F9D83B82;1847.
  )
 Here is how much of TeX's memory you used:
- 32569 strings out of 476029
- 686183 string characters out of 5790166
+ 32564 strings out of 476029
+ 685924 string characters out of 5790166
  1889346 words of memory out of 5000000
- 52214 multiletter control sequences out of 15000+600000
- 526039 words of font info for 84 fonts, out of 8000000 for 9000
+ 52203 multiletter control sequences out of 15000+600000
+ 526660 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,20n,116p,3374b,1140s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,20n,116p,3374b,1142s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pf
 b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb
 ></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
@@ -1266,12 +1256,11 @@ e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
 22/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2022
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2022/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (68 pages, 3414511 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (70 pages, 3284358 bytes).
 PDF statistics:
- 1018 PDF objects out of 1200 (max. 8388607)
- 823 compressed objects within 9 object streams
- 273 named destinations out of 1000 (max. 500000)
- 317 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1028 PDF objects out of 1200 (max. 8388607)
+ 838 compressed objects within 9 object streams
+ 277 named destinations out of 1000 (max. 500000)
+ 307 words of extra memory for PDF output out of 10000 (max. 10000000)

@@ -1,14 +1,14 @@
 \chapter{Autoencoders}\label{chap:ae}
 
-Having introduced the basics of neural networks in Chapter \ref{chap:preliminary}, we can consider a specific architecture of a neural network, a so called autoencoding neural network, or short: autoencoder. The idea of autoencoders is to take a given input, compress the input to a smaller size (usually called encoding) and afterwards, expand it as accurately as possible to the original size again (usually called decoding). Such an architecture is widely used in different applications. For example on social media platforms, where users send images to one another. Instead of sending the original image, which size might very well be a couple of megabytes, the image is firstly being encoded and sent in the compressed representation. Afterwards, the recipient decodes the image to its original representation. This way one has only to transmit the encoded representation, which usually is smaller by magnitudes.
-Another very important application of autoencoders is in the machine learning field. Most state of the art machine learning models are using autoencoding structures, since it is way more efficient to first encode the data and then run a model on the encoded data. This is quite straight-forward, considering the same argument as in the previous use case - the encoded data being smaller by magnitudes. This way processing the samples can happen much faster compared to the non-encoded data samples and secondly, it makes storing data (on the drive and in memory) much more efficient.\\
+Having introduced the basics of neural networks in Chapter \ref{chap:preliminary}, we can consider a specific architecture of a neural network, a so called autoencoding neural network, or simply autoencoder in short. The idea of autoencoders is to take a given input, compress the input to a smaller dimension, which we will refer to as encoding and afterwards, expand it as accurately as possible to the original dimension again, which we will refer to as decoding. Note that this compression of the data is usually referred to as dimensionality reduction by theoreticians and as feature extraction by software engineers in literature. Those are simply different terms for the same idea. Such an architecture is often describes as a discriminative model, i.e. a model that tries to learn the mapping between input data and output labels directly. This is the counterpart to generative models, which we will take a look at in Chapter~\ref{chap:vae}. The goal of such an autoencoding neural network is as already described, to learn how to compress data to a lower dimensional representation and afterwards, reconstruct the original representation as precisely as possible.\\
+A very important application of autoencoders, which is commonly used in the realm of Machine Learning. Most state of the art Machine Learning models use autoencoding structures, since it is way more efficient to first encode the data and then run a model on the encoded data.  This is due to the fact, that if we succeed in encoding and decoding the data without loss of information, we then can perform operations, e.g. classification, on the lower dimensional data. Since we can easily reduce the dimensionality by magnitudes, which we will see in Section~\ref{sec:applications}. This way processing the samples can happen much faster compared to the non-encoded data samples and secondly, it makes storing data (on the drive and in memory) much more efficient.\\
 In this chapter we want to consider how to formulate autoencoding neural networks from a mathematical point of view, take a look at some important results and lastly, analyse the theory in multiple applications using Python.
 
 \section{Conceptional ideas}
 
-As already mentioned, an autoencoding neural network first compresses/encodes the input data to a smaller representation. The size of this smaller representation is usually referred to as bottleneck of the autoencoder.
-Afterwards, the autoencoding neural network expands/decodes the data to its original size. Hence, we can divide these two steps into separate architectures - the encoding and the decoding part of the neural network, which we will formulate separately.\\
-In Figure \ref{fig:autoencoder} we can take a look at a visual example of an autoencoding architecture.
+As already mentioned, an autoencoding neural network first encodes the input data to a smaller representation. The dimension of this smaller representation is usually referred to as bottleneck of the autoencoder.
+Afterwards, the autoencoding neural network decodes the data to its original dimension. Hence, we can divide these two steps into separate architectures - the encoding and the decoding part of the neural network, which we will formulate separately.\\
+In Figure \ref{fig:autoencoder} we can take a look at a visual example of an autoencoding architecture. Each circle represents a neuron and each line represents a connection between neurons.
 
 
 \begin{figure}
@@ -80,7 +80,6 @@ y &\coloneqq H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), \qquad x 
 Hence, we obtain
 \begin{align}\label{nn_comp}
 f_2 (y) &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H}_{2} \circ \tilde{H}_1 (y),\nonumber\\
-f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H}_{2} \circ \tilde{H}_1 \left( H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x) \right),\nonumber\\
 f_2\left(f_1\left(x\right)\right)  &= \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H}_{2} \circ \tilde{H}_1 \circ H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), \qquad x \in \R^{d_1}.
 \end{align}
 Therefore, from \eqref{nn_comp} follows that the composition $f_2 \circ f_1$ is a neural network of depth $L_1 + L_2$.\\
@@ -91,13 +90,12 @@ Lastly, we consider the parameters $\t$ of the neural network $f_2 \circ f_1$. S
 \end{align*}
 Hence, the composition $f_2\circ f_1$ has the parameters
 \begin{align*}
-\t  &= \left((W_1, b_1),\ldots, (W_{L_1}, b_{L_1}), (\tilde{W}_1, \tilde{b}_1),\ldots, (\tilde{W}_{L_2}, \tilde{b}_{L_2})  \right)\\
-&= \left(\t_1,\ldots \t_{L_1}, \tilde{\t}_1, \ldots, \tilde{\t}_{L_2} \right) \eqqcolon \left(\t_1,\t_2 \right).
+\t  &= \left((W_1, b_1),\ldots, (W_{L_1}, b_{L_1}), (\tilde{W}_1, \tilde{b}_1),\ldots, (\tilde{W}_{L_2}, \tilde{b}_{L_2})  \right) = \left(\t_1,\ldots \t_{L_1}, \tilde{\t}_1, \ldots, \tilde{\t}_{L_2} \right) \eqqcolon \left(\t_1,\t_2 \right).
 \end{align*}
 \end{proof}
 
 
-Lemma \ref{lemma:composition_of_nns} allows us to consider a modern approach to neural networks, a so called modular approach. Essentially, we consider entire structures like the encoding and the decoding neural network as a self-contained module. These modules can now easily be put together by considering them in series. This is very useful in practice, since modern neural networks consist of thousands of layers and billions of parameters. Considering a modular approach one can therefore divide the whole neural network and tune each module separately.
+Lemma \ref{lemma:composition_of_nns} allows us to consider a modern approach to neural networks, a so called modular approach. Essentially, we consider entire structures like the encoding and the decoding neural network as a self-contained module. These modules can now easily be put together by considering them as a composition. This is very useful in practice, since modern neural networks consist of thousands of layers and billions of parameters. Considering a modular approach one can therefore divide the whole neural network and tune each module separately.
 
 
 \begin{theorem}
@@ -175,7 +173,7 @@ The Binary Cross-Entropy loss function is usually used for binary classification
 \end{remark}
 
 
-\section{Applications}
+\section{Applications}\label{sec:applications}
 
 In this section we want to introduce and train a couple of specific autoencoding neural networks on the MNIST dataset - a dataset consisting of handwritten digits. We will consider various architectures of neural networks and visualise the results in a comprehensible manner.\\
 First, we want to take a look at the most simple architecture, a fully connected linear neural network, where we want to introduce the encoder and the decoder separately.
@@ -369,9 +367,9 @@ As we saw in Figure \ref{fig:linear_AE_3d_adam_inference} and in Figure \ref{fig
 
 
 \begin{definition}\label{def_convolutional_encoder}
-Let $\T$ be a parameter space, $L\in \N$ and $d_1,\ldots, d_L\in\N$ be the number of channels as well as $(M_1,N_1),\ldots,(M_L,N_L) \in \N^2$ be the resolution of the pixel domain in the $i$-th layer, where $M_1\geq \ldots \geq M_L$ and $N_1\geq \ldots \geq N_L$. Furthermore, let $\hat{\f}$ be an arbitrary activation function. Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
+Let $\T$ be a parameter space, $L\in \N$ and $d_1,\ldots, d_L\in\N$ be the number of channels as well as $(M_1,N_1),\ldots,(M_L,N_L) \in \N^2$ be the resolution of the pixel domain in the $i$-th layer, where $M_1\geq \ldots \geq M_L$ and $N_1\geq \ldots \geq N_L$. Furthermore, let $\f$ be an arbitrary activation function. Then an encoding neural network, where each layer $H_1,\ldots, H_L$ is defined as
 \begin{align*}
-H_i(\p) = \hat{\f}(T_{\text{conv}, i}\p + b_i), \qquad \p \in \P_{d_i,\O_i}, i \in \{1,\ldots, L\},
+H_i(\p) = \f(T_{\text{conv}, i}\p + b_i), \qquad \p \in \P_{d_i,\O_i}, i \in \{1,\ldots, L\},
 \end{align*}
 where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters and $\P_{d_i,\O_i}$ the image domain of the $i$-th layer, see Definition \ref{def:convolutional_layer}. Such an encoding neural network is called a \textbf{convolutional encoder}.
 \end{definition}
@@ -386,8 +384,7 @@ H_i(\p) = \hat{\f}(T_{\text{conv}, i}\p + b_i), \qquad \p \in \P_{d_i,\O_i}, i \
 where $\t_i = (T_{\text{conv}, i}, b_i)\in\T$ are the parameters and $\P_{d_i,\O_i}$ the image domain of the $i$-th layer, see Definition \ref{def:convolutional_layer}. Such a decoding neural network is called a \textbf{convolutional decoder}.
 \end{definition}
 
-
-Analogously to the linear autoencoder, we can define the convolutional autoencoder with the convolutional encoder and decoder architecture.
+As we have seen in Lemma \ref{lemma:composition_of_nns}, we can plug the convolutional encoder and the convlutional decoder together, as long as the output dimension of the first matches the input dimension of the latter. This gives us the following architecture.
 
 \begin{definition}
 Let $f_e$ and $f_d$ be a convolutional encoder and a convolutional decoder. Then a \textbf{convolutional autoencoder} $f_{\text{conv}}$ is defined as the composition
@@ -396,7 +393,7 @@ f_{\text{conv}} \coloneqq f_d \circ f_e.
 \end{align*}
 \end{definition}
 
-Now, lets define a specific example of a convolutional autoencoder and see how it performs.
+Now, lets define a specific example of a convolutional autoencoder and afterwards take a look at its performance with some tangible visualisations.
 
 \begin{algorithm}
 Let the input and output dimensions be $(M_i,N_i, d_i), (M_o,N_o,d_o) \in \N^{2\times 1}$, where $(M_j, N_j)$ denotes the resolution of the image domain and $d_j$ the amount of channels in the $j$-th layer. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers.\\
@@ -415,7 +412,7 @@ Let the chosen optimizer be AMSGrad with a learning rate $\g>0$ and the chosen l
 \end{algorithmic}
 \end{algorithm}
 
-In contrast to the linear autoencoder, the convolutional autoencoder architecture does not allow us to visualise the latent space as easily. The reason is that we designed our two linear autoencoders, each with distinct bottleneck dimensions of 2 and 3, respectively. This choice allowed us straightforward visualization of the latent space, given the single channel nature of our data, which was not altered in the course of computation. Unfortunately, the convolutional neural network does alter the amount of channels in the course of computation, such that we encode the data onto a resolution of one single pixel that comprises of $64$ channels and therefore, we would have to visualise $64$ channels.\\
+In contrast to the linear autoencoder, the convolutional autoencoder architecture does not allow us to visualise the latent space as easily. The reason is that we designed our two linear autoencoders, each with distinct bottleneck dimensions of 2 and 3, respectively. This choice allowed us straightforward visualisation of the latent space, given the single channel nature of our data, which was not altered in the course of computation. Unfortunately, the convolutional neural network does alter the amount of channels in the course of computation, such that we encode the data onto a resolution of one single pixel that comprises of $64$ channels and therefore, we have to visualise $64$ channels.\\
 We still came up with an idea of how to visualise the encoded representation, where we plot each channel in a separate bar in a bar plot, see Figure \ref{fig:convolutional_AE_latent}. It is to be read in the following way: each digit receives an own representation in the latent space, that can be uniquely described by the composition of activations in each channel. Here, by activation we mean the value that each channel has. We see that most of the channels have quite different average values and so can be distinguished in that way.\\
 However, what is highly interesting to highlight here is that although the magnitude of the values might differ quite significantly, their signs match most of the time.
 
@@ -425,17 +422,17 @@ However, what is highly interesting to highlight here is that although the magni
 \begin{center}
    \begin{minipage}[b]{\linewidth}
       \includegraphics[width=\linewidth]{convolutional_AE_latent_0}
-      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $0, 1, 2, 3$ and  $4$. The average has been taken over $5.000$ different images of the same digit.
+      This figure illustrates the average activation value of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $0, 1, 2, 3$ and  $4$. The average has been taken over $5.000$ different images of the same digit.
 	\end{minipage}
    \begin{minipage}[b]{\linewidth}
       \includegraphics[width=\linewidth]{convolutional_AE_latent_1}
-      This figure illustrates the average activations of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $5, 6, 7, 8$ and $9$. The average has been taken over $5.000$ different images of the same digit.
+      This figure illustrates the average activation value of each of the $64$ channels in the latent space of the convolutional autoencoder for the digits $5, 6, 7, 8$ and $9$. The average has been taken over $5.000$ different images of the same digit.
 	\end{minipage}
 \end{center}
 \caption{The figure illustrates the activations of all $64$ channels in the latent space of our trained convolutional autoencoder, which was optimized with an AMSGrad optimizer, see Algorithm \ref{alg:convolutional_AE}.}\label{fig:convolutional_AE_latent}
 \end{figure}
 
-Another interesting result that we want to highlight here is the inference of the convolutional autoencoder, which is displayed in Figure \ref{fig:convolutional_AE_inference}. All reconstructions are sharp enough to be recognised as their original digit, which is a huge improvement compared to the inference of the linear autoencoder, see e.g. Figure \ref{fig:linear_AE_3d_adam_inference} or Figure \ref{fig:linear_AE_3d_amsgrad_inference}.
+Another interesting result that we want to highlight here is the quality of the reconstructions produced by the convolutional autoencoder, which we illustrate in Figure \ref{fig:convolutional_AE_inference}. We depict them analogously to the linear autoencoder, where we take ten images for each of the ten digits (shown on the left side) and feed them into the convolutional autoencoder. The autoencoder then generates a reconstruction for each of the 100 images (shown on the right side). Every single reconstructions is sharp enough to be recognised as their original digit, which is a huge improvement compared to the reconstructions of the linear autoencoder, see e.g. Figure \ref{fig:linear_AE_3d_adam_inference} or Figure \ref{fig:linear_AE_3d_amsgrad_inference}. This result clearly shows the fact that convolutional neural networks perform much better than linear neural networks, which is a well known fact in the realm of Machine Learning.
 
 
 \begin{figure}
@@ -446,7 +443,7 @@ Another interesting result that we want to highlight here is the inference of th
 \end{figure}
 
 
-Lastly, we want to take a quick look at the training progress of the convolutional autoencoder, see Figure \ref{fig:convolutional_AE_training_progress}.
+Lastly, we want to take a quick look at the training progress of the convolutional autoencoder, see Figure \ref{fig:convolutional_AE_training_progress}. We highlight that compared to the training progress of the linear autoencoder, see e.g. Figure \ref{fig:linear_AE_2d_amsgrad_training_progress}, the training loss is much smaller. The convolutional autoencoder achieves a training loss of roughly $0.003$ after $10.000$ epochs, where the linear autoencoder reaches a training loss of roughly $0.038$ after the same amount of epochs. Therefore, the convolutional autoencoder performs better by magnitudes. Another fact that is worth to mention is that the training progress of the convolutional autoencoder is much smoother than the training progress of the linear autoencoders. This we can see in the right charts of the Figure \ref{fig:convolutional_AE_training_progress} and e.g. Figure \ref{fig:linear_AE_2d_adam_training_progress}, respectively. The training loss of the convolutional autoencoder oscillates far less than the training loss of the linear autoencoder.
 
 \begin{figure}
 \begin{center}

@@ -2,12 +2,12 @@
 \contentsline {chapter}{\numberline {1}Preliminary}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Probability and Statistics}{2}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Neural networks}{7}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Training of neural networks}{9}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Neural networks in computer vision}{39}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Autoencoders}{44}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Conceptional ideas}{44}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Training of autoencoders}{49}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Applications}{50}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Variational Autoencoders}{63}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Probabilistic foundations}{63}{section.3.1}%
-\contentsline {chapter}{References}{66}{theorem.3.1.10}%
+\contentsline {section}{\numberline {1.3}Training of neural networks}{10}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Neural networks in computer vision}{40}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Autoencoders}{45}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Conceptional ideas}{45}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Training of autoencoders}{50}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Applications}{51}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Variational Autoencoders}{65}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Probabilistic foundations}{65}{section.3.1}%
+\contentsline {chapter}{References}{68}{theorem.3.1.10}%

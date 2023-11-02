@@ -2,42 +2,99 @@
 In order to comprehend the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of concepts of probability theory and statistics, statistical learning theory, neural networks and their optimization - often referred to as training of neural networks. In this chapter, we will begin with fundamental definitions we need for the statistical learning setting and afterwards tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a handful of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images. This discipline of machine learning is usually referred to as computer vision.
 
 
-\section{Probability and Statistics}
+\section{Probability and Statistics}\label{sec:preliminary_prob}
 
-A fundamental topic for this thesis is probability theory and statistics. Especially in Chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
-We want to begin by introducing the basic quantities in probability theory, merely to define a notation throughout the thesis.
+A fundamental topic for this thesis is measure and probability theory and statistics. Especially in Chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
+We want to begin by introducing the basic quantities in measure and probability theory, merely to define a notation throughout the thesis. The first quantity we want to introduce is the density function, where we strongly orient ourselves on \cite[Chapter~2, Chapter~3]{meintrup2006stochastik}. Furthermore, we want to use the notation the authors used in the same reference. Hence, let $(\O, \A, \m)$ be a measure space. Then we denote $M$ as the set of all measurable numeric functions $f:\O\to \bar{\R}$ and moreover, $M^{+}$ denotes the set of all non-negative functions in $M$. With these definitions we can introduce a density function with regard to a measure.
 
-
-\begin{definition}\label{def:pdf}
-Let $(\O, \A, \prob)$ be a \textbf{probability space} and $(\mathcal{X}, \A)$ be a \textbf{measurable space}. Furthermore, let $X$ be a \textbf{random variable} defined over $\mathcal{X}$. Then we define the measurable function $p:(\O,\A) \to (\mathcal{X}, \A)$ that satisfies
+\begin{definition}\label{def:density}
+Let $(\O, \A, \m)$ be a measure space and $f\in M^{+}$. Then we define
 \begin{align*}
-&\int_{\O} p^+ d\prob< \infty &\text{or} &\int_{\O} p^- d\prob < \infty,
+f \odot \mu: \A &\to \bar{\R},\\
+(f \odot \mu) (A) &\coloneqq \int_{A}fd\m,
 \end{align*}
-where $p^+ = \max \{p, 0\}$ and $p^- = - \min\{p, 0\}$ describe the positive and negative part of $p$, as \textbf{probability density function} of $\prob$.\\
-Moreover, let $\T$ be a \textbf{parameter space}. We will denote the probability density function as $p(x; \t)$, where $\t$ describes the parameters of the probability distribution of $X$.
+as the \textbf{measure with density $f$ (with regard to $\m$)}. The function $f:\O \to \bar{R}_{+}$ is called \textbf{density} of the measure $f\odot \m$.
 \end{definition}
 
-Here we should note, that we want to consider the defining parameters of a probability distribution in the arguments of the underlying probability density function. This means that for example for a normally distributed random variable $X$ with mean $\m$ and variance $\s^2$ we would denote its probability density function as $p(x;\m,\s^2)$.\\
-Another important quantity we need to consider beforehand is the joint distribution, as well as marginal distributions.
+A very important question we need to clarify at this point, is when such a density function as we defined in Definition \ref{def:density} actually exists. In order to address this, we need to introduce a property which in a sense compares two measures on their null sets. This property is called absolute continuity, which we introduce in the following.
 
-\begin{definition}\label{def:joint_pdf}
-Let $(\O, \A, \prob)$ be a probability space and $(\mathcal{X}, \A)$, $(\mathcal{Y}, \A)$ be measurable spaces. Furthermore, let $X$ and $Y$ be random variables defined on $\mathcal{X}$ and $\mathcal{Y}$, respectively. Then the distribution $p(x,y) $of the random variable $(X, Y)$ defined on $\mathcal{X} \times \mathcal{Y}$ is called the \textbf{joint probability distribution}.
+\begin{definition}\label{def:abs_cont}
+Let $\m$, $\n$ be two measures on $(\O, \A)$. We call $\n$ \textbf{absolute continuous with regard to $\m$}, if
+\begin{align*}
+\m(A) \quad \Longrightarrow \quad \n(A),
+\end{align*}
+holds for all $A\in\A$. We will denote this as $\n \ll \m$.
 \end{definition}
 
-By marginalizing over one of both random variables we receive the marginal distribution.
+With the Definition \ref{def:abs_cont} we can introduce a theorem from the measure theory, which is well-known as the Radon-Nikodym Theorem. Since this result is fundamental, we omit the proof at this point and instead kindly refer to e.g. \cite[Theorem~2.38]{meintrup2006stochastik}.
+
+\begin{theorem}\label{theoreom:radon-nikodym}
+Let $(\O, \A, \m)$ be a measure space with a $\s$-finite measure $\m$. Furthermore, let $\n$ be another measure on $(\O, \A)$. Then the following assertions are equivalent:
+\begin{enumerate}
+\item[(i)] $\n \ll \m$.
+\item[(ii)] There exists a density $f\in M^{+}$, such that $\n = f \odot \m$.
+\end{enumerate}
+\end{theorem}
+
+The next consideration we want to do, is to remember that probability measures are special cases of ordinary measures. These we want to introduce formally now.
+
+\begin{definition}\label{def:prob_measure}
+Let $(\O, \A, \prob)$ be a measure space. If $\prob(\O) = 1$ holds, then we call $\prob$ a \textbf{probability measure} and $(\O, \A, \prob)$ a \textbf{probability space}.
+\end{definition}
+
+With the help of probability measures, which we introduced in Definition \ref{def:prob_measure}, we can introduce the probability distribution. We will introduce it directly for a probability measure on $\R$. We will denote $\B$ as the Borelian $\s$-algebra on $\R$, see e.g. \cite[Definition~1.13]{meintrup2006stochastik}.
+
+\begin{definition}\label{def:prob_distr_1}
+Let $(\R, \B, \prob)$ be a probability space. Then we call the function defined as
+\begin{align*}
+F_{\prob}: \R &\to [0,1 ],\\
+x &\mapsto F_{\prob} (x) \coloneqq \prob \left((-\infty, x )\right),
+\end{align*}
+the \textbf{distribution function of $\prob$}. We will write shortly \textbf{distribution of $\prob$}
+\end{definition}
+
+If we consider the properties of the distribution of a probability measure, we realise that it is a monotonously increasing function. Moreover, we realise that it is continuous on its right side. Lastly, the distribution asymptotically converges to $0$ for $x\to-\infty$ and to $1$ for $x\to\infty$. These properties allow us to introduce distributions as functions, which fulfil exactly these, which we will see in the following definition.
+
+\begin{definition}\label{def:prob_distr_2}
+Let $F:\R \to \R$ be a monotonously increasing function that is continuous on its right side. If for the function $F$ holds
+\begin{align*}
+\lim_{x\to -\infty} F(x) = 0 \quad \text{and} \quad \lim_{x\to \infty} F(x) = 1,
+\end{align*}
+then we call $F$ a \textbf{distribution function}.
+\end{definition}
+
+The next quantity we need to introduce are random variables. Conceptionally, random variables are functions, which filter the essential information from a random experiment (e.g. rolling dices or drawing cards) and allow us to formulate this condensed problem mathematically correct. Lastly, we can introduce the distribution of such a random variable as the image measure of the probability measure with regard to the random variable, see e.g. \cite[Definition~1.42]{meintrup2006stochastik} for more details.
+
+\begin{definition}\label{def:rv}
+Let $(\O_1, \A_1, \prob)$ be a probability space and $(\O_2, \A_2)$ be a measure space. A function $X: \O_1 \to \O_2$ that is $\A_1-\A_2$-measurable is defined as a \textbf{random variable}.\\
+Moreover, if we consider $\O_2= \R^n$ with $n=1,2,\ldots$, we refer to $X$ as an \textbf{$n$-dimensional real-valued random variable}. If $\O_2 = \bar{R}$, we refer to $X$ as a \textbf{numerical random variable}.\\
+Lastly, we call the image measure $\prob_X$ the distribution of $X$.
+\end{definition}
+
+Lastly, we need to consider how the distribution of a random variable looks like, if the random variable is not one dimensional. This we want to consider in the following definition.
 
 \begin{definition}
-Let $(\O, \A, \prob)$ be a probability space, $(\mathcal{X}, \A)$, $(\mathcal{Y}, \A)$ be measurable spaces and $X$, $Y$ random variables defined on the corresponding measurable spaces. Then we define the \textbf{marginal probability distribution of $X$} as
+Let $(\R^{n}, \B^{n}, \prob)$ be a probability space. Furthermore, let $X = (X_1, \ldots, X_n)$ be a $n$-dimensional real-valued random variable. Then we call the function
 \begin{align*}
-p(x) = \int p(x,z) dz,
+F: \R^{n}  &\to [0, 1],\\
+x = (x_1, \ldots, x_n) &\mapsto \prob(X \leq x) \coloneqq \prob(X_1, \leq x_1, \ldots X_n \leq x_n),
 \end{align*}
-as well as the \textbf{marginal probability distribution of $Y$} as
-\begin{align*}
-p(y) = \int p(y,z) dz.
-\end{align*}
+the \textbf{distribution of $X$}.
 \end{definition}
 
-Another important quantity is the conditional probability. Since if there is partial information on the outcome of a random experiment, the probabilities for the possible events may change. Thus, we introduce this quantity analogous to \cite[Chapter~8]{klenke2013probability}.
+We introduced random variables to add a layer of abstraction to a given problem. Therefore, random variables model some kind of process, high-level speaking. One may now pose the question, what happens if we consider more than one random variable at the same time. For example, if we roll two dice we can model each of them as an own random variable. However, we want to capture this entire problem. In order to do so, we can consider the probability distributions of both random variables jointly. Therefore, we introduce the quantity known as the joint probability distribution in the following.
+
+\begin{definition}\label{def:joint_pdf}
+Let $(\R^{n}, \B^{n}, \prob)$ be a probability space. Furthermore, let $X = (X_1, \ldots, X_n)$ and $Y = (Y_1, \ldots, Y_n)$ be $n$-dimensional real-valued random variables with distributions $\prob_X$ and $\prob_Y$, respectively. Then we call the function
+\begin{align*}
+F: \R^{n} \times \R^{n} &\to [0, 1],\\
+(x, y)  &\mapsto \prob(X \leq x, Y \leq y),
+\end{align*}
+the \textbf{joint probability distribution} of $Z\coloneqq (X, Y)$.\\
+Moreover, we note that $\prob_Z = \prob_X \times \prob_Y$ holds.
+\end{definition}
+
+As well as considering multiple random variables at once, one might do exactly the opposite. What if one does already posses some part of information about the outcome of a probability experiment, e.g. if one rolls two dice but does already know the outcome of one, for whatever reason. This we can consider by marginalizing over one of both random variables, what gives us the marginal distribution. However, in order to formulate this idea of possessing some part of the information, we first need to introduce conditional probabilities. Since if there is partial information on the outcome of a random experiment, the probabilities for the possible events may change. Thus, we introduce this quantity analogous to \cite[Chapter~8]{klenke2013probability}.
 
 \begin{definition}\label{def:cond_prob}
 Let $(\O, \A, \prob)$ be a probability space and $A\in\A$. For any $B\in\A$ we define the \textbf{conditional probability of $B$ given $A$} by
@@ -52,6 +109,7 @@ Let $(\O, \A, \prob)$ be a probability space and $A\in\A$. For any $B\in\A$ we d
 
 At this point we should note, that the conditional probability, introduced in Definition \ref{def:cond_prob} is indeed a probability measure, see \cite[Theorem~8.4]{klenke2013probability}. Lastly, we want to introduce the famous Bayes' formula, see e.g \cite[Theorem~8.7]{klenke2013probability}. This will be fundamental for our Bayesian learning setting in Chapter \ref{chap:vae}.
 
+
 \begin{theorem}\label{theorem:bayes_rule}
 Let $(\O, \A, \prob)$ be a probability space and $I$ be a countable set. Furthermore, let $(B_i)_{i\in I}$ be a sequence of pairwise disjoint sets with $\prob (\bigcup_{i\in I} B_i) = 1$.\\
 Then for any $A\in\A$ with $\prob(A) > 0$ and any $k\in I$ holds
@@ -60,43 +118,16 @@ Then for any $A\in\A$ with $\prob(A) > 0$ and any $k\in I$ holds
 \end{align*}
 \end{theorem}
 
-Since we will be interested in modelling probability distributions to approximate observed data as well as possible, we now want to consider how to construct a family of distributions by tweaking the parameters of the probability distribution. One example of such a family are parametric models. These are families of distributions that can be indexed by a finite number of parameters.
+Having introduced the fundamental concept of conditional probabilities, we can now return to what we were actually considering and introduce marginal distributions in the following.
 
-\begin{definition}\label{def:parametric_model}
-Let $(\O, \A, \prob)$ be a probability space and $X$ a random variable defined over $\O$. Furthermore, let $\T$ be an arbitrary parameter space.\\
-Then we denote the \textbf{parametric model} as the family of distributions
+\begin{definition}
+Let $X$, $Y$ be $n$-dimensional real-valued random variables with distributions $\prob_X$ and $\prob_Y$, respectively. Furthermore, we define the random variable $Z = (X, Y)$ with probability distribution $\prob_Z$. Then we define the \textbf{marginal distribution of $X$ given $Y$} as
 \begin{align*}
-\mathcal{P}_{\T} = \left\{ p(x;\t): \t\in\T \right\}.
+\prob_X(x) \coloneqq \int_{y} \prob_{X|Y} (x | y) \prob_Y(y) dy = \E \left( \prob_{X|Y}(x|y) \right).
 \end{align*}
 \end{definition}
 
-\begin{example}\label{ex:parametric_model}
-Let's consider some elementary examples of parametric models.
-\begin{enumerate}
-\item Let $U\subset \N^2$ be a finite subset with tuples $(a,b) \in U$ and $X\sim\mathcal{U}(a, b)$ a uniformly distributed random variable. Then the parametric model of $X$ with regard to $U$ looks as follows
-\begin{align*}
-\mathcal{P}_U = \{p(x; a, b) : (a,b) \in U\},
-\end{align*}
-where for each probability density function $p(x;a,b)$ holds
-\begin{align*}
-p(x; a, b) =
-\begin{cases}
-1/(b-a), &\text{if } x\in [a, b],\\
-0, &\text{otherwise}.
-\end{cases}
-\end{align*}
-\item Let $N\subset \Q\times \Q_+$ be a finite subset with tuples $(\m,\s^2) \in N$ and $X\sim\mathcal{N}(\m, \s^2)$ a normally distributed random variable. Then the parametric model of $X$ with regard to $N$ looks as follows
-\begin{align*}
-\mathcal{P}_N = \{p(x; \m, \s^2) : (\m,\s^2) \in N\},
-\end{align*}
-where for each probability density function $p(x; \m, \s^2)$ holds
-\begin{align*}
-p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2}.
-\end{align*}
-\end{enumerate}
-\end{example}
-
-Another way to generate a family of distributions is to alter an underlying base probability density function, hence named standard probability density function. Possible alterations might be shifting or scaling (or both) the standard probability density function. Therefore, we cite a theorem from \cite[Theorem~2.1]{cinelli2021variational}, which proposes exactly such a construction.
+Since we will be interested in modelling probability distributions to approximate observed data as well as possible, we now want to consider how to construct a family of distributions by tweaking the parameters of the probability distribution. In particular, to generate a family of distributions we alter an underlying base probability density function, hence named standard probability density function. Possible alterations might be shifting or scaling (or both) the standard probability density function. Therefore, we cite a theorem from \cite[Theorem~2.1]{cinelli2021variational}, which proposes exactly such a construction.
 
 \begin{theorem}\label{theorem:pdf_gen}
 Let $p(x)$ be a probability density function and $\m\in\R$ and $\s > 0$ constants. Then the following functions are also probability density functions
@@ -105,8 +136,6 @@ g(x;\m,\s) = \frac{1}{\s} p\left( \frac{x - \m}{\s} \right).
 \end{align*}
 We refer to the parameters $\m$ as \textbf{location parameter} and $\s$ as \textbf{scale parameter}. Moreover, we call the family $\mathcal{P}_{\m,\s} = \{g(x;\m,\s):\m$ and $\s > 0\}$ a \textbf{location-scale family}.
 \end{theorem}
-
-Now, let's consider some examples of location-scale families. Moreover, we borrow two graphics from \cite{cinelli2021variational} that serve to illustrate the assertion from Theorem \ref{theorem:pdf_gen}. These graphics are shown in Figure \ref{fig:pdf_gen} and show the generation of a Gamma and a Gaussian distributed probability density function family, which we consider in Example \ref{ex:loc-scale_fam}.
 
 \begin{example}\label{ex:loc-scale_fam}
 The following examples are all location-scale families.
@@ -117,25 +146,10 @@ p(x;\a,\b) = \frac{\b^\a}{\Gamma(\a)}x^{\a-1} e^{-\b x}.
 \end{align*}
 \item Let $\m\in\R$ and $\s>0$ be constants. Then the Gaussian distribution $\mathcal{N}(\m,\s^2)$ is a location-scale family for both, the location parameter $\m$ and the scale parameter $\s$, respectively. This leads to
 \begin{align*}
-p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2},
+p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2}.
 \end{align*}
-similarly to Example \ref{ex:parametric_model}.
 \end{enumerate}
 \end{example}
-
-\begin{figure}
-\begin{center}
-   \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{gamma_family}
-		\caption*{\textbf{(a)}}
-	\end{minipage}
-	\begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[width=\linewidth]{gaussian_family}
-		\caption*{\textbf{(b)}}
-	\end{minipage}
-	\caption{Illustration of location-scale families for the Gamma distribution and the Gaussian distribution, respectively. In the parametrization of the the Gamma function with the rate parameter $\b$, the scale parameter as defined in Theorem \ref{theorem:pdf_gen} is actually $\s = 1/\b$. Note that as the scale $\s$ increases the distribution becomes less concentrated around the location parameter $\m$. In particular, $\lim_{\s\to\infty} p(x; \m,\s) = \d(x-\m)$. \textbf{(a)} Members of the same scale family of Gamma distributions with shape parameter $\a = 2.2$. \textbf{(b)} Members of the same location-scale family of Gaussian distributions.}\label{fig:pdf_gen}
-\end{center}
-\end{figure}
 
 
 Having introduced the basics of probability theory, we now want to consider the actual statistical learning setting that we find ourselves in. We introduce this setting inspired by \cite[Chapter~2]{steinwart2008support}. The fundamental idea is that we have some kind of data that represents reality. Our goal is to find a function that approximates the given data as accurately as possible. There are many ways to do so, but we will focus on one certain class of functions. These functions are called neural networks, which we will introduce is Section \ref{sec:nn}. However, before considering neural networks we have to introduce some quantities that we will need later on, first. These quantities are well-known in statistical learning theory and are called loss and risk function. The loss function is a function that measures the point-wise discrepancy between the prediction of a found approximative function to the actually true value. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.

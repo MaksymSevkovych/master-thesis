@@ -4,36 +4,29 @@ Differently from ordinary autoencoding neural networks that we already mentioned
 
 \section{Probabilistic foundations}
 
-Before diving into the depths of variational autoencoders, we want to begin by laying the essential probabilistic foundations. As already mentioned, in contrast to ordinary autoencoding neural networks which we discussed in chapter~\ref{chap:ae}
-variational autoencoding neural networks attempt to capture the entire probability distribution of $Y$. So the emerging question is how can we infer the probability distribution of $Y$, if we only have the observations $x$ given? We assume that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). This reason, since it is unknown or \textit{latent} to us, we will try to consider in more detail. In order to model this hidden cause, we introduce another random variable $Z$, a so called \textit{latent variable} and thus by marginalizing over $z$ obtain the joint distribution $p(x,z)$
+Before diving into the depths of variational autoencoders, we want to begin by laying the essential probabilistic foundations. As already mentioned, in contrast to ordinary autoencoding neural networks which we discussed in Chapter~\ref{chap:ae}
+variational autoencoding neural networks attempt to capture the entire probability distribution of $Y$. So the emerging question is how can we infer the probability distribution of $Y$, if we only have the observations $x$ given? We assume that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). This reason, since it is unknown or \textit{latent} to us, we will try to consider in more detail. In order to model this hidden cause, we introduce another random variable $Z$, a so called \textit{latent variable} and thus by marginalizing over $z$ obtain the joint distribution $\prob_{X, Z}$
 
 \begin{align}\label{eq:evidence}
-p(x) = \int p(x,z) dz = \int p(x|Z)p(z)dz.
+\prob_X(x) = \int_y \prob_{X,Z}(x,z) dz = \int \prob_{X|Z}(x|z)\prob_{Z}(z)dz = \E \left( \prob_{X|Z}(x|z) \right),
 \end{align}
 
+
+as we considered in Section \ref{sec:preliminary_prob}
 This probability distribution we now want to introduce formally, since it will be of crucial importance in this chapter. However, we first need to introduce the latent space and the observation space.
 
-\begin{definition}\label{def:spaces}
-Let $(\O, \A, \prob)$ be a probability space and let $\mathcal{X}$ as well as $\mathcal{Z}$ be measurable spaces. Furthermore, let $X$ be a random variable defined on $\mathcal{X}$ and $Z$ be a random variable defined on $\mathcal{Z}$, respectively.\\
-We will call $\mathcal{X}$ the \textbf{observation space}, $X$ the \textbf{observation random variable} as well as $\mathcal{Z}$ the \textbf{latent space} and $Z$ the \textbf{latent random variable} in the following.
+\begin{definition}\label{def:random_variables}
+Let $(\O, \A, \prob)$ be a probability space. Furthermore, let $X:\O\to\R$, $Z:\O\to\R$ be random variables, where the marginal probability distribution $\prob_X$ is known and the marginal probability distribution $\prob_Z$ is unknown.\\
+We will call $X$ the \textbf{observation random variable} and $Z$ the \textbf{latent random variable} in the following.
 \end{definition}
 
-Considering the marginal distributions of the joint distribution, we can introduce the model evidence and the model prior, where the first refers to the observable data and the second refers to our prior belief in what the latent space might look like.
+Considering the joint and marginal distributions, which are induced from the two distributions introduced in Definition \ref{def:random_variables}, we can define fundamental quantities as e.g. model evidence and model prior for the Bayesian Learning setting. These we want to introduce in the following proposition.
 
-\begin{definition}
-Let $(\O, \A, \prob)$ be a probability space and $X$, $Z$ be observation and latent random variables, respectively. Therefore, $p(x, z)$ describes the joint distribution of $X$ and $Z$. Then we call the marginal distribution
-\begin{align*}
-p(x) = \int p(x, z) dz = \int p(x|Z) p(z) dz,
-\end{align*}
-the \textbf{model evidence} (sometimes referred to as \textbf{marginal likelihood}).\\
-Moreover, we call the marginal distribution
-\begin{align*}
-p(z) = \int p(x,z)dx
-\end{align*}
-the \textbf{model prior}.
-\end{definition}
+\begin{proposition}
+Let $X$, $Y$ be observation and latent random variable, respectively. In the following, we will refer to the marginal probability $\prob_X$ of $X$ as \textbf{model evidence} and to the marginal probability $\prob_Z$ of $Z$ as \textbf{model prior}.
+\end{proposition}
 
-However, since our ultimate goal is to find a probability distribution that describes our observations as good as possible, we need to somehow define an update rule, how we want to adapt our current model of the latent space with respect to newly observed data. In order to do this, we need to introduce two more quantities. The first one is the so called likelihood. Conceptionally, it is like a probability density function, where we fix the observation and let the parameter be a variable. The second quantity is called the posterior - as the name already suggests, this describes our understanding of the latent space after considering newly observed data.
+Since our ultimate goal is to find a probability distribution that describes our observations as good as possible, we need to somehow define an update rule, how we want to adapt our current model of the latent space with respect to newly observed data. In order to do this, we need to introduce two more quantities. The first one is the so called likelihood. Conceptionally, it is like a probability density function, where we fix the observation and let the parameter be a variable. The second quantity is called the posterior - as the name already suggests, this describes our understanding of the latent space after considering newly observed data.
 
 \begin{definition}\label{def:likelihood}
 Let $(\O,\A, \prob)$ be a probability space, $(\mathcal{X}, \A)$ be a measurable space on which we define a random variable $X$ and let $\T$ be a parameter space. Furthermore, let $X$ have a probability distribution with parameters $\t\in\T$. Hence, we describe the probability density function of $X$ as $p(x;\t)$.\\
