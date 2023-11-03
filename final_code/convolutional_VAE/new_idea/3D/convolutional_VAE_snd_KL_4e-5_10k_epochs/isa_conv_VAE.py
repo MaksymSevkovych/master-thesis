@@ -16,8 +16,8 @@ LATENT_DIMS = 3
 NUM_EPOCHS = 10000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
-BATCH_SIZE = 25000
-KL_COEFF = 0.001
+BATCH_SIZE = 256 * 4
+KL_COEFF = 4e-5
 PERSISTENT_WORKERS = True
 strategy = DDPStrategy()
 
@@ -187,24 +187,34 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         for label in y:
             if label == 0:
                 positions.append([-2.0, 0.0, 0.0])
+                continue
             elif label == 1:
                 positions.append([-2.0, -2.0, -2.0])
+                continue
             elif label == 2:
                 positions.append([2.0, 2.0, 2.0])
+                continue
             elif label == 3:
                 positions.append([-2.0, -2.0, 2.0])
+                continue
             elif label == 4:
                 positions.append([-2.0, 2.0, -2.0])
+                continue
             elif label == 5:
                 positions.append([2.0, -2.0, -2.0])
+                continue
             elif label == 6:
                 positions.append([-2.0, 2.0, 2.0])
+                continue
             elif label == 7:
                 positions.append([2.0, -2.0, 2.0])
+                continue
             elif label == 8:
                 positions.append([2.0, 2.0, -2.0])
+                continue
             elif label == 9:
                 positions.append([2.0, 0.0, 0.0])
+                continue
 
         return torch.tensor(positions)
 
