@@ -678,7 +678,7 @@ Combining the computed gradients gives us the desired gradient of the loss funct
 \end{align*}
 Lastly, we remember that the gradient of the empirical risk function is the mean of gradients of the loss function. Hence, the gradient of the empirical risk function with reard to the parameters of the neural network looks like
 \begin{align*}
-\risk_{\loss, D} (f_{\t}) = \frac{2}{d} \sum_{(x, y)\in D} \left[\begin{matrix}
+\nabla_{\t}\risk_{\loss, D} (f_{\t}) = \frac{2}{d} \sum_{(x, y)\in D} \left[\begin{matrix}
 x (f_{\t}(x) - y)\\
 x (f_{\t}(x) - y) w_1\\
 \vdots\\
@@ -897,11 +897,11 @@ Furthermore, we remember that we essentially are interested in the setting, wher
 \begin{align*}
 \risk_{\loss,B}(f_{\t}) = \int_{B}\loss(\o, f_{\t}(x)) d\o \eqqcolon \int_{B}\loss(\o,\t) d\o \eqqcolon \risk_{\loss,B}(\t).
 \end{align*}
-Our goal is to find a minimum of $\t \mapsto\risk_{\loss,B} (\t)$. We approach this problem the same way as we approached the gradient descent algorithm, where we iteratively update the parameters $\t$ to minimize the risk. Therefore, we define the update rule as follows. Lets assume we already found the $k$-th iterate $\t^{(k)}$. Now we randomly choose a sample $\o_k$ and compute its loss with regard to the current parameters $\t^{(k)}$. Afterwards, we compute the gradient of the empirical risk in the sample $\o_k$ and update the parameters. This looks like
+Our goal is to find a minimum of $\t \mapsto\risk_{\loss,B} (\t)$. We approach this problem the same way as we approached the gradient descent algorithm, where we iteratively update the parameters $\t$ to minimize the risk. Therefore, we define the update rule as follows. Lets assume we already found the $n$-th iterate $\t^{(n)}$. Now we randomly choose a sample $\o_n$ and compute its loss with regard to the current parameters $\t^{(n)}$. Afterwards, we compute the gradient of the empirical risk in the sample $\o_n$ and update the parameters. This looks like
 \begin{align}\label{eq:sgd}
-\t^{(k+1)} = \t^{(k)} -\g_k \nabla_{\t} \loss(\o_k,\t^{(k)}).
+\t^{(n+1)} = \t^{(n)} -\g_n \nabla_{\t} \loss(\o_n,\t^{(n)}).
 \end{align}
-This way we define a sequence of parameters $(\t^{(k)})$, which we will show to converge to some $\t^{\ast}$ that minimizes the empirical risk $\risk_{\loss,B}(\t)$, at least under some assumptions we want to consider first.
+This way we define a sequence of parameters $(\t^{(n)})$, which we will show to converge to some $\t^{\ast}$ that minimizes the empirical risk $\risk_{\loss,B}(\t)$, at least under some assumptions we want to consider first.
 \begin{assumption}\label{ass:sgd}
 We assume that the risk function $\risk_{\loss,\o}$ meets the following conditions.
 \begin{enumerate}
@@ -921,23 +921,14 @@ At this point we should note that the second assumption is quite restrictive and
 Having explored nuances of the made assumptions, we now return to the central focus, which is the convergence of the stochastic gradient descent algorithm.
 
 \begin{theorem}\label{theorem:sgd}
-Let $(\O, \A, \prob)$ be a probability space, $X$ and $Y$ be input and output spaces and $\T$ be a parameter space. Furthermore, let $\loss$ denote a supervised loss function and let the corresponding empirical risk $\risk_{\loss, \o}$ be continuously differentiable in every $\o\in X\times Y$.\\
+Let $(\O, \A, \prob)$ be a probability space, $X$ be an input space and $Y\subseteq \R$ be a label space and let $\T$ be a parameter space. Furthermore, let $\loss$ denote a supervised loss function and let the corresponding empirical risk $\risk_{\loss, \o}$ be continuously differentiable in every $\o\in X\times Y$.\\
 Then the stochastic gradient descent algorithm with update rule \eqref{eq:sgd} and posed Assumption \ref{ass:sgd} satisfies the following assertions:
 \begin{enumerate}
 \item \label{ass1} The empirical risk function $\risk_{\loss, \o}$ has a unique minimum at $\t^{\ast}\in\T$.
-\item \label{ass2}For any $n\geq 0$ denote $d_n$ as
+\item \label{ass2}For any $n\geq 0$ denote $\t^{(n)}\coloneqq \t^{(n)} (\o_1,\ldots,\o_{n-1})$, since it depends on the choices of $\o_1,\ldots, \o_{n-1}$. Furthermore, we denote $d_n$ as
 \begin{align}\label{eq:dist}
-d_n = \E \left( \left\| \t^{(n)} - \t^{\ast} \right\|^2 \right).
+d_n = \E \left( \left\| \t^{(n)} - \t^{\ast} \right\|^2 \right) \coloneqq \int_{(X\times Y)^{n-1}} \left\| \t^{(n)} - \t^{\ast} \right\|^2d\o_1\ldots d\o_{n-1}.
 \end{align}
-\textcolor{red}{Since the expectation is defined (by Turinici) as
-\begin{align*}
-\risk(X) = \E_{\o} \left[ \loss(\o, X) \right],
-\end{align*}
-the expectation of \eqref{eq:dist} may be meant as
-\begin{align*}
-\E_{\o} \left[ \left\| \t^{(n)} - \t^{\ast} \right\|^2 \right] = \E_{\o} \left[ \loss(\o, ) \right]
-\end{align*}
-}
 Then for $d_{n+1}$ holds
 \begin{align}\label{eq:dist_rec}
 d_{n+1} \leq (1 - \g_n\m)d_n + \g_n^2B.
@@ -958,8 +949,8 @@ then $d_n\to 0$, that is $\lim_{n\to\infty}\t^{(n)} = \t^{\ast}$, where the conv
 \textit{Assertion~\ref{ass1}}: The existence of a minimum follows from the continuity and lower boundedness of $\risk_{\loss, \o}$. The uniqueness follows from the strong convexity of $\risk_{\loss, \o}$.\\
 \textit{Assertion~\ref{ass2}}: It holds that
 \begin{align}\label{eq:item2}
-&d_{n+1} = \E\left( \left\| \t^{(n+1)} - \t^{\ast} \right\|^2 \right) = \E\left( \left\| \t^{(n)} - \t^{\ast} - \g_n \nabla_{\t} \loss(\o_n, \t^{(n)}) \right\|^2 \right)\nonumber\\
-&\quad= \E\left( \left\| \t^{(n)} - \t^{\ast}\right\|^2 \right) - 2\g_n\E\left(\left\langle \t^{(n)}- \t^{\ast}, \nabla_{\t}\loss(\o_n, \t^{(n)}) \right\rangle\right) + \E \left( \g_n^2 \left\| \nabla_{\t} \loss(\o_n, \t^{(n)}) \right\|^2 \right).
+d_{n+1} &= \E\left( \left\| \t^{(n+1)} - \t^{\ast} \right\|^2 \right) = \E\left( \left\| \t^{(n)} - \t^{\ast} - \g_n \nabla_{\t} \loss(\o_n, \t^{(n)}) \right\|^2 \right)\nonumber\\
+&= \E\left( \left\| \t^{(n)} - \t^{\ast}\right\|^2 \right) - 2\g_n\E\left(\left\langle \t^{(n)}- \t^{\ast}, \nabla_{\t}\loss(\o_n, \t^{(n)}) \right\rangle\right) + \E \left( \g_n^2 \left\| \nabla_{\t} \loss(\o_n, \t^{(n)}) \right\|^2 \right).
 \end{align}
 First, we consider that
 \begin{align*}
@@ -1345,7 +1336,7 @@ The next step is a common approach in bounding the regret, where we will use the
 \begin{align*}
 \sum_{t=1}^T \risk_{\loss, D}(f_t(\t_t)) - \risk_{\loss, D}(f_t(\t^{\ast}))\leq \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle,
 \end{align*}
-which we can do, since we consider the risk $\risk_{\loss, D}(f_t)$ function in the parameters $\t_t$. \textcolor{red}{Cite the subdifferential inequality (?) at this point!!}\\
+which we can do, since we consider the gradient of the risk $\risk_{\loss, D}(f_t)$ function with regard to the parameters $\t_t$. The inequality ultimately follows from the definition of the weak subgradient, see e.g. \cite[Remark~16.11.]{jahn2009vector}.\\
 This we can further bound by the previously considered inequality \eqref{eq:1.9}.
 \begin{align*}
 \sum_{t=1}^T \left\langle g_t, \t_t - \t^{\ast} \right\rangle &\leq\sum_{t=1}^T \Biggl[ \frac{1}{2\a_t\left(1-\b_{1t}\right)} \left[\left\| \hat{V}_t^{1/4} \left( \t_t - \t^{\ast} \right) \right\|^2 - \left\| \hat{V}_t^{1/4}\left(\t_{t+1} - \t^{\ast} \right) \right\|^2 \right] \\

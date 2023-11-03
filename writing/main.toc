@@ -10,4 +10,6 @@
 \contentsline {section}{\numberline {2.3}Applications}{51}{section.2.3}%
 \contentsline {chapter}{\numberline {3}Variational Autoencoders}{65}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Probabilistic foundations}{65}{section.3.1}%
-\contentsline {chapter}{References}{68}{theorem.3.1.10}%
+\contentsline {section}{\numberline {3.2}Training of Variational Autoencoders}{68}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Applications}{68}{section.3.3}%
+\contentsline {chapter}{References}{69}{section.3.3}%

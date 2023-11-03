@@ -1,51 +1,41 @@
 \chapter{Variational Autoencoders}\label{chap:vae}
 
-Differently from ordinary autoencoding neural networks that we already mentioned to be discriminative models, variational autoencoding neural networks on the other hand are so called generative models, see \cite[Chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
+Variational autoencodering neural networks, first introduced by Kingma and Welling in the year 2013, see \cite{kingma2013auto}, differently to ordinary autoencoding neural networks that we already mentioned to be discriminative models, are so called generative models, see \cite[Chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
 
 \section{Probabilistic foundations}
 
-Before diving into the depths of variational autoencoders, we want to begin by laying the essential probabilistic foundations. As already mentioned, in contrast to ordinary autoencoding neural networks which we discussed in Chapter~\ref{chap:ae}
-variational autoencoding neural networks attempt to capture the entire probability distribution of $Y$. So the emerging question is how can we infer the probability distribution of $Y$, if we only have the observations $x$ given? We assume that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). This reason, since it is unknown or \textit{latent} to us, we will try to consider in more detail. In order to model this hidden cause, we introduce another random variable $Z$, a so called \textit{latent variable} and thus by marginalizing over $z$ obtain the joint distribution $\prob_{X, Z}$
-
+Before diving into the depths of variational autoencoders, we want to begin by laying the essential probabilistic foundations. We already introduced the Bayes formula in Theorem~\ref{theorem:bayes_rule}. This will be the fundamental idea in this chapter, since this idea lead to an entire optimization ecosystem. The conceptional idea of this ecosystem is to iteratively update ones belief of the knowledge one possesses about the data. This means that one first assumes some kind of knowledge about the data, e.g. a probability distribution. Then by considering a sample (or a batch of samples) of the data, update the assumed probability distribution. Upon repeating this process, one iteratively updates the knowledge about the data until it is adapted to the data. This optimization setting is commonly known as Variational Bayes or Variational Inference. There are some fundamental quantities such as evidence which as the name suggests, describes the observations that we can witness; prior, which describes our belief about the data before considering new data; likelihood, which conceptionally describes how well our current belief describes the data and lastly, the posterior which as the name suggests as well, describes our belief about the data after considering the newly observed evidence. These quantities we will now introduce formally.\\
+As already mentioned, in contrast to ordinary autoencoding neural networks which we discussed in Chapter~\ref{chap:ae} variational autoencoding neural networks attempt to capture the entire probability distribution of $Y$. So the emerging question is how can we infer the probability distribution of $Y$, if we only have the observations $x$ given? We assume that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). This reason, since it is unknown or \textit{latent} to us, we will try to consider in more detail. In order to model this hidden cause, we introduce another random variable $Z$, a so called \textit{latent variable} and thus by marginalizing over the joint distribution $\prob_{X, Z}$ of $X$ and $Z$ obtain the marginal distribution
 \begin{align}\label{eq:evidence}
-\prob_X(x) = \int_y \prob_{X,Z}(x,z) dz = \int \prob_{X|Z}(x|z)\prob_{Z}(z)dz = \E \left( \prob_{X|Z}(x|z) \right),
+\prob_X(x) = \int \prob_{X,Z}(x,z) dz = \int \prob_{X|Z}(x|z)\prob_{Z}(z)dz = \E_Z \left( \prob_{X|Z}(x|z) \right),
 \end{align}
+as we considered in Section \ref{sec:preliminary_prob}. At this point, we want to note that in the Bayesian setting one commonly does not distinguish between latent variables and model parameters, as they are all random variables, whose values we wish to infer.\\
+The probability distribution from equation \eqref{eq:evidence} we now want to introduce formally, since it will be of crucial importance in this chapter. However, we first need to introduce the latent variables and the observation variables, which we will do in the following definition.
 
-
-as we considered in Section \ref{sec:preliminary_prob}
-This probability distribution we now want to introduce formally, since it will be of crucial importance in this chapter. However, we first need to introduce the latent space and the observation space.
-
-\begin{definition}\label{def:random_variables}
-Let $(\O, \A, \prob)$ be a probability space. Furthermore, let $X:\O\to\R$, $Z:\O\to\R$ be random variables, where the marginal probability distribution $\prob_X$ is known and the marginal probability distribution $\prob_Z$ is unknown.\\
-We will call $X$ the \textbf{observation random variable} and $Z$ the \textbf{latent random variable} in the following.
+\begin{definition}\label{def:evidence_and_prior}
+Let $(\O, \A, \prob)$ be a probability space. Furthermore, let $X:\O\to\R$, $Z:\O\to\R$ be random variables with joint probability distribution $\prob_{X, Z}$. Then we call $X$ the \textbf{observation random variable} and its marginal probability distribution $\prob_X$ the \textbf{evidence}, as well as $Z$ the \textbf{latent random variable} and its marginal probability distribution $\prob_Z$ \textbf{prior}.
 \end{definition}
 
-Considering the joint and marginal distributions, which are induced from the two distributions introduced in Definition \ref{def:random_variables}, we can define fundamental quantities as e.g. model evidence and model prior for the Bayesian Learning setting. These we want to introduce in the following proposition.
-
-\begin{proposition}
-Let $X$, $Y$ be observation and latent random variable, respectively. In the following, we will refer to the marginal probability $\prob_X$ of $X$ as \textbf{model evidence} and to the marginal probability $\prob_Z$ of $Z$ as \textbf{model prior}.
-\end{proposition}
-
-Since our ultimate goal is to find a probability distribution that describes our observations as good as possible, we need to somehow define an update rule, how we want to adapt our current model of the latent space with respect to newly observed data. In order to do this, we need to introduce two more quantities. The first one is the so called likelihood. Conceptionally, it is like a probability density function, where we fix the observation and let the parameter be a variable. The second quantity is called the posterior - as the name already suggests, this describes our understanding of the latent space after considering newly observed data.
+In Definition \ref{def:evidence_and_prior} we introduced the evidence, which describes the probability distribution of our observable data. Moreover, we introduced in the same definition the prior, which describes the probability distribution of the latent variables, e.g. the model parameters. With these definitions we can introduce the likelihood.
 
 \begin{definition}\label{def:likelihood}
-Let $(\O,\A, \prob)$ be a probability space, $(\mathcal{X}, \A)$ be a measurable space on which we define a random variable $X$ and let $\T$ be a parameter space. Furthermore, let $X$ have a probability distribution with parameters $\t\in\T$. Hence, we describe the probability density function of $X$ as $p(x;\t)$.\\
-Then we define the \textbf{likelihood function} as
+Let $(\O,\A, \prob)$ be a probability space, $\T$ be a parameter space and let $X$ be a observation random variable with known evidence $\prob_X$ and $Z$ be a latent random variable with prior $\prob_Z$. Then we define the \textbf{likelihood} as the conditional probability $\prob(X|Z)$.\\
+Moreover, lets assume that the evidence $P_X$ has the probability density $p(x;\t)$, where $\t\in \T$ denotes the parameters of the probability distribution. Then the likelihood can be expressed as the function in the parameters
 \begin{align*}
-L(\t | x) = p(x; \t),
+L(\t | x) = p(x;\t).
 \end{align*}
-where $x\in\O$ is fixed and $\t\in\T$ is variable.
 \end{definition}
+
+Since our ultimate goal is to find a probability distribution that describes our observations as good as possible, we need to define an update rule, how we want to adapt our current knowledge of the data with respect to newly observed samples. This update rule we already mentioned to be called posterior. It considers the new samples and corrects our current belief as follows.
 
 \begin{definition}\label{def:posterior}
-Let $(\O,\A, \prob)$ be a probability space, $(\mathcal{X}, \A)$ be a measurable space on which we define a random variable $X$ and let $\T$ be a parameter space. Furthermore, let $X$ have a probability distribution with parameters $\t\in\T$. Hence, we describe the probability density function of $X$ as $p(x;\t)$.\\
-Then we define the \textbf{model posterior} as $p(\t | X)$.
+Let $(\O,\A, \prob)$ be a probability space, $X$ be a observation random variable with known evidence $\prob_X$ and $Z$ be a latent random variable with prior $\prob_Z$. Then we define the \textbf{posterior} as the conditional probability $\prob(Z|X)$. This conditional probability can be expressed with the help of the Bayesian rule (Theorem~\ref{theorem:bayes_rule}) as
+\begin{align*}
+\prob(Z|X) = \frac{\prob(X|Z) \prob_Z(z)}{\prob_X(x)}.
+\end{align*}
 \end{definition}
 
-\begin{remark}
-Since it is common to make no distinction between random variables and parameters in a Bayesian approach, we can consider the model parameters $\t\in\T$ as part of the latent space. Hence, we can describe the likelihood function as $p(x|Z)$.\\
-Moreover, with the same argument we can consider the model posterior as $p(z|X)$.
-\end{remark}
+\textcolor{green}{The next step is to maximize the likelihood (Maximum Likelihood Estimator MLE) and then maximize the posterior (Maximum A Posteriori (MAP). This would conclude one iteration of the Bayesian learning setting (I guess??). BUT: what do we need ELBO for??}
 
 
 \textcolor{red}{FROM HERE ON THE TEXT IS NOT REWORKED YET}
@@ -104,3 +94,9 @@ Let $X$ be a random variable and $p, q$ probability density functions over $X$. 
 \end{align*}
 where $\H_q$ and $\H$ denote the cross-entropy and entropy, respectively.
 \end{remark}
+
+\section{Training of Variational Autoencoders}\label{sec:train_vae}
+
+\section{Applications}\label{sec:vae_applications}
+
+Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}. As discussed in Section~\ref{sec:train_vae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.

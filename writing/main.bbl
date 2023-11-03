@@ -12,6 +12,9 @@
 {\sc I.~Goodfellow, Y.~Bengio, and A.~Courville}, {\em Deep Learning}, MIT
   Press, 2016.
 
+\bibitem{jahn2009vector}
+{\sc J.~Jahn et~al.}, {\em Vector Optimization}, Springer, 2009.
+
 \bibitem{kantorovich2016functional}
 {\sc L.~V. Kantorovich and G.~P. Akilov}, {\em Functional Analysis}, Elsevier,
   2016.
@@ -19,6 +22,10 @@
 \bibitem{kingma2014adam}
 {\sc D.~P. Kingma and J.~Ba}, {\em Adam: A method for stochastic optimization},
   International Conference on Learning Representations,  (2014).
+
+\bibitem{kingma2013auto}
+{\sc D.~P. Kingma and M.~Welling}, {\em Auto-encoding variational bayes},
+  International Conference on Learning Representations,  (2013).
 
 \bibitem{klenke2013probability}
 {\sc A.~Klenke}, {\em Probability Theory: a Comprehensive Course}, Springer,
