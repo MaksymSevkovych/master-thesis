@@ -10,7 +10,7 @@ from visualise import inference_convolutional, plot_latent_3D_convolutional
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
 
-BASE_PATH = f"./final_code/convolutional_VAE/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"  # noqa: E501
+BASE_PATH = f"./final_code/convolutional_VAE/3D/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"  # noqa: E501
 BATCH_SIZE = 64
 LATENT_DIMS = 3
 NUM_BATCHES = 50

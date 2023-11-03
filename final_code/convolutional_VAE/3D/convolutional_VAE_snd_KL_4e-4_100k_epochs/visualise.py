@@ -242,51 +242,65 @@ def inference_convolutional(
     data_loader: DataLoader,
     amount: int,
 ) -> None:
-    generating_data = {}
-    for imgs, labels in data_loader:
-        for img, label in zip(imgs, labels):
-            if len(generating_data) == 10:
+    images = []
+    recons = []
+    for digit in range(10):
+        images_for_digit = []
+        reconstructions_for_digit = []
+        for imgs, labels in data_loader:
+            mu, log_var = model.encoder(imgs)
+            if len(reconstructions_for_digit) == 10:
                 break
+            for index, (img, label) in enumerate(zip(imgs, labels)):
+                if label != digit:
+                    continue
 
-            if label in generating_data:
-                continue
-
-            mu, log_var = model.encoder(img)
-
-            generating_data.update(
-                {
-                    label.item(): {
-                        "mu": mu.detach(),
-                        "log_var": log_var.detach(),
-                    }
-                }
-            )
-
-    generating_data_sorted = {
-        label: generating_data[label] for label in list(range(10))
-    }
-
+                images_for_digit.append(img)
+                reconstructions_for_digit.append(
+                    model.decoder(
+                        model.sample(mu[index].detach(), log_var[index].detach())[
+                            2
+                        ].unsqueeze(0)
+                    )
+                )
+                if len(reconstructions_for_digit) == 10:
+                    recons.append(reconstructions_for_digit)
+                    images.append(images_for_digit)
+                    break
     width = 28
+
+    fig = plt.figure(figsize=(14, 7))
+    fig.add_subplot(121)
     img = torch.zeros((amount * width, amount * width))
 
-    for i, params in generating_data_sorted.items():
-        mu, log_var = params.values()
-        samples = []
-        for _ in range(10):
-            _, _, sample = model.sample(mu, log_var)
-            samples.append(sample)
-        # samples = [model.sample(mu, log_var)[2] for _ in range(10)]
-        recons = [model.decoder(sample) for sample in samples]
-        recons = [recon.reshape(28, 28).to(DEVICE).detach() for recon in recons]
-        for j, recon in enumerate(recons):
+    for i, imgs in enumerate(images):
+        for j, image in enumerate(imgs):
             img[
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
-            ] = recon
-    # plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
+            ] = image
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img)
+
+    fig.add_subplot(122)
+    img = torch.zeros((amount * width, amount * width))
+
+    for i, recs in enumerate(recons):
+        for j, recon in enumerate(recs):
+            img[
+                (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
+                j * width : (j + 1) * width,
+            ] = recon.detach()
+    plt.xticks([])
+    plt.yticks([])
+
+    plt.imshow(img)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = (
+        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_inference.png"
+    )
+    plt.savefig(os.path.join(dir_path, file_name))
     plt.show()
 
 

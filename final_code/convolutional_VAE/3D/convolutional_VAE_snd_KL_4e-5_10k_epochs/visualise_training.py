@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-BASE_PATH = f"./final_code/convolutional_VAE/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"  # noqa: E501
+BASE_PATH = f"./final_code/convolutional_VAE/3D/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"  # noqa: E501
 CSV_PATH = "version_0/metrics.csv"
 IMG_NAME = f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_training_progress.png"  # noqa: E501
 
