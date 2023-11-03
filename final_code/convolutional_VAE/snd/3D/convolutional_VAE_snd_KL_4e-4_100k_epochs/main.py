@@ -10,7 +10,7 @@ from visualise import inference_convolutional, plot_latent_3D_convolutional
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
 
-BASE_PATH = f"./final_code/convolutional_VAE/3D/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"  # noqa: E501
+BASE_PATH = os.path.dirname(__file__)
 BATCH_SIZE = 64
 LATENT_DIMS = 3
 NUM_BATCHES = 50
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     file_path = os.path.join(
         BASE_PATH,
-        "version_0/checkpoints/epoch=999-step=2000.ckpt",
+        "version_0/checkpoints/epoch=99999-step=200000.ckpt",
     )
 
     model = ConvolutionalVariationalAutoencoder.load_from_checkpoint(
@@ -33,6 +33,5 @@ if __name__ == "__main__":
     )
 
     # plot
-
     plot_latent_3D_convolutional(model, data_loader, num_batches=NUM_BATCHES)
     inference_convolutional(model, data_loader, 10)
