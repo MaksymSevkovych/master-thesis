@@ -1,0 +1,159 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb, amsthm}
+\usepackage{amsfonts}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[figure]{hypcap}
+\usepackage[super]{nth}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{tikz-cd}
+\usepackage{fontenc}
+\usetikzlibrary{positioning,calc,spy}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+\usepackage{typearea}
+\usepackage[outer=2cm, inner=2cm, top=2cm, bottom=25mm,includehead]{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+\usepackage[clines, headsepline, plainfootsepline,automark]{scrlayer-scrpage}
+\usepackage{subfig}
+
+
+%\clearscrheadfoot
+\ofoot[scrplain-außen]{scrheadings-außen}
+\ihead[]{\headmark}
+\chead[]{}
+\ohead[]{}
+\ifoot[]{}
+\cfoot[\pagemark]{\pagemark}
+\ofoot[]{}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\X}{\mathbb{X}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\Q}{\mathbb{Q}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\D}{\mathcal{D}}
+\DeclareMathOperator{\A}{\mathcal{A}}
+\DeclareMathOperator{\B}{\mathcal{B}}
+\DeclareMathOperator{\F}{\mathcal{F}}
+\DeclareMathOperator{\f}{\varphi}
+\DeclareMathOperator{\T}{\Theta}
+\DeclareMathOperator{\g}{\gamma}
+\DeclareMathOperator{\s}{\sigma}
+\DeclareMathOperator{\n}{\nu}
+\DeclareMathOperator{\e}{\epsilon}
+\DeclareMathOperator{\m}{\mu}
+\DeclareMathOperator{\risk}{\mathcal{R}}
+\DeclareMathOperator{\loss}{\mathcal{L}}
+\DeclareMathOperator{\prob}{\text{P}}
+\DeclareMathOperator{\p}{\psi}
+\DeclareMathOperator{\MSE}{\loss_\text{MSE}}
+\DeclareMathOperator{\BCE}{\loss_\text{BCE}}
+\DeclareMathOperator{\pdmat}{\mathcal{S}^d_{+}}
+\DeclareMathOperator{\diag}{\text{diag}}
+\DeclarePairedDelimiterX{\kldiv}[2]{D_{\text{KL}}(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\renewcommand{\H}{\mathcal{H}}
+\renewcommand{\P}{\Psi}
+\renewcommand{\O}{\Omega}
+\renewcommand{\t}{\theta}
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\renewcommand{\d}{\delta}
+\renewcommand{\o}{\omega}
+\renewcommand{\hat}{\widehat}
+\renewcommand{\tilde}{\widetilde}
+\newcommand{\id}{\mathrm{id}}
+\newcommand*\wc{{}\cdot{}}
+\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{plain}
+\newcommand{\thistheoremname}{}
+\newtheorem{genericthm}[theorem]{\thistheoremname}
+\newenvironment{namedthm}[1]
+  {\renewcommand{\thistheoremname}{#1}%
+   \begin{genericthm}}
+  {\end{genericthm}}
+
+\newenvironment{mydescription}[1]
+  {\begin{list}{}%
+   {\renewcommand\makelabel[1]{##1:\hfill}%
+   \settowidth\labelwidth{\makelabel{#1}}%
+   \setlength\leftmargin{\labelwidth}
+   \addtolength\leftmargin{\labelsep}}}
+  {\end{list}}
+
+
+\title{On variational autoencoders: theory and applications}
+\date{November 22, 2023}
+\author{Maksym Sevkovych}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{1 cm}
+\begin{center}
+\LARGE{Master's thesis}
+
+\vspace{0.5 cm}
+
+\large{November 22, 2023}
+
+\vspace{0.5 cm}
+
+\Huge{\textbf{On variational autoencoders: theory and applications}}
+
+\vspace{0.5 cm}
+
+\Large{Maksym Sevkovych}
+
+\Large{Registration number: 3330007}
+
+\Large{In collaboration with: Duckeneers GmbH}
+\vspace{1 cm}
+
+\Large{Inspector: Univ.-Prof. Dr. Ingo Steinwart}
+\vspace{3cm}
+\end{center}
+Recently in the realm of machine learning, the power of generative models has revolutionized the way we perceive data representation and creation. This thesis focuses on the captivating domain of Variational Autoencoders (VAEs), a cutting-edge class of machine learning models that seamlessly combine unsupervised learning and data generation. In the course of this thesis we embark on an expedition through the intricate architecture and mathematical elegance that underlie VAEs.
+
+By dissecting the architecture of VAEs, we show their role as both proficient data compressors and imaginative creators. As we navigate the landscapes of latent spaces and probabilistic encodings, we uncover the essential mechanisms driving their flexibility.
+Applications of VAEs extend from anomaly detection to image generation. However, we will focus on the latter.
+\end{titlepage}
+\newpage
+\tableofcontents
+
+\include{preliminary}
+\include{autoencoders}
+\include{vae}
+
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{siam}
+\bibliography{bibliography}
+\vspace{4 cm}
+
+$\overline{\text{Stuttgart, \today} \hspace{1 cm}}$
+
+
+\end{document}

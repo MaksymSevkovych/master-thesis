@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{cinelli2021variational}
+{\sc L.~P. Cinelli, M.~A. Marins, E.~A.~B. Da~Silva, and S.~L. Netto}, {\em
+  Variational Methods for Machine Learning with Applications to Deep Networks},
+  Springer, 2021.
+
+\bibitem{foster2022generative}
+{\sc D.~Foster}, {\em Generative Deep Learning}, O'Reilly Media, Inc., 2022.
+
+\bibitem{goodfellow2016deep}
+{\sc I.~Goodfellow, Y.~Bengio, and A.~Courville}, {\em Deep Learning}, MIT
+  Press, 2016.
+
+\bibitem{jahn2009vector}
+{\sc J.~Jahn et~al.}, {\em Vector Optimization}, Springer, 2009.
+
+\bibitem{kantorovich2016functional}
+{\sc L.~V. Kantorovich and G.~P. Akilov}, {\em Functional Analysis}, Elsevier,
+  2016.
+
+\bibitem{kingma2014adam}
+{\sc D.~P. Kingma and J.~Ba}, {\em Adam: A method for stochastic optimization},
+  International Conference on Learning Representations,  (2014).
+
+\bibitem{kingma2013auto}
+{\sc D.~P. Kingma and M.~Welling}, {\em Auto-encoding variational bayes},
+  International Conference on Learning Representations,  (2013).
+
+\bibitem{klenke2013probability}
+{\sc A.~Klenke}, {\em Probability Theory: a Comprehensive Course}, Springer,
+  2013.
+
+\bibitem{lei2019stochastic}
+{\sc Y.~Lei, T.~Hu, G.~Li, and K.~Tang}, {\em Stochastic gradient descent for
+  nonconvex learning without bounded gradient assumptions}, IEEE Trans. Neural
+  Netw. and Learn. Syst., 31 (2019), pp.~4394--4400.
+
+\bibitem{lemarechal2012cauchy}
+{\sc C.~Lemar{\'e}chal}, {\em Cauchy and the gradient method}, Doc. Math.
+  Extra, 251 (2012), p.~10.
+
+\bibitem{mcmahan2010adaptive}
+{\sc H.~B. McMahan and M.~Streeter}, {\em Adaptive bound optimization for
+  online convex optimization}, Conference on Learning Theory,  (2010).
+
+\bibitem{meintrup2006stochastik}
+{\sc D.~Meintrup and S.~Sch{\"a}ffler}, {\em Stochastik: Theorie und
+  Anwendungen}, Springer, 2006.
+
+\bibitem{mucke2019empirical}
+{\sc N.~M{\"u}cke and I.~Steinwart}, {\em Empirical risk minimization in the
+  interpolating regime with application to neural network learning},
+  arXiv:1905.10686,  (2019).
+
+\bibitem{papoulis02}
+{\sc A.~Papoulis and S.~U. Pillai}, {\em Probability, Random Variables and
+  Stochastic Processes}, McGraw Hill, 2002.
+
+\bibitem{reddi2019convergence}
+{\sc S.~J. Reddi, S.~Kale, and S.~Kumar}, {\em On the convergence of adam and
+  beyond}, International Conference on Learning Representations,  (2019).
+
+\bibitem{saad2009line}
+{\sc D.~Saad}, {\em On-line Learning in Neural Networks}, Cambridge Univ.
+  Press, 2009.
+
+\bibitem{simmons1995calculus}
+{\sc G.~Simmons}, {\em Calculus With Analytic Geometry}, McGraw Hill, 1995.
+
+\bibitem{sra2012optimization}
+{\sc S.~Sra, S.~Nowozin, and S.~J. Wright}, {\em Optimization for Machine
+  Learning}, MIT Press, 2012.
+
+\bibitem{steinwart2008support}
+{\sc I.~Steinwart and A.~Christmann}, {\em Support Vector Machines}, Springer,
+  2008.
+
+\bibitem{turinici2021convergence}
+{\sc G.~Turinici}, {\em The convergence of the stochastic gradient descent
+  (sgd): a self-contained proof}, arXiv:2103.14350,  (2021).
+
+\end{thebibliography}
