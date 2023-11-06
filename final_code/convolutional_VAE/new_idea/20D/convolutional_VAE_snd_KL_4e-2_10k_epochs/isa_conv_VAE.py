@@ -5,20 +5,21 @@ import lightning.pytorch as pl
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+from lightning.pytorch.strategies.ddp import DDPStrategy
 from torch import nn
 from torch.utils.data import DataLoader, random_split
 from torchvision import datasets, transforms
 
 # config
 torch.set_float32_matmul_precision("medium")
-LATENT_DIMS = 10
-NUM_EPOCHS = 1000
+LATENT_DIMS = 20
+NUM_EPOCHS = 10000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
 BATCH_SIZE = 256 * 4
-KL_COEFF = 4e-5
+KL_COEFF = 4e-2
 PERSISTENT_WORKERS = True
-# strategy = DDPStrategy()
+strategy = DDPStrategy()
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -95,7 +96,8 @@ class ConvolutionalVariationalEncoder(nn.Module):
         self.linear3 = nn.Linear(64, latent_dims)
 
     def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
-        encoded = torch.flatten(self.encoder(x), start_dim=1)
+        encoded = self.encoder(x)
+        encoded = torch.flatten(encoded, start_dim=1)
 
         mu, log_var = self.linear2(encoded), self.linear3(encoded)
         return mu, log_var
@@ -135,20 +137,27 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         self.kl_coeff = kl_coeff
         self.lr = learning_rate
 
+        positions = []
+        for label in list(range(10)):
+            position = [0] * latent_dims  # dims has to be >=10
+            position[label] = 10
+            positions.append(position)
+        self.positions = positions
+
     def forward(self, x: torch.Tensor):
         mu, log_var = self.encoder(x)
         _, _, sample = self.sample(mu, log_var)
 
         return self.decoder(sample)
 
-    def _run_step(self, x: torch.Tensor):
+    def _run_step(self, x: torch.Tensor, y: torch.Tensor):
         mu, log_var = self.encoder(x)
-        p, q, sample = self.sample(mu, log_var)
+        p, q, sample = self.sample(y, mu, log_var)
         return sample, self.decoder(sample), p, q
 
     def step(self, batch, batch_idx):
-        x, _ = batch
-        sample, x_hat, p, q = self._run_step(x)
+        x, y = batch
+        sample, x_hat, p, q = self._run_step(x, y)
 
         log_qz = q.log_prob(sample)
         log_pz = p.log_prob(sample)
@@ -168,9 +177,13 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         self.log("val_loss", loss, sync_dist=True)
         return loss
 
-    def sample(self, mu: torch.Tensor, log_var: torch.Tensor):
+    def sample(self, y: torch.Tensor, mu: torch.Tensor, log_var: torch.Tensor):
         std = torch.exp(log_var / 2)
-        p = torch.distributions.Normal(torch.zeros_like(mu), torch.ones_like(std))
+
+        mu_goal = torch.tensor([self.positions[label] for label in y]).to(DEVICE)
+        std_goal = torch.ones_like(std)
+
+        p = torch.distributions.Normal(mu_goal, std_goal)
         q = torch.distributions.Normal(mu, std)
         z = q.rsample()
         return p, q, z
@@ -194,13 +207,13 @@ if __name__ == "__main__":
 
     # training
     trainer = pl.Trainer(
-        strategy="ddp",  # if model too large: from pl.strategies import deepspeed
+        strategy=strategy,  # if model too large -> deepspeed
         profiler="simple",
         accelerator="gpu",
         devices=-1,
         precision="32",
         max_epochs=NUM_EPOCHS,
-        enable_progress_bar=True,
+        # enable_progress_bar=True,
         check_val_every_n_epoch=50,
         accumulate_grad_batches=10,
         log_every_n_steps=5,

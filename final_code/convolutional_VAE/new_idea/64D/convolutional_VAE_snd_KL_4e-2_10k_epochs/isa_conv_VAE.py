@@ -12,12 +12,12 @@ from torchvision import datasets, transforms
 
 # config
 torch.set_float32_matmul_precision("medium")
-LATENT_DIMS = 3
+LATENT_DIMS = 64
 NUM_EPOCHS = 10000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
 BATCH_SIZE = 256 * 4
-KL_COEFF = 4e-7
+KL_COEFF = 4e-2
 PERSISTENT_WORKERS = True
 strategy = DDPStrategy()
 
@@ -136,18 +136,13 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         # config
         self.kl_coeff = kl_coeff
         self.lr = learning_rate
-        self.positions = [
-            [10.0, 0.0, -10.0],
-            [3.0901699437494745, 9.510565162951535, -10.0],
-            [-8.090169943749473, 5.877852522924733, -10.0],
-            [-8.090169943749475, -5.87785252292473, -10.0],
-            [3.0901699437494723, -9.510565162951536, -10.0],
-            [10.0, 0.0, 10.0],
-            [3.0901699437494745, 9.510565162951535, 10.0],
-            [-8.090169943749473, 5.877852522924733, 10.0],
-            [-8.090169943749475, -5.87785252292473, 10.0],
-            [3.0901699437494723, -9.510565162951536, 10.0],
-        ]
+
+        positions = []
+        for label in list(range(10)):
+            position = [0] * latent_dims  # dims has to be >=10
+            position[label] = 10
+            positions.append(position)
+        self.positions = positions
 
     def forward(self, x: torch.Tensor):
         mu, log_var = self.encoder(x)

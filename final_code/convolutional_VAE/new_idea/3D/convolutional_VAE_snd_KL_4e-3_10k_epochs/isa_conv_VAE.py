@@ -17,7 +17,7 @@ NUM_EPOCHS = 10000
 NUM_WORKERS = os.cpu_count()
 LEARNING_RATE = 3e-4
 BATCH_SIZE = 256 * 4
-KL_COEFF = 4e-7
+KL_COEFF = 4e-3
 PERSISTENT_WORKERS = True
 strategy = DDPStrategy()
 
