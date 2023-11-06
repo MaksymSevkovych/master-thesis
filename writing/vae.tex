@@ -208,9 +208,9 @@ Therefore, considering the gradient with regard to $\t$ gives us
 where we consider a mini-batch $\{x_1,\ldots x_L\}$ of $L$ samples, where $L\leq N$.
 
 
-\textcolor{red}{TODO: finish the maximum likelihood estimation for $\t$.. For $\phi$ I can probably use the Kingma, Welling original paper --> REPARAMETERIZATION TRICK}
+\textcolor{red}{TODO: finish the maximum likelihood estimation for $\t$.. For $\phi$ I can probably use the Kingma, Welling original paper $\to$ REPARAMETERIZATION TRICK}
 
 
 \section{Applications}\label{sec:vae_applications}
 
-Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}. As discussed in Section~\ref{sec:vi_on_ae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.
+Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}. As discussed in Section~\ref{sec:vi_on_ae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}, e.g. the stochastic gradient descent (SGD) algorithm. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.
