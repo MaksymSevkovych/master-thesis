@@ -1,5 +1,9 @@
 \begin{thebibliography}{10}
 
+\bibitem{bishop2006pattern}
+{\sc C.~M. Bishop and N.~M. Nasrabadi}, {\em Pattern Recognition and Machine
+  Learning}, Springer, 2006.
+
 \bibitem{cinelli2021variational}
 {\sc L.~P. Cinelli, M.~A. Marins, E.~A.~B. Da~Silva, and S.~L. Netto}, {\em
   Variational Methods for Machine Learning with Applications to Deep Networks},

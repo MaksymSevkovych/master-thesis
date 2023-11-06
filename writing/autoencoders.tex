@@ -135,7 +135,7 @@ Let $f_e$ and $f_d$ be an encoding and a decoding neural network as in Definitio
 \end{remark}
 
 
-\section{Training of autoencoders}
+\section{Training of Autoencoders}
 
 When tackling the question of how to train an autoencoding neural network, we realize that in contrast to regular neural networks, where we compare the output of the neural network to a label, in the current setting we can compare the input data to the computed output, since the goal of an autoencoding neural network ultimately is to alter and reconstruct images. In other words, we approach this optimization problem in an unsupervised learning setting. This forces us to consider slightly different loss functions than in the supervised learning setting, since we now want to compare the predicted value to the input.
 

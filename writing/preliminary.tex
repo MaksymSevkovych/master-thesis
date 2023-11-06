@@ -5,7 +5,7 @@ In order to comprehend the topic of variational autoencoders or even autoencoder
 \section{Probability and Statistics}\label{sec:preliminary_prob}
 
 A fundamental topic for this thesis is measure and probability theory and statistics. Especially in Chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
-We want to begin by introducing the basic quantities in measure and probability theory, merely to define a notation throughout the thesis. The first quantity we want to introduce is the density function, where we strongly orient ourselves on \cite[Chapter~2, Chapter~3]{meintrup2006stochastik}. Furthermore, we want to use the notation the authors used in the same reference. Hence, let $(\O, \A, \m)$ be a measure space. Then we denote $M$ as the set of all measurable numeric functions $f:\O\to \bar{\R}$ and moreover, $M^{+}$ denotes the set of all non-negative functions in $M$. With these definitions we can introduce a density function with regard to a measure.
+We want to begin by introducing the basic quantities in measure and probability theory, merely to define a notation throughout the thesis. The first quantity we want to introduce is the density function, where we strongly orientate ourselves towards \cite[Chapter~2\& Chapter~3]{meintrup2006stochastik}. Furthermore, we want to use the notation the authors used in the same reference. Hence, let $(\O, \A, \m)$ be a measure space. Then we denote $M$ as the set of all measurable numeric functions $f:\O\to \bar{\R}$ and moreover, $M^{+}$ denotes the set of all non-negative functions in $M$. With these definitions we can introduce a density function with regard to a measure.
 
 \begin{definition}\label{def:density}
 Let $(\O, \A, \m)$ be a measure space and $f\in M^{+}$. Then we define
@@ -63,94 +63,24 @@ Let $F:\R \to \R$ be a monotonously increasing function that is continuous on it
 then we call $F$ a \textbf{distribution function}.
 \end{definition}
 
-The next quantity we need to introduce are random variables. Conceptionally, random variables are functions, which filter the essential information from a random experiment (e.g. rolling dices or drawing cards) and allow us to formulate this condensed problem mathematically correct. Lastly, we can introduce the distribution of such a random variable as the image measure of the probability measure with regard to the random variable, see e.g. \cite[Definition~1.42]{meintrup2006stochastik} for more details.
+The next quantity we need to introduce are random variables. Conceptionally, random variables are functions, which filter the essential information from a random experiment (e.g. rolling dices or drawing cards) and allow us to formulate this condensed problem mathematically correct. Lastly, we can introduce the distribution of such a random variable as the image measure of the probability measure with regard to the random variable, see e.g. \cite[Definition~1.42]{meintrup2006stochastik} or \cite[Definition~1.102]{klenke2013probability} for more details.
 
 \begin{definition}\label{def:rv}
 Let $(\O_1, \A_1, \prob)$ be a probability space and $(\O_2, \A_2)$ be a measure space. A function $X: \O_1 \to \O_2$ that is $\A_1-\A_2$-measurable is defined as a \textbf{random variable}.\\
 Moreover, if we consider $\O_2= \R^n$ with $n=1,2,\ldots$, we refer to $X$ as an \textbf{$n$-dimensional real-valued random variable}. If $\O_2 = \bar{R}$, we refer to $X$ as a \textbf{numerical random variable}.\\
-Lastly, we call the image measure $\prob_X$ the distribution of $X$.
+Lastly, for $A_2\in\A_2$ we denote $\{X\in A_2\}\coloneqq X^{-1}(A_2)$ and $\prob(X\in A_2) \coloneqq \prob(X^{-1}(A_2))$.
 \end{definition}
 
-Lastly, we need to consider how the distribution of a random variable looks like, if the random variable is not one dimensional. This we want to consider in the following definition.
+Lastly, we need to consider how the distribution of a random variable looks like. This we want to do in the following definition, which is inspired by \cite[Chapter~1.5]{klenke2013probability}.
 
-\begin{definition}
-Let $(\R^{n}, \B^{n}, \prob)$ be a probability space. Furthermore, let $X = (X_1, \ldots, X_n)$ be a $n$-dimensional real-valued random variable. Then we call the function
-\begin{align*}
-F: \R^{n}  &\to [0, 1],\\
-x = (x_1, \ldots, x_n) &\mapsto \prob(X \leq x) \coloneqq \prob(X_1, \leq x_1, \ldots X_n \leq x_n),
-\end{align*}
-the \textbf{distribution of $X$}.
+\begin{definition}\label{def:distribution}
+Let $(\O, \A, \prob)$ be a probability space. Furthermore, let $X$ be a random variable. Then we define:
+\begin{itemize}
+\item[(i)] The probability measure $\prob_X\coloneqq \prob \circ X^{-1}$ is called the \textbf{distribution} of $X$.
+\item[(ii)] For a real-valued random variable $X$, the map $F_X: x\mapsto \prob(X\leq x)$ is called the \textbf{distribution function of $X$} (or, more accurately, of $P_X$). We write $X\sim \m$ if $\m=\prob_X$ and say that $X$ has distribution $\m$.
+\item[(iii)] A family $(X_i)_{i\in I}$ of random variables is called \textbf{identically distributed} if $\prob_{X_i} = \prob_{X_j}$ for all $i,j\in I$.
+\end{itemize}
 \end{definition}
-
-We introduced random variables to add a layer of abstraction to a given problem. Therefore, random variables model some kind of process, high-level speaking. One may now pose the question, what happens if we consider more than one random variable at the same time. For example, if we roll two dice we can model each of them as an own random variable. However, we want to capture this entire problem. In order to do so, we can consider the probability distributions of both random variables jointly. Therefore, we introduce the quantity known as the joint probability distribution in the following.
-
-\begin{definition}\label{def:joint_pdf}
-Let $(\R^{n}, \B^{n}, \prob)$ be a probability space. Furthermore, let $X = (X_1, \ldots, X_n)$ and $Y = (Y_1, \ldots, Y_n)$ be $n$-dimensional real-valued random variables with distributions $\prob_X$ and $\prob_Y$, respectively. Then we call the function
-\begin{align*}
-F: \R^{n} \times \R^{n} &\to [0, 1],\\
-(x, y)  &\mapsto \prob(X \leq x, Y \leq y),
-\end{align*}
-the \textbf{joint probability distribution} of $Z\coloneqq (X, Y)$.\\
-Moreover, we note that $\prob_Z = \prob_X \times \prob_Y$ holds.
-\end{definition}
-
-As well as considering multiple random variables at once, one might do exactly the opposite. What if one does already posses some part of information about the outcome of a probability experiment, e.g. if one rolls two dice but does already know the outcome of one, for whatever reason. This we can consider by marginalizing over one of both random variables, what gives us the marginal distribution. However, in order to formulate this idea of possessing some part of the information, we first need to introduce conditional probabilities. Since if there is partial information on the outcome of a random experiment, the probabilities for the possible events may change. Thus, we introduce this quantity analogous to \cite[Chapter~8]{klenke2013probability}.
-
-\begin{definition}\label{def:cond_prob}
-Let $(\O, \A, \prob)$ be a probability space and $A\in\A$. For any $B\in\A$ we define the \textbf{conditional probability of $B$ given $A$} by
-\begin{align*}
-\prob(B | A) =
-\begin{cases}
-\frac{P(A\cap B)}{P(A)}, &\text{if }\prob(A)>0,\\
-0, &\text{else}.
-\end{cases}
-\end{align*}
-\end{definition}
-
-At this point we should note, that the conditional probability, introduced in Definition \ref{def:cond_prob} is indeed a probability measure, see \cite[Theorem~8.4]{klenke2013probability}. Lastly, we want to introduce the famous Bayes' formula, see e.g \cite[Theorem~8.7]{klenke2013probability}. This will be fundamental for our Bayesian learning setting in Chapter \ref{chap:vae}.
-
-
-\begin{theorem}\label{theorem:bayes_rule}
-Let $(\O, \A, \prob)$ be a probability space and $I$ be a countable set. Furthermore, let $(B_i)_{i\in I}$ be a sequence of pairwise disjoint sets with $\prob (\bigcup_{i\in I} B_i) = 1$.\\
-Then for any $A\in\A$ with $\prob(A) > 0$ and any $k\in I$ holds
-\begin{align*}
-\prob(B_k | A) = \frac{\prob(A | B_k) \prob(B_k)}{\sum_{i \in I} \prob(A | B_i) \prob(B_i)}.
-\end{align*}
-\end{theorem}
-
-Having introduced the fundamental concept of conditional probabilities, we can now return to what we were actually considering and introduce marginal distributions in the following.
-
-\begin{definition}
-Let $X$, $Y$ be $n$-dimensional real-valued random variables with distributions $\prob_X$ and $\prob_Y$, respectively. Furthermore, we define the random variable $Z = (X, Y)$ with probability distribution $\prob_Z$. Then we define the \textbf{marginal distribution of $X$ given $Y$} as
-\begin{align*}
-\prob_X(x) \coloneqq \int_{y} \prob_{X|Y} (x | y) \prob_Y(y) dy = \E \left( \prob_{X|Y}(x|y) \right).
-\end{align*}
-\end{definition}
-
-Since we will be interested in modelling probability distributions to approximate observed data as well as possible, we now want to consider how to construct a family of distributions by tweaking the parameters of the probability distribution. In particular, to generate a family of distributions we alter an underlying base probability density function, hence named standard probability density function. Possible alterations might be shifting or scaling (or both) the standard probability density function. Therefore, we cite a theorem from \cite[Theorem~2.1]{cinelli2021variational}, which proposes exactly such a construction.
-
-\begin{theorem}\label{theorem:pdf_gen}
-Let $p(x)$ be a probability density function and $\m\in\R$ and $\s > 0$ constants. Then the following functions are also probability density functions
-\begin{align*}
-g(x;\m,\s) = \frac{1}{\s} p\left( \frac{x - \m}{\s} \right).
-\end{align*}
-We refer to the parameters $\m$ as \textbf{location parameter} and $\s$ as \textbf{scale parameter}. Moreover, we call the family $\mathcal{P}_{\m,\s} = \{g(x;\m,\s):\m$ and $\s > 0\}$ a \textbf{location-scale family}.
-\end{theorem}
-
-\begin{example}\label{ex:loc-scale_fam}
-The following examples are all location-scale families.
-\begin{enumerate}
-\item Let $\a,\b >0$ be constants. Then the Gamma distribution $\text{Ga}(\a,\b)$ is a scale family for each value of the shape parameter $\a$
-\begin{align*}
-p(x;\a,\b) = \frac{\b^\a}{\Gamma(\a)}x^{\a-1} e^{-\b x}.
-\end{align*}
-\item Let $\m\in\R$ and $\s>0$ be constants. Then the Gaussian distribution $\mathcal{N}(\m,\s^2)$ is a location-scale family for both, the location parameter $\m$ and the scale parameter $\s$, respectively. This leads to
-\begin{align*}
-p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2}.
-\end{align*}
-\end{enumerate}
-\end{example}
-
 
 Having introduced the basics of probability theory, we now want to consider the actual statistical learning setting that we find ourselves in. We introduce this setting inspired by \cite[Chapter~2]{steinwart2008support}. The fundamental idea is that we have some kind of data that represents reality. Our goal is to find a function that approximates the given data as accurately as possible. There are many ways to do so, but we will focus on one certain class of functions. These functions are called neural networks, which we will introduce is Section \ref{sec:nn}. However, before considering neural networks we have to introduce some quantities that we will need later on, first. These quantities are well-known in statistical learning theory and are called loss and risk function. The loss function is a function that measures the point-wise discrepancy between the prediction of a found approximative function to the actually true value. In contrast, the risk function is a function that measures the error with regard to a probability measure or an observed data set.
 
@@ -218,7 +148,7 @@ Since $\loss$ is assumed to be a convex loss function as is its sum. Therefore, 
 \end{proof}
 
 
-\section{Neural networks}\label{sec:nn}
+\section{Neural Networks}\label{sec:nn}
 The idea of artificial neural networks originated from analysing mammal's brains. An accumulation of nodes - so called neurons, connected in a very special way that fire an electric impulse to adjacent neurons upon being triggered and transmit information that way. Scientists tried to mimic this natural architecture and replicate this mammal intelligence artificially. This research has been going for almost 80 years and became immensely popular recently through artificial intelligences like OpenAI's ChatGPT or Google's Bard for the broad public. But what actually is a neural network? What happens in a neural network? Those are very interesting and important questions that we will find answers for. We will introduce neural networks inspired by \cite[Chapter~3]{mucke2019empirical}.\\
  As already mentioned, neural networks consist of single neurons that transmit information upon being \glqq triggered\grqq{}. Obviously, triggering an artificial neuron can't happen the same way as neurological neurons are being triggered through stimulus. Hence, we need to model the triggering of a neuron in some way. The idea is to filter information that does not exceed a certain stimulus threshold. This filter is usually called activation function. In practice, there are many ways of modelling such activation functions and it mainly depends the use-case what exactly is demanded from the activation function. Therefore, we define activation functions as general as possible.
 
@@ -309,7 +239,7 @@ A visual representation of a neural network can be found in Figure \ref{img_nn}
 \end{figure}
 
 
-\section{Training of neural networks}\label{sec:training_of_nn}
+\section{Training of Neural Networks}\label{sec:training_of_nn}
 Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network (\textcolor{red}{TODO: cite some approaches then!}). However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function, and afterwards performing an optimization step in the opposite of the found direction. This method of the steepest descent dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview we refer to \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be discovered in numerous literature. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, please take a look at this reference.\\
 Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and we aim to find an element $x^{\ast}\in X$ such that
 
@@ -1463,7 +1393,7 @@ Lastly, we realize that the first double sum is of telescopic nature. Hence, we 
 where we additionally included the definition of $\a_T$.
 \end{proof}
 
-\section{Neural networks in computer vision}
+\section{Neural Networks in Computer Vision}
 
 Lastly in this chapter, we want to apply the theory of neural networks to the setting we actually are interested in. This setting is usually called computer vision - basically, machine learning that is applied to images and videos. Since we want to apply neural networks to a problem that deals with images, we need to know how to view images from a mathematical perspective.\\
 In order to do so, we need to introduce some quantities first. The first important quantity is a pixel. Basically, this is a single point in the image.

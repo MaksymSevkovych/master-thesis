@@ -2,101 +2,215 @@
 
 Variational autoencodering neural networks, first introduced by Kingma and Welling in the year 2013, see \cite{kingma2013auto}, differently to ordinary autoencoding neural networks that we already mentioned to be discriminative models, are so called generative models, see \cite[Chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
 
-\section{Probabilistic foundations}
+\section{Probabilistic foundations}\label{sec:prob_foundations}
 
-Before diving into the depths of variational autoencoders, we want to begin by laying the essential probabilistic foundations. We already introduced the Bayes formula in Theorem~\ref{theorem:bayes_rule}. This will be the fundamental idea in this chapter, since this idea lead to an entire optimization ecosystem. The conceptional idea of this ecosystem is to iteratively update ones belief of the knowledge one possesses about the data. This means that one first assumes some kind of knowledge about the data, e.g. a probability distribution. Then by considering a sample (or a batch of samples) of the data, update the assumed probability distribution. Upon repeating this process, one iteratively updates the knowledge about the data until it is adapted to the data. This optimization setting is commonly known as Variational Bayes or Variational Inference. There are some fundamental quantities such as evidence which as the name suggests, describes the observations that we can witness; prior, which describes our belief about the data before considering new data; likelihood, which conceptionally describes how well our current belief describes the data and lastly, the posterior which as the name suggests as well, describes our belief about the data after considering the newly observed evidence. These quantities we will now introduce formally.\\
-As already mentioned, in contrast to ordinary autoencoding neural networks which we discussed in Chapter~\ref{chap:ae} variational autoencoding neural networks attempt to capture the entire probability distribution of $Y$. So the emerging question is how can we infer the probability distribution of $Y$, if we only have the observations $x$ given? We assume that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). This reason, since it is unknown or \textit{latent} to us, we will try to consider in more detail. In order to model this hidden cause, we introduce another random variable $Z$, a so called \textit{latent variable} and thus by marginalizing over the joint distribution $\prob_{X, Z}$ of $X$ and $Z$ obtain the marginal distribution
+Before diving into the depths of variational autoencoders, we want to begin by laying the essential probabilistic foundations. As already mentioned, in contrast to ordinary autoencoding neural networks which we discussed in Chapter~\ref{chap:ae} variational autoencoding neural networks attempt to capture the entire probability distribution of $Y$. Therefore, we somehow have to construct a probability distribution and at the same time, take the observed data into consideration. In order to so so, we introduce the concept of conditional probabilities. This we do in the following definition.
+
+\begin{definition}\label{def:cond_prob}
+Let $(S,\A)$ and $(T,\B)$ be measurable spaces and let $\prob$ be a probability measure on $(S\times T, \A\otimes \B)$. Then we call the map $p(\wc|\wc):\B\times S \to [0, 1]$ a \textbf{regular conditional probability} of $\prob$ given $S$, if the following three conditions are satisfied:
+\begin{itemize}
+\item[(i)]   For all $s\in S$ the map $\prob(\wc|s): \B \to [0,1]$ is a probability measure.
+\item[(ii)]  For all $B\in\B$ the map $\prob(B|\wc): S \to [0,1]$ is $\A$-measurable.
+\item[(iii)] For all $A\in\A$ and $B\in\B$ we have \begin{align*}
+\prob(A\times B) = \int_{S} \mathbb{1}_{A}(s) \prob(B|s)d\prob_S(s),
+\end{align*}
+where $\prob_S$ is the marginal distribution of $\prob$ on $S$.
+\end{itemize}
+\end{definition}
+
+In Definition \ref{def:cond_prob} we did not assume the existence of a probability density function. However upon doing so, the regular conditional probability can be quickly computed. Let $\m \otimes \n$ be a $\s$-finite measure on $\A \otimes \B$ such that the probability measure $\prob$ on $\A \otimes \B$ has a $\m \otimes \n$ density $f: S \times T \to  [0, \infty]$. We define $f_S: S \to [0, \infty]$ by
+\begin{align*}
+f_S(s) \coloneqq \int_{T} f(s, t) d\n(t),\qquad s\in S.
+\end{align*}
+Then $f_S$ is $\A$-measurable by the theorem of Fubini-Tonelli, see e.g. \cite[Theorem~14.16]{klenke2013probability}. Moreover, it holds that
+\begin{align*}
+\int_{S}\mathbb{1}_Af_Sd\m = \int_S \mathbb{1}_A(s)\int_Tf(s,t)d\n(t)d\m(s) &= \int_{S \times T}\mathbb{1}_{A\times T} f d (\m \otimes \n),\\
+&= \prob(A\times T),\\
+&= \prob_S(A),
+\end{align*}
+for all $A\in\A$. Therefore, $f_S$ is a $\m$-density of $\prob_S$, which we will refer to as the \textbf{marginal $\m$-density} of $\prob$ on $S$.\\
+Furthermore, for an arbitrary but fixed $\n$-probability density function $h:T\to [0,\infty)$ we define the \textbf{conditional probability density} of $t\in T$ given $s\in S$ by
+\begin{align*}
+f(t|s) \coloneqq \begin{cases}
+\frac{f(s, t)}{f_S(s)}, 	&\text{if $f_S(s)>0$,}\\
+h(t), 						&\text{otherwise}.
+\end{cases}
+\end{align*}
+We note that the map $(s,t) \mapsto f(t|s)$ is measurable, since $f, f_S$ and $h$ are measurable. Consequently, for every fixed $s\in S$ the map $(s,t) \mapsto f(t|s)$ is non-negative and $\B$-measurable. Thus, we can define a measure $\prob(\wc|s)$ on $\B$ by
+\begin{align*}
+\prob(B|s) \coloneqq \int_{T} \mathbb{1}_B(t) f(t|s)d\n(t), \qquad B\in\B.
+\end{align*}
+Our construction then gives $\prob(T|s) = 1$ for all $s\in S$. Moreover, since $(s,t) \mapsto f(t|s)$ is measurable, $\prob(B|\wc):S\to [0, 1]$ is $\A$-measurable for all $B\in\B$. Therefore, $\prob(\wc |\wc):\B\times S \to [0, 1]$ satisfies conditions $(i)$ and $(ii)$ of Definition \ref{def:cond_prob}. Lastly, to verify that $\prob(\wc |\wc)$ is a regular conditional probability of $\prob$ given $S$, we fix some $A\in\A$ and $B\in\B$. Then with the consideration
+\begin{align*}
+\prob(\{f_S = 0\} \times T) = \prob_S(\{f_S = 0\}) = \int_{f_S = 0} f_S d\m = 0,
+\end{align*}
+follows the fact that
+\begin{align*}
+\int_S \mathbb{1}_A(s) \prob(B|s)d\prob_S(s) &= \int_{\{f_S > 0\}} \mathbb{1}_A(s) \int_S \mathbb{1}_B(t) \frac{f(s, t)}{f_S(s)} d\n(t) d\prob_S(s).
+\end{align*}
+If we now use the fact that $f_S$ is a $\m$-density, it holds that
+\begin{align*}
+\int_{\{f_S > 0\}} \mathbb{1}_A(s) \int_S \mathbb{1}_B(t) \frac{f(s, t)}{f_S(s)} d\n(t) d\prob_S(s) &= \int_{\{f_S >0\}} \mathbb{1}_A(s) \int_S \mathbb{1}_B(t) f(s, t) d\n(t) d\m(s),\\
+&= \int_{S \times T} \mathbb{1}_{A \cap \{f_S > 0\}} \mathbb{1}_Bf d(\m \otimes \n),\\
+&= \prob\left( (A \cap \{f_S > 0\}) \times B \right),\\
+&= \prob (A \times B).
+\end{align*}
+Consequently, $\prob(\wc |\wc):\B \times S\to [0, 1]$ is indeed a regular conditional probability of $\prob$ given $S$. This result allows us to consider probability density functions instead of probability distributions in the Bayesian Inference setting.\\
+Lastly, we want to introduce the famous Bayes' formula, see e.g \cite[Theorem~8.7]{klenke2013probability}.
+
+\begin{theorem}\label{theorem:bayes_rule}
+Let $(\O, \A, \prob)$ be a probability space and $I$ be a countable set. Furthermore, let $(B_i)_{i\in I}$ be a sequence of pairwise disjoint sets with $\prob (\bigcup_{i\in I} B_i) = 1$.\\
+Then for any $A\in\A$ with $\prob(A) > 0$ and any $k\in I$ holds
+\begin{align*}
+\prob(B_k | A) = \frac{\prob(A | B_k) \prob(B_k)}{\sum_{i \in I} \prob(A | B_i) \prob(B_i)}.
+\end{align*}
+\end{theorem}
+
+Since we will be interested in modelling probability distributions to approximate observed data as well as possible, we now want to consider how to construct a family of distributions by tweaking the parameters of their probability density functions. In particular, to generate a family of densities we alter an underlying base probability density function, hence named standard probability density function. Possible alterations might be shifting or scaling (or both) the standard density. Therefore, we cite a theorem from \cite[Theorem~2.1]{cinelli2021variational}, which proposes exactly such a construction.
+\begin{theorem}\label{theorem:pdf_gen}
+Let $p(x)$ be a probability density function and $\m\in\R$ and $\s > 0$ constants. Then the following functions are also probability density functions
+\begin{align*}
+g(x;\m,\s) = \frac{1}{\s} p\left( \frac{x - \m}{\s} \right).
+\end{align*}
+We refer to the parameters $\m$ as \textbf{location parameter} and $\s$ as \textbf{scale parameter}. Moreover, we call the family $\mathcal{P}_{\m,\s} = \{g(x;\m,\s):\m$ and $\s > 0\}$ a \textbf{location-scale family}.
+\end{theorem}
+
+Before continuing with the theory, let us consider some examples of location-scale families.
+
+\begin{example}\label{ex:loc-scale_fam}
+The following distributions allow us to define location-scale families.
+\begin{enumerate}
+\item Let $\a,\b >0$ be constants. Then the Gamma distribution $\text{Ga}(\a,\b)$ is a scale family for each value of the shape parameter $\a$
+\begin{align*}
+p(x;\a,\b) = \frac{\b^\a}{\Gamma(\a)}x^{\a-1} e^{-\b x}.
+\end{align*}
+\item Let $\m\in\R$ and $\s>0$ be constants. Then the Gaussian distribution $\mathcal{N}(\m,\s^2)$ is a location-scale family for both, the location parameter $\m$ and the scale parameter $\s$, respectively. This leads to
+\begin{align*}
+p(x; \m, \s^2) = \frac{1}{\sqrt{2\s^2}} e^{-\frac{1}{2} \left( \frac{x-\m}{\s} \right)^2}.
+\end{align*}
+Therefore, we can write each normal distribution as an altered standard normal distribution.
+\end{enumerate}
+\end{example}
+
+
+The Bayes formula, introduced in Theorem~\ref{theorem:bayes_rule}, lead to an entire optimization ecosystem. The conceptional idea of this ecosystem is to iteratively update ones belief of the knowledge one possesses about some observed data. This means that one first assumes some kind of knowledge about their data, e.g. a probability distribution. Then by considering a sample (or a batch of samples) of the data, update the assumed probability distribution. Upon repeating this process, one iteratively updates the knowledge about the data until the knowledge no longer (significantly) changes upon updating. This optimization setting is commonly known as Variational Bayes or Variational Inference and can be introduced as follows.\\
+We have some observations $x=(x_1,\ldots, x_n)$ that are generated from a random variable $X$, which we thus call the \textbf{observation random variable}. We assume that the distribution of $X$ has a probability density function $p(x)$. We will refer to it as the \textbf{evidence}. Usually, this probability density function is highly complicated and thus, our goal is to achieve a better understanding of it. We do so, by assuming that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). For this unknown or (or latent) reason we introduce another random variable $Z$ which we will refer to as \textbf{latent random variable}. Moreover, we assume that this latent random variable $Z$ does have a known and \glqq easily understandable\grqq{} probability distribution with density $p(z)$ (e.g. a Gaussian distribution). This probability density we will refer to as \textbf{prior}, since we assume the density before considering the observations $x$. The next step is to introduce the conditional density $p(x|z)$, which is a function of the the realisations  $z$ of the latent variable $Z$, given the observed data $x$. It quantifies how likely the observed data are under the assumed statistical model and its specific parameter values. This quantity we will refer to as \textbf{likelihood}. If we now assume, that there exists a joint distribution of $X$ and $Z$, we can represent the density $p(x)$ as the marginal density
 \begin{align}\label{eq:evidence}
-\prob_X(x) = \int \prob_{X,Z}(x,z) dz = \int \prob_{X|Z}(x|z)\prob_{Z}(z)dz = \E_Z \left( \prob_{X|Z}(x|z) \right),
+p(x) = \int p(x|z) p(z) dz,
 \end{align}
-as we considered in Section \ref{sec:preliminary_prob}. At this point, we want to note that in the Bayesian setting one commonly does not distinguish between latent variables and model parameters, as they are all random variables, whose values we wish to infer.\\
-The probability distribution from equation \eqref{eq:evidence} we now want to introduce formally, since it will be of crucial importance in this chapter. However, we first need to introduce the latent variables and the observation variables, which we will do in the following definition.
+where we integrate the likelihood function $p(x|z)$ over all possible priors $p(z)$. This means that we asses how good the realisation $z$ of the latent variable $Z$ describes our observed data $x$, where we additionally consider how likely it is that $z$ occurs. Lastly, we want to update our belief $p(z)$ after considering the observations $x$. In order to do so, we need some kind of update rule which we can define using the Bayesian formula form Theorem~\ref{theorem:bayes_rule}. This leads to the conditional density
+\begin{align}\label{eq:posterior}
+p(z|x) = \frac{p(x|z)p(z)}{p(x)},
+\end{align}
+which is usually referred to as the \textbf{(true) posterior}. This completes the Bayesian Inference setting.\\
+Lastly, we must also consider how to actually compare densities to one another. We want to update the prior density $p(z)$ until it \glqq no longer (significatnly) changes\grqq{}, in other words, until it converges. But what does actually convergence mean in this setting? A common approach to quantify the discrepancy between two probability densities, or probability measures in general, is the Kullback-Leibler divergence. It is a relative measure, which assesses the dissimilarity between two probability distributions over the same random variable $X$.
 
-\begin{definition}\label{def:evidence_and_prior}
-Let $(\O, \A, \prob)$ be a probability space. Furthermore, let $X:\O\to\R$, $Z:\O\to\R$ be random variables with joint probability distribution $\prob_{X, Z}$. Then we call $X$ the \textbf{observation random variable} and its marginal probability distribution $\prob_X$ the \textbf{evidence}, as well as $Z$ the \textbf{latent random variable} and its marginal probability distribution $\prob_Z$ \textbf{prior}.
-\end{definition}
-
-In Definition \ref{def:evidence_and_prior} we introduced the evidence, which describes the probability distribution of our observable data. Moreover, we introduced in the same definition the prior, which describes the probability distribution of the latent variables, e.g. the model parameters. With these definitions we can introduce the likelihood.
-
-\begin{definition}\label{def:likelihood}
-Let $(\O,\A, \prob)$ be a probability space, $\T$ be a parameter space and let $X$ be a observation random variable with known evidence $\prob_X$ and $Z$ be a latent random variable with prior $\prob_Z$. Then we define the \textbf{likelihood} as the conditional probability $\prob(X|Z)$.\\
-Moreover, lets assume that the evidence $P_X$ has the probability density $p(x;\t)$, where $\t\in \T$ denotes the parameters of the probability distribution. Then the likelihood can be expressed as the function in the parameters
-\begin{align*}
-L(\t | x) = p(x;\t).
-\end{align*}
-\end{definition}
-
-Since our ultimate goal is to find a probability distribution that describes our observations as good as possible, we need to define an update rule, how we want to adapt our current knowledge of the data with respect to newly observed samples. This update rule we already mentioned to be called posterior. It considers the new samples and corrects our current belief as follows.
-
-\begin{definition}\label{def:posterior}
-Let $(\O,\A, \prob)$ be a probability space, $X$ be a observation random variable with known evidence $\prob_X$ and $Z$ be a latent random variable with prior $\prob_Z$. Then we define the \textbf{posterior} as the conditional probability $\prob(Z|X)$. This conditional probability can be expressed with the help of the Bayesian rule (Theorem~\ref{theorem:bayes_rule}) as
-\begin{align*}
-\prob(Z|X) = \frac{\prob(X|Z) \prob_Z(z)}{\prob_X(x)}.
-\end{align*}
-\end{definition}
-
-\textcolor{green}{The next step is to maximize the likelihood (Maximum Likelihood Estimator MLE) and then maximize the posterior (Maximum A Posteriori (MAP). This would conclude one iteration of the Bayesian learning setting (I guess??). BUT: what do we need ELBO for??}
-
-
-\textcolor{red}{FROM HERE ON THE TEXT IS NOT REWORKED YET}
-
-Firstly, we want to define the specific structure of variational autoencoding neural networks and their key differences to ordinary autoencoding neural networks. As already motivated, variational autoencoders are generative models. This means, that they intend to capture the entire probability distribution of the observation space $Y$. Hence, they are statistical models and depend on certain probabilistic approaches.
-
-
-
-
-
-
-
-
-
-
-In order to compute the gradient of a variational autoencoding neural network, we need to determine a way to quantify the distance between probability distributions. A popular measure for this case is the so called Kullback-Leibler divergence. It assesses the dissimilarity between two probability distributions over the same 	random variable $X$.
-\begin{definition}\label{def_kl_div}
-Let $X$ be a random variable and $p, q$ two probability density functions over $X$. Then, the \textbf{Kullback-Leibler divergence} is defined as
+\begin{definition}\label{def:KL_div}
+Let $(\O,\A, \prob)$ be a probability space and let $X:\O \to \R^n$ be a random variable. Furthermore, let $p$ and $q$ be two probability densities of $\prob_X$, respectively. Then, the \textbf{Kullback-Leibler divergence} from $q$ to $p$ is defined as
 \begin{align}
-\kldiv{p}{q} = \int p(x) \log \left( \frac{p(x)}{q(x)}\right) dx.
+\kldiv{p}{q} = \int_\O p(x) \log \left( \frac{p(x)}{q(x)}\right) d\prob_X(x) = \E_p \left[\log p(x) - \log q(x) \right].
 \end{align}
 \end{definition}
 
-If we consider the Kullback-Leibler divergence with regard to a dataset consisting of observed data samples, we can write equivalently.
+We note that the Kullback-Leibler divergence is not a symmetrical quantity and it holds that $\kldiv{p}{q}\geq 0$, which follows directly from Jensen's inequality. Moreover, $\kldiv{p}{q} = 0$ holds if and only if $p = q$, see \cite[Section~23.3]{klenke2013probability}.\\
+In applications one usually computes the Kullback-Leibler divergence regarding to some kind of dataset consisting of observed data samples. Then the Kullback-Leibler divergence would look as in the following definition.
 
-\begin{definition}
-Let $X$ be a random variable and $p, q$ two probability density functions over $X$. Furthermore, let $D=\{x_i\}_{i=i}^L$ be an unsupervised dataset of length $L\in\N$.\\
-Then, the \textbf{Kullback-Leibler divergence} is defined as
+\begin{definition}\label{def:KL_div_data}
+Let $(\O,\A, \prob)$ be a probability space and let $X:\O \to \R^n$ be a random variable and let $p$ and $q$ be two probability densities of $\prob_X$, respectively. Furthermore, let $D=\{x_1, \ldots x_L\}$ be an unsupervised dataset of length $L\in\N$. Then, the \textbf{Kullback-Leibler divergence} from $q$ to $p$ with respect to the dataset $D$ is defined as
 \begin{align}
 \kldiv{p}{q} = \sum_{i=1}^L p(x_i) \log \left( \frac{p(x_i)}{q(x_i)}\right).
 \end{align}
 \end{definition}
 
-\begin{definition}\label{def_entropy}
-Let $X$ be a random variable and $p$ a probability density function over $X$. Then, the nonnegative measure of the expected information content of $X$ under correct distribution $p$, defined as
+The Kullback-Leibler divergence, which we introduced in Definition \ref{def:KL_div} and Definition \ref{def:KL_div_data} is also known as relative entropy. The entropy intuitively describes how much \glqq randomness\grqq{} a random variable possesses, i.e. the less we can predict the outcome of a random event, the more entropy the corresponding random variable has.
+
+\begin{definition}\label{def:entropy}
+Let $(\O,\A, \prob)$ be a probability space and let $X:\O \to \R^n$ be a random variable and let $p$ be a probability density of $\prob_X$. Then the function
 \begin{align}
-\H(X) = -\int p(x) \log p(x)dx = \E_p \left[ - \log p(x) \right],
+\H(p) = -\int_{\O} p(x) \log p(x)d\prob_X(x) = \E_p \left[ - \log p(X) \right],
 \end{align}
 is called \textbf{entropy} of $p$.
 \end{definition}
 
+We considered the \glqq randomness\grqq{} of a random variable, which we describes as entropy of a probability density in Definition \ref{def:entropy}. Another important quantity is the so-called cross-entropy between two probability densities. It intuitively quantifies how much information one density possesses over the random variable in opposition to the other density. This we will formally define in the following definition.
 
-\begin{definition}\label{def_cross_entropy}
-Let $X$ be a random variable and $p, q$ two probability density functions over $X$. Then, the nonnegative measure of the expected information content of $X$ under incorrect distribution $q$, defined as
+\begin{definition}\label{def:cross_entropy}
+Let $(\O,\A, \prob)$ be a probability space and let $X:\O \to \R^n$ be a random variable and let $p$ and $q$ be two probability densities of $\prob_X$, respectively. Then the function
 \begin{align}
-\H_q(X) = -\int p(x) \log q(x)dx = \E_p \left[ - \log q(x) \right],
+\H_q(p) = -\int_{\O} p(x) \log q(x)d\prob_X(x) = \E_p \left[ - \log q(X) \right],
 \end{align}
 is called \textbf{cross-entropy} between $p$ and $q$.
 \end{definition}
 
+With the help of the entropy, which we defined in Definition \ref{def:entropy} and cross-entropy, which we defined in Definition \ref{def:cross_entropy}, we can write the Kullback-Leibler divergence as their difference, as we can easily compute
+\begin{align}\label{eq:kl_entropy}
+\kldiv{p}{q} &= \int_\O p(x) \log \left( \frac{p(x)}{q(x)}\right) d\prob_X(x)\nonumber\\
+ &=\int_\O p(x) \log p(x) d\prob_X(x) - \int_\O p(x) \log  q(x) d\prob_X(x) = \H_q(p) - \H(p).
+\end{align}
 
-\begin{remark}
-Let $X$ be a random variable and $p, q$ probability density functions over $X$. Then the Kullback-Leibler divergence between $p$ and $q$ can be written as follows
+
+\section{Variational Inference on Autoencoders}\label{sec:vi_on_ae}
+
+In section \ref{sec:prob_foundations} we introduced the Variational Inference, also known as Variational Bayes setting. This setting allows us to iteratively improve our understanding of the observed data, which we model through the observation generation probability density function $p(x)$. This approach can we applied to autoencoding neural networks, as proposed in \cite{kingma2013auto}. The idea is to consider an autoencoding neural network with parameters $\t$, where we assume the parameters to be variable. In the Bayesian learning setting it is a common approach to not distinguish between latent variables and model parameters, since they both are unknown quantities. Therefore, we can consider the likelihood function $p(x|z)$ as the output of a neural network, where the parameters $\t$ are determined by the realisation $z$ of the latent variable $Z$. We denote the likelihood function as $p_\t(x|z)$ then. Moreover, since we consider generative models the output of the neural network is not a vector but a probability density. If we assume it to be Gaussian, this means that the likelihood function would look like
+\begin{align}\label{eq:likelihood_nn}
+p_\t(x|z) = \mathcal{N} (\m_{nn}(z), \s_{nn}(z)).
+\end{align}
+If we now define the dimensions of the Gaussian distribution from equation \eqref{eq:likelihood_nn} to be smaller than the dimensions of the data samples $x_i$, we speak of a \textbf{probabilistic encoding neural network}, or simply a \textbf{probabilistic encoder}.  Furthermore, if we consider that the evidence is the marginal density as in equation \eqref{eq:evidence} we realise that this integral can not be computed in a closed-form. Therefore, the posterior density, which is defined as the fraction \eqref{eq:posterior}, can not be computed either and we need to approximate it. For this manner, we introduce the density $q_{\phi}$ with parameters $\phi$, which approximates
 \begin{align*}
-\kldiv{p}{q} = \H_q(p) - \H(p),
+q_{\phi}(z|x_i) \approx p(z|x_i)
 \end{align*}
-where $\H_q$ and $\H$ denote the cross-entropy and entropy, respectively.
-\end{remark}
+and assume that it is normally distributed with parameters $\m_i$ and $\s_i$, i.e. $q_{\phi}(z|x_i) \sim \mathcal{N} (\m_i, \s_i)$. This approximation leads to the following consideration of the $\log$ of the evidence $p(x)$
+\begin{align}\label{eq:log_evidence}
+\log p(x_i) = \log \int p_{\t}(x_i|z) p(z) dz = \log \int p_{\t}(x_i|z) p(z) \frac{q_{\phi}(z|x_i)}{q_{\phi}(z|x_i)}dz = \log \E_{q_{\phi}(z|x_i)} \left[ \frac{p_{\t}(x_i|z)p(z)}{q_{\phi}(z|x_i)}\right].
+\end{align}
+If we now apply Jensen's inequality, see e.g. \cite[Theorem~7.9]{klenke2013probability}, which states that $\E[\f(X)] \geq \f(E[X])$, if $\f$ is convex and hence, $\E[\f(X)] \leq \f(E[X])$, if $\f$ is concave. Due to the fact that $\log$ is a concave function, we receive
+\begin{align*}
+\log p(x_i) \geq \E_{q_{\phi}(z|x_i)} \left[ \log\left(\frac{p_{\t}(x_i|z)p(z)}{q_{\phi}(z|x_i)}\right)\right] = \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) + \log p(z) - \log q_{\phi}(z|x_i)\right].
+\end{align*}
+This inequality is very important, since it allows us to maximize the likelihood $p_{\t}(x_i|z)$ in the following. Since it is so important, it is commonly referred to as the \textbf{Evidence Lower Bound (ELBO)}. Furthermore, we can make use of the linearity of the integral, which leads to
+\begin{align}\label{eq:elbo}
+\log p(x_i) \geq \loss(\t, \phi; x_i) \coloneqq \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right] + \E_{q_{\phi}(z|x_i)} \left[ \log p(z) \right] - \E_{q_{\phi}(z|x_i)} \left[ \log q_{\phi}(z|x_i)\right].
+\end{align}
+Considering the fact that we introduced the density $q_{\phi}(z|x_i)$ in order to approximate the posterior $p(z|x_i)$, we realise that our goal is to make this approximation as tight as possible. Therefore, we consider the Kullback-Leibler divergence between them. This gives us
+\begin{align*}
+\kldiv{q_{\phi}(z|x_i)}{p(z|x_i)} &= \E_{q_{\phi}(z|x_i)} \left[ \log \left( \frac{q_{\phi}(z|x_i)}{p(z|x_i)} \right) \right].
+\end{align*}
+If we now apply the Bayes formula to the right-hand side, see Theorem~\ref{theorem:bayes_rule}, we receive
+\begin{align*}
+\E_{q_{\phi}(z|x_i)} \left[ \log \left( \frac{q_{\phi}(z|x_i)}{p(z|x_i)} \right) \right]  = \E_{q_{\phi}(z|x_i)} \left[ \log \left( \frac{q_{\phi}(z|x_i)p(x_i)}{p(x_i, z)} \right) \right] = \E_{q_{\phi}(z|x_i)} \left[ \log \left( \frac{q_{\phi}(z|x_i)p(x_i)}{p_{\t}(x_i| z)p(z)} \right) \right].
+\end{align*}
+The next step is to consider the linearity of the integral and of the $\log$ function, which yields
+\begin{align*}
+\E_{q_{\phi}(z|x_i)} &\left[ \log \left( \frac{q_{\phi}(z|x_i)p(x_i)}{p_{\t}(x_i| z)p(z)} \right) \right]\\
+&= \E_{q_{\phi}(z|x_i)} \left[ \log q_{\phi}(z|x_i) + \log p(x_i)  \right] - \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i| z) + \log p(z)\right].
+\end{align*}
+Comparing this equation to the ELBO, determined in \eqref{eq:elbo}, we realise that we can express the Kullback-Leibler divergence $\kldiv{q_{\phi}(z|x_i)}{p(z|x_i)}$ as
+\begin{align*}
+\kldiv{q_{\phi}(z|x_i)}{p(z|x_i)} = - \loss(\t, \phi; x_i) + \E_{q_{\phi}(z|x_i)} \left[ \log p(x_i) \right] = - \loss(\t, \phi; x_i) + \log p(x_i),
+\end{align*}
+where the last equation holds due to the fact that $\log p(x_i)$ does not depend on $z$.\\
+At this point, it is worth mentioning that the Kullback-Leibler divergence is the difference between the ELBO, see \eqref{eq:elbo}, which is the lower bound on the $\log$ of the evidence $p(x_i)$ and the $\log$ of the evidence $p(x_i)$ itself. Therefore, the tighter the ELBO is the smaller the Kullback-Leibler divergence between approximation $q_{\phi}(z|x_i)$ and posterior $p(z|x_i)$ becomes. This consideration leads to the following optimization problem
+\begin{align*}
+\max_{\phi, \t} \loss(\t, \phi; x_i) = \max_{\phi, \t} \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right] + \E_{q_{\phi}(z|x_i)} \left[ \log p(z) \right] - \E_{q_{\phi}(z|x_i)} \left[ \log q_{\phi}(z|x_i)\right],
+\end{align*}
+where we choose the optimal parameters $\t$ of the approximation density $q_{\phi}(z|x_i)$ on one hand and the optimal parameters $\t$ of the probabilistic encoder $p_{\t}(x_i|z)$ on the other hand. We begin with the optimization with regard to the parameter $\t$ and realise that only the probabilistic encoder $p_{\t}(x_i|z)$ depends on the parameter $\t$ and thus, optimizing the ELBO with regard to $\t$ is equivalent to only optimizing the probabilistic encoder with regard to $\t$, which in other words is simply the maximum likelihood estimation, see e.g. \cite[Section~2.3.4]{bishop2006pattern}. Therefore, we receive the optimization problem
+\begin{align*}
+\t^{\ast} \coloneqq \argmax_{\t\in \T} \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right],
+\end{align*}
+where we denote $\T$ as an arbitrary parameter space. Furthermore, we know that for an optimum holds
+\begin{align*}
+\nabla_{\t}\E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right] = 0.
+\end{align*}
+Therefore, considering the gradient with regard to $\t$ gives us
+\begin{align*}
+\nabla_{\t}\E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right] = \nabla_{\t} \frac{1}{L} \sum_{i=1}^{L} q_{\phi}(z|x_i) \log p_{\t}(x_i|z),
+\end{align*}
+where we consider a mini-batch $\{x_1,\ldots x_L\}$ of $L$ samples, where $L\leq N$.
 
-\section{Training of Variational Autoencoders}\label{sec:train_vae}
+
+\textcolor{red}{TODO: finish the maximum likelihood estimation for $\t$.. For $\phi$ I can probably use the Kingma, Welling original paper --> REPARAMETERIZATION TRICK}
+
 
 \section{Applications}\label{sec:vae_applications}
 
-Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}. As discussed in Section~\ref{sec:train_vae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.
+Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}. As discussed in Section~\ref{sec:vi_on_ae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.
