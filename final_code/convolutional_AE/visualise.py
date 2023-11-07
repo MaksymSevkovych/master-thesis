@@ -184,3 +184,53 @@ def inference_convolutional_ae(
     )
     plt.savefig(os.path.join(dir_path, file_name))
     plt.show()
+
+
+# Plot 10 generated digits
+def generate_convolutional(
+    model: Module,
+    data_loader: DataLoader,
+    amount: int,
+) -> None:
+    recons = []
+    for digit in range(10):
+        reconstructions_for_digit = []
+        for imgs, labels in data_loader:
+            if len(reconstructions_for_digit) == amount:
+                break
+            for index, (img, label) in enumerate(zip(imgs, labels)):
+                if label != digit:
+                    continue
+
+                encoded = model.encoder(img).flatten(-1)
+                nudged = [entry[0][0] + 5 * torch.rand(1) for entry in encoded.detach()]
+                encoded = torch.tensor(nudged)
+
+                encoded = encoded.unsqueeze(1).unsqueeze(1)
+
+                reconstructions_for_digit.append(model.decoder(encoded))
+                if len(reconstructions_for_digit) == amount:
+                    recons.append(reconstructions_for_digit)
+
+                    break
+    width = 28
+
+    plt.figure(figsize=(7, 5))
+    img = torch.zeros((amount * width, amount * width))
+
+    for i, recs in enumerate(recons):
+        for j, recon in enumerate(recs):
+            img[
+                (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
+                j * width : (j + 1) * width,
+            ] = recon.detach()
+    plt.xticks([])
+    plt.yticks([])
+
+    plt.imshow(img)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = (
+        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_generated.png"
+    )
+    plt.savefig(os.path.join(dir_path, file_name))
+    plt.show()

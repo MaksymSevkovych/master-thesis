@@ -164,7 +164,7 @@ def plot_latent_3D_convolutional(
     for i, (img, label) in enumerate(data_loader):
         # Feed the data into the model
         mu, log_var = model.encoder(img)
-        _, _, z = model.sample(label, mu, log_var)
+        _, _, z = model.sample(mu, log_var)
         z = z.to("cpu").detach().numpy()
 
         # Data for three-dimensional scattered points
@@ -189,38 +189,136 @@ def plot_latent_3D_convolutional(
     plt.show()
 
 
+def plot_latent3D_single_point(
+    autoencoder: Module,
+    data_loader: DataLoader,
+):
+    # Define the figure
+    fig = plt.figure(figsize=(7, 5))
+    ax = fig.add_subplot(111, projection="3d")
+
+    plotted = {}
+    for images, labels in data_loader:
+        for image, label in zip(images, labels):
+            if label.item() in plotted:
+                continue
+            plotted.update({label.item(): image.tolist()})
+            if len(plotted) == 10:
+                break
+
+    data = torch.empty(0)
+    labels = list(plotted.keys())
+    for img in plotted.values():
+        # Feed the data into the model
+        img = torch.tensor(img).reshape(-1, 28 * 28)
+        z = autoencoder.encoder(img).to(DEVICE)
+        z = z.to("cpu").detach()
+        data = torch.cat((data, z), 0)
+
+    # Data for three-dimensional scattered points
+    data = data.numpy()
+    xdata = data[:, 0]
+    ydata = data[:, 1]
+    zdata = data[:, 2]
+
+    # Plot the data
+    plot = ax.scatter(xdata, ydata, zdata, c=labels, cmap="tab10")
+
+    # Label the axes, config the plot
+    ax.grid(False)
+    ax.set_title("One point of each class")
+    ax.set_xlabel("x-axis")
+    ax.set_ylabel("y-axis")
+    ax.set_zlabel("z-axis")
+
+    # Add a colorbar
+    fig.colorbar(plot, ax=ax)
+    plt.show()
+
+
 # Plot 10 generated digits
 def inference_convolutional(
     model: Module,
     data_loader: DataLoader,
     amount: int,
 ) -> None:
-    images = []
-    recons = []
-    for digit in range(10):
-        images_for_digit = []
-        reconstructions_for_digit = []
-        for imgs, labels in data_loader:
-            mu, log_var = model.encoder(imgs)
-            if len(reconstructions_for_digit) == 10:
+    generating_data = {}
+    for imgs, labels in data_loader:
+        for img, label in zip(imgs, labels):
+            if len(generating_data) == 10:
                 break
-            for index, (img, label) in enumerate(zip(imgs, labels)):
-                if label != digit:
-                    continue
 
-                images_for_digit.append(img)
-                reconstructions_for_digit.append(
-                    model.decoder(
-                        model.sample(
-                            labels, mu[index].detach(), log_var[index].detach()
-                        )[2].unsqueeze(0)
-                    )
-                )
-                if len(reconstructions_for_digit) == 10:
-                    recons.append(reconstructions_for_digit)
-                    images.append(images_for_digit)
-                    break
+            if label in generating_data:
+                continue
+
+            mu, log_var = model.encoder(img)
+
+            generating_data.update(
+                {
+                    label.item(): {
+                        "mu": mu.detach(),
+                        "log_var": log_var.detach(),
+                    }
+                }
+            )
+
+    generating_data_sorted = {
+        label: generating_data[label] for label in list(range(10))
+    }
+
     width = 28
+    img = torch.zeros((amount * width, amount * width))
+
+    for i, params in generating_data_sorted.items():
+        mu, log_var = params.values()
+        samples = []
+        for _ in range(10):
+            _, _, sample = model.sample(mu, log_var)
+            samples.append(sample)
+        # samples = [model.sample(mu, log_var)[2] for _ in range(10)]
+        recons = [model.decoder(sample) for sample in samples]
+        recons = [recon.reshape(28, 28).to(DEVICE).detach() for recon in recons]
+        for j, recon in enumerate(recons):
+            img[
+                (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
+                j * width : (j + 1) * width,
+            ] = recon
+    # plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
+    plt.xticks([])
+    plt.yticks([])
+    plt.imshow(img)
+    plt.show()
+
+
+# Plot 10 generated digits
+def inference_linear(
+    model: Module,
+    data_loader: DataLoader,
+    amount: int,
+) -> None:
+    width = 28
+    images, recons = [], []
+    recon = []
+    img_to_plot = []
+
+    for num in range(10):
+        for imgs, labels in data_loader:
+            if len(recon) >= 10:
+                continue
+            for img, label in zip(imgs, labels):
+                if len(recon) >= 10:
+                    continue
+                if label != num:
+                    continue
+                img_to_plot.append(img)
+                img = img.reshape(-1, 28 * 28)
+                img_rec = model(img).to(DEVICE).detach()
+                img_rec = img_rec.reshape(28, 28)
+                recon.append(img_rec)
+        recons.append(recon)
+        images.append(img_to_plot)
+        recon = []
+        img_to_plot = []
 
     fig = plt.figure(figsize=(14, 7))
     fig.add_subplot(121)
@@ -244,56 +342,10 @@ def inference_convolutional(
             img[
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
-            ] = recon.detach()
-    plt.xticks([])
-    plt.yticks([])
-
-    plt.imshow(img)
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    file_name = (
-        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_inference.png"
-    )
-    plt.savefig(os.path.join(dir_path, file_name))
-    plt.show()
-
-
-# Plot 10 generated digits
-def inference_linear(
-    model: Module,
-    data_loader: DataLoader,
-    amount: int,
-) -> None:
-    width = 28
-    recons = []
-    recon = []
-
-    for num in range(10):
-        for imgs, labels in data_loader:
-            if len(recon) >= 10:
-                continue
-            for img, label in zip(imgs, labels):
-                if len(recon) >= 10:
-                    continue
-                if label != num:
-                    continue
-                img = img.reshape(-1, 28 * 28)
-                img_rec = model(img).to(DEVICE).detach()
-                img_rec = img_rec.reshape(28, 28)
-                recon.append(img_rec)
-        recons.append(recon)
-        recon = []
-
-    img = torch.zeros((amount * width, amount * width))
-
-    for i, recs in enumerate(recons):
-        for j, recon in enumerate(recs):
-            img[
-                (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
-                j * width : (j + 1) * width,
             ] = recon
-    # plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
     plt.xticks([])
     plt.yticks([])
+
     plt.imshow(img)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (

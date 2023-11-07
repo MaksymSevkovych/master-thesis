@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  4 NOV 2023 13:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.7)  7 NOV 2023 13:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **autoencoders.tex
 (./autoencoders.tex
 LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-02-07>
+L3 programming layer <2023-02-22>
 ! Undefined control sequence.
 l.1 \chapter
             {Autoencoders}\label{chap:ae}
@@ -6795,10 +6795,10 @@ l.89 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
                                                   _{L_2}) = \left((\tilde{W}...
 (That makes 100 errors; please try again.)
 Here is how much of TeX's memory you used:
- 44 strings out of 476029
- 686 string characters out of 5790166
- 1856346 words of memory out of 5000000
- 20586 multiletter control sequences out of 15000+600000
+ 44 strings out of 476025
+ 686 string characters out of 5790017
+ 1856388 words of memory out of 5000000
+ 20594 multiletter control sequences out of 15000+600000
  512930 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  23i,31n,32p,1232b,245s stack positions out of 10000i,1000n,20000p,200000b,200000s

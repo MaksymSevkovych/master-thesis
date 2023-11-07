@@ -4,47 +4,12 @@ import matplotlib.pyplot as plt
 import torch
 from torch.nn import Module
 from torch.utils.data import DataLoader
+from tqdm import tqdm
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 FONTSIZE_LATENT = 30
 FONTSIZE_RECONSTRUCTION = 30
 FONTSIZE_INFERENCE = 20
-
-
-# Plot the latent 2D space
-def plot_latent_2D_linear(
-    autoencoder: Module,
-    data_loader: DataLoader,
-    num_batches=150,
-) -> None:
-    # Define the figure
-    fig = plt.figure(figsize=(7, 5))
-    ax = fig.add_subplot(111)
-
-    for i, (img, label) in enumerate(data_loader):
-        # Feed the data into the model
-        img = img.reshape(-1, 28 * 28)
-        z = autoencoder.encoder(img.to(DEVICE))
-        z = z.to("cpu").detach().numpy()
-
-        # Data for two-dimensional scattered points
-        xdata = z[:, 0]
-        ydata = z[:, 1]
-
-        # Plot the data
-        plot = ax.scatter(xdata, ydata, c=label, cmap="tab10", marker="o")
-
-        # Add a colorbar
-        if i > num_batches:
-            fig.colorbar(plot, ax=ax)
-            break
-    # plt.title("Latent space of encoder", fontsize=FONTSIZE_LATENT)
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    file_name = (
-        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_latent.png"
-    )
-    plt.savefig(os.path.join(dir_path, file_name))
-    plt.show()
 
 
 # Plot the latent 2D space
@@ -305,31 +270,38 @@ def inference_convolutional(
 
 
 # Plot 10 generated digits
-def inference_linear(
+def generate_convolutional(
     model: Module,
     data_loader: DataLoader,
+    latent_dims: int,
     amount: int,
 ) -> None:
-    width = 28
     recons = []
-    recon = []
-
-    for num in range(10):
+    for digit in range(10):
+        reconstructions_for_digit = []
         for imgs, labels in data_loader:
-            if len(recon) >= 10:
-                continue
-            for img, label in zip(imgs, labels):
-                if len(recon) >= 10:
+            mu, log_var = model.encoder(imgs)
+            mu += torch.rand(latent_dims)
+            if len(reconstructions_for_digit) == amount:
+                break
+            for index, (img, label) in enumerate(zip(imgs, labels)):
+                if label != digit:
                     continue
-                if label != num:
-                    continue
-                img = img.reshape(-1, 28 * 28)
-                img_rec = model(img).to(DEVICE).detach()
-                img_rec = img_rec.reshape(28, 28)
-                recon.append(img_rec)
-        recons.append(recon)
-        recon = []
 
+                reconstructions_for_digit.append(
+                    model.decoder(
+                        model.sample(mu[index].detach(), log_var[index].detach())[
+                            2
+                        ].unsqueeze(0)
+                    )
+                )
+                if len(reconstructions_for_digit) == amount:
+                    recons.append(reconstructions_for_digit)
+
+                    break
+    width = 28
+
+    plt.figure(figsize=(7, 5))
     img = torch.zeros((amount * width, amount * width))
 
     for i, recs in enumerate(recons):
@@ -337,14 +309,75 @@ def inference_linear(
             img[
                 (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
                 j * width : (j + 1) * width,
-            ] = recon
-    # plt.title("Inference of autoencoder", fontsize=FONTSIZE_INFERENCE)
+            ] = recon.detach()
     plt.xticks([])
     plt.yticks([])
+
     plt.imshow(img)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     file_name = (
-        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_inference.png"
+        f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_generated.png"
     )
+    plt.savefig(os.path.join(dir_path, file_name))
+    plt.show()
+
+
+def generate_convolutional_optimal(
+    model: Module,
+    data_loader: DataLoader,
+    latent_dims: int,
+    amount: int,
+) -> None:
+    parameters = {}
+
+    for digit in tqdm(range(10)):
+        mean_mu, mean_log_var, counter = (
+            torch.zeros(latent_dims),
+            torch.zeros(latent_dims),
+            0,
+        )
+        for imgs, labels in data_loader:
+            mu, log_var = model.encoder(imgs)
+            for index, label in enumerate(labels):
+                if label != digit:
+                    continue
+
+                mean_mu += mu[index].detach()
+                mean_log_var += log_var[index].detach()
+                counter += 1
+
+        parameters.update(
+            {digit: {"mean": mean_mu / counter, "log_var": mean_log_var / counter}}
+        )
+
+    recons = []
+    for digit in range(10):
+        reconstructions_for_digit = []
+        for _ in range(10):
+            mu, log_var = parameters[digit]["mean"], parameters[digit]["log_var"]
+            mu_new = mu + torch.rand(latent_dims)
+
+            reconstructions_for_digit.append(
+                model.decoder(model.sample(mu_new, log_var)[2].unsqueeze(0))
+            )
+
+        recons.append(reconstructions_for_digit)
+    width = 28
+
+    plt.figure(figsize=(7, 5))
+    img = torch.zeros((amount * width, amount * width))
+
+    for i, recs in enumerate(recons):
+        for j, recon in enumerate(recs):
+            img[
+                (amount - 1 - i) * width : (amount - 1 - i + 1) * width,
+                j * width : (j + 1) * width,
+            ] = recon.detach()
+    plt.xticks([])
+    plt.yticks([])
+
+    plt.imshow(img)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file_name = f"{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}_generated_optimal.png"  # noqa: E501
     plt.savefig(os.path.join(dir_path, file_name))
     plt.show()

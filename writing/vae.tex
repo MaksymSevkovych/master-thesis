@@ -213,24 +213,202 @@ where we consider a mini-batch $\{x_1,\ldots x_L\}$ of $L$ samples, where $L\leq
 
 \section{Applications}\label{sec:vae_applications}
 
-Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}, where we trained linear and convolutional autoencoders on the MNIST dataset, a dataset which consists of handwritten digits. As discussed in Section~\ref{sec:vi_on_ae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}, e.g. the stochastic gradient descent (SGD) algorithm. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.\\
-Before actually looking at trained examples, we want to formulate a general algorithm of how such a training looks like, see Algorithm \ref{alg:general_vae}
+Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}, where we trained linear and convolutional autoencoders on the MNIST dataset, a dataset which consists of handwritten digits. As discussed in Section~\ref{sec:vi_on_ae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}, e.g. the stochastic gradient descent (SGD) or the AMSGrad algorithm. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict how the Kullback-Leibler coefficient (KL - coefficient) $\l$ affects the learned probability distributions, since this coefficient intuitively controls how the ratio between reconstruction loss and Kullback-Leibler divergence is considered during training. The resulting variational autoencoder is \glqq more similar\grqq{} to a discriminative model if the coefficient is chosen to be larger. Lastly, we will take a look at the training progress of each model we train. Additionally, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder and make it more stable with regard to the KL-coefficient  in lower dimensions.\\
+Before actually looking at trained examples, we want to formulate a general algorithm of how such a training looks like, see Algorithm \ref{alg:general_vae}.
 
 \begin{algorithm}
-Let the input and output dimensions be $(M_i,N_i, d_i), (M_o,N_o,d_o) \in \N^{2\times 1}$, where $(M_j, N_j)$ denotes the resolution of the image domain and $d_j$ the amount of channels in the $j$-th layer. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers.\\
-Let the chosen optimizer be AMSGrad with a learning rate $\g>0$ and Kullback-Leibler coefficient $\l\in[0,\infty)$. Furthermore, let the chosen loss function be the MSE loss function. Then the training of a variational autoencoder looks as follows.
+Let the input and output dimensions be $(M_i,N_i, d_i), (M_o,N_o,d_o) \in \N^{2\times 1}$, where $(M_j, N_j)$ denotes the resolution of the image domain and $d_j$ the amount of channels in the $j$-th layer. Furthermore, let the probabilistic encoder encode onto a $k$-dimensional normal density, where we call $k\in\N$ the bottleneck.\\
+Let the chosen optimizer be AMSGrad with a learning rate $\g>0$ and KL-coefficient $\l\in[0,\infty)$. Furthermore, let the chosen loss function be the MSE loss function. Then the training of a variational autoencoder looks as follows.
 \caption{Variational Autoencoder}\label{alg:general_vae}
 \begin{algorithmic}[1]
-\Require $\g \gets \num{3e-4}$
-\Require $\l \gets \l\in[0,\infty)$
+\Require $\g \gets \num{3e-4}$ \Comment{Declare a learning rate.}
+\Require $\l \in [0,\infty)$ \Comment{Declare a KL-coefficient.}
+\Require $p(z|x) \sim \mathcal{N}(\m,\S)$ \Comment{Declare a $k$-dimensional posterior density.}
 \For{epoch in epochs}
 	\For{image in batch}
 	    \State $\m, \s$ = encoder(image) \Comment{Encode the image onto mean and variance.}
-	    \State $z\sim \mathcal{N}(\m, \s)$ \Comment{Sample from encoded distribution.}
+	    \State $z\sim q(z|x) \coloneqq\mathcal{N}(\m, \s\cdot I_{k\times k})$ \Comment{Sample from encoded distribution.}
+    	\State KL-divergence = $\kldiv{q(z|x)}{p(z|x)}$ \Comment{Compute the KL-divergence.}
 		\State reconstructed = decoder($\m, \s$) \Comment{Decode the generated sample.}
-    	\State loss = MSE(reconstructed, image) \Comment{Compare the output to the input.}
-	    \State optimization(loss, $\g$, $\l$) \Comment{Perform an optimization step.}
+    	\State loss = MSE(reconstructed, image) + $\l\cdot$KL-divergence \Comment{Compute the loss.}
+	    \State optimization(loss, $\g$) \Comment{Perform an optimization step.}
     \EndFor
 \EndFor
 \end{algorithmic}
 \end{algorithm}
+
+Having considered how a general training of a variational autoencoder looks like, we now want to consider some examples. We begin by considering a model, where the probabilistic encoder encodes the data onto a two dimensional normal distribution. Furthermore, we assume the true posterior $p(z|x)$ to be a standard normal distribution, what is a common approach in practice in order to control the learned approximations $q(z|x)$ to be as close to the standard normal distribution as possible. Moreover, we choose the KL-coefficient to be $\l=\num{4e-2}$. Upon training such a variational autoencoder, we then visualise its latent space on the left-hand side of Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_2D}, where each dot represents an encoding from the encoded distribution of a sample. The colour of the dot represents the digit, which was encoded in the first place. We can see that the encodings in the latent space are located in the interval $[-5, 5]\times [-5, 5]$, whereas comparing to ordinary autoencoders, see e.g. Figure \ref{fig:linear_AE_2d_adam_latent}, the encodings can not be limited locally as easily. This is a huge benefit of variational autoencoders, since it makes generating new samples much easier.
+
+Moreover, on the right-hand side of Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_2D} we can see the corresponding reconstruction of the latent space, where we partition the two dimensional plane into $10\times 10$ points and feed them into the decoding structure of the variational autoencoder to obtain a reconstructed digit.
+
+Another visualisation we want to take a look at is the reconstruction capability of the variational autoencoder. As we did with ordinary autoencoders, we randomly select ten images for each of the ten digits and feed them into the variational autoencoder in order to produce a reconstruction. These reconstructions we can see in Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_inference}. We can see that
+
+Lastly, we want to take a look at the training progress, which is depicted in Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_training_progress}. The blue line plots represents the training loss in each epoch and the orange line represents the moving average of the training loss with regard to the 100 surrounding epochs to give an intuition of the trend of the training progress. We see that similarly to the autoencoders, see e.g. Figure \ref{fig:linear_AE_2d_adam_training_progress}, the training loss first falls rapidly and then after roughly $1000$ epochs barely changes.
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_latent}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_reconstruction}
+	\end{minipage}
+\end{center}
+\caption{On the left-hand side, the figure illustrates the latent space of the variational autoencoder with bottleneck $n_b=2$ and KL-coefficient $\l = \num{4e-5}$, where each dot is a sample from an encoded image of a digit onto a probability density. The color and the corresponding color map represent the digit that was encoded. On the right-hand side the figure illustrates the corresponding reconstruction through the variational autoencoder, where each point of the partitioned  interval $[-8, 4]\times [-1, 10]$ is fed into the decoding architecture of the neural network to generate an image.}\label{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_2D}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with bottleneck $n_b=2$ and KL-coefficient $\l = \num{4e-5}$ to produce a reconstruction.}\label{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_training_progress}
+\end{center}
+\caption{The figure illustrates the training progresses of the variational autoencoder with bottleneck $n_b=2$ and KL-coefficient $\l = \num{4e-5}$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_2D_training_progress}
+\end{figure}
+
+
+Even though we can see that the training of the variational autoencoder was successful, a bottleneck of $n_b=2$ dimensions is simply too small for the network to produce good reconstructions. For this reason, we want to increase the bottleneck to $n_b=3$ and consider its latent space as well as the reconstructions. Since the training progress looks similar to the two-dimensional case, we omit its depiction here and instead kindly refer to the Python code appended to this thesis.\\
+Having trained the variational autoencoder with bottleneck $n_b=3$, we can see a visualisation of the latent space from two different perspectives in Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_latent}. We can see that the clusters of each digit are well separated for digits that look differently, e.g. the digits $1$ and $0$ form clear clusters. However, digits that look similar, e.g. $4$ and $9$ are not separated at all and are mapped onto the same region in the latent space. This will affect the reconstructions, what we can see in Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_inference}. In this figure we can see, as in the two dimensional case, on the left-hand side $100$ samples from the MNIST dataset, where we randomly chose $10$ sampels for each of the ten digits. On the right-hand side we can see the corresponding reconstructions produced by the network. As anticipated, the digits which are well separated are reconstructed quite well, e.g. $0$, $1$ and $7$, whereas the digits that are not separated at all can hardly be distinguished, e.g. $4$ and $9$.
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_latent_1}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_latent_2}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the latent space of the variational autoencoder with bottleneck $n_b=3$ and KL-coefficient $\l = \num{4e-5}$ from two different perspectives. Each dot is a sample from the encoded image of a digit onto a probability density. The color and the corresponding color map represent the digit that was encoded.}\label{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_latent}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with bottleneck $n_b=3$ and KL-coefficient $\l = \num{4e-5}$ to produce a reconstruction.}\label{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_inference}
+\end{figure}
+
+
+Furthermore, to be able to compare the reconstruction capability of the convolutional autoencoder, see Figure \ref{fig:convolutional_AE_inference}, to the variational autoencoder in a sensible way, we now want to increase the bottleneck dimension to $n_b=64$ and depict its reconstructions. These we can see in Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_64D_inference}. We can see that the reconstructions of the variational autoencoder are slightly worse than compared to the convolutional autoencoder. This is due to the fact that producing single point evaluations, which these reconstructions essentially are, are tasks for discriminative models. Therefore, the convolutional autoencoder performs slightly better. However, if we want to generate new samples, e.g. by adding some noise onto an encoded representation, the variational autoencoder performs much better. To prove this, we randomly chose one sample for each digit and then add some $\mathcal{N}(0, 1)$-noise onto the encoding. Then we reconstruct the images with the help of the corresponding decoding architectures of each neural network. These newly generated samples we depict in Figure \ref{fig:convolutional_VAE_vs_convolutional_AE}, where on the left-hand side we can see the generated samples for the variational autoencoder and on the right-hand side for the convolutional autoencoder. We can clearly see that the variational autoencoder is much more stable when applying noise onto the encoded representations and thus, generates much better samples. At this point it is worth mentioning that there indeed are some generated images that do not look as good as other ones. This is due to the fact that we simply chose an arbitrary sample from the data set to begin with. If we were to first determine the cluster center, by e.g. averaging the mean over a certain number of samples, then the generation would be much more stable. This we do in Figure \ref{fig:convolutional_VAE_better_generations}.
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_64D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with bottleneck $n_b=64$ and KL-coefficient $\l = \num{4e-5}$ to produce a reconstruction.}\label{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_64D_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 15mm 10mm 15mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_64D_generated}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 15mm 10mm 15mm 10mm, clip, width=\linewidth]{convolutional_AE_generated}
+	\end{minipage}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ generated samples by the variational autoencoder with bottleneck $n_b=64$. On the right-hand side, the figure illustrates $100$ generated samples by the convolutional autoencoder witch bottleneck $n_b=64$ as well.}\label{fig:convolutional_VAE_vs_convolutional_AE}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.60\linewidth}
+      \includegraphics[trim = 15mm 10mm 15mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-5_10k_epochs_64D_generated_optimal}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates $100$ generated samples by the variational autoencoder with bottleneck $n_b=64$. To make the generation more stable, we first averaged the encoded means and variances over all digits in the dataset and afterwards applied some noise to the averaged mean.}\label{fig:convolutional_VAE_better_generations}
+\end{figure}
+
+
+We now have considered some variational autoencoders with different bottleneck dimensions. However, we always chose the KL-coefficient to be $\l = \num{4e-5}$, which is comparatively small. We now want to analyse the influence of the said coefficient on the resulting variational autoencoder. We begin by increasing the coefficient to $\l = \num{4e-4}$. The corresponding latent space is illustrated in Figure \ref{fig:convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent}. We can see that the clusters are much more ball shaped than with the lower KL-coefficient, see Figure \ref{fig:convolutional_VAE_snd_KL_4e-5_10k_epochs_3D_latent}. This phenomenon is a consequence of the normal distributed density, which the samples are encoded to. If we now take a look at the reconstructions of the variational autoencoder, see Figure \ref{fig:convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference}, we see that they still are not good, even though they are a little smoother than compared to the $\l = \num{4e-5}$ case.
+We proceed to increase the KL-coefficient even further and consider the case $\l = \num{4e-2}$. This is a very interesting example for different reasons. The first reason is that if we take a look at the latent space of this variational autoencoder, see Figure \ref{fig:convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent}, we realise that every digit is encoded onto a $3$-dimensional normal distribution with basically the same density function. There can not be determined a single cluster. Therefore, the reconstructions, see Figure \ref{fig:convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference}, can not be identified as digits either. However, if we increase the bottleneck to $n_b=10$, the reconstructions, see Figure \ref{fig:convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference} are recognizable again. This means that if the network has enough \glqq spare dimensions\grqq{} it can find itself an encoding such that it does form clusters in the latent space. If we now increase the bottleneck to $n_b=64$, see Figure \ref{fig:convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference}, we realise that the reconstructions are quite good and hence, the neural network behaves as it is supposed to.\\
+As the last experiment we want to analyse a slightly different approach than proposed in literature. As previously described, the common approach in literature is to chose the posterior to be a standard normal distribution and allow the neural network to find a latent representation such that the encoded densities are close to a standard normal distribution but still differ enough to form clusters for each of the encoded digits. We now propose a slightly different approach. Since we know that we have ten digits and thus, will have ten clusters in the latent space, we define for each of the digits a different vector which will be the mean of its chosen posterior density. This way, we can force the neural network to spatially separate the clusters. We depict the resulting latent space for a variational autoencoder with bottleneck $n_b=3$ and KL-coefficient $\l=\num{4e-2}$ in Figure \ref{fig:convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent}.
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_1}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_2}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the latent space of the variational autoencoder with bottleneck $n_b=3$ and KL-coefficient $\l = \num{4e-4}$ from two different perspectives. Each dot is a sample from the encoded image of a digit onto a probability density. The color and the corresponding color map represent the digit that was encoded.}\label{fig:convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with bottleneck $n_b=3$ and KL-coefficient $\l=\num{4e-4}$ to produce a reconstruction.}\label{fig:convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_1}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_2}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the latent space of the variational autoencoder with bottleneck $n_b=3$ and KL-coefficient $\l = \num{4e-2}$ from two different perspectives. Each dot is a sample from the encoded image of a digit onto a probability density. The color and the corresponding color map represent the digit that was encoded.}\label{fig:convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with bottleneck $n_b=3$ and KL-coefficient $\l=\num{4e-2}$ to produce a reconstruction.}\label{fig:convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with bottleneck $n_b=10$ and KL-coefficient $\l=\num{4e-2}$ to produce a reconstruction.}\label{fig:convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with bottleneck $n_b=64$ and KL-coefficient $\l=\num{4e-2}$ to produce a reconstruction.}\label{fig:convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_1}
+	\end{minipage}
+   \begin{minipage}[b]{0.49\linewidth}
+      \includegraphics[trim = 20mm 10mm 20mm 10mm, clip, width=\linewidth]{convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_2}
+	\end{minipage}
+\end{center}
+\caption{The figure illustrates the latent space of the variational autoencoder with the posterior chosen customly, where we choose the bottleneck $n_b=3$ and KL-coefficient $\l = \num{4e-2}$, from two different perspectives. Each dot is a sample from the encoded image of a digit onto a probability density. The color and the corresponding color map represent the digit that was encoded.}\label{fig:convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+      \includegraphics[trim = 15mm 10mm 15mm 15mm, clip, width=\linewidth]{convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_inference}
+\end{center}
+\caption{On the left-hand side, the figure illustrates $100$ original digits from the MNIST dataset. On the right-hand side, the figure illustrates the same digits after feeding them through the variational autoencoder with the posterior chosen customly, where we choose the bottleneck $n_b=3$ and KL-coefficient $\l = \num{4e-4}$ to produce a reconstruction.}\label{fig:convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_inference}
+\end{figure}

@@ -5,12 +5,12 @@ from isa_conv_AE import ConvolutionalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from visualise import inference_convolutional_ae
+from visualise import generate_convolutional, inference_convolutional_ae
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
 
-BASE_PATH = f"./final_code/{os.path.basename(os.path.dirname(os.path.realpath(__file__)))}"  # noqa: E501
+BASE_PATH = os.path.dirname(__file__)
 BATCH_SIZE = 64
 LATENT_DIMS = 2
 NUM_BATCHES = 50
@@ -33,4 +33,5 @@ if __name__ == "__main__":
     )
 
     # plot
+    generate_convolutional(model, data_loader, 10)
     inference_convolutional_ae(model, data_loader, 10)

@@ -244,7 +244,7 @@ Lastly, we want to take a quick look at the training progress of the two autoenc
       \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{linear_AE_2d_adam_latent}
 	\end{minipage}
    \begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_adam_reconstruction}
+      \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{linear_AE_2d_adam_reconstruction}
 	\end{minipage}
 \end{center}
 \caption{On the left side, the figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=2$ optimized with an Adam optimizer, where each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded. On the right side the figure illustrates the corresponding reconstruction through the autoencoder. Each coordinate tuple is fed into the decoding architecture of the autoencoder to generate an image.}\label{fig:linear_AE_2d_adam_latent}
@@ -257,7 +257,7 @@ Lastly, we want to take a quick look at the training progress of the two autoenc
       \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_latent}
 	\end{minipage}
 	\begin{minipage}[b]{0.49\linewidth}
-      \includegraphics[trim = 15mm 5mm 15mm 15mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_reconstruction}
+      \includegraphics[trim = 15mm 5mm 15mm 10mm, clip, width=\linewidth]{linear_AE_2d_amsgrad_reconstruction}
 	\end{minipage}
 \end{center}
 \caption{On the left side, the figure illustrates the latent space of the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer, where each dot is one encoded image of a digit. The color and the corresponding color map represent the digit that was encoded. On the right side the figure illustrates the corresponding reconstruction through the autoencoder. Each coordinate tuple is fed into the decoding architecture of the autoencoder to generate an image.}\label{fig:linear_AE_2d_amsgrad_latent}
@@ -288,7 +288,7 @@ Lastly, we want to take a quick look at the training progress of the two autoenc
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_2d_adam_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an Adam optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_2d_adam_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an Adam optimizer with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_2d_adam_training_progress}
 \end{figure}
 
 
@@ -296,7 +296,7 @@ Lastly, we want to take a quick look at the training progress of the two autoenc
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_2d_amsgrad_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_2d_amsgrad_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=2$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_2d_amsgrad_training_progress}
 \end{figure}
 
 
@@ -351,7 +351,7 @@ Now, let's take a look at what happens if we increase the bottleneck dimension. 
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_3d_adam_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an Adam optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_3d_adam_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an Adam optimizer with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_3d_adam_training_progress}
 \end{figure}
 
 
@@ -359,7 +359,7 @@ Now, let's take a look at what happens if we increase the bottleneck dimension. 
 \begin{center}
 \includegraphics[width=\linewidth]{linear_AE_3d_amsgrad_training_progress}
 \end{center}
-\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis.On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_3d_amsgrad_training_progress}
+\caption{The figure illustrates the training progresses of the linear autoencoder with bottleneck $n_b=3$ optimized with an AMSGrad optimizer with epochs on one axis and corresponding training loss on the other axis. On the left side we see the first $3.500$ epochs and on the right side the following epochs until $10.000$. The blue line represents the loss in each epoch and the orange line represents the moving average over $100$ epochs to point out the trend of the training progress.}\label{fig:linear_AE_3d_amsgrad_training_progress}
 \end{figure}
 
 
