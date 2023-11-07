@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.7)  7 NOV 2023 17:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.7)  7 NOV 2023 22:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1128,50 +1128,50 @@ _training_progress.png>]
 <linear_AE_3d_adam_latent_1.png, id=710, 505.89pt x 361.35pt>
 File: linear_AE_3d_adam_latent_1.png Graphic file (type png)
 <use linear_AE_3d_adam_latent_1.png>
-Package pdftex.def Info: linear_AE_3d_adam_latent_1.png  used on input line 308
+Package pdftex.def Info: linear_AE_3d_adam_latent_1.png  used on input line 309
 .
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
 <linear_AE_3d_adam_latent_2.png, id=712, 505.89pt x 361.35pt>
 File: linear_AE_3d_adam_latent_2.png Graphic file (type png)
 <use linear_AE_3d_adam_latent_2.png>
-Package pdftex.def Info: linear_AE_3d_adam_latent_2.png  used on input line 311
+Package pdftex.def Info: linear_AE_3d_adam_latent_2.png  used on input line 312
 .
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
 <linear_AE_3d_amsgrad_latent_1.png, id=714, 505.89pt x 361.35pt>
 File: linear_AE_3d_amsgrad_latent_1.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_latent_1.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_latent_1.png  used on input line
-320.
+321.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
 <linear_AE_3d_amsgrad_latent_2.png, id=716, 505.89pt x 361.35pt>
 File: linear_AE_3d_amsgrad_latent_2.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_latent_2.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_latent_2.png  used on input line
-323.
+324.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
 <linear_AE_3d_adam_inference.png, id=718, 1011.78pt x 505.89pt>
 File: linear_AE_3d_adam_inference.png Graphic file (type png)
 <use linear_AE_3d_adam_inference.png>
 Package pdftex.def Info: linear_AE_3d_adam_inference.png  used on input line 33
-3.
+4.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
 <linear_AE_3d_amsgrad_inference.png, id=720, 1011.78pt x 505.89pt>
 File: linear_AE_3d_amsgrad_inference.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_inference.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_inference.png  used on input line
- 343.
+ 344.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
 <linear_AE_3d_adam_training_progress.png, id=722, 1011.78pt x 505.89pt>
 File: linear_AE_3d_adam_training_progress.png Graphic file (type png)
 <use linear_AE_3d_adam_training_progress.png>
 Package pdftex.def Info: linear_AE_3d_adam_training_progress.png  used on input
- line 352.
+ line 353.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
 <linear_AE_3d_amsgrad_training_progress.png, id=723, 1011.78pt x 505.89pt>
 File: linear_AE_3d_amsgrad_training_progress.png Graphic file (type png)
 <use linear_AE_3d_amsgrad_training_progress.png>
 Package pdftex.def Info: linear_AE_3d_amsgrad_training_progress.png  used on in
-put line 360.
+put line 361.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
  [55 <./linear_AE_3d_adam_latent_1.png> <./linear_AE_3d_adam_latent_2.png>] [56
  <./linear_AE_3d_amsgrad_latent_1.png> <./linear_AE_3d_amsgrad_latent_2.png> <.
@@ -1181,19 +1181,19 @@ ce.png>] [58 <./linear_AE_3d_amsgrad_training_progress.png>]
 <convolutional_AE_latent_0.png, id=767, 1011.78pt x 505.89pt>
 File: convolutional_AE_latent_0.png Graphic file (type png)
 <use convolutional_AE_latent_0.png>
-Package pdftex.def Info: convolutional_AE_latent_0.png  used on input line 424.
+Package pdftex.def Info: convolutional_AE_latent_0.png  used on input line 425.
 
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
 <convolutional_AE_latent_1.png, id=768, 1011.78pt x 505.89pt>
 File: convolutional_AE_latent_1.png Graphic file (type png)
 <use convolutional_AE_latent_1.png>
-Package pdftex.def Info: convolutional_AE_latent_1.png  used on input line 428.
+Package pdftex.def Info: convolutional_AE_latent_1.png  used on input line 429.
 
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
 <convolutional_AE_inference.png, id=774, 1011.78pt x 505.89pt>
 File: convolutional_AE_inference.png Graphic file (type png)
 <use convolutional_AE_inference.png>
-Package pdftex.def Info: convolutional_AE_inference.png  used on input line 440
+Package pdftex.def Info: convolutional_AE_inference.png  used on input line 441
 .
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
  [59] [60 <./convolutional_AE_latent_0.png> <./convolutional_AE_latent_1.png>]
@@ -1201,7 +1201,7 @@ Package pdftex.def Info: convolutional_AE_inference.png  used on input line 440
 File: convolutional_AE_training_progress.png Graphic file (type png)
 <use convolutional_AE_training_progress.png>
 Package pdftex.def Info: convolutional_AE_training_progress.png  used on input
-line 450.
+line 451.
 (pdftex.def)             Requested size: 483.69687pt x 241.8518pt.
 ) [61 <./convolutional_AE_inference.png>] [62 <./convolutional_AE_training_prog
 ress.png>]
@@ -1312,93 +1312,93 @@ _10k_epochs_3D_inference.png>] [75 <./convolutional_VAE_snd_KL_4e-5_10k_epochs_
 64D_inference.png> <./convolutional_VAE_snd_KL_4e-5_10k_epochs_64D_generated.pn
 g> <./convolutional_AE_generated.png>] [76 <./convolutional_VAE_snd_KL_4e-5_10k
 _epochs_64D_generated_optimal.png>]
-<convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_1.png, id=998, 505.89pt x 36
-1.35pt>
+<convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_1.png, id=1001, 505.89pt x 3
+61.35pt>
 File: convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_1.png Graphic file (typ
 e png)
 <use convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_1.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_1.pn
-g  used on input line 341.
+g  used on input line 342.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_2.png, id=1000, 505.89pt x 3
+<convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_2.png, id=1003, 505.89pt x 3
 61.35pt>
 File: convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_2.png Graphic file (typ
 e png)
 <use convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_2.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_2.pn
-g  used on input line 344.
+g  used on input line 345.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference.png, id=1002, 1011.78pt x
+<convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference.png, id=1005, 1011.78pt x
  505.89pt>
 File: convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference.png Graphic file (ty
 pe png)
 <use convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_inference.p
-ng  used on input line 353.
+ng  used on input line 354.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
-<convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_1.png, id=1004, 505.89pt x 3
+<convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_1.png, id=1007, 505.89pt x 3
 61.35pt>
 File: convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_1.png Graphic file (typ
 e png)
 <use convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_1.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_1.pn
-g  used on input line 362.
+g  used on input line 363.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_2.png, id=1006, 505.89pt x 3
+<convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_2.png, id=1009, 505.89pt x 3
 61.35pt>
 File: convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_2.png Graphic file (typ
 e png)
 <use convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_2.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_latent_2.pn
-g  used on input line 365.
+g  used on input line 366.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference.png, id=1008, 1011.78pt x
+<convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference.png, id=1011, 1011.78pt x
  505.89pt>
 File: convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference.png Graphic file (ty
 pe png)
 <use convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-2_5k_epochs_3D_inference.p
-ng  used on input line 374.
+ng  used on input line 375.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
-<convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference.png, id=1010, 1011.78pt
+<convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference.png, id=1013, 1011.78pt
  x 505.89pt>
 File: convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference.png Graphic file (
 type png)
 <use convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-2_10k_epochs_10D_inference
-.png  used on input line 382.
+.png  used on input line 383.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
-<convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference.png, id=1012, 1011.78pt
+<convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference.png, id=1015, 1011.78pt
  x 505.89pt>
 File: convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference.png Graphic file (
 type png)
 <use convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference.png>
 Package pdftex.def Info: convolutional_VAE_snd_KL_4e-2_10k_epochs_64D_inference
-.png  used on input line 390.
+.png  used on input line 391.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
-<convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_1.png, id=1014, 505.89
+<convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_1.png, id=1017, 505.89
 pt x 361.35pt>
 File: convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_1.png Graphic fil
 e (type png)
 <use convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_1.png>
 Package pdftex.def Info: convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_laten
-t_1.png  used on input line 399.
+t_1.png  used on input line 400.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_2.png, id=1016, 505.89
+<convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_2.png, id=1019, 505.89
 pt x 361.35pt>
 File: convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_2.png Graphic fil
 e (type png)
 <use convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_latent_2.png>
 Package pdftex.def Info: convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_laten
-t_2.png  used on input line 402.
+t_2.png  used on input line 403.
 (pdftex.def)             Requested size: 237.01411pt x 184.04317pt.
-<convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_inference.png, id=1018, 1011.
+<convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_inference.png, id=1021, 1011.
 78pt x 505.89pt>
 File: convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_inference.png Graphic fi
 le (type png)
 <use convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_inference.png>
 Package pdftex.def Info: convolutional_VAE_new_idea_KL_4e-2_10k_epochs_3D_infer
-ence.png  used on input line 411.
+ence.png  used on input line 412.
 (pdftex.def)             Requested size: 483.69687pt x 226.99101pt.
 ) [77 <./convolutional_VAE_snd_KL_4e-4_5k_epochs_3D_latent_1.png> <./convolutio
 nal_VAE_snd_KL_4e-4_5k_epochs_3D_latent_2.png>] [78 <./convolutional_VAE_snd_KL
@@ -1452,9 +1452,9 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (84 pages, 6887037 bytes).
+Output written on main.pdf (84 pages, 6887686 bytes).
 PDF statistics:
- 1254 PDF objects out of 1440 (max. 8388607)
- 982 compressed objects within 10 object streams
+ 1257 PDF objects out of 1440 (max. 8388607)
+ 985 compressed objects within 10 object streams
  310 named destinations out of 1000 (max. 500000)
  559 words of extra memory for PDF output out of 10000 (max. 10000000)
