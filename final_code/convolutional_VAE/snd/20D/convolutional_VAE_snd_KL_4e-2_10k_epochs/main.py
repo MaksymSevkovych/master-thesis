@@ -12,7 +12,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 BASE_PATH = os.path.dirname(__file__)
 BATCH_SIZE = 64
-LATENT_DIMS = 10
+LATENT_DIMS = 20
 NUM_BATCHES = 50
 LR = 3e-4
 
