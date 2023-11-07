@@ -12,4 +12,4 @@
 \contentsline {section}{\numberline {3.1}Probabilistic foundations}{63}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Variational Inference on Autoencoders}{68}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Applications}{70}{section.3.3}%
-\contentsline {chapter}{References}{71}{section.3.3}%
+\contentsline {chapter}{References}{72}{algorithm.6}%

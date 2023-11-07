@@ -213,4 +213,24 @@ where we consider a mini-batch $\{x_1,\ldots x_L\}$ of $L$ samples, where $L\leq
 
 \section{Applications}\label{sec:vae_applications}
 
-Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}. As discussed in Section~\ref{sec:vi_on_ae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}, e.g. the stochastic gradient descent (SGD) algorithm. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.
+Finally, we want to consider some applications of variational autoencoders, similar to Section~\ref{sec:ae_applications}, where we trained linear and convolutional autoencoders on the MNIST dataset, a dataset which consists of handwritten digits. As discussed in Section~\ref{sec:vi_on_ae}, in the course of training we want to minimize the risk function, iteratively. In order to do so we can apply some kind of training algorithm proposed in Section~\ref{sec:training_of_nn}, e.g. the stochastic gradient descent (SGD) algorithm. Our goal will be to visualise the latent space of a variational autoencoder and show how its reconstruction capability looks like. Furthermore, we will depict the training progress of each model we train. Lastly, we came up with an idea of our own of how to improve the reconstruction capability of the variational autoencoder.\\
+Before actually looking at trained examples, we want to formulate a general algorithm of how such a training looks like, see Algorithm \ref{alg:general_vae}
+
+\begin{algorithm}
+Let the input and output dimensions be $(M_i,N_i, d_i), (M_o,N_o,d_o) \in \N^{2\times 1}$, where $(M_j, N_j)$ denotes the resolution of the image domain and $d_j$ the amount of channels in the $j$-th layer. Furthermore, let the convolutional encoder and the convolutional decoder have $k$ hidden linear layers.\\
+Let the chosen optimizer be AMSGrad with a learning rate $\g>0$ and Kullback-Leibler coefficient $\l\in[0,\infty)$. Furthermore, let the chosen loss function be the MSE loss function. Then the training of a variational autoencoder looks as follows.
+\caption{Variational Autoencoder}\label{alg:general_vae}
+\begin{algorithmic}[1]
+\Require $\g \gets \num{3e-4}$
+\Require $\l \gets \l\in[0,\infty)$
+\For{epoch in epochs}
+	\For{image in batch}
+	    \State $\m, \s$ = encoder(image) \Comment{Encode the image onto mean and variance.}
+	    \State $z\sim \mathcal{N}(\m, \s)$ \Comment{Sample from encoded distribution.}
+		\State reconstructed = decoder($\m, \s$) \Comment{Decode the generated sample.}
+    	\State loss = MSE(reconstructed, image) \Comment{Compare the output to the input.}
+	    \State optimization(loss, $\g$, $\l$) \Comment{Perform an optimization step.}
+    \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
