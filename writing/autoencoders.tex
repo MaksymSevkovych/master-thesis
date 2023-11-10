@@ -385,7 +385,7 @@ We want to increase the bottleneck one last time to $n_b=64$ dimensions, because
 \end{figure}
 
 
-As we saw in Figure \ref{fig:linear_AE_3d_adam_inference} and in Figure \ref{fig:linear_AE_3d_amsgrad_inference}, the linear autoencoder does produce recognisable digits in its reconstructions, but it still performs quite poorly. To address this issue, we propose another architecture of an autoencoding neural network. In this setting, we now consider convolutional layers instead of linear layers, this means that the connections between each layer are no longer matrix multiplications, but convolutions instead. Hence, we introduce the convolutional encoder and the convolutional decoder as follows.
+As we saw in Figure \ref{fig:linear_AE_64d_adam_inference} and in Figure \ref{fig:linear_AE_64d_amsgrad_inference}, the linear autoencoder does produce recognisable digits in its reconstructions, but it still performs quite poorly. To address this issue, we propose another architecture of an autoencoding neural network. In this setting, we now consider convolutional layers instead of linear layers, this means that the connections between each layer are no longer matrix multiplications, but convolutions instead. Hence, we introduce the convolutional encoder and the convolutional decoder as follows.
 
 
 \begin{definition}\label{def_convolutional_encoder}

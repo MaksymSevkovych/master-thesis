@@ -1,11 +1,11 @@
-\chapter{Preliminary}\label{chap:preliminary}
+\chapter{Preliminaries}\label{chap:preliminary}
 In order to comprehend the topic of variational autoencoders or even autoencoders in general, we need to consider a couple of preliminary ideas. Those ideas consist mainly of concepts of probability theory and statistics, statistical learning theory, neural networks and their optimization - often referred to as training of neural networks. In this chapter, we will begin with fundamental definitions we need for the statistical learning setting and afterwards tackle the conceptional idea of how to formulate neural networks in a mathematical way and furthermore, we will consider a handful of useful operations that neural networks are capable of doing. Then, we will take a look at some strategies of training neural networks. Lastly, we will consider neural networks operating on images. This discipline of machine learning is usually referred to as computer vision.
 
 
 \section{Probability and Statistics}\label{sec:preliminary_prob}
 
 A fundamental topic for this thesis is measure and probability theory and statistics. Especially in Chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
-We want to begin by introducing the basic quantities in measure and probability theory, merely to define a notation throughout the thesis. The first quantity we want to introduce is the density function, where we strongly orientate ourselves towards \cite[Chapter~2\& Chapter~3]{meintrup2006stochastik}. Furthermore, we want to use the notation the authors used in the same reference. Hence, let $(\O, \A, \m)$ be a measure space. Then we denote $M$ as the set of all measurable numeric functions $f:\O\to \bar{\R}$ and moreover, $M^{+}$ denotes the set of all non-negative functions in $M$. With these definitions we can introduce a density function with regard to a measure.
+We want to begin by introducing the basic quantities in measure and probability theory, merely to define a notation throughout the thesis. The first quantity we want to introduce is the density function, where we strongly orientate ourselves towards \cite[Chapter~2 \& Chapter~3]{meintrup2006stochastik}. Furthermore, we want to use the notation the authors used in the same reference. Hence, let $(\O, \A, \m)$ be a measure space. Then we denote $M$ as the set of all measurable numeric functions $f:\O\to \bar{\R}\coloneqq \R \cup \{-\infty, \infty\}$ and moreover, $M^{+}$ denotes the set of all non-negative functions in $M$. With these definitions we can introduce a density function with regard to a measure.
 
 \begin{definition}\label{def:density}
 Let $(\O, \A, \m)$ be a measure space and $f\in M^{+}$. Then we define
@@ -13,13 +13,13 @@ Let $(\O, \A, \m)$ be a measure space and $f\in M^{+}$. Then we define
 f \odot \mu: \A &\to \bar{\R},\\
 (f \odot \mu) (A) &\coloneqq \int_{A}fd\m,
 \end{align*}
-as the \textbf{measure with density $f$ (with regard to $\m$)}. The function $f:\O \to \bar{R}_{+}$ is called \textbf{density} of the measure $f\odot \m$.
+as the \textbf{measure with density $f$ (with regard to $\m$)}. The function $f:\O \to \bar{\R}_{+}$ is called \textbf{density} of the measure $f\odot \m$.
 \end{definition}
 
-A very important question we need to clarify at this point, is when such a density function as we defined in Definition \ref{def:density} actually exists. In order to address this, we need to introduce a property which in a sense compares two measures on their null sets. This property is called absolute continuity, which we introduce in the following.
+A very important question we need to clarify at this point is, when such a density function actually exists. In order to address this, we need to introduce a property which in a sense compares two measures on their null sets. The property we introduce in the following is called absolute continuity.
 
 \begin{definition}\label{def:abs_cont}
-Let $\m$, $\n$ be two measures on $(\O, \A)$. We call $\n$ \textbf{absolute continuous with regard to $\m$}, if
+Let $\m$, $\n$ be two measures on $(\O, \A)$. We call $\n$ \textbf{absolutely continuous with regard to $\m$}, if
 \begin{align*}
 \m(A) \quad \Longrightarrow \quad \n(A),
 \end{align*}
@@ -67,7 +67,7 @@ The next quantity we need to introduce are random variables. Conceptionally, ran
 
 \begin{definition}\label{def:rv}
 Let $(\O_1, \A_1, \prob)$ be a probability space and $(\O_2, \A_2)$ be a measure space. A function $X: \O_1 \to \O_2$ that is $\A_1-\A_2$-measurable is defined as a \textbf{random variable}.\\
-Moreover, if we consider $\O_2= \R^n$ with $n=1,2,\ldots$, we refer to $X$ as an \textbf{$n$-dimensional real-valued random variable}. If $\O_2 = \bar{R}$, we refer to $X$ as a \textbf{numerical random variable}.\\
+Moreover, if we consider $\O_2= \R^n$ with $n=1,2,\ldots$, we refer to $X$ as an \textbf{$n$-dimensional real-valued random variable}. If $\O_2 = \bar{\R}$, we refer to $X$ as a \textbf{numerical random variable}.\\
 Lastly, for $A_2\in\A_2$ we denote $\{X\in A_2\}\coloneqq X^{-1}(A_2)$ and $\prob(X\in A_2) \coloneqq \prob(X^{-1}(A_2))$.
 \end{definition}
 
@@ -240,7 +240,7 @@ A visual representation of a neural network can be found in Figure \ref{img_nn}
 
 
 \section{Training of Neural Networks}\label{sec:training_of_nn}
-Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. There are many approaches of how to train a neural network (\textcolor{red}{TODO: cite some approaches then!}). However, most of them rely on iteratively finding the gradient - the direction of greatest ascent of the risk function, and afterwards performing an optimization step in the opposite of the found direction. This method of the steepest descent dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview we refer to \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be discovered in numerous literature. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, please take a look at this reference.\\
+Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. The most common approach to train a neural network is to iteratively find the gradient - the direction of greatest ascent of the risk function, and afterwards perform an optimization step in the opposite of the found direction, thus the direction of the steepest descent. This method of the steepest descent dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview we refer to \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be found in numerous literature. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, we kindly refer to this reference.\\
 Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and we aim to find an element $x^{\ast}\in X$ such that
 
 \begin{align*}

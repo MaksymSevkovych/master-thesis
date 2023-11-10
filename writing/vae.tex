@@ -151,7 +151,7 @@ With the help of the entropy, which we defined in Definition \ref{def:entropy} a
 
 \section{Variational Inference on Autoencoders}\label{sec:vi_on_ae}
 
-In section \ref{sec:prob_foundations} we introduced the Variational Inference, also known as Variational Bayes setting. This setting allows us to iteratively improve our understanding of the observed data, which we model through the observation generation probability density function $p(x)$. This approach can we applied to autoencoding neural networks, as proposed in \cite{kingma2013auto}. The idea is to consider an autoencoding neural network with parameters $\t$, where we assume the parameters to be variable. In the Bayesian learning setting it is a common approach to not distinguish between latent variables and model parameters, since they both are unknown quantities. Therefore, we can consider the likelihood function $p(x|z)$ as the output of a neural network, where the parameters $\t$ are determined by the realisation $z$ of the latent variable $Z$. We denote the likelihood function as $p_\t(x|z)$ then. Moreover, since we consider generative models the output of the neural network is not a vector but a probability density. If we assume it to be Gaussian, this means that the likelihood function would look like
+In Section\ref{sec:prob_foundations} we introduced the Variational Inference, also known as Variational Bayes setting. This setting allows us to iteratively improve our understanding of the observed data, which we model through the observation generation probability density function $p(x)$. This approach can we applied to autoencoding neural networks, as proposed in \cite{kingma2013auto}. The idea is to consider an autoencoding neural network with parameters $\t$, where we assume the parameters to be variable. In the Bayesian learning setting it is a common approach to not distinguish between latent variables and model parameters, since they both are unknown quantities. Therefore, we can consider the likelihood function $p(x|z)$ as the output of a neural network, where the parameters $\t$ are determined by the realisation $z$ of the latent variable $Z$. We denote the likelihood function as $p_\t(x|z)$ then. Moreover, since we consider generative models the output of the neural network is not a vector but a probability density. If we assume it to be Gaussian, this means that the likelihood function would look like
 \begin{align}\label{eq:likelihood_nn}
 p_\t(x|z) = \mathcal{N} (\m_{nn}(z), \s_{nn}(z)).
 \end{align}
@@ -189,26 +189,64 @@ Comparing this equation to the ELBO, determined in \eqref{eq:elbo}, we realise t
 \kldiv{q_{\phi}(z|x_i)}{p(z|x_i)} = - \loss(\t, \phi; x_i) + \E_{q_{\phi}(z|x_i)} \left[ \log p(x_i) \right] = - \loss(\t, \phi; x_i) + \log p(x_i),
 \end{align*}
 where the last equation holds due to the fact that $\log p(x_i)$ does not depend on $z$.\\
-At this point, it is worth mentioning that the Kullback-Leibler divergence is the difference between the ELBO, see \eqref{eq:elbo}, which is the lower bound on the $\log$ of the evidence $p(x_i)$ and the $\log$ of the evidence $p(x_i)$ itself. Therefore, the tighter the ELBO is the smaller the Kullback-Leibler divergence between approximation $q_{\phi}(z|x_i)$ and posterior $p(z|x_i)$ becomes. This consideration leads to the following optimization problem
+At this point, it is worth mentioning that the Kullback-Leibler divergence is the difference between the ELBO, see \eqref{eq:elbo}, which is the lower bound on the $\log$ of the evidence $p(x_i)$ and the $\log$ of the evidence $p(x_i)$ itself. Therefore, the tighter the ELBO is the smaller the Kullback-Leibler divergence between approximation $q_{\phi}(z|x_i)$ and posterior $p(z|x_i)$ becomes. This leads to the representation
+\begin{align}\label{eq:alternative_loss}
+\loss(\t,\phi ; x_i) = - \kldiv{q_{\phi}(z|x_i)}{p(z)} + \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right],
+\end{align}
+where we swapped the prior $p(z)$ and posterior $p_{\t}(z|x_i)$ between Kullback-Leibler divergence and expectation. This s allowed due to the fact that we consider $\E_{q_{\phi}(z|x_i)}[\wc]$ and $\kldiv{q_{\phi}(z|x_i)}{\wc}$.\\
+We want to optimize the ELBO $\loss(\t,\phi ; x_i)$ with regard to both the variational parameters $\phi$ and generative parameters $\t$. The common approach for the variational parameters $\phi$ would be to determine the gradient with respect to the parameters and optimize it with a gradient ascent algorithm. However, computing the gradient in a closed-form is usually not possible in closed-form due to the size of data and the complexity of $\loss(\t,\phi ; x_i) $. Thus, one usually approximates the gradient with e.g. a Monte Carlo Gradient estimator, see e.g. \cite[Section~11.1.6]{bishop2006pattern}, which would look like
 \begin{align*}
-\max_{\phi, \t} \loss(\t, \phi; x_i) = \max_{\phi, \t} \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right] + \E_{q_{\phi}(z|x_i)} \left[ \log p(z) \right] - \E_{q_{\phi}(z|x_i)} \left[ \log q_{\phi}(z|x_i)\right],
+\nabla_{\phi} \E_{q_{\phi}(z)} \left[ f(z) \right] = \E_{q_{\phi}(z)} \left[ f(z) \nabla_{q_{\phi}(z)}\log q_{\phi} (z)\right] \simeq \frac{1}{L} \sum_{l=1}^L f(z) \nabla_{q_{\phi}(z_l)}\log q_{\phi} (z_l),
 \end{align*}
-where we choose the optimal parameters $\t$ of the approximation density $q_{\phi}(z|x_i)$ on one hand and the optimal parameters $\t$ of the probabilistic encoder $p_{\t}(x_i|z)$ on the other hand. We begin with the optimization with regard to the parameter $\t$ and realise that only the probabilistic encoder $p_{\t}(x_i|z)$ depends on the parameter $\t$ and thus, optimizing the ELBO with regard to $\t$ is equivalent to only optimizing the probabilistic encoder with regard to $\t$, which in other words is simply the maximum likelihood estimation, see e.g. \cite[Section~2.3.4]{bishop2006pattern}. Therefore, we receive the optimization problem
+where $z_l \sim q_{\phi}(z|x_i)$, see \cite[Section~2.2]{kingma2013auto}. Unfortunately, this gradient estimator has shown to exhibit very high variance, see \cite{paisley2012variational} and therefore, it is impractical for our purposes. To address this matter we choose a slightly different approach. We assume an (auxiliary) noise variable $\e$, which we assume to be distributed with density $\e\sim p(\e)$. Then we can reparameterize $\tilde{z}\sim q_{\phi}(z|x)$ using a differentiable transformation $g_{\phi}(\e, x)$, such that
 \begin{align*}
-\t^{\ast} \coloneqq \argmax_{\t\in \T} \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right],
+\tilde{z} = g_{\phi} (\e, x)\qquad \e \sim p(\e).
 \end{align*}
-where we denote $\T$ as an arbitrary parameter space. Furthermore, we know that for an optimum holds
+We can now form Monte Carlo estimates of expectations of some function $f(z)$ with regard to the approximate posterior $q_{\phi}(z|x_i)$ as
 \begin{align*}
-\nabla_{\t}\E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right] = 0.
+\E_{q_{\phi}(z|x)} \left[ f(z) \right] = \E_{p(\e)} \left[ f\left(g_{\phi} (\e, x_i)\right) \right] \simeq \frac{1}{L} \sum_{l=1}^L f\left(g_{\phi} (\e_l, x_i) \right).
 \end{align*}
-Therefore, considering the gradient with regard to $\t$ gives us
+If we apply this technique to the ELBO (equation \eqref{eq:elbo}), then we receive the \textbf{Stochastic Gradient Variational Bayes (SGVB)} estimator $\tilde{\loss}^{A}(\t, \phi; x_i) \simeq \loss(\t, \phi; x_i)$:
 \begin{align*}
-\nabla_{\t}\E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right] = \nabla_{\t} \frac{1}{L} \sum_{i=1}^{L} q_{\phi}(z|x_i) \log p_{\t}(x_i|z),
+\tilde{\loss}^{A}(\t, \phi; x_i) = \frac{1}{L} \sum_{l=1}^L \log  p_{\t}(x_i|z_{i,l}) + \log p(z_{i,l}) - \log q_{\phi}(z_{i,l}|x_i),
 \end{align*}
-where we consider a mini-batch $\{x_1,\ldots x_L\}$ of $L$ samples, where $L\leq N$.
+where $z_{i,l} = g_{\phi} (\e_l, x_i)$ and $\e_l\sim p(\e)$. Moreover, $A$ denotes the first version of the SGVB estimator.\\
+Often, the Kullback-Leibler divergence $\kldiv{q_{\phi}(z|x_i)}{p(z)}$ can be integrated analytically (e.g. if we assume $q_{\phi}(z|x_i)$ and $p(z)$ to be normally distributed). Therefore, we do only need to estimate by sampling the last term of the right-hand side of \eqref{eq:alternative_loss}. This can be interpreted in the way that the Kullback-Leibler divergence encourages the approximate posterior $q_{\phi}(z|x_i)$ to be close to the prior $p(z)$ and thus, regularize $\phi$. This leads to a second version of the SGVB estimator:
+\begin{align}\label{eq:loss_batched}
+\tilde{\loss}^{B}(\t, \phi; x_i) = - \kldiv{q_{\phi}(z|x_i)}{p(z)} + \frac{1}{L} \sum_{l=1}^L \log(p_{\t}(x_i|z_{i,l})),
+\end{align}
+where $z_{i,l} = g_{\phi} (\e_l, x_i)$ and $\e_l\sim p(\e)$. Moreover, $B$ denotes the second version of the SGVB estimator.\\
+At this point, we want to mention that if we have a dataset $D$ with $N\in\N$ observations, i.e. $D=\{x_1,\ldots, x_N\}$ and randomly choose mini-batches $B$ of length $M\in\N$, then we can construct an SGVB estimator of the full dataset $D$ by
+\begin{align*}
+\loss(\t, \phi; D) \simeq \loss(\t, \phi; B) = \frac{N}{M} \sum_{i=1}^M\loss(\t, \phi; x_i).
+\end{align*}
+We can determine the gradients $\nabla_{\t,\phi}\loss(\t, \phi; B)$ and thus, use these gradients in optimization techniques, see Section~\ref{sec:training_of_nn}, to optimize the parameters $\t$ and $\phi$.\\
+Furthermore, we want to highlight at this point that equation \eqref{eq:loss_batched} clearly shows the connection to auto encoding neural networks. The function $g_{\phi}(\wc)$ is chosen such that it maps an observation $x_i$ and a random noise vector $\e_l$ to a sample of the approximate posterior $z_{i,l} = g_{\phi}(\e_l, x_i)$, where $z_{i,l}\sim q_{\phi}(z|x_i)$. Subsequently, the drawn sample $z_{i,l}$ is then fed into $\log p(x_i|z_{i,l})$, which therefore equals the probability density of the observation $x_i$ under the generative model $p_{\t}(x_i|z_{i,l})$, given $z_{i,l}$. We can interpret the first term of the right-hand side of equation \eqref{eq:loss_batched} (the Kullback-Leibler divergence of approximate posterior $q_{\phi}(z|x_i)$ to prior $p(z)$) as a regularizer and the second-term of the right hand side as an expected negative reconstruction error.\\
+The next obstacle we want to consider is the fact that it is unclear of how to a actually compute the gradient in the sampling operation $z\sim q_{\phi}(z|x)$. In order to solve this problem, the authors Kingma and Welling of the original paper, see \cite{kingma2013auto} applied a simple trick to omit this sampling with regard to distributions with different parameters. At this point we want to remember Example~\ref{ex:loc-scale_fam}, where we saw that we can represent each Gaussian density as a scaled standard Gaussian density. This is exactly why we introduced the differentiable transformation $g_{\phi}(\e, x)$ with some auxiliary noise variable $\e$. First, we can control the probability density $p(\e)$ of $\e$ and second, $g\phi(\wc)$ is some vector-valued function that we control though the parameter $\phi$ as well. With these considerations we can now rewrite the Monte Carlo estimate of the expectation $\E_{q_{\phi}(z|x)}[\wc]$ such that it is differentiable with regard to $\phi$.
+First of, due to the fact that $q_{\phi} (z|x)$ and $p(\e)$ are both probability density functions, this leads to
+\begin{align*}
+\int q_{\phi} (z|x) dz = \int p(\e) d\e.
+\end{align*}
+Therefore, given the mapping $z = g_{\phi}(\e, x)$, if we compute the expectation of a function $f(z)$ with respect to the approximate posterior $q_{\phi}(z|x)$, we receive
+\begin{align*}
+\int q_{\phi}(z|x) f(z) dz = \int p(\e) f(z) d\e = \int p(\e) f\left(g_{\phi}(\e, x) \right)d\e.
+\end{align*}
+This leads to the differentiable Monte Carlo estimator
+\begin{align*}
+\int q_{\phi}(z|x) f(z) dz \simeq \frac{1}{L} \sum_{l=1}^L f\left(g_{\phi} (\e, x)\right),
+\end{align*}
+where $\e_l\sim p(\e)$ for all $l=1,\ldots, L$.\\
+For example, we assume the true posterior to be normally distributed, i.e. $z\sim p(z|x)=\mathcal{N}(\m, \s^2)$ with some mean $\m\in\R$ and some standard deviation $\s>0$. Therefore, a valid reparameterization would be $z = \m +\s\e$, where the auxiliary noise variable $\e$ is standard normally distributed, i.e. $\e\sim p(\e) = \mathcal{N}(0,1)$. This then leads to the computation of the expectation
+\begin{align*}
+\E_{z\sim \mathcal{N}(\m, \s^2)} \left[ f(z) \right] = \E_{\e \sim \mathcal{N}(0, 1)} \left[ f(\m + \s\e) \right] \simeq \frac{1}{L} \sum_{l=1}^L f(\m + \s\e_l),
+\end{align*}
+where $\e_l\sim \mathcal{N}(0, 1)$ for all $l=1\ldots, L$.
 
 
-\textcolor{red}{TODO: finish the maximum likelihood estimation for $\t$.. For $\phi$ I can probably use the Kingma, Welling original paper $\to$ REPARAMETERIZATION TRICK}
+\iffalse
+the maximum likelihood estimation of a Gaussian distribution, see e.g. \cite[Section~2.3.4]{bishop2006pattern}.
+
+\fi
 
 
 \section{Applications}\label{sec:vae_applications}

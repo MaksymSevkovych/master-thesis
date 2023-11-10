@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99d (TeX Live 2023)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 A level-1 auxiliary file: preliminary.aux
@@ -6,44 +6,44 @@ A level-1 auxiliary file: autoencoders.aux
 A level-1 auxiliary file: vae.aux
 The style file: siam.bst
 Database file #1: bibliography.bib
-You've used 21 entries,
+You've used 22 entries,
             2030 wiz_defined-function locations,
-            593 strings with 6192 characters,
-and the built_in function-call counts, 5210 in all, are:
-= -- 405
-> -- 272
+            597 strings with 6398 characters,
+and the built_in function-call counts, 5809 in all, are:
+= -- 478
+> -- 284
 < -- 0
-+ -- 108
-- -- 86
-* -- 384
-:= -- 902
-add.period$ -- 21
-call.type$ -- 21
-change.case$ -- 92
++ -- 113
+- -- 90
+* -- 407
+:= -- 964
+add.period$ -- 22
+call.type$ -- 22
+change.case$ -- 98
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 271
-empty$ -- 447
-format.name$ -- 86
-if$ -- 1048
+cite$ -- 22
+duplicate$ -- 318
+empty$ -- 482
+format.name$ -- 90
+if$ -- 1202
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 34
-newline$ -- 66
-num.names$ -- 42
-pop$ -- 154
+int.to.str$ -- 22
+missing$ -- 35
+newline$ -- 69
+num.names$ -- 44
+pop$ -- 161
 preamble$ -- 1
-purify$ -- 84
+purify$ -- 89
 quote$ -- 0
-skip$ -- 139
+skip$ -- 195
 stack$ -- 0
-substring$ -- 150
-swap$ -- 56
+substring$ -- 191
+swap$ -- 94
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 58
+type$ -- 62
 warning$ -- 0
-while$ -- 46
-width$ -- 23
-write$ -- 172
+while$ -- 49
+width$ -- 24
+write$ -- 181

@@ -17,7 +17,7 @@
   Press, 2016.
 
 \bibitem{jahn2009vector}
-{\sc J.~Jahn et~al.}, {\em Vector Optimization}, Springer, 2009.
+{\sc J.~Jahn}, {\em Vector Optimization}, Springer, 2009.
 
 \bibitem{kantorovich2016functional}
 {\sc L.~V. Kantorovich and G.~P. Akilov}, {\em Functional Analysis}, Elsevier,
@@ -28,11 +28,11 @@
   International Conference on Learning Representations,  (2014).
 
 \bibitem{kingma2013auto}
-{\sc D.~P. Kingma and M.~Welling}, {\em Auto-encoding variational bayes},
+{\sc D.~P. Kingma and M.~Welling}, {\em Auto-encoding variational {B}ayes},
   International Conference on Learning Representations,  (2013).
 
 \bibitem{klenke2013probability}
-{\sc A.~Klenke}, {\em Probability Theory: a Comprehensive Course}, Springer,
+{\sc A.~Klenke}, {\em Probability Theory: A Comprehensive Course}, Springer,
   2013.
 
 \bibitem{lei2019stochastic}
@@ -42,7 +42,7 @@
 
 \bibitem{lemarechal2012cauchy}
 {\sc C.~Lemar{\'e}chal}, {\em Cauchy and the gradient method}, Doc. Math.
-  Extra, 251 (2012), p.~10.
+  Extra,  (2012), p.~251–254.
 
 \bibitem{mcmahan2010adaptive}
 {\sc H.~B. McMahan and M.~Streeter}, {\em Adaptive bound optimization for
@@ -57,6 +57,11 @@
   interpolating regime with application to neural network learning},
   arXiv:1905.10686,  (2019).
 
+\bibitem{paisley2012variational}
+{\sc J.~W. Paisley, D.~M. Blei, and M.~I. Jordan}, {\em Variational {B}ayesian
+  inference with stochastic search}, Proceedings of the 29th International
+  Conference on Machine Learning,  (2012), p.~1367–1374.
+
 \bibitem{papoulis02}
 {\sc A.~Papoulis and S.~U. Pillai}, {\em Probability, Random Variables and
   Stochastic Processes}, McGraw Hill, 2002.
@@ -70,7 +75,7 @@
   Press, 2009.
 
 \bibitem{simmons1995calculus}
-{\sc G.~Simmons}, {\em Calculus With Analytic Geometry}, McGraw Hill, 1995.
+{\sc G.~Simmons}, {\em Calculus with Analytic Geometry}, McGraw Hill, 1995.
 
 \bibitem{sra2012optimization}
 {\sc S.~Sra, S.~Nowozin, and S.~J. Wright}, {\em Optimization for Machine
