@@ -38,5 +38,5 @@ if __name__ == "__main__":
 
     # plot
     plot_latent_2D_convolutional(model, data_loader, 100)
-    plot_reconstructed_2D(model, (-8, 4), (-1, 10), 10)
+    plot_reconstructed_2D(model, (-4, 8), (-6, 6), 10)
     inference_convolutional(model, data_loader, 10)

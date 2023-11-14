@@ -219,7 +219,7 @@ class ConvolutionalVariationalAutoencoder(pl.LightningModule):
         return torch.tensor(positions)
 
     def configure_optimizers(self):
-        optimizer = optim.Adam(self.parameters(), lr=self.lr)
+        optimizer = optim.Adam(self.parameters(), lr=self.lr, amsgrad=True)
         return optimizer
 
 

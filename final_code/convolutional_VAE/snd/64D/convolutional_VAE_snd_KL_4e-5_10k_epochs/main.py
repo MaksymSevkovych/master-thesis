@@ -5,7 +5,11 @@ from isa_conv_VAE import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from visualise import generate_convolutional_optimal
+from visualise import (
+    generate_convolutional,
+    generate_convolutional_optimal,
+    inference_convolutional,
+)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
@@ -33,5 +37,6 @@ if __name__ == "__main__":
     )
 
     # plot
+    generate_convolutional(model, data_loader, LATENT_DIMS, 10)
     generate_convolutional_optimal(model, data_loader, LATENT_DIMS, 10)
-    # inference_convolutional(model, data_loader, 10)
+    inference_convolutional(model, data_loader, 10)

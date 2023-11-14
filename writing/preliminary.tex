@@ -3,7 +3,6 @@ In order to comprehend the topic of variational autoencoders or even autoencoder
 
 
 \section{Probability and Statistics}\label{sec:preliminary_prob}
-
 A fundamental topic for this thesis is measure and probability theory and statistics. Especially in Chapter \ref{chap:vae} this will be crucial to analyse variational autoencoding neural networks in more detail.\\
 We want to begin by introducing the basic quantities in measure and probability theory, merely to define a notation throughout the thesis. The first quantity we want to introduce is the density function, where we strongly orientate ourselves towards \cite[Chapter~2 \& Chapter~3]{meintrup2006stochastik}. Furthermore, we want to use the notation the authors used in the same reference. Hence, let $(\O, \A, \m)$ be a measure space. Then we denote $M$ as the set of all measurable numeric functions $f:\O\to \bar{\R}\coloneqq \R \cup \{-\infty, \infty\}$ and moreover, $M^{+}$ denotes the set of all non-negative functions in $M$. With these definitions we can introduce a density function with regard to a measure.
 
@@ -144,13 +143,13 @@ We begin by considering the Definition \ref{def:empirical_risk} of the empirical
 \begin{align*}
 \risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^{k} \loss\left(x_i, y_i, f(x_i)\right).
 \end{align*}
-Since $\loss$ is assumed to be a convex loss function as is its sum. Therefore, the empirical risk which is a finite sum of convex loss functions, is also a convex function and the assertion is proven.
+Since $\loss$ is assumed to be a convex loss function, so is its sum. Therefore, the empirical risk which is a finite sum of convex loss functions, is also a convex function and the assertion is proven.
 \end{proof}
 
 
 \section{Neural Networks}\label{sec:nn}
 The idea of artificial neural networks originated from analysing mammal's brains. An accumulation of nodes - so called neurons, connected in a very special way that fire an electric impulse to adjacent neurons upon being triggered and transmit information that way. Scientists tried to mimic this natural architecture and replicate this mammal intelligence artificially. This research has been going for almost 80 years and became immensely popular recently through artificial intelligences like OpenAI's ChatGPT or Google's Bard for the broad public. But what actually is a neural network? What happens in a neural network? Those are very interesting and important questions that we will find answers for. We will introduce neural networks inspired by \cite[Chapter~3]{mucke2019empirical}.\\
- As already mentioned, neural networks consist of single neurons that transmit information upon being \glqq triggered\grqq{}. Obviously, triggering an artificial neuron can't happen the same way as neurological neurons are being triggered through stimulus. Hence, we need to model the triggering of a neuron in some way. The idea is to filter information that does not exceed a certain stimulus threshold. This filter is usually called activation function. In practice, there are many ways of modelling such activation functions and it mainly depends the use-case what exactly is demanded from the activation function. Therefore, we define activation functions as general as possible.
+ As already mentioned, neural networks consist of single neurons that transmit information upon being \glqq triggered\grqq{}. Obviously, triggering an artificial neuron can't happen the same way as neurological neurons are being triggered through stimulus. Hence, we need to model the triggering of a neuron in some way. The idea is to filter information that does not exceed a certain stimulus threshold. This filter is usually called activation function. In practice, there are many ways of modelling such activation functions and it mainly depends the use-case what exactly is demanded from the activation function. Therefore, we define activation functions as generally as possible.
 
 \begin{definition}
 A non-constant function $\f: \R \to \R$ is called an \textbf{activation function} if it is continuous.
@@ -219,13 +218,13 @@ Let $f_{\f, L, \t}$ be a neural network as in Definition \ref{def:nn}, with para
 \end{definition}
 
 The parameter space is defined in a very general manner, since we usually do not demand any restrictions other than that the parameters should have fitting dimensions to be compatible with the considered neural networks.\\
-At last, we want to introduce prediction functions. This is a quantity we will refer to oftentimes through the thesis and hence, should mention it at this point. It merely describes a neural network that was trained on a dataset. Hence, the parameters of the neural network are tuned to represent the dataset as good as possible. We will consider training of neural networks in Section \ref{sec:training_of_nn}.
+At last, we want to introduce prediction functions. This is a quantity we will refer to oftentimes through the thesis and hence, should mention it at this point. It merely describes a neural network that was trained on a dataset. Hence, the parameters of the neural network are tuned to represent the dataset as good as possible. We will consider training of neural networks in Section~\ref{sec:training_of_nn}.
 
 \begin{definition}
 Let $d, n \in \N$ and $X\subseteq \R^d$ and $Y \subseteq \R^n$, that we will refer to as \textbf{input} and \textbf{output space}. Furthermore, let $D=\{(x_1,y_1),\ldots, (x_k,y_k)\}$ be a \textbf{dataset} of length $k\in\N$. Then a neural network that is trained on the dataset $D$ is called \textbf{prediction function}. We then denote its parameters as $\t_{D}$.
 \end{definition}
 
-One may realize that neural networks are defined in a way that the activation function may vary in each layer. However, in most applications all hidden layers ($i \in \{1, \ldots, L-1\}$) share the same activation function. The last layer, often referred to as output layer, usually has a different activation function. This activation function may in some use-cases as well be the identity function.\\
+One may realize that neural networks are defined in a way that the activation function may vary in each layer. However, in most applications all hidden layers ($i \in \{1, \ldots, L-1\}$) share the same activation function. The last layer, often referred to as output layer, usually has a different activation function. In some cases this activation function may even be the identity function.\\
 A visual representation of a neural network can be found in Figure \ref{img_nn}
 
 
@@ -240,7 +239,7 @@ A visual representation of a neural network can be found in Figure \ref{img_nn}
 
 
 \section{Training of Neural Networks}\label{sec:training_of_nn}
-Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. The most common approach to train a neural network is to iteratively find the gradient - the direction of greatest ascent of the risk function, and afterwards perform an optimization step in the opposite of the found direction, thus the direction of the steepest descent. This method of the steepest descent dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview we refer to \cite{lemarechal2012cauchy}. This method is immensely popular and thus, can be found in numerous literature. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, we kindly refer to this reference.\\
+Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. The most common approach to train a neural network is to iteratively find the gradient - the direction of greatest ascent of the risk function, and afterwards perform an optimization step in the opposite direction, thus the direction of the steepest descent. This method of the steepest descent dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview we refer to \cite{lemarechal2012cauchy}. This method is immensely popular and thus, is very wide spread in literature. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, we kindly refer to this reference.\\
 Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and we aim to find an element $x^{\ast}\in X$ such that
 
 \begin{align*}
@@ -269,7 +268,7 @@ x^{(k+1)} \coloneqq x^{(k)} - \g_{k+1} z_{k+1},
 \end{align}
 
 where $z_{k+1}$ denotes the direction of steepest descent at $x^{(k)}$. The numerical parameter $\g^{(k+1)}$ can be found in various ways, e.g. \cite[Chapter~XV]{kantorovich2016functional}. However, we want to approach it by finding the optimal step size analytically.\\
-We specify a sequence of positive numbers $(\g_k)$ such that $\g_k \to 0$ and $\sum_{k\geq 1} \g_k = \infty$. Furthermore, we assume the $z_k$ to be normalized for all $k\in \N$, i.e. $\|z_k\| = 1$. Hence, the step size at the $k$-th iteration is $\g_k$. We do this in order to avoid doing to great steps, which would eventually avert the convergence of the algorithm.\\
+We specify a sequence of positive numbers $(\g_k)$ such that $\g_k \to 0$ and $\sum_{k\geq 1} \g_k = \infty$. Furthermore, we assume the $z_k$ to be normalized for all $k\in \N$, i.e. $\|z_k\| = 1$. Hence, the step size at the $k$-th iteration is $\g_k$. We do this in order to avoid making too great steps, which could possibly avert the convergence of the algorithm.\\
 Furthermore, we note at this point that we can establish a connection between the problem of minimizing a functional and that of solving a linear functional equation as follows.\\
 Let $U$ be a self-adjoint operator on a Hilbert space $\H$. We assume that the operator $U$ is below bounded by $m>0$ and above bounded by $M>0$, i.e. the following equations hold
 \begin{align*}
@@ -309,7 +308,7 @@ The definition of the functional \eqref{eq:functional} gives us
 \begin{align*}
 F(x^{\prime}) - F(x^{\ast}) &= \left\langle Ux^{\prime}, x^{\prime}\right\rangle -  2\left\langle x^{\prime}, y\right\rangle - \left\langle Ux^{\ast}, x^{\ast}\right\rangle - 2 \left\langle x^{\ast}, y\right\rangle.
 \end{align*}
-Now we use the fact, that $x^{\ast}$ solves the equation \eqref{eq:lfe}
+Now we use the fact that $x^{\ast}$ solves the equation \eqref{eq:lfe}
 \begin{align*}
 \left\langle Ux^{\prime}, x^{\prime}\right\rangle -  2\left\langle x^{\prime}, y\right\rangle - \left\langle Ux^{\ast}, x^{\ast}\right\rangle + 2 \left\langle x^{\ast}, y\right\rangle
 = \left\langle Ux^{\prime}, x^{\prime}\right\rangle - 2 \left\langle x^{\prime}, Ux^{\ast}\right\rangle + \left\langle Ux^{\ast}, x^{\ast}\right\rangle.
@@ -506,9 +505,9 @@ Plugging in the explicit definition of the neural network from equation \eqref{e
 \begin{align}\label{eq:risk_expl}
 \risk_{\loss, D} (f_\t) = \frac{1}{d} \sum_{i=1}^d \left| y_i - (\f(wx_i) + b ) \right|^2.
 \end{align}
-Now, lets consider how the gradient of \eqref{eq:risk_expl} with regard to the parameters $\t=(w, b)$ of the neural network $f_{\t}$ looks like. In mathematical notation, this means $\partial \risk_{\loss, D}(f_w)/\partial w$.\\
+Now, lets consider how the gradient of \eqref{eq:risk_expl} with regard to the parameters $\t=(w, b)$ of the neural network $f_{\t}$ looks like. In mathematical notation, this means $\partial \risk_{\loss, D}(f_{\t})/\partial \t$.\\
 However, since the empirical risk function is the mean of loss functions, the gradient of the empirical risk function is the mean of the gradients of the loss functions as well. Hence, we need to compute $\partial \loss(f_{\t}, y)/\partial \t$.\\
-At this point, we want to remember the chain rule of differentiation, see e.g. \cite[Chapter19.6]{simmons1995calculus} which states
+At this point, we want to remember the chain rule of differentiation, see e.g. \cite[Chapter~19.6]{simmons1995calculus} which states
 \begin{align}\label{eq:chain_rule}
 \frac{\partial f(g(x))}{\partial x} = \frac{\partial g(x)}{\partial x} \frac{\partial f(g(x))}{\partial g(x)}.
 \end{align}
@@ -523,9 +522,9 @@ This expression we can compute easily, since $\partial f_\t(x)/\partial \t$ is
 &= \left[\frac{\partial (\f(wx) + b)}{\partial wx} \frac{\partial wx}{\partial w}, \frac{\partial (\f(wx) + b)}{\partial b} \right]^{\tran} = \left[x\f^{\prime}(x), 1 \right]^{\tran},
 \end{align*}
 where the derivative of the sigmoid function is $\f^{\prime}(x) = \f(x)(1 - \f(x))$.\\
-Furthermore, the second part $\partial \loss(f_w(x), y)/\partial f_w(x)$ of the right-hand side \eqref{eq:loss_expl} is
+Furthermore, the second part $\partial \loss(f_{\t}(x), y)/\partial f_{\t}(x)$ of the right-hand side \eqref{eq:loss_expl} is
 \begin{align*}
-\frac{\partial \loss(f_\t(x), y)}{\partial f_\t(x)} = \frac{\partial |f_\t(x) - y|^2}{\partial f_\t(x)} = 2 \left(f_\t(x) + b - y \right) = 2 \left(\f(wx) + b - y \right).
+\frac{\partial \loss(f_\t(x), y)}{\partial f_\t(x)} = \frac{\partial |f_\t(x) - y|^2}{\partial f_\t(x)} = 2 \left(f_\t(x) - y \right) = 2 \left(\f(wx) + b - y \right).
 \end{align*}
 Therefore, plugging this into equation \eqref{eq:loss_expl}, we receive
 \begin{align*}
@@ -563,14 +562,14 @@ Our goal is to compute the gradient of the empirical risk function, what we can 
 \nabla_{w_L}\loss (f_{\t}(x), y)
 \end{matrix} \right].
 \end{align*}
-To compute the gradients, we start at the last layer and iteratively compute the parameters of the preceding layer. This method is well known as back-propagation, which we will define more general after considering this comparatively easy example.\\
+To compute the gradients, we start at the last layer and iteratively compute the parameters of the preceding layer. This method is well known as back-propagation, which we will define more generally after considering this comparatively easy example.\\
 As already described, we want to start by computing $\partial \loss (f_{\t}(x), y) / \partial w_L$. Considering the chain rule from equation \eqref{eq:chain_rule}, we receive
 \begin{align*}
 \frac{\partial \loss (f_{\t}(x), y)}{ \partial w_L} = \frac{\partial \loss (f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial f_{\t}(x)}{ \partial w_L}.
 \end{align*}
-At this point, we want to define $x^{(i)}\coloneqq H_i(x)$ for all $i=1,\ldots L$, where $x|in\R^{i-1}$. With this definition we can write $f_{\t}(x) = H_L(x^{(L-1)})$ and therefore,
+At this point, we want to define $x^{(i)}\coloneqq H_i(x)$ for all $i=1,\ldots L$, where $x\in\R^{i-1}$. With this definition we can write $f_{\t}(x) = H_L(x^{(L-1)})$ and therefore,
 \begin{align}\label{eq:grad_split}
-\frac{\partial \loss (f_{\t}(x), y)}{ \partial w_L} = \frac{\partial \loss (f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial H_L(x^{(L-1)}}{ \partial w_L}.
+\frac{\partial \loss (f_{\t}(x), y)}{ \partial w_L} = \frac{\partial \loss (f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial H_L(x^{(L-1)})}{ \partial w_L}.
 \end{align}
 As the next step, we want to consider both quantities of the right-hand side of \eqref{eq:grad_split} separately. The first part $\partial \loss (f_{\t}(x), y) / \partial f_{\t}(x)$ results to be
 \begin{align*}
@@ -578,7 +577,7 @@ As the next step, we want to consider both quantities of the right-hand side of 
 \end{align*}
 and for the second part $\partial H_L(x^{(i-1)}) /\partial w_L$ holds
 \begin{align*}
-\frac{\partial H_L(x^{(i-1)})}{ \partial w_L} = \frac{\partial w_Lx^{(L-1)}}{ \partial w_L} = x^{(L-1)} = x\prod_{i=1}^{L-1} w_i.
+\frac{\partial H_L(x^{(i-1)})}{ \partial w_L} = \frac{\partial \left(w_Lx^{(L-1)}\right)}{ \partial w_L} = x^{(L-1)} = x\prod_{i=1}^{L-1} w_i.
 \end{align*}
 Therefore, plugging the two results into \eqref{eq:grad_split} gives us
 \begin{align*}
@@ -586,7 +585,7 @@ Therefore, plugging the two results into \eqref{eq:grad_split} gives us
 \end{align*}
 Doing this for all $i=1,\ldots, L-1$ gives us for the parameters $w_i$
 \begin{align*}
-\frac{\partial \loss (f_{\t}(x), y)}{ \partial w_i} = \frac{\partial \loss (f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial H_i(x^{(i-1)}}{ \partial w_i},
+\frac{\partial \loss (f_{\t}(x), y)}{ \partial w_i} = \frac{\partial \loss (f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial H_i(x^{(i-1)})}{ \partial w_i},
 \end{align*}
 where we define $x^{(0)} \coloneqq x$. Hence, we receive for $i=2,\ldots,L$
 \begin{align*}
@@ -594,7 +593,7 @@ where we define $x^{(0)} \coloneqq x$. Hence, we receive for $i=2,\ldots,L$
 \end{align*}
 Considering the case $i=1$ separately, gives us
 \begin{align*}
-\frac{\partial \loss (f_{\t}(x), y)}{ \partial w_1} &= \frac{\partial \loss (f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial H_1(x^{(0)}}{ \partial w_1}\\
+\frac{\partial \loss (f_{\t}(x), y)}{ \partial w_1} &= \frac{\partial \loss (f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial H_1(x^{(0)})}{ \partial w_1}\\
 &= \frac{\partial  (f_{\t}(x) - y)^2}{\partial f_{\t}(x)} \frac{\partial w_1x}{ \partial w_1} = 2x (f_{\t}(x) - y).
 \end{align*}
 Combining the computed gradients gives us the desired gradient of the loss function
@@ -615,98 +614,13 @@ x (f_{\t}(x) - y) w_1\\
 x (f_{\t}(x) - y) \prod_{k=1}^{L-1} w_k
 \end{matrix} \right].
 \end{align*}
-\iffalse
-\item The last example we want to consider is a neural network with an input layer of dimension $d_i\in\N$, an output layer of dimension $d_o\in\N$ and a hidden layer of dimension  $d_h\in\N$. Furthermore, we assume $d_i, d_o, d_h > 1$. Therefore the first layer looks like
-\begin{align*}
-H_1: \R^{d_i} &\to \R^{d_h},\\
-x &\mapsto W_1x + b_1,
-\end{align*}
-where $b_1\in\R^{d_h}$ and $W_1\in\R^{d_h}\times\R^{d_i}$, and the second layer looks like
-\begin{align*}
-H_2: \R^{d_h} &\to \R^{d_o},\\
-x &\mapsto W_2x + b_2,
-\end{align*}
-where $b_2\in\R^{d_o}$ and $W_2\in\R^{d_o}\times\R^{d_h}$.\\
-Moreover, we consider the activation function to be $\f=\id$ and the biases be $0$. The neural network then results to look like
-\begin{align*}
-f_{\t}(x) = H_2 \circ H_1 (x) = H_2(H_1(x)) = W_2 W_1 x,
-\end{align*}
-where $\t = (W_1, W_2)$.\\
-Let $f_{\t}(x)_i$ denote the $i$-th coordinate of $f_{\t}(x)$, then the loss function $\loss$ looks like
-\begin{align*}
-\loss(f_{\t}(x), y) = \sum_{i=1}^{d_o}\left| f_{\t}(x)_i - y_i \right|^2 = \sum_{i=1}^{d_o}\left| (W_2 W_1 x)_i - y_i \right|^2.
-\end{align*}
-Deriving the loss function with regard to the weights, gives us with the chain rule from equation \eqref{eq:chain_rule}
-\begin{align}\label{eq:loss_chained}
-\frac{\partial \loss(f_{\t}(x), y)}{\partial \t} = \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)} \frac{\partial f_{\t}(x)}{\partial \t}.
-\end{align}
-However, since we find ourselves in the multidimensional setting we need to introduce a well known quantity from calculus, the Jacobian matrix. Let $f:\R^n \to \R^m$ be a function that looks like $f(x) = [f_1(x_1,\ldots,x_n), \ldots, f_m(x_1,\ldots,x_n)]$. Then its derivative is called \textbf{Jacobian matrix} and looks like
-\begin{align}\label{eq:Jacobian}
-\frac{\partial f}{\partial x} = \left[
-\begin{matrix}
-&\frac{\partial f_1}{\partial x_1} &\cdots &\frac{\partial f_1}{\partial x_n}\\
-&\vdots & \ddots &\vdots\\
-&\frac{\partial f_m}{\partial x_1} &\cdots &\frac{\partial f_m}{\partial x_n}
-\end{matrix}.
-\right]
-\end{align}
-With the help of the Jacobian matrix from equation \eqref{eq:Jacobian} we can compute the derivatives on the right-hand side of equation \eqref{eq:loss_chained}, but we want to consider them separately.\\
-Let $f_\t(x)_i$ denote the $i$-th coordinate of $f_\t(x)$. Then the Jacobian of $\loss(f_{\t}(x), y)$ with regard to $f_{\t}(x)$ looks like
-\begin{align*}
-\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)} =
-\left[\begin{matrix}
-\displaystyle\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_1}\; \cdots\; \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_{d_o}}
-\end{matrix} \right],
-\end{align*}
-since the loss function $\loss$ maps from $\R^{d_o}$ to $\R$.\\
-Now we want to consider the second term of the right-hand side of \eqref{eq:loss_chained}. First of, we realise that the neural network $f_{\t}$ maps from $\R^{d_i}$ to $\R^{d_o}$. Therefore, we need to use the multi-variable chain rule, see e.g. \cite{simmons1995calculus}. This means that if we have a function in two variables $f(x,y)$, where we define $x=g(t)$ and $y=h(t)$ that the derivative $\partial f/\partial t$ looks as follows
-\begin{align}\label{eq:multi_chain}
-\frac{\partial f}{\partial t} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}.
-\end{align}
-Applying this to our setting, where we have the neural network $f_{\t}$, which ultimately is a function in $d_o$ variables. Let $f_{\t}(x)_i$ denote the $i$-th coordinate of $f_{\t}(x)$,
-hence we can write $f_{\t}(x) = [f_{\t}(x)_1, \ldots f_{\t}(x)_{d_o}]$. Furthermore, we realise that for each $i=1,\ldots,d_o$ holds
-\begin{align*}
-f_{\t}(x)_i = W_{2,i} W_1(x) \qquad x\in \R^{d_i},
-\end{align*}
-where we define $W_{2,i}$ as the $i$-th row of the matrix $W_2$. Analogously, we define $H_{2,i}(x) = W_{2,i}x$ for $x\in\R^{d_h}$. Hence, we can write
-\begin{align*}
-f_{\t}(x) = \left[H_{2,1}(z), \ldots H_{2,d_o}(z) \right],
-\end{align*}
-with $z\coloneqq H_1(x)$, to simplify the notation. If we now apply the multi-variable chain rule from equation \eqref{eq:multi_chain}, we receive
-\begin{align*}
-\frac{\partial f_{\t}}{\partial \t} = \sum_{i=1}^{d_o} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial \t}.
-\end{align*}
-However, we realise that for each $i=1,\ldots d_o$ we can represent $H_{2,i}(z)$ again as a function in $d_h$ variables. Hence, we can write
-\begin{align*}
-H_{2,i}(z) = \left[H_{1,1}(x), \ldots H_{1,d_h}(x) \right], \qquad x\in\R^{d_i}.
-\end{align*}
-Therefore, we can apply the multi-variable chain rule again and receive
-\begin{align*}
-\frac{\partial f_{\t}}{\partial \t} = \sum_{i=1}^{d_o} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial \t} = \sum_{i=1}^{d_o} \sum_{j=1}^{d_h} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial H_{1,j}}
-\frac{\partial H_{1,j}}{\partial \t}.
-\end{align*}
-One may realise that as soon as the architecture of the neural network becomes more and more complex, as does the computation of the gradient. For this case, where we only have one hidden layer and one output layer the gradient of the loss function results to
-\begin{align*}
-\frac{\partial \loss(f_{\t}(x), y)}{\partial \t} = \left[\begin{matrix}
-\displaystyle\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_1}\; \cdots\; \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_{d_o}}
-\end{matrix} \right] \cdot \sum_{i=1}^{d_o} \sum_{j=1}^{d_h} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial H_{1,j}}
-\frac{\partial H_{1,j}}{\partial \t}.
-\end{align*}
-Since we are actually interested in the gradient of the empirical risk function with regard to the dataset $D$ of length $d$, we can compute the said gradient by
-\begin{align*}
-\nabla_{\t} \risk_{\loss, D} (f_{\t}) = \sum_{(x, y)\in D} \left[\begin{matrix}
-\displaystyle\frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_1}\; \cdots\; \frac{\partial \loss(f_{\t}(x), y)}{\partial f_{\t}(x)_{d_o}}
-\end{matrix} \right] \cdot \sum_{i=1}^{d_o} \sum_{j=1}^{d_h} \frac{\partial f_{\t}}{\partial H_{2,i}} \frac{\partial H_{2,i}}{\partial H_{1,j}}
-\frac{\partial H_{1,j}}{\partial \t} (x)
-\end{align*}
-\fi
 \end{enumerate}
 \end{example}
 
 We just saw an example of the gradient of an empirical risk function, where the prediction function is a (deep) neural network in Example \ref{ex:nn_gradients_1dim}. However, we only considered the layers to have one single neuron. Naturally, in practice neural networks rarely have layers with merely one neuron. This generalization we now want to consider. But firstly, we note that the computation of the gradient relied on the chain rule, well known in calculus. Since we now want to generalize the layers to have more than one neuron, we need to extend the chain rule to multiple dimensions. It is then called multi-variable chain rule. This result is fundamental to the immensely popular back-propagation algorithm, which is often used in scenarios where one needs to compute the gradient of a function.
 
 \begin{theorem}\label{theorem:multi_var_chainrule}
-Let $n,m\in\N$ and $f:\R^{n} \to \R$ and $g:\R^{m} \to \R^{m}$ be differentiable functions. Furthermore, we define $y \coloneqq g(x)$ and $z=f(y)$, then the \textbf{multi-variable chain rule} states that the following holds
+Let $n,m\in\N$ and $f:\R^{n} \to \R$ and $g:\R^{m} \to \R^{n}$ be differentiable functions. Furthermore, we define $y \coloneqq g(x)$ and $z=f(y)$, then the \textbf{multi-variable chain rule} states that the following holds
 \begin{align*}
 \frac{\partial z}{\partial x_i} = \sum_{j\geq 1} \frac{\partial z}{\partial y_j} \frac{\partial y_j}{\partial x_i}.
 \end{align*}
@@ -718,13 +632,13 @@ where $\partial y/\partial x$ is the $n\times m$ Jacobian matrix of $g$.
 \end{theorem}
 
 At this point, we want to note that the chain rule can even be extended from vectors to tensors. This is very interesting, since in many Machine Learning settings the proposed neural networks operate on tensors. However, we do not want to consider this in depth and rather refer to \cite[Chapter~6.5.2]{goodfellow2016deep}.\\
-Returning to the theory we want to consider, with the help of the multi-variable chain rule which we introduced in Theorem \ref{theorem:multi_var_chainrule} we can compute the gradients of empirical risk functions, where the corresponding neural network has arbitrary size of layers.\\
-The back-propagation algorithm as already described, is in its fundamental idea simple. Since the weights in each layer of the neural network depend on all the consecutive weights, we start computing the gradients for all weights in the last layer and iteratively work our way through the previous layers, until we computed the gradients for every weight. However, formulating this idea formally correct is quite messy. Therefore, we want to introduce some quantities beforehand. We know that each layer $H_i$ looks like
+With the help of the multi-variable chain rule which we introduced in Theorem \ref{theorem:multi_var_chainrule} we can compute the gradients of empirical risk functions, where the corresponding neural network has arbitrary size of layers.\\
+The back-propagation algorithm as already described, is in its fundamental idea simple. Since the weights in each layer of the neural network depend on all the consecutive weights, we start computing the gradients for all weights in the last layer and iteratively work our way through the previous layers, until we computed the gradients for every weight. However, formulating this idea formally correct is quite messy. Therefore, we want to introduce some quantities beforehand. As we defined in Definition \ref{def:layer}, each layer $H_i$ looks like
 \begin{align*}
 H_i: \R^{d_{i-1}} &\to \R^{d_{i}},\\
 x &\mapsto H_i(x) = \f(W_ix + b_i),
 \end{align*}
-where $d_i$ describes the output dimension of the $i$-th layer and $d_{i-1}$ describes the input dimension of the $i$-th layer, as we defined in Definition \ref{def:layer}. In the following we want to denote the weight matrix as $W^{(i)}\coloneqq W_i$, since we will need the index otherwise. Furthermore, we want to denote the weight matrix as $W^{(i)} = (w^{(i)}_{jk})$, where each of the entries $w^{i}_{jk}$ describes the weight between the $k$-th neuron in the $(i-1)$-th layer and the $j$-th neuron in the $i$-th layer. With these considerations we can write the input to the $j$-th neuron of the $i$-th layer, which we want to denote as $z_{j}^{(i)}$, as
+where the input and output dimensions of the $i$-th layer are described by $d_{i-1}$ and $d_{i-1}$, respectively. In the following we want to denote the weight matrix as $W^{(i)}\coloneqq W_i$, since we will need the index otherwise. Furthermore, we want to denote the weight matrix as $W^{(i)} = (w^{(i)}_{jk})$, where each of the entries $w^{i}_{jk}$ describes the weight between the $k$-th neuron in the $(i-1)$-th layer and the $j$-th neuron in the $i$-th layer. With these considerations we can write the input to the $j$-th neuron of the $i$-th layer, which we want to denote as $z_{j}^{(i)}$, as
 \begin{align*}
 z_{j}^{(i)} = \sum_{k=1}^{d_{i-1}} w^{(i)}_{jk} \f (z_{k}^{(i-1)}) + b_j^{(i)},
 \end{align*}
@@ -774,7 +688,7 @@ Now, remembering the definition of these quantities, we can compute each of the 
 \begin{align}\label{eq:part1}
 \frac{\partial \loss(y, a^{(L)})}{\partial a_{j}^{(L)}} = \frac{\partial \sum_{j=0}^{d_L-1} \left(a_{j}^{(L)} - y_j \right)^2}{\partial a_{j}^{(L)}} = 2(a_{j}^{(L)} - y_j).
 \end{align}
-For the second term holds
+For the second term holds \textcolor{red}{TODO: RECONSIDER THIS PART HERE WITH THE INDICES}
 \begin{align}\label{eq:part2}
 \frac{\partial a_{j}^{(L)}}{\partial z_{j}^{(L)}} = \frac{\partial \f(z_{j}^{(L)})}{\partial z_{j}^{(L)}} = \f^{\prime} (z_{j}^{(L)}),
 \end{align}
@@ -992,7 +906,7 @@ the \textbf{moment-generating function of $X$}.
 
 At this point, we want to mention a theorem which considers the existence of moments. However, we only take a quick glance at the result and will not prove it. Instead we refer to the original literature \cite[Theorem~4.21]{meintrup2006stochastik}
 \begin{theorem}
-Let $X$ be a random variable with moment-generating function $M:d\to\R$. If there exists an $a>0$ such that $(-a, a)\subset D$, then all moments of $X$ exist and it holds
+Let $X$ be a random variable with moment-generating function $M:D\to\R$. If there exists an $a>0$ such that $(-a, a)\subset D$, then all moments of $X$ exist and it holds
 \begin{align*}
 M(s) = \sum_{n=0}^\infty \frac{s^{n}}{n!} \E(X^n), \qquad s \in (-a,a).
 \end{align*}
@@ -1394,7 +1308,6 @@ where we additionally included the definition of $\a_T$.
 \end{proof}
 
 \section{Neural Networks in Computer Vision}
-
 Lastly in this chapter, we want to apply the theory of neural networks to the setting we actually are interested in. This setting is usually called computer vision - basically, machine learning that is applied to images and videos. Since we want to apply neural networks to a problem that deals with images, we need to know how to view images from a mathematical perspective.\\
 In order to do so, we need to introduce some quantities first. The first important quantity is a pixel. Basically, this is a single point in the image.
 
@@ -1414,7 +1327,7 @@ If $d=3$, we speak of an \textbf{RGB pixel}. Here, RGB stands for the  red, gree
 \end{remark}
 
 
-As one may already know, images consist of multiple pixels that are aligned in a grid. We will refer to this grid as a pixel domain as formulated in the following definition.
+As one may already know, images consist of multiple pixels that are aligned in a grid. We will refer to this grid as a pixel domain as stated in the following definition.
 
 
 \begin{definition}\label{def:pixel_domain}
@@ -1543,10 +1456,26 @@ T_{\text{conv}}: \P_{\O_0} &\to \P_{\O_1}\\
 \end{align*}
 This operator is defined component-wise by
 \begin{align}
-\left( \p_1 \right)_{ij} \coloneqq  \left( \p_0 \ast k \right)_{ij} = \sum_{m,n=1}^s \left(\p_0\right)_{m+i,n+j}k_{mn},
+T_{\text{conv}}\p_0 = \left( \p_1 \right)_{ij} \coloneqq  \left( \p_0 \ast k \right)_{ij} = \sum_{m,n=1}^s \left(\p_0\right)_{m+i-1,n+j-1}k_{mn},
 \end{align}
 where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-s+1\} \times \{1,\ldots, N_0-s+1\}$. Hence, $M_1 = M_0-s+1$ and $N_1 = N_0-s+1$.\\
 Furthermore, $k$ is called an $s$-\textbf{convolution kernel}, an image with resolution $(s,s)$ with $s\in\N$ and $s\leq \min\{M_0,N_0\}$.
+\end{definition}
+
+Moreover, we want to mention that image convolution operators, see Definition \ref{def:convolution_op}, decrease the resolution of an image. However, since we will be considering neural networks, which reduce the dimension and increase it, afterwards, we need to introduce a transposed convolution operator that increases the dimension of a given input. Intuitively, it does exactly the opposite of a convolution operator.
+
+\begin{definition}\label{def:transposed_convolution_op}
+Let $\O_0$, $\O_1$ be pixel spaces with arbitrary but fixed number of channels and resolutions $(M_0,N_0)$ and $(M_1,N_1)$ respectively. Then the \textbf{transposed image convolution operator} $T_{\text{conv}}^{\tran}: \P_{\O_1} \to \P_{\O_0}$ is defined by
+\begin{align*}
+T_{\text{conv}}^{\tran}: \P_{\O_1} &\to \P_{\O_0}\\
+\p_1 &\mapsto \p_0 \coloneqq T_{\text{conv}}^{\tran}\p_1 .
+\end{align*}
+This operator is defined component-wise by
+\begin{align}
+T_{\text{conv}}^{\tran}\p_1 = \left( \p_0 \right)_{ij} \coloneqq  \sum_{m,n=1}^s \left(\p_1\right)_{m+i-1,n+j-1}k_{mn},
+\end{align}
+where $(i,j) \in \O_0 \coloneqq \{1,\ldots, M_0 + s+1\} \times \{1,\ldots, N_0+s+1\}$. Hence, $M_0 = M_1+s+1$ and $N_0 = N_1+s+1$.\\
+Furthermore, $k$ is called an $s$-\textbf{transposed convolution kernel}, an image with resolution $(s,s)$ with $s\in\N$ and $s\leq \min\{M_0,N_0\}$.
 \end{definition}
 
 Another very useful example is the pooling operator. We will distinguish between average and min- and max-pooling.
@@ -1593,14 +1522,15 @@ This operator is defined component-wise by
 where $(i,j) \in \O_1 \coloneqq \{1,\ldots, M_0-p_1+1\} \times \{1,\ldots, N_0-p_2+1\}$. Hence, $M_1 = M_0-p_1+1$ and $N_1 = N_0-p_2+1$.
 \end{definition}
 
-At this point, we should mention that each of the recently introduced operators can be used to connect two neural layers. This we will put down in writing in the following proposition.
+At this point, we should mention that each of the recently introduced operators can be used to connect two neural layers. This we will put down in writing in the following definition.
 
 \begin{definition}\label{def:convolutional_layer}
 Let $T_{\text{conv}}$ be an image convolution operator with $s$-convolution kernel $k$. Furthermore, let $\P_0$ and $\P_1$ be arbitrary image domains and $\f$ be an arbitrary activation function.\\
 Then
 \begin{align*}
 H_{\text{conv}}: \P_0 &\to \P_1,\\
-\p_0 &\mapsto H_{\text{conv}} (\p_0) = \hat{\f} \left(T_{\text{conv}} \p_0 + b \right),
+\p_0 &\mapsto H_{\text{conv}} (\p_0) = \f \left(T_{\text{conv}} \p_0 + b \right),
 \end{align*}
-defines a neural layer, where the parameters $\t$ are the $s$-convolution kernel $k$. We will call such a layer a \textbf{convolutional neural layer} and denote the layers' parameters $\t = T_{\text{conv}}$, since the kernel defines the convolution operator uniquely.
+defines a neural layer with the parameters $\t = (k, b)$. We will call such a layer a \textbf{convolutional neural layer}.\\
+Moreover, we note that for the transposed image convolution operator $T_{\text{conv}}^{\tran}$ with transposed $s$-convolution kernel $k$ we define a convolutional layer analogously and make no distinction, since it is clear out of context due to increase/reduction of the dimensions.
 \end{definition}
