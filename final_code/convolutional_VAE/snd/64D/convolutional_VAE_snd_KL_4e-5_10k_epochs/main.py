@@ -4,7 +4,6 @@ import torch
 from isa_conv_VAE import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-
 from visualise import (
     generate_convolutional,
     generate_convolutional_optimal,

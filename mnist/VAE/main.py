@@ -4,7 +4,6 @@ import torch
 from isa29.isa_runner_snd import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-
 from visualisations import inference, plot_latent_3D_convolutional
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")

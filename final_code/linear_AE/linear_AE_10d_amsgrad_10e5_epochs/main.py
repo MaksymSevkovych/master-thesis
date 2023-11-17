@@ -4,7 +4,6 @@ import torch
 from isa_linear_AE import LinearAutoEncoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-
 from visualise import inference_linear
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
