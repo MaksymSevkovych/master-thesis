@@ -687,15 +687,15 @@ Explicitly, the computation of these gradients looks like
 \end{align*}
 Now, remembering the definition of these quantities, we can compute each of the three factors on the right-hand side. It holds then with equation \eqref{eq:nn_loss}
 \begin{align}\label{eq:part1}
-\frac{\partial \loss(y, a^{(L)})}{\partial a_{j}^{(L)}} = \frac{\partial \sum_{j=0}^{d_L-1} \left(a_{j}^{(L)} - y_j \right)^2}{\partial a_{j}^{(L)}} = 2(a_{j}^{(L)} - y_j).
+\frac{\partial \loss(y, a^{(L)})}{\partial a_{j}^{(L)}} = \frac{\partial \sum_{l=0}^{d_L-1} \left(a_{l}^{(L)} - y_l \right)^2}{\partial a_{j}^{(L)}} = 2(a_{j}^{(L)} - y_j).
 \end{align}
-For the second term holds \textcolor{red}{TODO: RECONSIDER THIS PART HERE WITH THE INDICES}
+For the second term holds
 \begin{align}\label{eq:part2}
 \frac{\partial a_{j}^{(L)}}{\partial z_{j}^{(L)}} = \frac{\partial \f(z_{j}^{(L)})}{\partial z_{j}^{(L)}} = \f^{\prime} (z_{j}^{(L)}),
 \end{align}
 and for the third term holds
 \begin{align}\label{eq:part3}
-\frac{\partial z_{j}^{(L)}}{\partial w^{(L)}_{jk}} = \frac{\partial \left(\sum_{l=1}^{d_{L-1}} w^{(L)}_{jl} a_{l}^{(L-1)} + b_j^{(L)}\right)}{\partial w^{(L)}_{jk}} = a_{k}^{(L-1)}.
+\frac{\partial z_{j}^{(L)}}{\partial w^{(L)}_{jk}} = \frac{\partial \left(\sum_{l=1}^{d_{L-1}} w^{(L)}_{jl} a_{l}^{(L-1)} + b_l^{(L)}\right)}{\partial w^{(L)}_{jk}} = a_{k}^{(L-1)}.
 \end{align}
 Therefore, combining the three partial derivatives gives us the gradient. This leads to
 \begin{align*}
@@ -703,7 +703,7 @@ Therefore, combining the three partial derivatives gives us the gradient. This l
 \end{align*}
 At this point we want to note quickly, that if we consider the partial derivative of the risk function with respect to the biases $b_{j}^{(L)}$, only the third term of the right-hand side changes. This term we considered in equation \eqref{eq:part3}. The new partial derivative is then
 \begin{align*}
-\frac{\partial z_{j}^{(L)}}{\partial b^{(L)}_{j}} = \frac{\partial \left(\sum_{k=1}^{d_{L-1}} w^{(L)}_{jk} a_{k}^{(L-1)} + b_j^{(L)}\right)}{\partial b^{(L)}_{j}} = 1.
+\frac{\partial z_{j}^{(L)}}{\partial b^{(L)}_{j}} = \frac{\partial \left(\sum_{k=1}^{d_{L-1}} w^{(L)}_{jk} a_{k}^{(L-1)} + b_k^{(L)}\right)}{\partial b^{(L)}_{j}} = 1.
 \end{align*}
 With these considerations we now know how to compute the gradient of the risk function with respect to $\t_L$, the parameters of the last layer. Before proceeding to compute the gradients with respect to the remaining weights, we want to first consider what we mentioned earlier. We said that computing the gradient is slightly different in the output layer than in the previous, the hidden layers. This is due to the fact that a weight that is located in the output layer affects only the activation of one output neuron. E.g. if we consider the weight $w_{jk}^{(L)}$ which connects the $k$-th neuron of the $(L-1)$-th layer with the $j$-th neuron of the $L$-th layer, then it only affects this single output neuron. In contrast, the weights in all other previous layers, the hidden layers, affect the activations of all output neurons. Since we consider neural networks where each neuron affects all activations of the subsequent layer, it is sufficient to alter any weight in the hidden layers to affect the activation of the corresponding neuron which is attached to this weight and afterwards, this one altered activation has effect on all activations in all subsequent layers. Taking this into consideration, we can compute the gradient of the risk function with respect to the weight $w_{jk}^{(L-1)}$, which connects the $k$-th neuron of the $(L-2)$-th layer with the $j$-th neuron of the $(L-1)$-th layer. We receive
 \begin{align*}
@@ -723,7 +723,7 @@ We realise, that the first three partial derivatives of the right-hand side are 
 \begin{align*}
 \frac{\partial z_j^{(L-1)}}{\partial w^{(L-1)}_{jk}} = \frac{\partial \left(\sum_{l=1}^{d_{L-2}} w_{jl}^{(L-1)}a_l^{(L-2)} + b_j^{(L-1)}\right)}{\partial w^{(L-1)}_{jk}} = a_k^{(L-2)},
 \end{align*}
-which is the same result as for the output layer, see \eqref{eq:part3}. Therefore, we can apply exactly the same computation until we reach the input layer. This procedure allows us to component-wise compute the gradient $\nabla_{\t}\loss(a^{(L)}, y)$, at last. Finally, we can compute the gradient of the risk function with respect to the parameters $\t$ by averaging the gradients of the loss function over the given dataset $D$.\\
+which is the same result as for the output layer, see \eqref{eq:part3}. Therefore, we can apply exactly the same computation until we reach the input layer. This procedure allows us to compute the gradient $\nabla_{\t}\loss(a^{(L)}, y)$ component-wise. Finally, we can compute the gradient of the risk function with respect to the parameters $\t$ by averaging the gradients of the loss function over the given dataset $D$.\\
 Having tackled the back-propagation algorithm we now know how to compute the gradient of the risk function with regard to the parameters of a given prediction function. However, as the back-propagation algorithm clearly shows, the computation of this gradient is highly expensive, since one has to compute the gradient for every single weight in the entire neural network, separately. A popular approach is to relax this computation by only considering the gradient in one sample (or multiple samples, we speak of a mini-batch then). We want to take a closer look at this algorithm as well. Since it is quite popular, there are many good references in literature, e.g see \cite[Chapter~13.3.2]{sra2012optimization}, \cite[Chapter~4.2]{saad2009line} and \cite{turinici2021convergence}. We will focus on the latter reference.\\
 Beforehand, we need to consider the empirical risk, which we defined in Definition \ref{def:empirical_risk}. Since we take the average of the loss functions with regard to the whole data set $D$, we can denote it as an integral over the dataset $D$
 \begin{align*}
