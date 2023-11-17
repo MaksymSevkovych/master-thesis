@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.7)  14 NOV 2023 13:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.7)  17 NOV 2023 15:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -18532,6 +18532,10 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -20947,7 +20951,7 @@ my insertion and my current dilemma will both disappear.
 <inserted text>
                 }
 l.273 ...space $\H$. We assume that the operator $
-                                                  U$ is below bounded by $m>...
+                                                  U$ is bounded from below b...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -21317,10 +21321,10 @@ Overfull \hbox (7.91803pt too wide) in paragraph at lines 270--287
  []
 
 
-Overfull \hbox (832.49922pt too wide) in paragraph at lines 270--287
-[]$$\OML/cmm/m/it/10 isbelowboundedby$$andaboveboundedby$$; i:e:thefollowingequ
-ationsholdm [][] [] ;  [] M [][] [] ; whichimpliesthat$$isaninjectiveoperator:[
-]
+Overfull \hbox (877.94386pt too wide) in paragraph at lines 270--287
+[]$$\OML/cmm/m/it/10 isboundedfrombelowby$$andboundedfromaboveby$$; i:e:thefoll
+owingequationsholdm [][] [] ;  [] M [][] [] ; whichimpliesthat$$isaninjectiveop
+erator:[]
  []
 
 

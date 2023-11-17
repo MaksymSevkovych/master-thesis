@@ -1,4 +1,5 @@
 \documentclass[11pt, twoside, a4paper]{book}
+\usepackage[english,german]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb, amsthm}
 \usepackage{amsfonts}
@@ -14,7 +15,6 @@
 \usepackage{fontenc}
 \usetikzlibrary{positioning,calc,spy}
 \usepackage{mathtools}
-\usepackage[english]{babel}
 \usepackage{typearea}
 \usepackage[outer=2cm, inner=2cm, top=2cm, bottom=25mm,includehead]{geometry}
 \usepackage{algorithm}
@@ -64,6 +64,7 @@
 \DeclarePairedDelimiterX{\kldiv}[2]{D_{\text{KL}}(}{)}{%
   #1\,\delimsize\|\,#2%
 }
+\renewcommand{\det}{\text{det}}
 \renewcommand{\H}{\mathcal{H}}
 \renewcommand{\P}{\Psi}
 \renewcommand{\S}{\Sigma}
@@ -114,6 +115,7 @@
 \author{Maksym Sevkovych}
 
 \begin{document}
+\selectlanguage{english}
 \begin{titlepage}
 \vspace*{1 cm}
 \begin{center}
@@ -146,7 +148,18 @@ Applications of VAEs extend from anomaly detection to image generation. However,
 \end{titlepage}
 \newpage
 \tableofcontents
+\newpage
+\section*{Introduction}
+In this thesis, our main aim is to understand Variational Autoencoders (VAEs) from a mathematical perspective. Since VAEs bring together Bayesian statistics and Deep Learning, we start by exploring the basics - covering probability theory, statistics, and the ins and outs of neural networks along with how to optimize them.
 
+After considering the fundamental basics, we start our journey by introducing regular autoencoders (AEs). To get a solid grasp, we run various implementations and training scenarios, which we introduced in the preliminary chapter. We consider all implementations on the MNIST dataset, which contains handwritten digits. This hands-on approach helps us build a strong foundation before moving on to Variational Autoencoders.
+
+The shift from AEs to VAEs is a crucial part of our exploration. We take a close look at what sets them apart and afterwards, we explore practical applications. Through implementing and training multiple VAEs, we stumble upon some interesting findings. One notable discovery is that we optimize the conventional way of training VAEs under certain conditions.
+
+So, in a nutshell, this thesis is a guide to Variational Autoencoders, combining Bayesian statistics with Deep Learning. Along the way, we share insights that could tweak the usual practices in training VAEs, making our exploration both enlightening and practically relevant.
+
+
+\addcontentsline{toc}{chapter}{Introduction}
 \include{preliminary}
 \include{autoencoders}
 \include{vae}
@@ -154,10 +167,39 @@ Applications of VAEs extend from anomaly detection to image generation. However,
 \addcontentsline{toc}{chapter}{References}
 \bibliographystyle{siam}
 \bibliography{bibliography}
+\newpage
+\selectlanguage{german}
+
+\section*{Deutsche Zusammenfassung}
+\ihead[]{Deutsche Zusammenfassung}
+Diese Thesis mit dem Titel \glqq Variational Autoencoders: Theory and Applications\grqq{} behandelt die Kombination aus Bayesianischer Statistik und der Theorie neuronaler Netze. Die Theorie der neuronalen Netze ist in der Literatur bekannt als \glqq Deep Learning\grqq{}. Das Ziel ist ein grundlegendes mathematisches Verständnis der Variational Autoencoder (VAEs) zu erlangen. Um dies zu ermöglichen ist die Thesis in drei Teile aufgeteilt. Im ersten Teil werden essentielle Grundlagen behandelt. Im zweiten Teil werden Autoencoder (AEs) eingeführt. Im dritten und letzten Teil werden schließlich VAEs eingeführt.
+
+Das erste Kapitel handelt sich wie schon erwähnt um Grundlagen. Dabei zitieren wir weitesgehend aus renomierter Literatur unterschiedliche Resultate. Zunächst führen wir aus der Maß- und Wahrscheinlichkeitstheorie wichtige Größen wie beispielsweise Wahrscheinlichkeitsmaße und -dichten und Zuffallsvariablen ein.
+Im Anschluss führen wir die statistische Lerntheorie ein. Wir erläutern, wie man aus existierenden Daten sinnvolle Schlüsse ableiten kann. Genauer gesagt erläutern wir, wie wir eine Funktion finden können, die unsere Daten möglichst gut beschreibt. Unter Anderem erläutern wir dabei Größen wie beispielsweise Verlustfunktionen und (empirisches) Risiko.
+Als nächstes führen wir neuronale Netze ein und verbinden diese mit der statistischen Lerntheorie, wobei wir ausführlich erläutern, wie unterschiedliche Traininsalgorithmen funktionieren. Wir betrachten im Detail den \glqq Gradient Descent\grqq{} Algorithmus und formulieren dazu wichtige Resultate wie beispielsweise den \glqq Backpropagation\grqq{} Algorithmus - eine Methode um Gradienten von hochgradig verketteten Funktionen zu berechnen. Diese Methode ist allgegenwärtig in Anwendungen.
+Mithilfe des Backpropagation Algorithmus stellen wir fest, wie aufwändig das Training neuronaler Netze sein kann und führen deshalb einen weiteren Optimierungsalgorithmus ein. Dieser neue Algorithmus heißt \glqq Stochastic Gradient Descent\grqq{}. Er funktioniert ähnlich wie der Gradient Descent Algorithmus, ist allerdings deutlich effizienter.
+Im Zuge der Diskussion über Effizienz führen wir einen weiteren Optimierungsalgorithmus ein, der meist als aktuell optimal angesehen wird. Wir reden dabei über den \glqq Adaptive Moment Estimation\grqq{} (ADAM) Algorithmus. Allerdings wurde $2019$ bewiesen, dass dieser Optimierungsalgorithmus in manchen Szenarien sich nicht optimal verhält. Stattdessen wurde ein neuer Optimierungsalgorithmus eingeführt, welcher \glqq AMSGrad\grqq{} bezeichnet wird. Diesen führen wir ebenfalls ein. In den darauffolgenden Kapiteln stellen wir sogar anhand von Anwendungsbeispielen fest, dass der AMSGrad Algorithmus bessere Ergebnisse liefert als der Adam Algorithmus.
+Als letzte Überlegung im ersten Teil der Thesis führen wir ein, wie neuronale Netze auf Bildern operieren können. Vorangehend führten wir neuronale Netze ein, welche nur auf Vektoren operieren können. Durch geschickte Wahl der Operatoren in einem neuronalen Netz ermöglicht es uns, die Struktur von Bildern aufrecht zu erhalten. Dies ist von großem Vorteil, da wir in den darauffolgenden Anwendungen die neuronalen Netze auf Bildern operieren lassen werden.
+
+Im zweiten Kapitel der Thesis betrachten wir Autoencoder. Dabei handelt es sich um neuronale Netze, die Daten zunächst in ihrer Dimension reduzieren und im Anschluss wieder auf die ursrpüngliche Dimension zurückführen können. Diese Reduktion der Dimensionen wird im Englischen von Softwareentwicklern meistens als \glqq Feature Extraction\grqq{} und von Wissenschaftlern als \glqq Dimensionality Reduction\grqq{} bezeichnet. Sie bietet einige interessante Vorteile. Beispielsweise, ist es dadurch möglich Bilder erst zu verkleinern, also die Auflösung zu reduzieren, und im Anschluss abzuspeichern. Es ist eine Verkleinerung von mehreren Größenordnungen möglich. Dadurch lassen sich auf demselben Speicherplatz um Größenordnungen mehr Bilder abspeichern. eine weitere interessante Anwendung ist die Tatsache, dass Machine Learning Modelle genauso auf den \glqq verkleinerten\grqq{} Daten, wie auch auf den Originalen arbeiten können. Sind die Daten nun aber um Größenordnungern kleiner, so ermöglicht es dem Machine Learning Modell um Größenordnungen mehr Daten in derselben Zeit zu verarbeiten. Da nun die meisten Modelle in der Industrie so groß sind, dass sie Tage und manchmal sogar Wochen brauchen, um trainiert zu werden verdeutlicht es die Relevanz solcher Optimierungen. Die letzte Anwendungsmöglichkeit, die wir an dieser Stelle bennen wollen, ist die Möglichkeit von semantischer Suche in verschiedenen Medien. Damit is folgendes gemeint. Beispielsweise trainiert man einen AE, der Bilder als niedrig-dimensionale Vektoren abspeichern, und wieder reproduzieren kann. Als nächstes trainiert man einen weiteren AE, der dasselbe mit Audio-Dateien tut. Nun ist es möglich diese beiden AEs gemeinsam zu trainieren, sodass die niedrig-dimensionalen Vektoren des einen AEs mit den Vektoren des zweiten AEs korrespondieren. Dadurch ermöglicht es uns dem neuronalen Netz ein Bild von einem Tier bereitzustellen und im Anschluss eine Audio-Datei zu erhalten, welche Geräusche dieses Tier von sich gibt. Beispielsweise gibt man dem neuronalen Netz ein Bild eines Löwen und erhält als Antwort das Brüllen eines Löwen als Audio-Datei.
+
+Konkret führen wir im zweiten Kapitel einen wichtigen Ansatz in Anwendungen neuronaler Netze ein. Wir zeigen, dass man neuronale Netze problemlos miteinander verknüpfen kann, sofern die Eingabe- und Ausgabedimension der neuronalen Netze übereinstimmen. Als nächstes erläutenr wir, inwiefern sich das Training von AEs zum Training normaler neuronaler Netze unterscheidet. Als letztes betrachten wir einige AEs, die wir selber implementiert und trainiert haben. Wir betrachten zu Beginn lineare AEs. Das heißt, dass die Operatoren innerhalb des neuronalen Netzes alle linear, also Matrixmultiplikationen sind. Wir evaluieren die AEs auf unterschiedlichste Art und Weise. Zum Beispiel visualisieren wir die niedrig-dimensionale Darstellung der Daten, den Rekonstruktionsfehler, den die AEs machen und zeigen zudem, wie die rekonstruierten Bilder aussehen.
+
+Im dritten und damit letzten Kapitel der Thesis betrachten wir Variational Autoencoder (VAEs). Wir beginnen damit, dass wir den grundlegenden Unterschied zu AEs erläutern. AEs Bilden dabei einen Datenpunkt auf einen niedrig-dimensionalen Vektor ab. Im Gegensatz dazu bilden VAEs einen Datenpunkt auf eine Wahrscheinlichkeitsdichte, oder genauer gesagt auf eine Wahrschienlichkeitsverteilung, ab. Dies wird dadurch erreicht, dass die Daten erst auf einen niedrig-dimensionalen Vektor abgebildet werden und dieser im Anschluss als Parameter für eine Wahrscheinlichkeitsverteilung dient. In der Industrie ist dabei üblich Normalverteilungen zu betrachten.
+
+Im Zuge dieses Kapitels erläutern wir zunächst wie Wahrscheinlichkeitsverteilungen und Wahrscheinlichkeitsdichten zusammenhängen, was uns im Folgenden erlaubt ausschließlich Wahrscheinlichkeitsdichten zu betrachten. Im Anschluss betrachten wir die Grundzüge der Bayesianischen Statistik, welche Grundlage ist für die Idee der VAEs. Wir führen essentielle Begriffe aus der Bayesianischen Statistik, wie zum Beispiel \glqq Prior\grqq{}, \glqq Evidence\grqq{}, \glqq Likelihood\grqq{} und \glqq Posterior\grqq{}, ein. Mit diesen Begriffen motivieren wir den Bayesianischen Zugang zur Lerntheorie und formulieren einen allgemeinen Lernalgorithmus. Als nächstes beziehen wir diesen allgemeinen Lernalgorithmus auf unseren speziellen Fall der VAEs. Um dies zu tun führen wir die Kullback-Leibler Divergenz ein, welche uns ermöglicht Wahrscheinlichkeitsdichten miteinander zu vergleichen und dadurch essentiell wird beim Training von VAEs. Als nächstes ermitteln wir verschiedene relevante Resultate der VAEs wie beispielsweise die \glqq Evidence Lower Bound\grqq{} (ELBO). Dies ist, wie der Name vermuten lässt, eine untere Schranke der Evidence, welche eine Große Rolle im Training der VAEs spielt. Sie beschreibt sinngemäß den Grenzwert der Kullback-Leibler Divergenz, falls das Training des VAE erfolgreich ist.
+
+Abschließend im letzten Kapitel implementieren und trainieren wir einige unterschiedliche VAEs. Dabei erzeugen wir unterschiedliche Resultate. Wir zeigen unterschiedlichen Anwendungen von AEs und VAEs und die damit verbundenen Rekonsktruktionsfehler der beiden unterschiedlichen Architekturen. Außerdem verdeutlichen wir durch Visualisierungen, wie die erzeugten Wahrscheinlichkeitsdichten unterschiedlicher VAEs aussehen.
+Des Weiteren betrachten wir den Einfluss einer Stellschraube, die wir Kullback-Leibler Koeffizient bezeichnen. Diese Stellschraube kontrolliert das Verhältnis des Einflusses von Kullback-Leibler Divergenz und Verlustfunktion auf das Training des VAE. Je höher der Koeffizient, desto stärker werden die Datenpunkte auf eine Wahrscheinlichkeitsdichte \glqq gedrückt\grqq{}. Das heißt, desto weniger Fleibilität wird dem neuronalen Netz gelassen, selbst eine geeignete Darstellung zu finden.
+Zuletzt hinterfragen wir den in der Literatur üblichen Ansatz des Trainings eines VAE. Wir ermitteln ein interessantes Resultat, welches belegt, dass der allgemeine Ansatz deutlich verbessert werden kann durch eine explizite Wahl der Wahrscheinlichkeitsdichten bei der Berechnung der Kullback-Leibler Divergenz.
+
+
+
+
 \addcontentsline{toc}{chapter}{Deutsche Zusammenfassung}
 \vspace{4 cm}
 
-$\overline{\text{Stuttgart, \today} \hspace{1 cm}}$
+$\overline{\text{Stuttgart, November 22, 2023} \hspace{1 cm}}$
 
 
 \end{document}

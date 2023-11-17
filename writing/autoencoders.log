@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.7)  14 NOV 2023 14:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.7)  17 NOV 2023 15:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -645,7 +645,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -819,7 +819,7 @@ Missing character: There is no r in font nullfont!
 <write> ... Reference `chap:vae' on page \thepage
                                                   \space undefined\on@line .
 l.2 ...ll take a look at in Chapter~\ref{chap:vae}
-                                                  . The goal of such an auto...
+                                                  . In a nutshell, the goal ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -830,7 +830,19 @@ and I'll forget about whatever was undefined.
 LaTeX Warning: Reference `chap:vae' on page  undefined on input line 2.
 
 Missing character: There is no . in font nullfont!
-Missing character: There is no T in font nullfont!
+Missing character: There is no I in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no g in font nullfont!
@@ -839,10 +851,6 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -872,25 +880,6 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no , in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -1020,94 +1009,29 @@ Missing character: There is no b in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no A in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no a in font nullfont!
+Missing character: There is no I in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no , in font nullfont!
 Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no M in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no L in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no M in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -1223,17 +1147,13 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
+Missing character: There is no p in font nullfont!
 Missing character: There is no r in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no m in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
+Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -1616,6 +1536,10 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -2291,51 +2215,19 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no I in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no F in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
+Missing character: There is no W in font nullfont!
 Missing character: There is no e in font nullfont!
-! Undefined control sequence.
-<write> ...nce `fig:autoencoder' on page \thepage
-                                                  \space undefined\on@line .
-l.9 In Figure \ref{fig:autoencoder}
-                                    we can take a look at a visual example o...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-LaTeX Warning: Reference `fig:autoencoder' on page  undefined on input line 9.
-
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no x in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -2371,6 +2263,28 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+! Undefined control sequence.
+<write> ...nce `fig:autoencoder' on page \thepage
+                                                  \space undefined\on@line .
+l.8 ...rchitecture in Figure \ref{fig:autoencoder}
+                                                  . Each circle represents a...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `fig:autoencoder' on page  undefined on input line 8.
+
 Missing character: There is no . in font nullfont!
 Missing character: There is no E in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -2447,12 +2361,12 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 6--10
+Overfull \hbox (20.0pt too wide) in paragraph at lines 6--9
 []
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 6--10
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 6--9
 []
  []
 
@@ -2463,7 +2377,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.12 \begin{figure}
+l.11 \begin{figure}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2476,18 +2390,18 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.13 \begin{center}
+l.12 \begin{center}
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 13--13
+Overfull \hbox (20.0pt too wide) in paragraph at lines 12--12
 []
  []
 
 ! Undefined control sequence.
-l.15       \includegraphics
+l.14       \includegraphics
                            [width=\linewidth]{autoencoder}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2505,7 +2419,7 @@ Missing character: There is no = in font nullfont!
 ! Missing number, treated as zero.
 <to be read again>
                    ]
-l.15       \includegraphics[width=\linewidth]
+l.14       \includegraphics[width=\linewidth]
                                              {autoencoder}
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -2514,7 +2428,7 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again>
                    ]
-l.15       \includegraphics[width=\linewidth]
+l.14       \includegraphics[width=\linewidth]
                                              {autoencoder}
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -2542,7 +2456,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.16       \caption
+l.15       \caption
                    {An autoencoding neural network with input and output $x,...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -2594,11 +2508,11 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no t in font nullfont!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 16.
+(Font)              <7> on input line 15.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 16.
+(Font)              <5> on input line 15.
 ! Undefined control sequence.
-l.16 ... network with input and output $x, y\in \R
+l.15 ... network with input and output $x, y\in \R
                                                   ^5$. The five hidden layer...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2768,37 +2682,37 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no l in font nullfont!
 
-Overfull \hbox (29.3518pt too wide) in paragraph at lines 15--17
+Overfull \hbox (29.3518pt too wide) in paragraph at lines 14--16
 \OML/cmm/m/it/10 x; y \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--17
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 14--16
 \OT1/cmr/m/n/10 4$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--17
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 14--16
 \OT1/cmr/m/n/10 3$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--17
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 14--16
 \OT1/cmr/m/n/10 2$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--17
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 14--16
 \OT1/cmr/m/n/10 3$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--17
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 14--16
 \OT1/cmr/m/n/10 4$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--17
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 14--16
 \OT1/cmr/m/n/10 2$
  []
 
@@ -2809,7 +2723,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.19 \end{figure}
+l.18 \end{figure}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2889,18 +2803,28 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no F in font nullfont!
@@ -2912,7 +2836,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...ference `img_encoder' on page \thepage
                                                   \space undefined\on@line .
-l.22 ... as we can see in Figure \ref{img_encoder}
+l.21 ...e as we depict in Figure \ref{img_encoder}
                                                    or formally defined as fo...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2921,7 +2845,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `img_encoder' on page  undefined on input line 22.
+LaTeX Warning: Reference `img_encoder' on page  undefined on input line 21.
 
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
@@ -2951,12 +2875,12 @@ Missing character: There is no w in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 22--23
+Overfull \hbox (20.0pt too wide) in paragraph at lines 21--22
 []
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 22--23
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 21--22
 []
  []
 
@@ -2967,7 +2891,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.24 \begin{definition}
+l.23 \begin{definition}
                        \label{def_encoder}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2979,7 +2903,7 @@ Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
 <recently read> \T
 
-l.25 Let $\T
+l.24 Let $\T
             $ be a parameter space and $\t \in \T$ a set of parameters, $L\i...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3008,21 +2932,21 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 
-LaTeX Warning: Command \t invalid in math mode on input line 25.
+LaTeX Warning: Command \t invalid in math mode on input line 24.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 25.
+LaTeX Warning: Command \t invalid in math mode on input line 24.
 
-LaTeX Font Info:    Trying to load font information for +cmr on input line 25.
-LaTeX Font Info:    No file cmr.fd. on input line 25.
+LaTeX Font Info:    Trying to load font information for +cmr on input line 24.
+LaTeX Font Info:    No file cmr.fd. on input line 24.
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `/cmr/m/n' instead on input line 25.
+(Font)              using `/cmr/m/n' instead on input line 24.
 
 ! Corrupted NFSS tables.
 wrong@fontshape ...message {Corrupted NFSS tables}
                                                   error@fontshape else let f...
-l.25 Let $\T$ be a parameter space and $\t \in
+l.24 Let $\T$ be a parameter space and $\t \in
                                                \T$ a set of parameters, $L\i...
 This error message was generated by an \errmessage
 command, so I can't give any explicit help.
@@ -3031,12 +2955,12 @@ and deduce the truth by order and method.
 
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `OT1/cmr/m/n' instead on input line 25.
+(Font)              using `OT1/cmr/m/n' instead on input line 24.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.25 Let $\T$ be a parameter space and $\t \in
+l.24 Let $\T$ be a parameter space and $\t \in
                                                \T$ a set of parameters, $L\i...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -3044,7 +2968,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.25 Let $\T$ be a parameter space and $\t \in
+l.24 Let $\T$ be a parameter space and $\t \in
                                                \T$ a set of parameters, $L\i...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -3054,7 +2978,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \let \maybe@load@fontshape...
-l.25 Let $\T$ be a parameter space and $\t \in
+l.24 Let $\T$ be a parameter space and $\t \in
                                                \T$ a set of parameters, $L\i...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3065,7 +2989,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.25 Let $\T$ be a parameter space and $\t \in
+l.24 Let $\T$ be a parameter space and $\t \in
                                                \T$ a set of parameters, $L\i...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -3073,7 +2997,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.25 Let $\T$ be a parameter space and $\t \in
+l.24 Let $\T$ be a parameter space and $\t \in
                                                \T$ a set of parameters, $L\i...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -3083,7 +3007,7 @@ so that I will find a matching right brace soon.
 ! Extra }, or forgotten $.
 \UseTextAccent  ...e@text@encoding \@curr@enc #3}}
 
-l.25 Let $\T$ be a parameter space and $\t \in
+l.24 Let $\T$ be a parameter space and $\t \in
                                                \T$ a set of parameters, $L\i...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3092,7 +3016,7 @@ the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
 ! Undefined control sequence.
-l.25 Let $\T$ be a parameter space and $\t \in \T
+l.24 Let $\T$ be a parameter space and $\t \in \T
                                                  $ a set of parameters, $L\i...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3101,7 +3025,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.25 ... $\t \in \T$ a set of parameters, $L\in \N
+l.24 ... $\t \in \T$ a set of parameters, $L\in \N
                                                   $ and $d_1,\ldots, d_L\in\...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3110,7 +3034,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.25 ...eters, $L\in \N$ and $d_1,\ldots, d_L\in\N
+l.24 ...eters, $L\in \N$ and $d_1,\ldots, d_L\in\N
                                                   $. Let further $\f$ be an ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3121,7 +3045,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \f
 
-l.25 ...nd $d_1,\ldots, d_L\in\N$. Let further $\f
+l.24 ...nd $d_1,\ldots, d_L\in\N$. Let further $\f
                                                   $ be an activation functio...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3130,7 +3054,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.25 ... $\f$ be an activation function and $f_{\f
+l.24 ... $\f$ be an activation function and $f_{\f
                                                   ,L,\t}$ a neural network.\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3139,12 +3063,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 25.
+LaTeX Warning: Command \t invalid in math mode on input line 24.
 
 ! Argument of \UseTextAccent  has an extra }.
 <inserted text>
                 \par
-l.25 ...be an activation function and $f_{\f,L,\t}
+l.24 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -3157,7 +3081,7 @@ Runaway argument?
 ! Paragraph ended before \UseTextAccent  was complete.
 <to be read again>
                    \par
-l.25 ...be an activation function and $f_{\f,L,\t}
+l.24 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -3166,7 +3090,7 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.25 ...be an activation function and $f_{\f,L,\t}
+l.24 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -3174,7 +3098,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.25 ...be an activation function and $f_{\f,L,\t}
+l.24 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -3185,7 +3109,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.25 ...e an activation function and $f_{\f,L,\t}$
+l.24 ...e an activation function and $f_{\f,L,\t}$
                                                    a neural network.\\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -3196,7 +3120,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.25 ...e an activation function and $f_{\f,L,\t}$
+l.24 ...e an activation function and $f_{\f,L,\t}$
                                                    a neural network.\\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -3238,7 +3162,7 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no k in font nullfont!
 ! Undefined control sequence.
-l.26 If the neural network $f_{\f
+l.25 If the neural network $f_{\f
                                  ,L,\t}$ fulfils the condition $n_i= d_1 \ge...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3247,12 +3171,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 26.
+LaTeX Warning: Command \t invalid in math mode on input line 25.
 
 ! Argument of \UseTextAccent  has an extra }.
 <inserted text>
                 \par
-l.26 If the neural network $f_{\f,L,\t}
+l.25 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \ge...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -3265,7 +3189,7 @@ Runaway argument?
 ! Paragraph ended before \UseTextAccent  was complete.
 <to be read again>
                    \par
-l.26 If the neural network $f_{\f,L,\t}
+l.25 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \ge...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -3274,7 +3198,7 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.26 If the neural network $f_{\f,L,\t}
+l.25 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \ge...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -3282,7 +3206,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.26 If the neural network $f_{\f,L,\t}
+l.25 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \ge...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -3291,19 +3215,19 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 25--26
+Overfull \hbox (20.0pt too wide) in paragraph at lines 24--25
 []
  []
 
 
-Overfull \hbox (15.632pt too wide) in paragraph at lines 25--26
+Overfull \hbox (15.632pt too wide) in paragraph at lines 24--25
 \OML/cmm/m/it/10 f[]$
  []
 
 ! Extra }, or forgotten \endgroup.
 <recently read> }
 
-l.26 If the neural network $f_{\f,L,\t}
+l.25 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \ge...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3315,7 +3239,7 @@ Missing character: There is no n in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.26 ...rk $f_{\f,L,\t}$ fulfils the condition $n_
+l.25 ...rk $f_{\f,L,\t}$ fulfils the condition $n_
                                                   i= d_1 \geq \ldots \geq d_...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -3325,7 +3249,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 ! Undefined control sequence.
-l.26 ...dots \geq d_L = n_o$ with $n_i, n_o \in \N
+l.25 ...dots \geq d_L = n_o$ with $n_i, n_o \in \N
                                                   $ being the input and outp...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3424,89 +3348,89 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.27 \end{definition}
+l.26 \end{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (121.80959pt too wide) in paragraph at lines 26--28
+Overfull \hbox (121.80959pt too wide) in paragraph at lines 25--27
 []$\OML/cmm/m/it/10 fulfilsthecondition$$[] \/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (20.2465pt too wide) in paragraph at lines 26--28
+Overfull \hbox (20.2465pt too wide) in paragraph at lines 25--27
 \OML/cmm/m/it/10 d[] \OMS/cmsy/m/n/10 ^^U
  []
 
 
-Overfull \hbox (22.22212pt too wide) in paragraph at lines 26--28
+Overfull \hbox (22.22212pt too wide) in paragraph at lines 25--27
 [] \OMS/cmsy/m/n/10 ^^U
  []
 
 
-Overfull \hbox (21.74652pt too wide) in paragraph at lines 26--28
+Overfull \hbox (21.74652pt too wide) in paragraph at lines 25--27
 \OML/cmm/m/it/10 d[] \/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (10.44957pt too wide) in paragraph at lines 26--28
+Overfull \hbox (10.44957pt too wide) in paragraph at lines 25--27
 \OML/cmm/m/it/10 n[]$
  []
 
 
-Overfull \hbox (33.67001pt too wide) in paragraph at lines 26--28
+Overfull \hbox (33.67001pt too wide) in paragraph at lines 25--27
 \OML/cmm/m/it/10 n[]; n[] \OMS/cmsy/m/n/10 2$
  []
 
 
-Overfull \hbox (15.49298pt too wide) in paragraph at lines 26--28
+Overfull \hbox (15.49298pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 en-
  []
 
 
-Overfull \hbox (21.40266pt too wide) in paragraph at lines 26--28
+Overfull \hbox (21.40266pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 cod-
  []
 
 
-Overfull \hbox (15.33325pt too wide) in paragraph at lines 26--28
+Overfull \hbox (15.33325pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 ing
  []
 
 
-Overfull \hbox (21.88184pt too wide) in paragraph at lines 26--28
+Overfull \hbox (21.88184pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 neu-
  []
 
 
-Overfull \hbox (13.52075pt too wide) in paragraph at lines 26--28
+Overfull \hbox (13.52075pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 ral
  []
 
 
-Overfull \hbox (19.96518pt too wide) in paragraph at lines 26--28
+Overfull \hbox (19.96518pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 net-
  []
 
 
-Overfull \hbox (24.54155pt too wide) in paragraph at lines 26--28
+Overfull \hbox (24.54155pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 work
  []
 
 
-Overfull \hbox (15.49298pt too wide) in paragraph at lines 26--28
+Overfull \hbox (15.49298pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 en-
  []
 
 
-Overfull \hbox (27.57626pt too wide) in paragraph at lines 26--28
+Overfull \hbox (27.57626pt too wide) in paragraph at lines 25--27
 \OT1/cmr/bx/n/10 coder
  []
 
 
-Overfull \hbox (9.18997pt too wide) in paragraph at lines 26--28
+Overfull \hbox (9.18997pt too wide) in paragraph at lines 25--27
 \OML/cmm/m/it/10 f[]$
  []
 
@@ -3517,19 +3441,19 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.30 \begin{figure}
+l.29 \begin{figure}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 31--31
+Overfull \hbox (20.0pt too wide) in paragraph at lines 30--30
 []
  []
 
 ! Undefined control sequence.
-l.33       \includegraphics
+l.32       \includegraphics
                            [width=\linewidth]{encoder}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3547,7 +3471,7 @@ Missing character: There is no = in font nullfont!
 ! Missing number, treated as zero.
 <to be read again>
                    ]
-l.33       \includegraphics[width=\linewidth]
+l.32       \includegraphics[width=\linewidth]
                                              {encoder}
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -3556,7 +3480,7 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again>
                    ]
-l.33       \includegraphics[width=\linewidth]
+l.32       \includegraphics[width=\linewidth]
                                              {encoder}
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -3580,7 +3504,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.34       \caption
+l.33       \caption
                    {An encoding neural network with input $x\in \R^5$ and ou...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -3619,7 +3543,7 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.34 ...ncoding neural network with input $x\in \R
+l.33 ...ncoding neural network with input $x\in \R
                                                   ^5$ and output $y \in \R^2...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3637,7 +3561,7 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.34 ...ith input $x\in \R^5$ and output $y \in \R
+l.33 ...ith input $x\in \R^5$ and output $y \in \R
                                                   ^2$. The two hidden layers...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3807,32 +3731,32 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no l in font nullfont!
 
-Overfull \hbox (19.6458pt too wide) in paragraph at lines 33--35
+Overfull \hbox (19.6458pt too wide) in paragraph at lines 32--34
 \OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (19.19212pt too wide) in paragraph at lines 33--35
+Overfull \hbox (19.19212pt too wide) in paragraph at lines 32--34
 \OML/cmm/m/it/10 y \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 33--35
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 32--34
 \/cmr/m/n/10 4$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 33--35
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 32--34
 \/cmr/m/n/10 3$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 33--35
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 32--34
 \/cmr/m/n/10 5$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 33--35
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 32--34
 \/cmr/m/n/10 2$
  []
 
@@ -3843,7 +3767,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.37 \end{figure}
+l.36 \end{figure}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3915,18 +3839,32 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
 Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
 Missing character: There is no c in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no F in font nullfont!
@@ -3938,7 +3876,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...ference `img_decoder' on page \thepage
                                                   \space undefined\on@line .
-l.40 ... as we can see in Figure \ref{img_decoder}
+l.39 ...hich we depict in Figure \ref{img_decoder}
                                                   . We can define this archi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3947,7 +3885,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `img_decoder' on page  undefined on input line 40.
+LaTeX Warning: Reference `img_decoder' on page  undefined on input line 39.
 
 Missing character: There is no . in font nullfont!
 Missing character: There is no W in font nullfont!
@@ -3998,8 +3936,18 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
 Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no D in font nullfont!
@@ -4015,7 +3963,7 @@ Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
 <write> ...ference `def_encoder' on page \thepage
                                                   \space undefined\on@line .
-l.40 ...he encoder in Definition \ref{def_encoder}
+l.39 ... structure in Definition~\ref{def_encoder}
                                                   .
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4024,21 +3972,21 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `def_encoder' on page  undefined on input line 40.
+LaTeX Warning: Reference `def_encoder' on page  undefined on input line 39.
 
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 40--41
+Overfull \hbox (20.0pt too wide) in paragraph at lines 39--40
 []
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 40--41
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 39--40
 []
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 40--41
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 39--40
 []
  []
 
@@ -4049,7 +3997,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.43 \begin{definition}
+l.42 \begin{definition}
                        \label{def_decoder}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -4061,7 +4009,7 @@ Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
 <recently read> \T
 
-l.44 Let $\T
+l.43 Let $\T
             $ be a parameter space and $\t \in \T$ a parameter, $L\in \N$ an...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4090,15 +4038,15 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 
-LaTeX Warning: Command \t invalid in math mode on input line 44.
+LaTeX Warning: Command \t invalid in math mode on input line 43.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 44.
+LaTeX Warning: Command \t invalid in math mode on input line 43.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.44 Let $\T$ be a parameter space and $\t \in
+l.43 Let $\T$ be a parameter space and $\t \in
                                                \T$ a parameter, $L\in \N$ an...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4106,7 +4054,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.44 Let $\T$ be a parameter space and $\t \in
+l.43 Let $\T$ be a parameter space and $\t \in
                                                \T$ a parameter, $L\in \N$ an...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4116,7 +4064,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \let \maybe@load@fontshape...
-l.44 Let $\T$ be a parameter space and $\t \in
+l.43 Let $\T$ be a parameter space and $\t \in
                                                \T$ a parameter, $L\in \N$ an...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4127,7 +4075,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.44 Let $\T$ be a parameter space and $\t \in
+l.43 Let $\T$ be a parameter space and $\t \in
                                                \T$ a parameter, $L\in \N$ an...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4135,7 +4083,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.44 Let $\T$ be a parameter space and $\t \in
+l.43 Let $\T$ be a parameter space and $\t \in
                                                \T$ a parameter, $L\in \N$ an...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4145,7 +4093,7 @@ so that I will find a matching right brace soon.
 ! Extra }, or forgotten $.
 \UseTextAccent  ...e@text@encoding \@curr@enc #3}}
 
-l.44 Let $\T$ be a parameter space and $\t \in
+l.43 Let $\T$ be a parameter space and $\t \in
                                                \T$ a parameter, $L\in \N$ an...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4154,7 +4102,7 @@ the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
 ! Undefined control sequence.
-l.44 Let $\T$ be a parameter space and $\t \in \T
+l.43 Let $\T$ be a parameter space and $\t \in \T
                                                  $ a parameter, $L\in \N$ an...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4163,7 +4111,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.44 ...pace and $\t \in \T$ a parameter, $L\in \N
+l.43 ...pace and $\t \in \T$ a parameter, $L\in \N
                                                   $ and $d_1,\ldots, d_L\in\...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4172,7 +4120,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.44 ...meter, $L\in \N$ and $d_1,\ldots, d_L\in\N
+l.43 ...meter, $L\in \N$ and $d_1,\ldots, d_L\in\N
                                                   $. Let further $\f$ be an ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4183,7 +4131,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \f
 
-l.44 ...nd $d_1,\ldots, d_L\in\N$. Let further $\f
+l.43 ...nd $d_1,\ldots, d_L\in\N$. Let further $\f
                                                   $ be an activation functio...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4192,7 +4140,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.44 ... $\f$ be an activation function and $f_{\f
+l.43 ... $\f$ be an activation function and $f_{\f
                                                   ,L,\t}$ a neural network.\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4201,12 +4149,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 44.
+LaTeX Warning: Command \t invalid in math mode on input line 43.
 
 ! Argument of \UseTextAccent  has an extra }.
 <inserted text>
                 \par
-l.44 ...be an activation function and $f_{\f,L,\t}
+l.43 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -4219,7 +4167,7 @@ Runaway argument?
 ! Paragraph ended before \UseTextAccent  was complete.
 <to be read again>
                    \par
-l.44 ...be an activation function and $f_{\f,L,\t}
+l.43 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -4228,7 +4176,7 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.44 ...be an activation function and $f_{\f,L,\t}
+l.43 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4236,7 +4184,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.44 ...be an activation function and $f_{\f,L,\t}
+l.43 ...be an activation function and $f_{\f,L,\t}
                                                   $ a neural network.\\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -4247,7 +4195,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.44 ...e an activation function and $f_{\f,L,\t}$
+l.43 ...e an activation function and $f_{\f,L,\t}$
                                                    a neural network.\\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -4258,7 +4206,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.44 ...e an activation function and $f_{\f,L,\t}$
+l.43 ...e an activation function and $f_{\f,L,\t}$
                                                    a neural network.\\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -4300,7 +4248,7 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no k in font nullfont!
 ! Undefined control sequence.
-l.45 If the neural network $f_{\f
+l.44 If the neural network $f_{\f
                                  ,L,\t}$ fulfils the condition $n_i= d_1 \le...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4309,12 +4257,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 45.
+LaTeX Warning: Command \t invalid in math mode on input line 44.
 
 ! Argument of \UseTextAccent  has an extra }.
 <inserted text>
                 \par
-l.45 If the neural network $f_{\f,L,\t}
+l.44 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \le...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -4327,7 +4275,7 @@ Runaway argument?
 ! Paragraph ended before \UseTextAccent  was complete.
 <to be read again>
                    \par
-l.45 If the neural network $f_{\f,L,\t}
+l.44 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \le...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -4336,7 +4284,7 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.45 If the neural network $f_{\f,L,\t}
+l.44 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \le...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4344,7 +4292,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.45 If the neural network $f_{\f,L,\t}
+l.44 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \le...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -4353,19 +4301,19 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 44--45
+Overfull \hbox (20.0pt too wide) in paragraph at lines 43--44
 []
  []
 
 
-Overfull \hbox (15.632pt too wide) in paragraph at lines 44--45
+Overfull \hbox (15.632pt too wide) in paragraph at lines 43--44
 \OML/cmm/m/it/10 f[]$
  []
 
 ! Extra }, or forgotten \endgroup.
 <recently read> }
 
-l.45 If the neural network $f_{\f,L,\t}
+l.44 If the neural network $f_{\f,L,\t}
                                        $ fulfils the condition $n_i= d_1 \le...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4377,7 +4325,7 @@ Missing character: There is no n in font nullfont!
 ! Missing $ inserted.
 <inserted text>
                 $
-l.45 ...rk $f_{\f,L,\t}$ fulfils the condition $n_
+l.44 ...rk $f_{\f,L,\t}$ fulfils the condition $n_
                                                   i= d_1 \leq \ldots \leq d_...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4387,7 +4335,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 ! Undefined control sequence.
-l.45 ...dots \leq d_L = n_o$ with $n_i, n_o \in \N
+l.44 ...dots \leq d_L = n_o$ with $n_i, n_o \in \N
                                                   $ being the input and outp...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4473,84 +4421,84 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.46 \end{definition}
+l.45 \end{definition}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (121.80959pt too wide) in paragraph at lines 45--47
+Overfull \hbox (121.80959pt too wide) in paragraph at lines 44--46
 []$\OML/cmm/m/it/10 fulfilsthecondition$$[] \/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (20.2465pt too wide) in paragraph at lines 45--47
+Overfull \hbox (20.2465pt too wide) in paragraph at lines 44--46
 \OML/cmm/m/it/10 d[] \OMS/cmsy/m/n/10 ^^T
  []
 
 
-Overfull \hbox (22.22212pt too wide) in paragraph at lines 45--47
+Overfull \hbox (22.22212pt too wide) in paragraph at lines 44--46
 [] \OMS/cmsy/m/n/10 ^^T
  []
 
 
-Overfull \hbox (21.74652pt too wide) in paragraph at lines 45--47
+Overfull \hbox (21.74652pt too wide) in paragraph at lines 44--46
 \OML/cmm/m/it/10 d[] \/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (10.44957pt too wide) in paragraph at lines 45--47
+Overfull \hbox (10.44957pt too wide) in paragraph at lines 44--46
 \OML/cmm/m/it/10 n[]$
  []
 
 
-Overfull \hbox (33.67001pt too wide) in paragraph at lines 45--47
+Overfull \hbox (33.67001pt too wide) in paragraph at lines 44--46
 \OML/cmm/m/it/10 n[]; n[] \OMS/cmsy/m/n/10 2$
  []
 
 
-Overfull \hbox (15.49298pt too wide) in paragraph at lines 45--47
+Overfull \hbox (15.49298pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 de-
  []
 
 
-Overfull \hbox (21.40266pt too wide) in paragraph at lines 45--47
+Overfull \hbox (21.40266pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 cod-
  []
 
 
-Overfull \hbox (15.33325pt too wide) in paragraph at lines 45--47
+Overfull \hbox (15.33325pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 ing
  []
 
 
-Overfull \hbox (21.88184pt too wide) in paragraph at lines 45--47
+Overfull \hbox (21.88184pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 neu-
  []
 
 
-Overfull \hbox (13.52075pt too wide) in paragraph at lines 45--47
+Overfull \hbox (13.52075pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 ral
  []
 
 
-Overfull \hbox (19.96518pt too wide) in paragraph at lines 45--47
+Overfull \hbox (19.96518pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 net-
  []
 
 
-Overfull \hbox (24.54155pt too wide) in paragraph at lines 45--47
+Overfull \hbox (24.54155pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 work
  []
 
 
-Overfull \hbox (15.49298pt too wide) in paragraph at lines 45--47
+Overfull \hbox (15.49298pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 de-
  []
 
 
-Overfull \hbox (27.57626pt too wide) in paragraph at lines 45--47
+Overfull \hbox (27.57626pt too wide) in paragraph at lines 44--46
 \OT1/cmr/bx/n/10 coder
  []
 
@@ -4561,19 +4509,19 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.49 \begin{figure}
+l.48 \begin{figure}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 50--50
+Overfull \hbox (20.0pt too wide) in paragraph at lines 49--49
 []
  []
 
 ! Undefined control sequence.
-l.52       \includegraphics
+l.51       \includegraphics
                            [width=\linewidth]{decoder}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4591,7 +4539,7 @@ Missing character: There is no = in font nullfont!
 ! Missing number, treated as zero.
 <to be read again>
                    ]
-l.52       \includegraphics[width=\linewidth]
+l.51       \includegraphics[width=\linewidth]
                                              {decoder}
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -4600,7 +4548,7 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again>
                    ]
-l.52       \includegraphics[width=\linewidth]
+l.51       \includegraphics[width=\linewidth]
                                              {decoder}
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -4624,7 +4572,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.53       \caption
+l.52       \caption
                    {A decoding neural network with input $x\in \R^2$ and out...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -4662,7 +4610,7 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.53 ...ecoding neural network with input $x\in \R
+l.52 ...ecoding neural network with input $x\in \R
                                                   ^2$ and output $y \in \R^5...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4680,7 +4628,7 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.53 ...ith input $x\in \R^2$ and output $y \in \R
+l.52 ...ith input $x\in \R^2$ and output $y \in \R
                                                   ^5$. The two hidden layers...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4851,32 +4799,32 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no l in font nullfont!
 
-Overfull \hbox (19.6458pt too wide) in paragraph at lines 52--54
+Overfull \hbox (19.6458pt too wide) in paragraph at lines 51--53
 \OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (19.19212pt too wide) in paragraph at lines 52--54
+Overfull \hbox (19.19212pt too wide) in paragraph at lines 51--53
 \OML/cmm/m/it/10 y \OMS/cmsy/m/n/10 2[]$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 52--54
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 51--53
 \/cmr/m/n/10 3$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 52--54
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 51--53
 \/cmr/m/n/10 4$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 52--54
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 51--53
 \/cmr/m/n/10 2$
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 52--54
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 51--53
 \/cmr/m/n/10 5$
  []
 
@@ -4887,7 +4835,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.56 \end{figure}
+l.55 \end{figure}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -4942,6 +4890,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -5026,7 +4975,7 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 58--59
+Overfull \hbox (20.0pt too wide) in paragraph at lines 57--58
 []
  []
 
@@ -5037,7 +4986,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.60 \begin{lemma}
+l.59 \begin{lemma}
                   \label{lemma:composition_of_nns}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5074,7 +5023,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no s in font nullfont!
 ! Undefined control sequence.
-l.61 ...neural networks of depths $L_1, L_2 \in \N
+l.60 ...neural networks of depths $L_1, L_2 \in \N
                                                   $ with parameters $\t_1, \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5097,15 +5046,15 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 
-LaTeX Warning: Command \t invalid in math mode on input line 61.
+LaTeX Warning: Command \t invalid in math mode on input line 60.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 61.
+LaTeX Warning: Command \t invalid in math mode on input line 60.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.61 ...ths $L_1, L_2 \in \N$ with parameters $\t_
+l.60 ...ths $L_1, L_2 \in \N$ with parameters $\t_
                                                   1, \t_2 \in \T$, where $\T...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -5113,7 +5062,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.61 ...ths $L_1, L_2 \in \N$ with parameters $\t_
+l.60 ...ths $L_1, L_2 \in \N$ with parameters $\t_
                                                   1, \t_2 \in \T$, where $\T...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5123,7 +5072,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.61 ...ths $L_1, L_2 \in \N$ with parameters $\t_
+l.60 ...ths $L_1, L_2 \in \N$ with parameters $\t_
                                                   1, \t_2 \in \T$, where $\T...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -5133,7 +5082,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.61 ...ths $L_1, L_2 \in \N$ with parameters $\t_
+l.60 ...ths $L_1, L_2 \in \N$ with parameters $\t_
                                                   1, \t_2 \in \T$, where $\T...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5141,7 +5090,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.61 ...ths $L_1, L_2 \in \N$ with parameters $\t_
+l.60 ...ths $L_1, L_2 \in \N$ with parameters $\t_
                                                   1, \t_2 \in \T$, where $\T...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5151,7 +5100,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.61 ...ths $L_1, L_2 \in \N$ with parameters $\t_
+l.60 ...ths $L_1, L_2 \in \N$ with parameters $\t_
                                                   1, \t_2 \in \T$, where $\T...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5159,15 +5108,15 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 61.
+LaTeX Warning: Command \t invalid in math mode on input line 60.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 61.
+LaTeX Warning: Command \t invalid in math mode on input line 60.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.61 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
+l.60 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
                                                   2 \in \T$, where $\T$ is a...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -5175,7 +5124,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.61 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
+l.60 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
                                                   2 \in \T$, where $\T$ is a...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5185,7 +5134,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.61 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
+l.60 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
                                                   2 \in \T$, where $\T$ is a...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -5195,7 +5144,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.61 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
+l.60 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
                                                   2 \in \T$, where $\T$ is a...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5203,7 +5152,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.61 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
+l.60 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
                                                   2 \in \T$, where $\T$ is a...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5213,7 +5162,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.61 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
+l.60 ..._1, L_2 \in \N$ with parameters $\t_1, \t_
                                                   2 \in \T$, where $\T$ is a...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5221,7 +5170,7 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 ! Undefined control sequence.
-l.61 ...\in \N$ with parameters $\t_1, \t_2 \in \T
+l.60 ...\in \N$ with parameters $\t_1, \t_2 \in \T
                                                   $, where $\T$ is an arbitr...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5232,7 +5181,7 @@ and I'll forget about whatever was undefined.
 ! Missing } inserted.
 <inserted text>
                 }
-l.61 ...in \N$ with parameters $\t_1, \t_2 \in \T$
+l.60 ...in \N$ with parameters $\t_1, \t_2 \in \T$
                                                   , where $\T$ is an arbitra...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5243,7 +5192,7 @@ my insertion and my current dilemma will both disappear.
 ! Undefined control sequence.
 <recently read> \T
 
-l.61 ... parameters $\t_1, \t_2 \in \T$, where $\T
+l.60 ... parameters $\t_1, \t_2 \in \T$, where $\T
                                                   $ is an arbitrary paramete...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5252,7 +5201,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.61 ...each layer be $d_1, \ldots, d_{L_1} \in \N
+l.60 ...each layer be $d_1, \ldots, d_{L_1} \in \N
                                                   $ of $f_1$ and $\tilde{d}_...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5261,7 +5210,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.61 ...tilde{d}_1, \ldots, \tilde{d}_{L_2} \in \N
+l.60 ...tilde{d}_1, \ldots, \tilde{d}_{L_2} \in \N
                                                   $ of $f_2$. Additionally, ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5270,15 +5219,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 62.
+LaTeX Warning: Command \t invalid in math mode on input line 61.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 62.
+LaTeX Warning: Command \t invalid in math mode on input line 61.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.62 ...of depth $L_1 + L_2$ with parameters $(\t_
+l.61 ...of depth $L_1 + L_2$ with parameters $(\t_
                                                   1, \t_2)$.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -5286,7 +5235,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.62 ...of depth $L_1 + L_2$ with parameters $(\t_
+l.61 ...of depth $L_1 + L_2$ with parameters $(\t_
                                                   1, \t_2)$.
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5296,7 +5245,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.62 ...of depth $L_1 + L_2$ with parameters $(\t_
+l.61 ...of depth $L_1 + L_2$ with parameters $(\t_
                                                   1, \t_2)$.
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -5306,7 +5255,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.62 ...of depth $L_1 + L_2$ with parameters $(\t_
+l.61 ...of depth $L_1 + L_2$ with parameters $(\t_
                                                   1, \t_2)$.
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5314,7 +5263,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.62 ...of depth $L_1 + L_2$ with parameters $(\t_
+l.61 ...of depth $L_1 + L_2$ with parameters $(\t_
                                                   1, \t_2)$.
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5324,7 +5273,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.62 ...of depth $L_1 + L_2$ with parameters $(\t_
+l.61 ...of depth $L_1 + L_2$ with parameters $(\t_
                                                   1, \t_2)$.
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5332,15 +5281,15 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 62.
+LaTeX Warning: Command \t invalid in math mode on input line 61.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 62.
+LaTeX Warning: Command \t invalid in math mode on input line 61.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.62 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
+l.61 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
                                                   2)$.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -5348,7 +5297,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.62 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
+l.61 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
                                                   2)$.
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5358,7 +5307,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.62 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
+l.61 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
                                                   2)$.
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -5368,7 +5317,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.62 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
+l.61 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
                                                   2)$.
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5376,7 +5325,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.62 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
+l.61 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
                                                   2)$.
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5386,7 +5335,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.62 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
+l.61 ...th $L_1 + L_2$ with parameters $(\t_1, \t_
                                                   2)$.
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5396,7 +5345,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.62 ...$L_1 + L_2$ with parameters $(\t_1, \t_2)$
+l.61 ...$L_1 + L_2$ with parameters $(\t_1, \t_2)$
                                                   .
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5411,7 +5360,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5420,7 +5369,7 @@ or  <return>  to continue without it.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5431,7 +5380,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5442,7 +5391,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5453,7 +5402,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5464,7 +5413,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5475,7 +5424,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5486,7 +5435,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5497,7 +5446,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5508,7 +5457,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5519,7 +5468,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5530,7 +5479,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5541,7 +5490,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5552,7 +5501,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5563,7 +5512,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.63 \end{lemma}
+l.62 \end{lemma}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5572,17 +5521,17 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 61--64
+Overfull \hbox (20.0pt too wide) in paragraph at lines 60--63
 []
  []
 
 
-Overfull \hbox (23.20839pt too wide) in paragraph at lines 61--64
+Overfull \hbox (23.20839pt too wide) in paragraph at lines 60--63
 \OML/cmm/m/it/10 f[]; f[]$
  []
 
 
-Overfull \hbox (36.47221pt too wide) in paragraph at lines 61--64
+Overfull \hbox (36.47221pt too wide) in paragraph at lines 60--63
 \OML/cmm/m/it/10 L[]; L[] \OMS/cmsy/m/n/10 2$
  []
 
@@ -5593,7 +5542,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.65 \begin{proof}
+l.64 \begin{proof}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5642,15 +5591,15 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 
-LaTeX Warning: Command \t invalid in math mode on input line 66.
+LaTeX Warning: Command \t invalid in math mode on input line 65.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 66.
+LaTeX Warning: Command \t invalid in math mode on input line 65.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.66 ...etwork of depth $L_1$ with parameters $\t_
+l.65 ...etwork of depth $L_1$ with parameters $\t_
                                                   1$, its architecture looks...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -5658,7 +5607,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.66 ...etwork of depth $L_1$ with parameters $\t_
+l.65 ...etwork of depth $L_1$ with parameters $\t_
                                                   1$, its architecture looks...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5668,7 +5617,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.66 ...etwork of depth $L_1$ with parameters $\t_
+l.65 ...etwork of depth $L_1$ with parameters $\t_
                                                   1$, its architecture looks...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -5678,7 +5627,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.66 ...etwork of depth $L_1$ with parameters $\t_
+l.65 ...etwork of depth $L_1$ with parameters $\t_
                                                   1$, its architecture looks...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5686,7 +5635,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.66 ...etwork of depth $L_1$ with parameters $\t_
+l.65 ...etwork of depth $L_1$ with parameters $\t_
                                                   1$, its architecture looks...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5696,7 +5645,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.66 ...etwork of depth $L_1$ with parameters $\t_
+l.65 ...etwork of depth $L_1$ with parameters $\t_
                                                   1$, its architecture looks...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5710,7 +5659,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.67 \begin{align}
+l.66 \begin{align}
                   \label{nn_1}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5719,13 +5668,13 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.68 f_
+l.67 f_
        1 (x) = H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x),\qqu...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.68 ...\ldots H_{2} \circ H_1 (x),\qquad x \in \R
+l.67 ...\ldots H_{2} \circ H_1 (x),\qquad x \in \R
                                                   ^{d_1}.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5740,7 +5689,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.69 \end{align}
+l.68 \end{align}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5749,7 +5698,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.69 \end{align}
+l.68 \end{align}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5764,7 +5713,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.71 \begin{align}
+l.70 \begin{align}
                   \label{nn_2}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5773,13 +5722,13 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.72 f_
+l.71 f_
        2 (y) = \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{H...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.72 ...{2} \circ \tilde{H}_1 (y), \qquad y \in \R
+l.71 ...{2} \circ \tilde{H}_1 (y), \qquad y \in \R
                                                   ^{\tilde{d}_1}.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5794,7 +5743,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.73 \end{align}
+l.72 \end{align}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5803,7 +5752,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.73 \end{align}
+l.72 \end{align}
 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -5812,7 +5761,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.74 ...f_2$, we can consider the result of \eqref
+l.73 ...f_2$, we can consider the result of \eqref
                                                   {nn_1} as input for \eqref...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5823,13 +5772,13 @@ and I'll forget about whatever was undefined.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.74 ..., we can consider the result of \eqref{nn_
+l.73 ..., we can consider the result of \eqref{nn_
                                                   1} as input for \eqref{nn_2}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.74 ...we can consider the result of \eqref{nn_1}
+l.73 ...we can consider the result of \eqref{nn_1}
                                                    as input for \eqref{nn_2}
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -5838,7 +5787,7 @@ the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
 ! Undefined control sequence.
-l.74 ...result of \eqref{nn_1} as input for \eqref
+l.73 ...result of \eqref{nn_1} as input for \eqref
                                                   {nn_2}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5853,14 +5802,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.75 \begin{align*}
+l.74 \begin{align*}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Misplaced alignment tab character &.
-l.76 y &
+l.75 y &
         \coloneqq H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), ...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -5870,7 +5819,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Undefined control sequence.
-l.76 y &\coloneqq
+l.75 y &\coloneqq
                   H_{L_1} \circ H_{L_1-1} \circ \ldots H_{2} \circ H_1 (x), ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5879,7 +5828,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.76 ...ldots H_{2} \circ H_1 (x), \qquad x \in \R
+l.75 ...ldots H_{2} \circ H_1 (x), \qquad x \in \R
                                                   ^{d_1}.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5894,7 +5843,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.77 \end{align*}
+l.76 \end{align*}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -5907,14 +5856,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.79 \begin{align}
+l.78 \begin{align}
                   \label{nn_comp}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Misplaced alignment tab character &.
-l.80 f_2 (y) &
+l.79 f_2 (y) &
               = \tilde{H}_{L_2} \circ \tilde{H}_{L_2-1} \circ \ldots \tilde{...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -5924,7 +5873,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.81 f_2\left(f_1\left(x\right)\right)  &
+l.80 f_2\left(f_1\left(x\right)\right)  &
                                          = \tilde{H}_{L_2} \circ \tilde{H}_{...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -5934,7 +5883,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Undefined control sequence.
-l.81 ...ldots H_{2} \circ H_1 (x), \qquad x \in \R
+l.80 ...ldots H_{2} \circ H_1 (x), \qquad x \in \R
                                                   ^{d_1}.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5949,15 +5898,15 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.82 \end{align}
+l.81 \end{align}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.83 Therefore, from \eqref
-                           {nn_comp} follows that the composition $f_2 \circ...
+l.82 Therefore, from equation \eqref
+                                    {nn_comp} follows that the composition $...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -5967,21 +5916,21 @@ and I'll forget about whatever was undefined.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.83 ...{nn_comp} follows that the composition $f_
+l.82 ...{nn_comp} follows that the composition $f_
                                                   2 \circ f_1$ is a neural n...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 84.
+LaTeX Warning: Command \t invalid in math mode on input line 83.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 84.
+LaTeX Warning: Command \t invalid in math mode on input line 83.
 
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.84 Lastly, we consider the parameters $\t$
+l.83 Lastly, we consider the parameters $\t$
                                              of the neural network $f_2 \cir...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -5991,7 +5940,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \let \maybe@load@fontshape...
-l.84 Lastly, we consider the parameters $\t$
+l.83 Lastly, we consider the parameters $\t$
                                              of the neural network $f_2 \cir...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -6002,7 +5951,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.84 Lastly, we consider the parameters $\t$
+l.83 Lastly, we consider the parameters $\t$
                                              of the neural network $f_2 \cir...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -6010,7 +5959,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.84 Lastly, we consider the parameters $\t$
+l.83 Lastly, we consider the parameters $\t$
                                              of the neural network $f_2 \cir...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6020,7 +5969,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.84 Lastly, we consider the parameters $\t$
+l.83 Lastly, we consider the parameters $\t$
                                              of the neural network $f_2 \cir...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -6031,7 +5980,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.84 ...he parameters $\t$ of the neural network $
+l.83 ...he parameters $\t$ of the neural network $
                                                   f_2 \circ f_1$. Since the ...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -6042,21 +5991,21 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.84 ... parameters $\t$ of the neural network $f_
+l.83 ... parameters $\t$ of the neural network $f_
                                                   2 \circ f_1$. Since the pa...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 84.
+LaTeX Warning: Command \t invalid in math mode on input line 83.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 84.
+LaTeX Warning: Command \t invalid in math mode on input line 83.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.84 ... of a neural network were defined as $\t =
+l.83 ... of a neural network were defined as $\t =
                                                    (\t_1,\ldots, \t_L)$, whe...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -6064,7 +6013,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    \edef
-l.84 ... of a neural network were defined as $\t =
+l.83 ... of a neural network were defined as $\t =
                                                    (\t_1,\ldots, \t_L)$, whe...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6072,12 +6021,12 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 84.
+LaTeX Warning: Command \t invalid in math mode on input line 83.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.84 ... neural network were defined as $\t = (\t_
+l.83 ... neural network were defined as $\t = (\t_
                                                   1,\ldots, \t_L)$, where ea...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -6085,7 +6034,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.84 ... neural network were defined as $\t = (\t_
+l.83 ... neural network were defined as $\t = (\t_
                                                   1,\ldots, \t_L)$, where ea...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6095,7 +6044,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.84 ... neural network were defined as $\t = (\t_
+l.83 ... neural network were defined as $\t = (\t_
                                                   1,\ldots, \t_L)$, where ea...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -6105,7 +6054,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.84 ... neural network were defined as $\t = (\t_
+l.83 ... neural network were defined as $\t = (\t_
                                                   1,\ldots, \t_L)$, where ea...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -6113,7 +6062,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    _
-l.84 ... neural network were defined as $\t = (\t_
+l.83 ... neural network were defined as $\t = (\t_
                                                   1,\ldots, \t_L)$, where ea...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6123,7 +6072,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.84 ... neural network were defined as $\t = (\t_
+l.83 ... neural network were defined as $\t = (\t_
                                                   1,\ldots, \t_L)$, where ea...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6131,21 +6080,21 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 84.
+LaTeX Warning: Command \t invalid in math mode on input line 83.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.84 ...rk were defined as $\t = (\t_1,\ldots, \t_
-                                                  L)$, where each entry is d...
+l.83 ...rk were defined as $\t = (\t_1,\ldots, \t_
+                                                  L)$, where each component ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Missing { inserted.
 <to be read again>
                    \global
-l.84 ...rk were defined as $\t = (\t_1,\ldots, \t_
-                                                  L)$, where each entry is d...
+l.83 ...rk were defined as $\t = (\t_1,\ldots, \t_
+                                                  L)$, where each component ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
@@ -6154,8 +6103,8 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.84 ...rk were defined as $\t = (\t_1,\ldots, \t_
-                                                  L)$, where each entry is d...
+l.83 ...rk were defined as $\t = (\t_1,\ldots, \t_
+                                                  L)$, where each component ...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
 neither of these is meaningful inside \write. So
@@ -6164,16 +6113,16 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.84 ...rk were defined as $\t = (\t_1,\ldots, \t_
-                                                  L)$, where each entry is d...
+l.83 ...rk were defined as $\t = (\t_1,\ldots, \t_
+                                                  L)$, where each component ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
 
 ! Missing { inserted.
 <to be read again>
                    _
-l.84 ...rk were defined as $\t = (\t_1,\ldots, \t_
-                                                  L)$, where each entry is d...
+l.83 ...rk were defined as $\t = (\t_1,\ldots, \t_
+                                                  L)$, where each component ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
@@ -6182,8 +6131,8 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.84 ...rk were defined as $\t = (\t_1,\ldots, \t_
-                                                  L)$, where each entry is d...
+l.83 ...rk were defined as $\t = (\t_1,\ldots, \t_
+                                                  L)$, where each component ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
 so that I will find a matching right brace soon.
@@ -6192,8 +6141,8 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.84 ...were defined as $\t = (\t_1,\ldots, \t_L)$
-                                                  , where each entry is defi...
+l.83 ...were defined as $\t = (\t_1,\ldots, \t_L)$
+                                                  , where each component is ...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -6208,10 +6157,11 @@ Missing character: There is no e in font tcrm1000!
 Missing character: There is no e in font tcrm1000!
 Missing character: There is no a in font tcrm1000!
 Missing character: There is no h in font tcrm1000!
+Missing character: There is no o in font tcrm1000!
+Missing character: There is no p in font tcrm1000!
+Missing character: There is no o in font tcrm1000!
 Missing character: There is no e in font tcrm1000!
 Missing character: There is no t in font tcrm1000!
-Missing character: There is no r in font tcrm1000!
-Missing character: There is no y in font tcrm1000!
 Missing character: There is no i in font tcrm1000!
 Missing character: There is no s in font tcrm1000!
 Missing character: There is no e in font tcrm1000!
@@ -6221,12 +6171,12 @@ Missing character: There is no e in font tcrm1000!
 Missing character: There is no a in font tcrm1000!
 Missing character: There is no s in font tcrm1000!
 
-LaTeX Warning: Command \t invalid in math mode on input line 84.
+LaTeX Warning: Command \t invalid in math mode on input line 83.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.84 ...t_L)$, where each entry is defined as $\t_
+l.83 ...$, where each component is defined as $\t_
                                                   i = (W_i, b_i)$ and denote...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -6234,7 +6184,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.84 ...t_L)$, where each entry is defined as $\t_
+l.83 ...$, where each component is defined as $\t_
                                                   i = (W_i, b_i)$ and denote...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6244,7 +6194,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.84 ...t_L)$, where each entry is defined as $\t_
+l.83 ...$, where each component is defined as $\t_
                                                   i = (W_i, b_i)$ and denote...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -6254,7 +6204,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.84 ...t_L)$, where each entry is defined as $\t_
+l.83 ...$, where each component is defined as $\t_
                                                   i = (W_i, b_i)$ and denote...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -6262,7 +6212,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    _
-l.84 ...t_L)$, where each entry is defined as $\t_
+l.83 ...$, where each component is defined as $\t_
                                                   i = (W_i, b_i)$ and denote...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6272,7 +6222,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.84 ...t_L)$, where each entry is defined as $\t_
+l.83 ...$, where each component is defined as $\t_
                                                   i = (W_i, b_i)$ and denote...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6282,7 +6232,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text>
                 }
-l.84 ...ch entry is defined as $\t_i = (W_i, b_i)$
+l.83 ...omponent is defined as $\t_i = (W_i, b_i)$
                                                    and denotes the weight an...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -6375,7 +6325,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...
 
-l.85 \begin{align*}
+l.84 \begin{align*}
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -6384,7 +6334,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.86 \t_
+l.85 \t_
         1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -6392,7 +6342,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.86 \t_
+l.85 \t_
         1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6402,7 +6352,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.86 \t_
+l.85 \t_
         1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -6412,7 +6362,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.86 \t_
+l.85 \t_
         1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -6420,7 +6370,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    _
-l.86 \t_
+l.85 \t_
         1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6430,7 +6380,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.86 \t_
+l.85 \t_
         1 &\coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6438,7 +6388,7 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 ! Misplaced alignment tab character &.
-l.86 \t_1 &
+l.85 \t_1 &
            \coloneqq (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -6448,7 +6398,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Undefined control sequence.
-l.86 \t_1 &\coloneqq
+l.85 \t_1 &\coloneqq
                      (\t_1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -6457,130 +6407,130 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
+LaTeX Warning: Command \t invalid in math mode on input line 85.
+
+! Missing $ inserted.
+<inserted text>
+                $
+l.85 \t_1 &\coloneqq (\t_
+                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing { inserted.
+<to be read again>
+                   \global
+l.85 \t_1 &\coloneqq (\t_
+                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Improper \spacefactor.
+<recently read> \spacefactor
+
+l.85 \t_1 &\coloneqq (\t_
+                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent
+                                                  #1 #2\egroup \ifmmode \els...
+l.85 \t_1 &\coloneqq (\t_
+                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again>
+                   _
+l.85 \t_1 &\coloneqq (\t_
+                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing { inserted.
+<to be read again>
+                   \egroup
+l.85 \t_1 &\coloneqq (\t_
+                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \t invalid in math mode on input line 85.
+
+! Missing $ inserted.
+<inserted text>
+                $
+l.85 \t_1 &\coloneqq (\t_1, \ldots, \t_
+                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing { inserted.
+<to be read again>
+                   \global
+l.85 \t_1 &\coloneqq (\t_1, \ldots, \t_
+                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Improper \spacefactor.
+<recently read> \spacefactor
+
+l.85 \t_1 &\coloneqq (\t_1, \ldots, \t_
+                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent
+                                                  #1 #2\egroup \ifmmode \els...
+l.85 \t_1 &\coloneqq (\t_1, \ldots, \t_
+                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again>
+                   _
+l.85 \t_1 &\coloneqq (\t_1, \ldots, \t_
+                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing { inserted.
+<to be read again>
+                   \egroup
+l.85 \t_1 &\coloneqq (\t_1, \ldots, \t_
+                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
 LaTeX Warning: Command \t invalid in math mode on input line 86.
 
 ! Missing $ inserted.
 <inserted text>
                 $
-l.86 \t_1 &\coloneqq (\t_
-                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing { inserted.
-<to be read again>
-                   \global
-l.86 \t_1 &\coloneqq (\t_
-                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Improper \spacefactor.
-<recently read> \spacefactor
-
-l.86 \t_1 &\coloneqq (\t_
-                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
-You can refer to \spacefactor only in horizontal mode;
-you can refer to \prevdepth only in vertical mode; and
-neither of these is meaningful inside \write. So
-I'm forgetting what you said and using zero instead.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ... \let \ignorespaces \relax \accent
-                                                  #1 #2\egroup \ifmmode \els...
-l.86 \t_1 &\coloneqq (\t_
-                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! Missing { inserted.
-<to be read again>
-                   _
-l.86 \t_1 &\coloneqq (\t_
-                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing { inserted.
-<to be read again>
-                   \egroup
-l.86 \t_1 &\coloneqq (\t_
-                         1, \ldots, \t_{L_1}) = \left((W_1, b_1),\ldots, (W_...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-
-LaTeX Warning: Command \t invalid in math mode on input line 86.
-
-! Missing $ inserted.
-<inserted text>
-                $
-l.86 \t_1 &\coloneqq (\t_1, \ldots, \t_
-                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing { inserted.
-<to be read again>
-                   \global
-l.86 \t_1 &\coloneqq (\t_1, \ldots, \t_
-                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Improper \spacefactor.
-<recently read> \spacefactor
-
-l.86 \t_1 &\coloneqq (\t_1, \ldots, \t_
-                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
-You can refer to \spacefactor only in horizontal mode;
-you can refer to \prevdepth only in vertical mode; and
-neither of these is meaningful inside \write. So
-I'm forgetting what you said and using zero instead.
-
-! Please use \mathaccent for accents in math mode.
-\add@accent ... \let \ignorespaces \relax \accent
-                                                  #1 #2\egroup \ifmmode \els...
-l.86 \t_1 &\coloneqq (\t_1, \ldots, \t_
-                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-! Missing { inserted.
-<to be read again>
-                   _
-l.86 \t_1 &\coloneqq (\t_1, \ldots, \t_
-                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing { inserted.
-<to be read again>
-                   \egroup
-l.86 \t_1 &\coloneqq (\t_1, \ldots, \t_
-                                       {L_1}) = \left((W_1, b_1),\ldots, (W_...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-
-LaTeX Warning: Command \t invalid in math mode on input line 87.
-
-! Missing $ inserted.
-<inserted text>
-                $
-l.87 \t_
+l.86 \t_
         2 &\coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -6588,7 +6538,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again>
                    \global
-l.87 \t_
+l.86 \t_
         2 &\coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6598,7 +6548,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor
 
-l.87 \t_
+l.86 \t_
         2 &\coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -6608,7 +6558,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent
                                                   #1 #2\egroup \ifmmode \els...
-l.87 \t_
+l.86 \t_
         2 &\coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -6616,7 +6566,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again>
                    _
-l.87 \t_
+l.86 \t_
         2 &\coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6626,7 +6576,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again>
                    \egroup
-l.87 \t_
+l.86 \t_
         2 &\coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -6634,7 +6584,7 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 ! Misplaced alignment tab character &.
-l.87 \t_2 &
+l.86 \t_2 &
            \coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -6644,7 +6594,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Undefined control sequence.
-l.87 \t_2 &\coloneqq
+l.86 \t_2 &\coloneqq
                      (\tilde{\t}_1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -6653,12 +6603,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 87.
+LaTeX Warning: Command \t invalid in math mode on input line 86.
 
 ! Argument of \add@accent has an extra }.
 <inserted text>
                 \par
-l.87 \t_2 &\coloneqq (\tilde{\t}
+l.86 \t_2 &\coloneqq (\tilde{\t}
                                 _1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -6671,7 +6621,7 @@ Runaway argument?
 ! Paragraph ended before \add@accent was complete.
 <to be read again>
                    \par
-l.87 \t_2 &\coloneqq (\tilde{\t}
+l.86 \t_2 &\coloneqq (\tilde{\t}
                                 _1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -6680,7 +6630,7 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.87 \t_2 &\coloneqq (\tilde{\t}
+l.86 \t_2 &\coloneqq (\tilde{\t}
                                 _1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -6688,7 +6638,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.87 \t_2 &\coloneqq (\tilde{\t}
+l.86 \t_2 &\coloneqq (\tilde{\t}
                                 _1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -6699,7 +6649,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.87 \t_2 &\coloneqq (\tilde{\t}
+l.86 \t_2 &\coloneqq (\tilde{\t}
                                 _1, \ldots, \tilde{\t}_{L_2}) = \left((\tild...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -6708,12 +6658,12 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-LaTeX Warning: Command \t invalid in math mode on input line 87.
+LaTeX Warning: Command \t invalid in math mode on input line 86.
 
 ! Argument of \add@accent has an extra }.
 <inserted text>
                 \par
-l.87 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
+l.86 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
                                                   _{L_2}) = \left((\tilde{W}...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -6726,7 +6676,7 @@ Runaway argument?
 ! Paragraph ended before \add@accent was complete.
 <to be read again>
                    \par
-l.87 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
+l.86 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
                                                   _{L_2}) = \left((\tilde{W}...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -6735,7 +6685,7 @@ My plan is to forget the whole thing and hope for the best.
 ! Missing $ inserted.
 <inserted text>
                 $
-l.87 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
+l.86 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
                                                   _{L_2}) = \left((\tilde{W}...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -6743,7 +6693,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text>
                 }
-l.87 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
+l.86 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
                                                   _{L_2}) = \left((\tilde{W}...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -6754,7 +6704,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text>
                 }
-l.87 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
+l.86 ...coloneqq (\tilde{\t}_1, \ldots, \tilde{\t}
                                                   _{L_2}) = \left((\tilde{W}...
 (That makes 100 errors; please try again.)
 Here is how much of TeX's memory you used:
@@ -6764,6 +6714,6 @@ Here is how much of TeX's memory you used:
  20594 multiletter control sequences out of 15000+600000
  512930 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,31n,32p,1232b,245s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 23i,31n,32p,1220b,245s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 !  ==> Fatal error occurred, no output PDF file produced!

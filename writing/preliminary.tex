@@ -240,7 +240,7 @@ A visual representation of a neural network can be found in Figure \ref{img_nn}
 
 \section{Training of Neural Networks}\label{sec:training_of_nn}
 Since we now know what neural networks are, we want to discuss how to tune them to a specific problem. This procedure is usually referred to as training of a neural network. The most common approach to train a neural network is to iteratively find the gradient - the direction of greatest ascent of the risk function, and afterwards perform an optimization step in the opposite direction, thus the direction of the steepest descent. This method of the steepest descent dates way back to the early $\nth{19}$ century and was introduced by Augustin L. Cauchy in the year $1847$. For a brief overview we refer to \cite{lemarechal2012cauchy}. This method is immensely popular and thus, is very wide spread in literature. We will mostly draw inspiration form \cite[Chapter~XV]{kantorovich2016functional}. For in-depth explanation, we kindly refer to this reference.\\
-Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded below on $X$ and we aim to find an element $x^{\ast}\in X$ such that
+Let us consider a (non-linear) real-valued function $f$, which is defined on a real normed space $X$. We assume that $f$ is bounded from below on $X$ and we aim to find an element $x^{\ast}\in X$ such that
 
 \begin{align*}
 f(x) \geq f(x^{\ast}),
@@ -270,7 +270,7 @@ x^{(k+1)} \coloneqq x^{(k)} - \g_{k+1} z_{k+1},
 where $z_{k+1}$ denotes the direction of steepest descent at $x^{(k)}$. The numerical parameter $\g^{(k+1)}$ can be found in various ways, e.g. \cite[Chapter~XV]{kantorovich2016functional}. However, we want to approach it by finding the optimal step size analytically.\\
 We specify a sequence of positive numbers $(\g_k)$ such that $\g_k \to 0$ and $\sum_{k\geq 1} \g_k = \infty$. Furthermore, we assume the $z_k$ to be normalized for all $k\in \N$, i.e. $\|z_k\| = 1$. Hence, the step size at the $k$-th iteration is $\g_k$. We do this in order to avoid making too great steps, which could possibly avert the convergence of the algorithm.\\
 Furthermore, we note at this point that we can establish a connection between the problem of minimizing a functional and that of solving a linear functional equation as follows.\\
-Let $U$ be a self-adjoint operator on a Hilbert space $\H$. We assume that the operator $U$ is below bounded by $m>0$ and above bounded by $M>0$, i.e. the following equations hold
+Let $U$ be a self-adjoint operator on a Hilbert space $\H$. We assume that the operator $U$ is bounded from below by $m>0$ and bounded from above by $M>0$, i.e. the following equations hold
 \begin{align*}
 m \coloneqq \inf_{x\in X, \|x\| = 1} \left\langle Ux, x \right\rangle, \qquad \text{and} \qquad M \coloneqq \sup_{x\in X, \|x\| = 1} \left\langle Ux, x \right\rangle,
 \end{align*}
@@ -383,13 +383,14 @@ for all $n\in\N_0$.
 \begin{proof}
 Firstly, we rewrite the equation \eqref{eq:lfe} with $k>0$ to
 \begin{align}\label{eq:rewritten}
-Ux &= y\nonumber\\
-\Longleftrightarrow \qquad 0 &= ky - kUx\nonumber\\
+Ux &= y,\nonumber\\
+\Longleftrightarrow \qquad 0 &= ky - kUx,\nonumber\\
 \Longleftrightarrow \qquad x &= x - kUx + ky.
 \end{align}
-We chose the numerical factor $k$ in a way, that the operator $T=\id-kU$ has the smallest possible norm, where we denote $\id$ as the identity operator. Since we assumed $U$ to be lower bounded by $m$ and upper bounded by $M$, the operator $T$ needs to be lower bounded by $1-km$ and upper bounded by $1-kM$, where the minimal norm will occur if
+We chose the numerical factor $k$ in a way, that the operator $T=\id-kU$ has the smallest possible norm, where we denote $\id$ as the identity operator. Since we assumed $U$ to be bounded from below by $m$ and bounded from above by $M$, the operator $T$ needs to be bounded from below by $1-km$ and bounded from above by $1-kM$, where the minimal norm will occur if we consider the sum of the bounds to be equal to zero, see \cite[Chapter~XV Theorem~2]{kantorovich2016functional}.
 \begin{align*}
-1-km = -(1-kM).
+1-km + 1-kM &= 0,\\
+\Longleftrightarrow \qquad\qquad\qquad 1-km &= -(1-kM).
 \end{align*}
 This leads to
 \begin{align*}
@@ -405,7 +406,7 @@ as well as
 \end{align}
 Combining the equations \eqref{eq:lower} and \eqref{eq:upper} leads to
 \begin{align*}
-2\|T\| &= \left( 1 - \frac{2m}{m+M}\right) + \left( \frac{2M}{m+M} - 1\right) = \frac{2M - 2m}{m+M}\\
+2\|T\| &= \left( 1 - \frac{2m}{m+M}\right) + \left( \frac{2M}{m+M} - 1\right) = \frac{2M - 2m}{m+M},\\
 \Longleftrightarrow \qquad \|T\| &= \frac{M-m}{M+m}.
 \end{align*}
 Moreover, applying \eqref{eq:rewritten} and rewriting it gives us
@@ -417,7 +418,7 @@ This operator $V$ we now plug into \eqref{eq:F_rewritten}.
 \begin{align}\label{eq:F_rewritten2}
 F(x) &= \left\langle U(x - x^{\ast}), x - x^{\ast} \right\rangle - \left\langle Ux^{\ast}, x^{\ast} \right\rangle\nonumber\\
 &= \left\langle V(x - x^{\ast}), V(x - x^{\ast}) \right\rangle - \left\langle Vx^{\ast}, Vx^{\ast} \right\rangle\nonumber\\
-&= \left\|V(x - x^{\ast}) \right\|^2 - \left\|Vx^{\ast} \right\|^2
+&= \left\|V(x - x^{\ast}) \right\|^2 - \left\|Vx^{\ast} \right\|^2.
 \end{align}
 Considering the inequality $F(x^{\prime}_1) \geq F(x^{(1)})$, which holds due to the fact that $x^{(1)}$ is the iterate performed with optimal descent value, leads to
 \begin{align*}
@@ -441,7 +442,7 @@ V\left(x^{\prime}_1 - x^{\ast}\right) = VT(x^{(0)} - x^{\ast}).
 \end{align}
 With the easy calculation
 \begin{align*}
-VT = V\left( I - kU\right) = V -kVU = V - kVVV = \left(I-kU\right)V = TV,
+VT = V\left( \id - kU\right) = V -kVU = V - kVVV = \left(\id-kU\right)V = TV,
 \end{align*}
 we realise that the operators $T$ and $V$ commute. Hence, we can rewrite \eqref{eq:1.16} to
 \begin{align*}
@@ -450,7 +451,7 @@ V\left(x^{\prime}_1 - x^{\ast}\right) = TV(x^{(0)} - x^{\ast}).
 Considering the norm leads to
 \begin{align*}
 \left\|V\left(x^{\prime}_1 - x^{\ast}\right)\right\| &= \left\| TV(x^{(0)} - x^{\ast})\right\| \leq \left\| T \right\| \left\|V(x^{(0)} - x^{\ast})\right\|\\
-&=\frac{M-m}{M+m} \left\|V(x^{(0)} - x^{\ast})\right\|\\
+&=\frac{M-m}{M+m} \left\|V(x^{(0)} - x^{\ast})\right\|.\\
 \end{align*}
 Therefore, with inequality \eqref{ineq:1} we have
 \begin{align*}
@@ -1355,7 +1356,7 @@ Since for each pixel $\p_{ij}$ holds $\p_{ij}\in\P^d$, we define the \textbf{ima
 However, since we usually consider floats and not integers in numerical mathematics, we need to consider a way to represent pixels as floats. In order to do that, we introduce the normed image domain.
 
 
-\begin{definition}
+\begin{definition}\label{def:normed_image_domain}
 Let $\O$ be a pixel domain and  $d\in\N$ a number of channels. Then we call the $\P^\prime$, defined as
 \begin{align*}
 \P^\prime \coloneqq \frac{1}{255} \P = \left\{\frac{0}{255}, \frac{1}{255}, \ldots, \frac{255}{255} \right\},

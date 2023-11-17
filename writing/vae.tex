@@ -1,5 +1,5 @@
 \chapter{Variational Autoencoders}\label{chap:vae}
-Variational autoencodering neural networks, first introduced by Kingma and Welling in the year 2013, see \cite{kingma2013auto}, differently to ordinary autoencoding neural networks that we already mentioned to be discriminative models, are so called generative models, see \cite[Chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
+Variational autoencoding neural networks, first introduced by Kingma and Welling in the year 2013, see \cite{kingma2013auto}, differently to ordinary autoencoding neural networks that we already mentioned to be discriminative models, are so called generative models, see \cite[Chapter~5]{cinelli2021variational}. This means that instead of trying to estimate the conditional distribution of $y|x$, where $y$ is a predicted label to an observation $x$, variational autoencoders attempt to capture the entire probability distribution of $Y$. This is very interesting for multiple reasons, since this means that we can simulate and anticipate the evolution of the model output. Hence, we could generate new data based on the captured probability distribution. This will be our ultimate goal in this chapter, considering applications at last.
 
 \section{Probabilistic foundations}\label{sec:prob_foundations}
 
@@ -94,7 +94,7 @@ Therefore, we can write each normal distribution as an altered standard normal d
 
 
 The Bayes formula, introduced in Theorem~\ref{theorem:bayes_rule}, lead to an entire optimization ecosystem. The conceptional idea of this ecosystem is to iteratively update ones belief of the knowledge one possesses about some observed data. This means that one first assumes some kind of knowledge about their data, e.g. a probability distribution. Then by considering a sample (or a batch of samples) of the data, update the assumed probability distribution. Upon repeating this process, one iteratively updates the knowledge about the data until the knowledge no longer (significantly) changes upon updating. This optimization setting is commonly known as Variational Bayes or Variational Inference and can be introduced as follows.\\
-We have some observations $x=(x_1,\ldots, x_n)$ that are generated from a random variable $X$, which we thus call the \textbf{observation random variable}. We assume that the distribution of $X$ has a probability density function $p(x)$. We will refer to it as the \textbf{evidence}. Usually, this probability density function is highly complicated and thus, our goal is to achieve a better understanding of it. We do so, by assuming that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). For this unknown or (or latent) reason we introduce another random variable $Z$ which we will refer to as \textbf{latent random variable}. Moreover, we assume that this latent random variable $Z$ does have a known and \glqq easily understandable\grqq{} probability distribution with density $p(z)$ (e.g. a Gaussian distribution). This probability density we will refer to as \textbf{prior}, since we assume the density before considering the observations $x$. The next step is to introduce the conditional density $p(x|z)$, which is a function of the the realisations  $z$ of the latent variable $Z$, given the observed data $x$. It quantifies how likely the observed data are under the assumed statistical model and its specific parameter values. This quantity we will refer to as \textbf{likelihood}. If we now assume, that there exists a joint distribution of $X$ and $Z$, we can represent the density $p(x)$ as the marginal density
+We have some observations $x=(x_1,\ldots, x_n)$ that are generated from a random variable $X$, which we thus call the \textbf{observation random variable}. We assume that the distribution of $X$ has a probability density function $p(x)$. We will refer to it as the \textbf{evidence}. Usually, this probability density function is highly complicated and thus, our goal is to achieve a better understanding of it. We do so, by assuming that the single data points $x_i$ are not independent - what is no grave assumption, since the observations are assumed to have a reason to be shaped the way they are (e.g. having the same underlying probability distribution). For this unknown or (or latent) reason we introduce another random variable $Z$ which we will refer to as \textbf{latent random variable}. Moreover, we assume that this latent random variable $Z$ does have a known and \glqq easily understandable\grqq{} probability distribution with density $p(z)$ (e.g. a Gaussian distribution). This probability density we will refer to as \textbf{prior}, since we assume the density before considering the observations $x$. The next step is to introduce the conditional density $p(x|z)$, which is a function of the observed data $x$, given the realisations $z$ of the latent variable $Z$. It quantifies how likely the observed data are under the assumed statistical model and its specific parameter values. This quantity we will refer to as \textbf{likelihood}. If we now assume, that there exists a joint distribution of $X$ and $Z$, we can represent the density $p(x)$ as the marginal density
 \begin{align}\label{eq:evidence}
 p(x) = \int p(x|z) p(z) dz,
 \end{align}
@@ -103,7 +103,7 @@ where we integrate the likelihood function $p(x|z)$ over all possible priors $p(
 p(z|x) = \frac{p(x|z)p(z)}{p(x)},
 \end{align}
 which is usually referred to as the \textbf{(true) posterior}. This completes the Bayesian Inference setting.\\
-Lastly, we must also consider how to actually compare densities to one another. We want to update the prior density $p(z)$ until it \glqq no longer (significatnly) changes\grqq{}, in other words, until it converges. But what does actually convergence mean in this setting? A common approach to quantify the discrepancy between two probability densities, or probability measures in general, is the Kullback-Leibler divergence. It is a relative measure, which assesses the dissimilarity between two probability distributions over the same random variable $X$.
+Lastly, we must also consider how to actually compare densities to one another. We want to update the prior density $p(z)$ until it \glqq no longer (significantly) changes\grqq{}, in other words, until it converges. But what does actually convergence mean in this setting? A common approach to quantify the discrepancy between two probability densities, or probability measures in general, is the Kullback-Leibler divergence. It is a relative measure, which assesses the dissimilarity between two probability distributions over the same random variable $X$.
 
 \begin{definition}\label{def:KL_div}
 Let $(\O,\A, \prob)$ be a probability space and let $X:\O \to \R^n$ be a random variable. Furthermore, let $p$ and $q$ be two probability densities of $\prob_X$, respectively. Then, the \textbf{Kullback-Leibler divergence} from $q$ to $p$ is defined as
@@ -151,13 +151,13 @@ With the help of the entropy, which we defined in Definition \ref{def:entropy} a
 
 \section{Variational Inference on Autoencoders}\label{sec:vi_on_ae}
 
-In Section\ref{sec:prob_foundations} we introduced the Variational Inference, also known as Variational Bayes setting. This setting allows us to iteratively improve our understanding of the observed data, which we model through the observation generation probability density function $p(x)$. This approach can we applied to autoencoding neural networks, as proposed in \cite{kingma2013auto}. The idea is to consider an autoencoding neural network with parameters $\t$, where we assume the parameters to be variable. In the Bayesian learning setting it is a common approach to not distinguish between latent variables and model parameters, since they both are unknown quantities. Therefore, we can consider the likelihood function $p(x|z)$ as the output of a neural network, where the parameters $\t$ are determined by the realisation $z$ of the latent variable $Z$. We denote the likelihood function as $p_\t(x|z)$ then. Moreover, since we consider generative models the output of the neural network is not a vector but a probability density. If we assume it to be Gaussian, this means that the likelihood function would look like
+In Section~\ref{sec:prob_foundations} we introduced the Variational Inference, also known as Variational Bayes setting. This setting allows us to iteratively improve our understanding of the observed data, which we model through the observation generating probability density function $p(x)$. This approach can be applied to autoencoding neural networks, as proposed in \cite{kingma2013auto}. The idea is to consider an autoencoding neural network with parameters $\t$, where we assume the parameters to be variable. In the Bayesian learning setting it is a common approach to not distinguish between latent variables and model parameters, since they both are unknown quantities. Therefore, we can consider the likelihood function $p(x|z)$ as the output of a neural network, where the parameters $\t$ are determined by the realisation $z$ of the latent variable $Z$. Thus, we denote the likelihood function as $p_\t(x|z)$. Moreover, since we consider generative models the output of the neural network is not a vector but a probability density. If we assume it to be Gaussian, this means that the likelihood function would look like
 \begin{align}\label{eq:likelihood_nn}
-p_\t(x|z) = \mathcal{N} (\m_{nn}(z), \s_{nn}(z)).
+p_\t(x|z) = \mathcal{N} (\m_{nn}(z), \s_{nn}(z)),
 \end{align}
-If we now define the dimensions of the Gaussian distribution from equation \eqref{eq:likelihood_nn} to be smaller than the dimensions of the data samples $x_i$, we speak of a \textbf{probabilistic encoding neural network}, or simply a \textbf{probabilistic encoder}.  Furthermore, if we consider that the evidence is the marginal density as in equation \eqref{eq:evidence} we realise that this integral can not be computed in a closed-form. Therefore, the posterior density, which is defined as the fraction \eqref{eq:posterior}, can not be computed either and we need to approximate it. For this manner, we introduce the density $q_{\phi}$ with parameters $\phi$, which approximates
+where $\m_{nn}(z)$ denotes the mean of the likelihood function and $\s_{nn}(z)$  denotes the variance of the likelihood function. If we now define the dimensions of the Gaussian distribution from equation \eqref{eq:likelihood_nn} to be smaller than the dimensions of the data samples $x_i$, we speak of a \textbf{probabilistic encoding neural network}, or simply a \textbf{probabilistic encoder}.  Furthermore, if we consider that the evidence is the marginal density as in equation \eqref{eq:evidence} we realise that this integral can not be computed in a closed-form. Therefore, the posterior density, which is defined as the fraction \eqref{eq:posterior}, can not be computed either and we need to approximate it. For this manner, we introduce the density $q_{\phi}$ with parameters $\phi$, which approximates
 \begin{align*}
-q_{\phi}(z|x_i) \approx p(z|x_i)
+q_{\phi}(z|x_i) \approx p(z|x_i),
 \end{align*}
 and assume that it is normally distributed with parameters $\m_i$ and $\s_i$, i.e. $q_{\phi}(z|x_i) \sim \mathcal{N} (\m_i, \s_i)$. This approximation leads to the following consideration of the $\log$ of the evidence $p(x)$
 \begin{align}\label{eq:log_evidence}
@@ -193,8 +193,9 @@ At this point, it is worth mentioning that the Kullback-Leibler divergence is th
 \begin{align}\label{eq:alternative_loss}
 \loss(\t,\phi ; x_i) = - \kldiv{q_{\phi}(z|x_i)}{p(z)} + \E_{q_{\phi}(z|x_i)} \left[ \log p_{\t}(x_i|z) \right],
 \end{align}
-where we swapped the prior $p(z)$ and posterior $p_{\t}(z|x_i)$ between Kullback-Leibler divergence and expectation. This s allowed due to the fact that we consider $\E_{q_{\phi}(z|x_i)}[\wc]$ and $\kldiv{q_{\phi}(z|x_i)}{\wc}$.\\
-We want to optimize the ELBO $\loss(\t,\phi ; x_i)$ with regard to both the variational parameters $\phi$ and generative parameters $\t$. The common approach for the variational parameters $\phi$ would be to determine the gradient with respect to the parameters and optimize it with a gradient ascent algorithm. However, computing the gradient in a closed-form is usually not possible in closed-form due to the size of data and the complexity of $\loss(\t,\phi ; x_i) $. Thus, one usually approximates the gradient with e.g. a Monte Carlo Gradient estimator, see e.g. \cite[Section~11.1.6]{bishop2006pattern}, which would look like
+\textcolor{red}{TODO: THE KULLBACK-LEIBLER COEFFICIENT NEEDS TO BE INTRODUCED HERE FFS. PROBABLY ITS BEST TO DO THIS IN THE END OF THIS CHAPTER, WHERE WE INTRODUCE THE UPDATE RULE EXPLICITLY}
+where we swapped the prior $p(z)$ and posterior $p_{\t}(z|x_i)$ between Kullback-Leibler divergence and expectation. This is allowed due to the fact that we consider $\E_{q_{\phi}(z|x_i)}[\wc]$ and $\kldiv{q_{\phi}(z|x_i)}{\wc}$.\\
+We want to optimize the ELBO $\loss(\t,\phi ; x_i)$ with regard to both the variational parameters $\phi$ and generative parameters $\t$. The common approach for the variational parameters $\phi$ would be to determine the gradient with respect to the parameters and optimize it with a gradient ascent algorithm. However, computing the gradient is usually not possible in closed-form due to the size of data and the complexity of $\loss(\t,\phi ; x_i) $. Thus, one has to approximates the gradient with e.g. a Monte Carlo Gradient estimator, see e.g. \cite[Section~11.1.6]{bishop2006pattern}, which would look like
 \begin{align*}
 \nabla_{\phi} \E_{q_{\phi}(z)} \left[ f(z) \right] = \E_{q_{\phi}(z)} \left[ f(z) \nabla_{q_{\phi}(z)}\log q_{\phi} (z)\right] \simeq \frac{1}{L} \sum_{l=1}^L f(z) \nabla_{q_{\phi}(z_l)}\log q_{\phi} (z_l),
 \end{align*}
@@ -202,7 +203,7 @@ where $z_l \sim q_{\phi}(z|x_i)$, see \cite[Section~2.2]{kingma2013auto}. Unfort
 \begin{align*}
 \tilde{z} = g_{\phi} (\e, x)\qquad \e \sim p(\e).
 \end{align*}
-We can now form Monte Carlo estimates of expectations of some function $f(z)$ with regard to the approximate posterior $q_{\phi}(z|x_i)$ as
+Moreover, we consider that we can form Monte Carlo estimates of expectations of some function $f(z)$ with regard to the approximate posterior $q_{\phi}(z|x_i)$ as
 \begin{align*}
 \E_{q_{\phi}(z|x)} \left[ f(z) \right] = \E_{p(\e)} \left[ f\left(g_{\phi} (\e, x_i)\right) \right] \simeq \frac{1}{L} \sum_{l=1}^L f\left(g_{\phi} (\e_l, x_i) \right).
 \end{align*}
@@ -240,7 +241,126 @@ For example, we assume the true posterior to be normally distributed, i.e. $z\si
 \begin{align*}
 \E_{z\sim \mathcal{N}(\m, \s^2)} \left[ f(z) \right] = \E_{\e \sim \mathcal{N}(0, 1)} \left[ f(\m + \s\e) \right] \simeq \frac{1}{L} \sum_{l=1}^L f(\m + \s\e_l),
 \end{align*}
-where $\e_l\sim \mathcal{N}(0, 1)$ for all $l=1,\ldots, L$.
+where $\e_l\sim \mathcal{N}(0, 1)$ for all $l=1,\ldots, L$.\\
+Having introduced the general setting of variational autoencoders, we now want to consider a specific example of a maximum likelihood estimation for a Gaussian distribution.
+\begin{example}\label{ex:mle_gaussian}
+Let $(\O, \A, \prob)$ be a probability space and for $i=1,\ldots, N$ let $X_i:\O\to\R^{D}$ be observation random variables of length $D\in\N$, where each random variable $X_i$ are assumed to be independent and underly a multivariate Gaussian distribution. Hence it holds that $X_i\sim \mathcal{N}(\m, \S)$, where $\m$ denotes the mean and $\S$ denotes the covariance matrix of the multivariate normal probability distribution. We can estimate the parameters of this Gaussian distribution through maximum likelihood estimation, see e.g. \cite[Section~2.3.4]{bishop2006pattern}. First, we consider that the likelihood function for each $X_i$ is given by
+\begin{align*}
+p(X_i| \m, \S) = (2\pi)^{-D/2} \det \left( \S \right)^{-1/2} \exp \left( -\frac{1}{2} (x_i - \m)^{\tran}\S^{-1} (x_i - \m) \right).
+\end{align*}
+Moreover, since all $X_i$ are assumed to be independent and identically distributed, we can denote the probability density function of $X \coloneqq (X_1,\ldots, X_N)$ as the product of the marginal densities
+\begin{align*}
+p(X| \m, \S) = \prod_{i=1}^N (2\pi)^{-D/2} \det \left( \S \right)^{-1/2} \exp \left( -\frac{1}{2} (x - \m)^{\tran}\S^{-1} (x - \m) \right)
+\end{align*}
+Therefore, $\log p(X| \m, \S)$ looks like
+\begin{align}\label{eq:log_likelihood}
+\log p(X| \m, \S) &= \log \prod_{i=1}^N p_{x_i} (x_i|\m, \S)\nonumber\\
+&= \log \prod_{i=1}^N (2\pi)^{-D/2} \det \left( \S \right)^{-1/2} \exp \left( -\frac{1}{2} (x_i - \m)^{\tran}\S^{-1} (x_i - \m) \right)\nonumber\\
+&= \sum_{i=1}^N \left(-\frac{D}{2} \log(2\pi) - \frac{1}{2}\log \det\left(\S\right) - \frac{1}{2} (x_i - \m)^{\tran}\S^{-1} (x_i - \m) \right)\nonumber\\
+&= -\frac{DN}{2}\log(2\pi) - \frac{N}{2} \log \det\left(\S\right) - \frac{1}{2} \sum_{i=1}^N \left( (x_i - \m)^{\tran}\S^{-1} (x_i - \m) \right).
+\end{align}
+We realise that we can rewrite the last term of the right-hand side of equation \eqref{eq:log_likelihood} to
+\begin{align*}
+(x_i - \m)^{\tran}\S^{-1} (x_i - \m) &= \left\langle x_i - \m, \S^{-1}(x_i - \m) \right\rangle = \left\langle x_i, \S^{-1}(x_i - \m) \right\rangle - \left\langle \m, \S^{-1}(x_i - \m) \right\rangle\\
+&= \left\langle x_i, \S^{-1}x_i \right\rangle - \left\langle x_i, \S^{-1} \m \right\rangle - \left\langle \m, \S^{-1}x_i \right\rangle + - \left\langle \m, \S^{-1}\m \right\rangle
+\end{align*}
+We see that the likelihood function depends on the data $x_1,\ldots, x_N$ only through the quantities
+\begin{align*}
+\sum_{i=1}^N x_i, \qquad\text{and} \qquad \sum_{i=1}^N x_i^{\tran}x_i.
+\end{align*}
+These quantities are known as \textbf{sufficient statistics} for the Gaussian distribution, see e.g. \cite[Definition~15.8]{meintrup2006stochastik}. Moreover, if we consider the derivative of the log likelihood with respect to the mean $\m$, we receive
+\begin{align*}
+\nabla_{\m} \log p(X| \m, \S) &= \nabla_{\m} \left( -\frac{DN}{2}\log(2\pi) - \frac{N}{2} \log \det\left(\S\right) - \frac{1}{2} \sum_{i=1}^N \left( (x_i - \m)^{\tran}\S^{-1} (x_i - \m) \right) \right)\\
+&= \sum_{i=1}^N \S^{-1} (x_i-\m).
+\end{align*}
+Since we are interested in the maximizing the log likelihood, we set this derivative to zero. Thus, we obtain the solution for the maximum likelihood estimate $\m_{\text{ML}}$ of the mean $\m$ given by
+\begin{align*}
+\m_{\text{ML}} = \sum_{i=1}^N x_i,
+\end{align*}
+which is the mean of all observed data points $x_i,\ldots, x_N$. The maximization of the log likelihood with respect to the covariance matrix $\S_{\text{ML}}$ is rather more involved. Therefore, we kindly refer to \cite[Chapter~15.3, Theorem~1]{magnus2019matrix}, which states that the maximum likelihood estimate for the convariance matrix $\S_{\text{ML}}$ looks like
+\begin{align*}
+\S_{\text{ML}} = \frac{1}{N} \sum_{i=1}^N \left( x_i - \m_{\text{ML}} \right)\left( x_i - \m_{\text{ML}} \right)^{\tran}.
+\end{align*}
+It is worth to highlight that the computation of the maximum likelihood estimator of the covariance matrix $\S_{\text{ML}}$ relies on knowing the maximum likelihood estimator of the mean $\m_{\text{ML}}$. However, since we do not need $\S_{\text{ML}}$ to compute $\m_{\text{ML}}$, we can simply compute $\m_{\text{ML}}$ first in each iteration.
+\end{example}
+
+Lastly in this chapter, we want to consider how to actually define a statistical learning setting. First, we remember that in statistical learning our aim is to find a prediction function (in our case a neural network), which minimizes the empirical risk function from Definition \ref{def:empirical_risk} over a given dataset $D= \{(x_1,y_1),\ldots, (x_d, y_d)\}$ of length $d\in\N$, i.e.
+\begin{align*}
+\risk_{\loss, D} (f) = \frac{1}{k} \sum_{i=1}^k \loss(x_i, y_i, f(x_i)).
+\end{align*}
+Obviously, we need to consider how to adapt the loss function $\loss$ to the setting in this chapter, since we are not only interested in producing good point estimates, but also in minimizing the Kullback-Leibler divergence and hence, smoothing the latent space. In order to do that, we redefine the loss function $\loss$ as composition of reconstruction term and regularisation term. The reconstruction term is the same as in the previous chapters, e.g. the mean squared error (MSE) or the binary cross-entropy (BCE). The regularisation term on the other hand, we newly introduce at this point and choose it to be the Kullback-Leibler divergence between approximate posterior $q_{\phi(z|x)}$ and true posterior $p(z|x)$. Moreover, we introduce the Kullback-Leibler coefficient $\l\in [0,\infty)$, which controls the weighting of each loss term. This results in
+\begin{align*}
+\loss(x_i, y_i, f(x_i)) = \loss_{\text{rec}}(x_i, y_i, f(x_i)) + \l \kldiv{q_{\phi}(z|x_i)}{p(z|x_i)},
+\end{align*}
+where $\loss_{\text{rec}}(x_i, y_i, f(x_i))$ denotes the reconstruction loss and $\kldiv{q_{\phi}(z|x_i)}{p(z|x_i)}$ denotes the regularisation loss.\\
+Furthermore, we note that the Kullback-Leibler divergence $\kldiv{q_{\phi}(z|x_i)}{p(z|x_i)}$ can be computed in closed-form if one poses some assumptions about approximate posterior $q_{\phi}(z|x_i)$ and true posterior $p(z|x_i)$. This we want to consider in the following lemma.
+
+\begin{lemma}\label{lemma:kl_div}
+Let $(\O,\A, \prob)$ be a probability space and let $X:\O\to\R^{n}$ be a random variable. Furthermore, let $p$, $q$ be probability density functions of $\prob_X$ with probability distributions $p\sim \mathcal{N}(\m_p, \s_p)$ and $q\sim \mathcal{N}(\m_q, \s_q)$, respectively. Then for the Kullback-Leibler divergence between $q$ and $p$ holds
+\begin{align*}
+\kldiv{q}{p} = \log \frac{\s_q}{\s_p} - \frac{\s_q^2 + (\m_p - \m_q)^2}{2\s_p^2} + \frac{1}{2}.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+First, we want to remember the Definition \ref{def:KL_div} of the Kullback-Leibler divergence to be
+\begin{align*}
+\kldiv{q}{p} = - \int_{\O} q(x) \log \left(\frac{q(x)}{p(x)} \right) d\prob_X(x) = - \int_{\O} q(x) \log q(x) d\prob_X(x) + \int_{\O} q(x) \log p(x) d\prob_X(x).
+\end{align*}
+as the next step we want to consider $\log q(x)$
+\begin{align*}
+\log q(x) = \log \left( \frac{1}{2\sqrt{\pi \s_q^{2}}} \exp \left( -\frac{1}{2} \left( \frac{x - \m_{q}}{\s_{q}} \right)^2 \right) \right) &= - \frac{1}{2}\log 2\pi \s_q^{2} - \frac{1}{2} \left( \frac{x - \m_{q}}{\s_{q}} \right)^2\\
+&= -\frac{1}{2} \left( \log 2\pi \s_q^{2} + \left( \frac{x - \m_{q}}{\s_{q}} \right)^2\right).
+\end{align*}
+Therefore, using the recently computed $\log q(x)$, we receive
+\begin{align*}
+- \int_{\O} q(x) \log q(x) d\prob_X(x) &= \frac{1}{2} \log 2\pi \s_q^{2} \int_{\O} q(x) d\prob_X(x) + \frac{1}{2}\int_{\O} q(x) \left( \frac{x - \m_{q}}{\s_{q}} \right)^2 d\prob_X(x).
+\end{align*}
+We note that the second term of the right-hand side is exactly the expectation operator under the probability density $q$ with respect to the centered and normalized random variable $X$. Therefore, it holds that
+\begin{align*}
+\int_{\O} q(x) \left( \frac{x - \m_{q}}{\s_{q}} \right)^2 d\prob_X(x) = \E_{q} \left[\left( \frac{X - \m_q}{\s_q} \right)^2 \right] = 1,
+\end{align*}
+which again leads to
+\begin{align*}
+- \int_{\O} q(x) \log q(x) d\prob_X(x) = \frac{1}{2} \left(\log 2\pi \s_q^{2} + 1\right).
+\end{align*}
+Moreover, we consider the definition $\log p(x)$ analogously to the previous computation of $\log q(x)$, which gives us
+\begin{align*}
+\int_{\O} q(x) \log p(x) d\prob_X(x) &= - \frac{1}{2} \log 2\pi \s_p^{2} \int_{\O} q(x) d\prob_X(x) - \frac{1}{2}\int_{\O} q(x) \left( \frac{x - \m_{p}}{\s_{p}} \right)^2 d\prob_X(x)\\
+&= - \frac{1}{2} \log 2\pi \s_p^{2} - \frac{1}{2}\int_{\O} q(x) \left( \frac{x - \m_{p}}{\s_{p}} \right)^2 d\prob_X(x).
+\end{align*}
+Now we need to compute the second term of the right-hand side. In order to do so, we expand $((x- \m_p)/s_p)^2$, which then allows us to use the linearity of the integral. This gives us
+\begin{align*}
+\int_{\O} q(x) \left( \frac{x - \m_{p}}{\s_{p}} \right)^2 d\prob_X(x) = \frac{\int_{\O} q(x) x^2 d\prob_X(x) - 2 \int_{\O} q(x) x\m_{p} d\prob_X(x) + \int_{\O} q(x) \m_{p}^2 d\prob_X(x)}{\s_p^2}.
+\end{align*}
+If we now denote $\E_p[\wc]$ the expectation operator under $q$, we receive
+\begin{align*}
+\int_{\O} q(x) \left( \frac{x - \m_{p}}{\s_{p}} \right)^2 d\prob_X(x) = \frac{1}{\s_p^2} \left(\E_q[X^2] - 2 \m_p \E_q[X] + \m_p^2 \right).
+\end{align*}
+Moreover, we know that $\s_q^2 = \E_q[X^2] - \E_q[X]^2$, which leads to
+\begin{align*}
+\int_{\O} q(x) \left( \frac{x - \m_{p}}{\s_{p}} \right)^2 d\prob_X(x) = \frac{1}{\s_p^2}\left( \s_q^2 +\m_q^2 - 2 \m_p\m_q +\m_p^2 \right)= \frac{\s_q^2 + (\m_p - \m_q)^2}{\s_p^2}.
+\end{align*}
+Combining all results then gives us
+\begin{align*}
+\kldiv{q}{p} &= \frac{1}{2} \left(\log 2\pi \s_q^{2} + 1\right) - \frac{1}{2} \log 2\pi \s_p^{2} - \frac{\s_q^2 + (\m_p - \m_q)^2}{2\s_p^2}\\
+&= \log \frac{\s_q}{\s_p} - \frac{\s_q^2 + (\m_p - \m_q)^2}{2\s_p^2} + \frac{1}{2}.
+\end{align*}
+\end{proof}
+
+If we now apply Lemma~\ref{lemma:kl_div} to the regularisation loss $\kldiv{q_{\phi}(z|x)}{p(z|x)}$, we can write it explicitly as
+\begin{align*}
+\kldiv{q_{\phi}(z|x)}{p(z|x)} = \log \frac{\s_q}{\s_p} - \frac{\s_q^2 + (\m_p - \m_q)^2}{2\s_p^2} + \frac{1}{2},
+\end{align*}
+where we assumed that the approximate posterior $q_{\phi}(z|x)$ and the true posterior $p(z|x)$ are both normally distributed. This in turn, allows us to denote the loss function $\loss$ explicitly as
+\begin{align}\label{eq:vae_loss}
+\loss(x, y, f(x)) = \loss_{\text{rec}}(x, y, f(x)) + \l \left( \log \frac{\s_q}{\s_p} - \frac{\s_q^2 + (\m_p - \m_q)^2}{2\s_p^2} + \frac{1}{2}\right),
+\end{align}
+for an arbitrary sample $(x,y)\in D$ and some fixed Kullback-Leibler coefficient $\l\in [0,\infty)$. Therefore, the empirical risk function can be written as
+\begin{align*}
+\risk_{\loss, D} (f) = \frac{1}{N} \sum_{i=1}^N \left( \loss_{\text{rec}}(x_i, y_i, f(x_i)) + \l \left(\log \frac{\s_{q, i}}{\s_{p, i}} - \frac{\s_{q, i}^2 + (\m_{p, i} - \m_{q, i})^2}{2\s_{p, i}^2} + \frac{1}{2} \right)\right),
+\end{align*}
+where each sample $(x_i,y_i)\in D$ defines own densities $q_{\phi}(z|x_i)\sim \mathcal{N}(\m_{q, i}, \s_{q, i})$ and $p(z|x_i)\sim \mathcal{N}(\m_{p, i}, \s_{p, i})$, respectively.
 
 \section{Applications}\label{sec:vae_applications}
 

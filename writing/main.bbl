@@ -44,6 +44,10 @@
 {\sc C.~Lemar{\'e}chal}, {\em Cauchy and the gradient method}, Doc. Math.
   Extra,  (2012), p.~251–254.
 
+\bibitem{magnus2019matrix}
+{\sc J.~R. Magnus and H.~Neudecker}, {\em Matrix Differential Calculus with
+  Applications in Statistics and Econometrics}, John Wiley \& Sons, 2019.
+
 \bibitem{mcmahan2010adaptive}
 {\sc H.~B. McMahan and M.~Streeter}, {\em Adaptive bound optimization for
   online convex optimization}, Conference on Learning Theory,  (2010).
