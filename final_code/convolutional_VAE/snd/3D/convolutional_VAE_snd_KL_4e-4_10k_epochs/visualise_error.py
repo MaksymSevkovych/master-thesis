@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
     file_path = os.path.join(
         BASE_PATH,
-        "version_0/checkpoints/epoch=4999-step=10000.ckpt",
+        "version_0/checkpoints/epoch=9999-step=20000.ckpt",
     )
 
     model = ConvolutionalVariationalAutoencoder.load_from_checkpoint(

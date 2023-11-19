@@ -4,7 +4,7 @@ import torch
 from isa_conv_VAE import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-from visualise import inference_convolutional
+from visualise import inference_convolutional, plot_latent_3D_convolutional
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     file_path = os.path.join(
         BASE_PATH,
-        "version_0/checkpoints/epoch=4999-step=10000.ckpt",
+        "version_0/checkpoints/epoch=9999-step=20000.ckpt",
     )
 
     model = ConvolutionalVariationalAutoencoder.load_from_checkpoint(
@@ -32,5 +32,5 @@ if __name__ == "__main__":
     )
 
     # plot
-    # plot_latent_3D_convolutional(model, data_loader, num_batches=NUM_BATCHES)
+    plot_latent_3D_convolutional(model, data_loader, num_batches=NUM_BATCHES)
     inference_convolutional(model, data_loader, 10)
