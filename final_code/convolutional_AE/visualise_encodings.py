@@ -4,7 +4,7 @@ import pickle
 import matplotlib.pyplot as plt
 import pandas as pd
 
-BASE_PATH = "/Users/maksym/Uni/master/coding/master-thesis/final_code/convolutional_AE/convolutional_AE_2d"  # noqa: E501
+BASE_PATH = os.path.dirname(__file__)
 ENCODINGS_FILE = "encodings.pickle"
 
 with open(os.path.join(BASE_PATH, ENCODINGS_FILE), "rb") as reader:
@@ -14,19 +14,6 @@ for df in dfs.values():
     for i in range(20):
         df.rename(columns={i: f"example {i}"}, inplace=True)
 
-# for label, df in dfs.items():
-#     for index in range(1):
-#         fig = plt.figure(figsize=(14, 7))
-
-#         ax = fig.add_subplot()
-#         df.plot(
-#             y=[f"example {index}", "average"],
-#             kind="bar",
-#             # xticks=list(range(64)),
-#             ax=ax,
-#             title=f"Label: {label}",
-#         )
-#         plt.show()
 
 averages = {}
 for i in range(10):

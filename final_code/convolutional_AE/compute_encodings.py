@@ -11,7 +11,7 @@ from tqdm import tqdm
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
 
-BASE_PATH = "/Users/maksym/Uni/master/coding/master-thesis/final_code/convolutional_AE/convolutional_AE_2d"  # noqa: E501
+BASE_PATH = os.path.dirname(__file__)
 BATCH_SIZE = 1
 LATENT_DIMS = 2
 LR = 3e-4
