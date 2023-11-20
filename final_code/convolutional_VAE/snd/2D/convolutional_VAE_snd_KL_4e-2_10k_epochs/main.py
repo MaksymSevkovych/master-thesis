@@ -4,7 +4,11 @@ import torch
 from isa_conv_VAE import ConvolutionalVariationalAutoencoder
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-from visualise import inference_convolutional, plot_latent_2D_convolutional
+from visualise import (
+    inference_convolutional,
+    plot_latent_2D_convolutional,
+    plot_reconstructed_2D,
+)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # CONFIG
@@ -32,5 +36,6 @@ if __name__ == "__main__":
     )
 
     # plot
+    plot_reconstructed_2D(model, (-4, 4), (-4, 4))
     plot_latent_2D_convolutional(model, data_loader, 100)
     inference_convolutional(model, data_loader, 10)
