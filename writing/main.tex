@@ -28,9 +28,9 @@
 
 %\clearscrheadfoot
 \ofoot[scrplain-außen]{scrheadings-außen}
-\ihead[]{\headmark}
+\ihead[]{}
 \chead[]{}
-\ohead[]{}
+\ohead[]{\headmark}
 \ifoot[]{}
 \cfoot[\pagemark]{\pagemark}
 \ofoot[]{}
@@ -146,10 +146,10 @@ Recently in the realm of Machine Learning, the power of generative models has re
 By dissecting the architecture of Variational Autoencoders, we show their role as both proficient data compressors and imaginative creators. As we navigate the landscapes of latent spaces and probabilistic encodings, we uncover the essential mechanisms driving their flexibility.
 Practical applications of Variational Autoencoders extend from anomaly detection to image generation. However, we will focus on the latter in the course of this thesis.
 \end{titlepage}
-\newpage
 \tableofcontents
 \newpage
-\ihead[]{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\ohead[]{Introduction}
 \section*{Introduction}
 In this thesis, our main goal is to understand Variational Autoencoders from a mathematical perspective. Since Variational Autoencoders bring together Bayesian statistics and Deep Learning, we embark on our journey by exploring the basics - covering probability theory, statistics and statistical learning theory, as well as neural networks along with how to optimize them.
 
@@ -160,7 +160,6 @@ The shift from Autoencoders to Variational Autoencoders is a crucial part of thi
 So, in a nutshell, this thesis aims to be a self-contained guide to Variational Autoencoders in a mathematical way, which combines Bayesian statistics with Deep Learning. Along the way, we share insights that could tweak the usual practices in training Variational Autoencoders, which hopefully makes this work not only interesting from a theoretical perspective, but also gives it some sort of practical relevance.
 
 
-\addcontentsline{toc}{chapter}{Introduction}
 \include{preliminary}
 \include{autoencoders}
 \include{vae}
@@ -172,7 +171,7 @@ So, in a nutshell, this thesis aims to be a self-contained guide to Variational 
 \selectlanguage{german}
 
 \section*{Deutsche Zusammenfassung}
-\ihead[]{Deutsche Zusammenfassung}
+\ohead[]{Deutsche Zusammenfassung}
 \addcontentsline{toc}{chapter}{Deutsche Zusammenfassung}
 
 Diese Thesis mit dem Titel \textit{Variational Autoencoders: Theory and Applications} behandelt die Kombination aus Bayesianischer Statistik und der Theorie von Autoencodern, einer bestimmten Architektur neuronaler Netze. Die Theorie der neuronalen Netze ist in der Literatur auch bekannt als \glqq Deep Learning\grqq{}. Das Ziel dieser Thesis ist ein grundlegendes mathematisches Verständnis der Variational Autoencoder zu erlangen. Um dies zu erzielen, ist die Thesis in drei Teile aufgeteilt. Im ersten Teil werden essentielle Grundlagen aus den Gebieten der Maß- und Wahrschienlichkeitstheorie, der Statistik und Statistischen Lerntheorie, der neuronalen Netze und deren Optimierung behandelt. Im zweiten Teil werden Autoencoder eingeführt und an praktischen Beispielen ausgeführt. Im dritten und letzten Teil werden schließlich Variational Autoencoder eingeführt und an unterschiedlichen praktischen Beispielen analysiert und veranschaulicht.
@@ -200,7 +199,7 @@ Zuletzt hinterfragen wir den in der Literatur üblichen Ansatz des Trainings ein
 
 \newpage
 \section*{Erklärung}
-\ihead[]{Erklärung}
+\ohead[]{Erklärung}
 
 Hiermit erkläre ich, Maksym Sevkovych, dass ich die vorliegende Arbeit mit dem Titel \textit{On Variational Autoencoders: Theory and Applications} unter Betreuung von Univ.-Prof. Dr. Ingo Steinwart selbständig verfasst habe. Es wurden keine anderen als die angegebenen Quellen benutzt, und alle wörtlich oder sinngemäß aus anderen Werken übernommenen Aussagen wurden als solche gekennzeichnet. Die eingereiche Arbeit ist weder vollständig noch in wesentlichen Teilen Gegenstand eines anderen Prüfungsverfahrens gewesen. Das elektronische Exemplar stimmt mit den physischen Exemplaren überein.
 
